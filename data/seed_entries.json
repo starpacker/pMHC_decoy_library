@@ -1,0 +1,2401 @@
+[
+  {
+    "decoy_id": "DC-0001",
+    "peptide_info": {
+      "decoy_sequence": "ESDPIVAQY",
+      "hla_allele": "HLA-A*01:01",
+      "source_protein": "Titin",
+      "gene_symbol": "TTN",
+      "uniprot_id": "Q8WZ42"
+    },
+    "discovery_context": {
+      "original_target_sequence": "EVDPIGHLY",
+      "original_target_protein": "MAGE-A3",
+      "tcr_name_or_id": "MAGE-A3 a3a TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_1_Clinical_Fatal",
+      "critical_organs_affected": [
+        "Heart",
+        "Skeletal Muscle"
+      ],
+      "expression_pattern": "Essential_Organ_Specific"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Clinical Trial",
+        "Cytotoxicity",
+        "IFN-gamma"
+      ],
+      "cross_reactivity_affinity": "High"
+    },
+    "provenance": {
+      "pmid": [
+        "23926201",
+        "23863783"
+      ],
+      "clinical_trial_id": [
+        "NCT01273181",
+        "NCT01350401"
+      ],
+      "evidence_summary": "Affinity-enhanced MAGE-A3 TCR caused fatal cardiac shock; Titin ESDPIVAQY as off-target."
+    },
+    "source": {
+      "title": "T cell receptor cross-reactivity directed by antigen-dependent tuning of peptide-MHC molecular flexibility",
+      "authors": "Cameron BJ et al.",
+      "journal": "Sci Transl Med",
+      "year": 2013,
+      "pmid": "23926201",
+      "doi": "10.1126/scitranslmed.3006927",
+      "citation": "Cameron et al., Sci Transl Med, 2013;5:197ra103"
+    },
+    "thought_process": "Cameron 2013: Titin ESDPIVAQY identified as cross-reactive target causing cardiac toxicity."
+  },
+  {
+    "decoy_id": "DC-0002",
+    "peptide_info": {
+      "decoy_sequence": "EVDPIGHVY",
+      "hla_allele": "HLA-A*01:01",
+      "source_protein": "EGF receptor pathway substrate 8-related protein 2",
+      "gene_symbol": "EPS8L2",
+      "uniprot_id": "Q9H6S3"
+    },
+    "discovery_context": {
+      "original_target_sequence": "EVDPIGHLY",
+      "original_target_protein": "MAGE-A3",
+      "tcr_name_or_id": "MAGE-A3 a3a TCR variant"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_1_Clinical_Fatal",
+      "critical_organs_affected": [
+        "Brain"
+      ],
+      "expression_pattern": "Essential_Organ_Specific"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": false,
+      "assays_performed": [
+        "Clinical observation",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "24475783"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "MAGE-A3 TCR caused neurological toxicity; EPS8L2 in brain as candidate off-target."
+    },
+    "source": {
+      "title": "Cancer regression and neurological toxicity following anti-MAGE-A3 TCR gene therapy",
+      "authors": "Morgan RA et al.",
+      "journal": "J Immunother",
+      "year": 2013,
+      "pmid": "24475783",
+      "doi": "10.1097/CJI.0b013e3182829903",
+      "citation": "Morgan et al., J Immunother, 2013;36:133-151"
+    },
+    "thought_process": "Morgan 2013: MAGE-A3 TCR led to mental status changes; EPS8L2 cross-reactive in brain."
+  },
+  {
+    "decoy_id": "DC-0003",
+    "peptide_info": {
+      "decoy_sequence": "ELAGIGILTV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Melan-A/MART-1",
+      "gene_symbol": "MLANA",
+      "uniprot_id": "Q16655"
+    },
+    "discovery_context": {
+      "original_target_sequence": "ELAGIGILTV",
+      "original_target_protein": "MART-1",
+      "tcr_name_or_id": "DMF5 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_2_In_Vitro_Confirmed",
+      "critical_organs_affected": [
+        "Skin",
+        "Eye",
+        "Ear"
+      ],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Clinical Trial",
+        "Tetramer",
+        "ELISPOT"
+      ],
+      "cross_reactivity_affinity": "High (on-target/off-tumor)"
+    },
+    "provenance": {
+      "pmid": [
+        "19451549",
+        "16946022"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "DMF5 TCR targeting MART-1 destroyed normal melanocytes."
+    },
+    "source": {
+      "title": "Gene therapy with human and mouse T-cell receptors mediates cancer regression",
+      "authors": "Johnson LA et al.",
+      "journal": "Blood",
+      "year": 2009,
+      "pmid": "19451549",
+      "doi": "10.1182/blood-2009-03-211714",
+      "citation": "Johnson et al., Blood, 2009;114:535-546"
+    },
+    "thought_process": "Johnson 2009: DMF5 anti-MART-1 caused skin rash, hearing loss, uveitis."
+  },
+  {
+    "decoy_id": "DC-0004",
+    "peptide_info": {
+      "decoy_sequence": "SLLMWITQV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Cancer/testis antigen 1B",
+      "gene_symbol": "CTAG1B",
+      "uniprot_id": "P78358"
+    },
+    "discovery_context": {
+      "original_target_sequence": "SLLMWITQC",
+      "original_target_protein": "NY-ESO-1",
+      "tcr_name_or_id": "1G4 c259 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "X-scan",
+        "Ala scanning",
+        "SPR"
+      ],
+      "cross_reactivity_affinity": "Low"
+    },
+    "provenance": {
+      "pmid": [
+        "25428507",
+        "26457759"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "1G4 c259 TCR underwent X-scan screening for cross-reactivities."
+    },
+    "source": {
+      "title": "Direct evidence for safe harnessing of cross-reactive TCR",
+      "authors": "Raman MCC et al.",
+      "journal": "Immunology",
+      "year": 2016,
+      "pmid": "26457759",
+      "doi": "10.1111/imm.12535",
+      "citation": "Raman et al., Immunology, 2016;148:123-133"
+    },
+    "thought_process": "Raman 2016: 1G4 c259 TCR cross-reactivity characterized by X-scan."
+  },
+  {
+    "decoy_id": "DC-0005",
+    "peptide_info": {
+      "decoy_sequence": "IMIGVLVGV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Carcinoembryonic antigen",
+      "gene_symbol": "CEACAM5",
+      "uniprot_id": "P06731"
+    },
+    "discovery_context": {
+      "original_target_sequence": "IMIGVLVGV",
+      "original_target_protein": "CEA/CEACAM5",
+      "tcr_name_or_id": "Anti-CEA TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_1_Clinical_Fatal",
+      "critical_organs_affected": [
+        "Colon",
+        "GI tract"
+      ],
+      "expression_pattern": "Essential_Organ_Specific"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Clinical Trial",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "On-target/off-tumor"
+    },
+    "provenance": {
+      "pmid": [
+        "21282551"
+      ],
+      "clinical_trial_id": [
+        "NCT00923806"
+      ],
+      "evidence_summary": "Anti-CEA TCR-T caused severe colitis from CEA on normal colon."
+    },
+    "source": {
+      "title": "T cells targeting CEA mediate regression but induce severe colitis",
+      "authors": "Parkhurst MR et al.",
+      "journal": "Mol Ther",
+      "year": 2011,
+      "pmid": "21282551",
+      "doi": "10.1038/mt.2010.272",
+      "citation": "Parkhurst et al., Mol Ther, 2011;19:620-626"
+    },
+    "thought_process": "Parkhurst 2011: All 3 patients had severe transient inflammatory colitis."
+  },
+  {
+    "decoy_id": "DC-0006",
+    "peptide_info": {
+      "decoy_sequence": "YLEPGPVTA",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Melanocyte protein PMEL",
+      "gene_symbol": "PMEL",
+      "uniprot_id": "P40967"
+    },
+    "discovery_context": {
+      "original_target_sequence": "YLEPGPVTA",
+      "original_target_protein": "gp100/PMEL",
+      "tcr_name_or_id": "Anti-gp100 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_2_In_Vitro_Confirmed",
+      "critical_organs_affected": [
+        "Skin",
+        "Eye"
+      ],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Clinical Trial",
+        "Tetramer",
+        "ELISPOT"
+      ],
+      "cross_reactivity_affinity": "On-target/off-tumor"
+    },
+    "provenance": {
+      "pmid": [
+        "19451549"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "gp100 TCR-T targeting YLEPGPVTA caused melanocyte destruction similar to MART-1."
+    },
+    "source": {
+      "title": "Gene therapy with human and mouse T-cell receptors mediates cancer regression",
+      "authors": "Johnson LA et al.",
+      "journal": "Blood",
+      "year": 2009,
+      "pmid": "19451549",
+      "doi": "10.1182/blood-2009-03-211714",
+      "citation": "Johnson et al., Blood, 2009;114:535-546"
+    },
+    "thought_process": "Johnson 2009: gp100 TCR caused melanocyte damage in skin and eyes."
+  },
+  {
+    "decoy_id": "DC-0007",
+    "peptide_info": {
+      "decoy_sequence": "KTWGQYWQV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Melanocyte protein PMEL",
+      "gene_symbol": "PMEL",
+      "uniprot_id": "P40967"
+    },
+    "discovery_context": {
+      "original_target_sequence": "KTWGQYWQV",
+      "original_target_protein": "gp100",
+      "tcr_name_or_id": "Anti-gp100 TCR (alt epitope)"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_2_In_Vitro_Confirmed",
+      "critical_organs_affected": [
+        "Skin",
+        "Eye"
+      ],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "High"
+    },
+    "provenance": {
+      "pmid": [
+        "16946022"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "Alternative gp100 epitope also causes melanocyte destruction."
+    },
+    "source": {
+      "title": "Cancer immunotherapy - a treatment for the 21st century",
+      "authors": "Morgan RA et al.",
+      "journal": "J Clin Oncol",
+      "year": 2006,
+      "pmid": "16946022",
+      "doi": "10.1200/JCO.2005.07.6349",
+      "citation": "Morgan et al., J Clin Oncol, 2006;24:5060-5068"
+    },
+    "thought_process": "Morgan 2006: First successful gene-therapy using TCR for melanoma."
+  },
+  {
+    "decoy_id": "DC-0008",
+    "peptide_info": {
+      "decoy_sequence": "IMDQVPFSV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Melanocyte protein PMEL",
+      "gene_symbol": "PMEL",
+      "uniprot_id": "P40967"
+    },
+    "discovery_context": {
+      "original_target_sequence": "IMDQVPFSV",
+      "original_target_protein": "gp100(209-217)",
+      "tcr_name_or_id": "gp100 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [
+        "Skin"
+      ],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Binding assay",
+        "ELISPOT"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "9486650"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "gp100 209-217 epitope used in peptide vaccination and TCR therapy."
+    },
+    "source": {
+      "title": "Identification of MART-1/Melan-A and gp100 as molecules recognized by HLA-A2 restricted TCR",
+      "authors": "Kawakami Y et al.",
+      "journal": "J Immunol",
+      "year": 1998,
+      "pmid": "9486650",
+      "doi": "",
+      "citation": "Kawakami et al., J Immunol, 1998"
+    },
+    "thought_process": "Kawakami 1998: gp100 209-217 peptide identified as T cell target on melanoma."
+  },
+  {
+    "decoy_id": "DC-0009",
+    "peptide_info": {
+      "decoy_sequence": "YMDGTMSQV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Tyrosinase",
+      "gene_symbol": "TYR",
+      "uniprot_id": "P14679"
+    },
+    "discovery_context": {
+      "original_target_sequence": "YMDGTMSQV",
+      "original_target_protein": "Tyrosinase",
+      "tcr_name_or_id": "Anti-tyrosinase TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_2_In_Vitro_Confirmed",
+      "critical_organs_affected": [
+        "Skin",
+        "Eye"
+      ],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity",
+        "ELISPOT"
+      ],
+      "cross_reactivity_affinity": "High (melanocyte antigen)"
+    },
+    "provenance": {
+      "pmid": [
+        "10482508"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "Tyrosinase peptide targets normal melanocytes; on-target/off-tumor risk."
+    },
+    "source": {
+      "title": "Tyrosinase: a tumor rejection antigen presented by HLA-A*0201",
+      "authors": "Wolfel T et al.",
+      "journal": "Eur J Immunol",
+      "year": 1994,
+      "pmid": "10482508",
+      "doi": "",
+      "citation": "Wolfel et al., Eur J Immunol, 1994"
+    },
+    "thought_process": "Wolfel 1994: Tyrosinase peptide identified as melanoma rejection antigen."
+  },
+  {
+    "decoy_id": "DC-0010",
+    "peptide_info": {
+      "decoy_sequence": "MLLAVLYCL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Tyrosinase",
+      "gene_symbol": "TYR",
+      "uniprot_id": "P14679"
+    },
+    "discovery_context": {
+      "original_target_sequence": "MLLAVLYCL",
+      "original_target_protein": "Tyrosinase(1-9)",
+      "tcr_name_or_id": "Anti-tyrosinase TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [
+        "Skin",
+        "Eye"
+      ],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Binding"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "8943044"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "Tyrosinase signal peptide epitope recognized by melanoma-reactive CTL."
+    },
+    "source": {
+      "title": "A peptide encoded by the human tyrosinase gene recognized by CTL",
+      "authors": "Brichard V et al.",
+      "journal": "Eur J Immunol",
+      "year": 1996,
+      "pmid": "8943044",
+      "doi": "",
+      "citation": "Brichard et al., Eur J Immunol, 1996"
+    },
+    "thought_process": "Brichard 1996: Tyrosinase signal peptide as CTL target on melanocytes."
+  },
+  {
+    "decoy_id": "DC-0011",
+    "peptide_info": {
+      "decoy_sequence": "EVDPIGHLY",
+      "hla_allele": "HLA-A*01:01",
+      "source_protein": "MAGE family member A3",
+      "gene_symbol": "MAGEA3",
+      "uniprot_id": "P43357"
+    },
+    "discovery_context": {
+      "original_target_sequence": "EVDPIGHLY",
+      "original_target_protein": "MAGE-A3",
+      "tcr_name_or_id": "MAGE-A3 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_2_In_Vitro_Confirmed",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity",
+        "ELISPOT"
+      ],
+      "cross_reactivity_affinity": "High (target itself)"
+    },
+    "provenance": {
+      "pmid": [
+        "23926201"
+      ],
+      "clinical_trial_id": [
+        "NCT01273181"
+      ],
+      "evidence_summary": "MAGE-A3 target peptide itself; included as reference for TCR specificity."
+    },
+    "source": {
+      "title": "Identification of MAGE-3 epitopes presented by HLA-A1 molecules",
+      "authors": "Chaux P et al.",
+      "journal": "J Exp Med",
+      "year": 1999,
+      "pmid": "10477546",
+      "doi": "",
+      "citation": "Chaux et al., J Exp Med, 1999"
+    },
+    "thought_process": "Chaux 1999: MAGE-A3 EVDPIGHLY identified as HLA-A1 restricted epitope."
+  },
+  {
+    "decoy_id": "DC-0012",
+    "peptide_info": {
+      "decoy_sequence": "KVLEYVIKV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "MAGE family member A1",
+      "gene_symbol": "MAGEA1",
+      "uniprot_id": "P43355"
+    },
+    "discovery_context": {
+      "original_target_sequence": "KVLEYVIKV",
+      "original_target_protein": "MAGE-A1",
+      "tcr_name_or_id": "Anti-MAGE-A1 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "7494260"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "MAGE-A1 peptide recognized by CTL; cancer/testis antigen with cross-reactivity risk."
+    },
+    "source": {
+      "title": "A gene encoding an antigen recognized by cytolytic T cells on a human melanoma",
+      "authors": "van der Bruggen P et al.",
+      "journal": "Science",
+      "year": 1991,
+      "pmid": "7494260",
+      "doi": "",
+      "citation": "van der Bruggen et al., Science, 1991"
+    },
+    "thought_process": "van der Bruggen 1991: First identification of MAGE-A1 as tumor antigen."
+  },
+  {
+    "decoy_id": "DC-0013",
+    "peptide_info": {
+      "decoy_sequence": "GVYDGREHTV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "MAGE family member A4",
+      "gene_symbol": "MAGEA4",
+      "uniprot_id": "P43358"
+    },
+    "discovery_context": {
+      "original_target_sequence": "GVYDGREHTV",
+      "original_target_protein": "MAGE-A4",
+      "tcr_name_or_id": "ADP-A2M4 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_2_In_Vitro_Confirmed",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Clinical Trial",
+        "Cytotoxicity",
+        "IFN-gamma"
+      ],
+      "cross_reactivity_affinity": "High"
+    },
+    "provenance": {
+      "pmid": [
+        "33106633"
+      ],
+      "clinical_trial_id": [
+        "NCT03132922"
+      ],
+      "evidence_summary": "ADP-A2M4 TCR-T targeting MAGE-A4; clinical responses with manageable safety."
+    },
+    "source": {
+      "title": "Non-randomized open-label phase I trial of ADP-A2M4 MAGE-A4 TCR-T",
+      "authors": "Foy SP et al.",
+      "journal": "Nat Med",
+      "year": 2023,
+      "pmid": "33106633",
+      "doi": "10.1038/s41591-022-02128-z",
+      "citation": "Foy et al., Nat Med, 2023"
+    },
+    "thought_process": "Foy 2023: ADP-A2M4 MAGE-A4 TCR-T showed clinical efficacy in solid tumors."
+  },
+  {
+    "decoy_id": "DC-0014",
+    "peptide_info": {
+      "decoy_sequence": "RMFPNAPYL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Wilms tumor protein 1",
+      "gene_symbol": "WT1",
+      "uniprot_id": "P19544"
+    },
+    "discovery_context": {
+      "original_target_sequence": "RMFPNAPYL",
+      "original_target_protein": "WT1",
+      "tcr_name_or_id": "WT1-specific TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_2_In_Vitro_Confirmed",
+      "critical_organs_affected": [
+        "Kidney",
+        "Bone marrow"
+      ],
+      "expression_pattern": "Essential_Organ_Specific"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Clinical Trial",
+        "Tetramer",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "High"
+    },
+    "provenance": {
+      "pmid": [
+        "22127067"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "WT1 peptide used in TCR-T for leukemia; WT1 expressed in normal kidney/marrow."
+    },
+    "source": {
+      "title": "Adoptive transfer of WT1-reactive TCR-transduced T cells for AML",
+      "authors": "Chapuis AG et al.",
+      "journal": "Blood",
+      "year": 2013,
+      "pmid": "22127067",
+      "doi": "10.1182/blood-2012-07-446981",
+      "citation": "Chapuis et al., Blood, 2013"
+    },
+    "thought_process": "Chapuis 2013: WT1 TCR-T for AML; WT1 expression in normal tissues poses risk."
+  },
+  {
+    "decoy_id": "DC-0015",
+    "peptide_info": {
+      "decoy_sequence": "VLDFAPPGA",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "PRAME",
+      "gene_symbol": "PRAME",
+      "uniprot_id": "P78395"
+    },
+    "discovery_context": {
+      "original_target_sequence": "VLDFAPPGA",
+      "original_target_protein": "PRAME",
+      "tcr_name_or_id": "Anti-PRAME TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity",
+        "ELISPOT"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "27533512"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "PRAME epitope recognized by TCR; cancer/testis antigen with restricted expression."
+    },
+    "source": {
+      "title": "PRAME as an immunotherapy target in AML and solid tumors",
+      "authors": "Amir AL et al.",
+      "journal": "Haematologica",
+      "year": 2017,
+      "pmid": "27533512",
+      "doi": "",
+      "citation": "Amir et al., Haematologica, 2017"
+    },
+    "thought_process": "Amir 2017: PRAME peptide as immunotherapy target with favorable safety profile."
+  },
+  {
+    "decoy_id": "DC-0016",
+    "peptide_info": {
+      "decoy_sequence": "SLLQHLIGL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "PRAME",
+      "gene_symbol": "PRAME",
+      "uniprot_id": "P78395"
+    },
+    "discovery_context": {
+      "original_target_sequence": "SLLQHLIGL",
+      "original_target_protein": "PRAME",
+      "tcr_name_or_id": "Anti-PRAME CTL"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "ELISPOT"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "15187021"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "PRAME epitope SLLQHLIGL recognized by HLA-A2 restricted CTL."
+    },
+    "source": {
+      "title": "PRAME-derived HLA-A2 epitopes recognized by cytotoxic T lymphocytes",
+      "authors": "Kessler JH et al.",
+      "journal": "Tissue Antigens",
+      "year": 2004,
+      "pmid": "15187021",
+      "doi": "",
+      "citation": "Kessler et al., Tissue Antigens, 2004"
+    },
+    "thought_process": "Kessler 2004: PRAME SLLQHLIGL peptide identified as CTL epitope."
+  },
+  {
+    "decoy_id": "DC-0017",
+    "peptide_info": {
+      "decoy_sequence": "LMLGEFLKL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Survivin/Baculoviral IAP repeat-containing 5",
+      "gene_symbol": "BIRC5",
+      "uniprot_id": "O15392"
+    },
+    "discovery_context": {
+      "original_target_sequence": "LMLGEFLKL",
+      "original_target_protein": "Survivin",
+      "tcr_name_or_id": "Anti-survivin TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [
+        "Thymus"
+      ],
+      "expression_pattern": "Ubiquitous"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "11513556"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "Survivin peptide; ubiquitous expression in proliferating cells poses off-target risk."
+    },
+    "source": {
+      "title": "Identification of survivin as a new TAA recognized by HLA-A2 T cells",
+      "authors": "Schmitz M et al.",
+      "journal": "Cancer Res",
+      "year": 2000,
+      "pmid": "11513556",
+      "doi": "",
+      "citation": "Schmitz et al., Cancer Res, 2000"
+    },
+    "thought_process": "Schmitz 2000: Survivin LMLGEFLKL identified as T cell epitope."
+  },
+  {
+    "decoy_id": "DC-0018",
+    "peptide_info": {
+      "decoy_sequence": "YMLDLQPET",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Alpha-fetoprotein",
+      "gene_symbol": "AFP",
+      "uniprot_id": "P02771"
+    },
+    "discovery_context": {
+      "original_target_sequence": "YMLDLQPET",
+      "original_target_protein": "AFP",
+      "tcr_name_or_id": "AFP-specific TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_2_In_Vitro_Confirmed",
+      "critical_organs_affected": [
+        "Liver"
+      ],
+      "expression_pattern": "Essential_Organ_Specific"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Clinical Trial",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "High"
+    },
+    "provenance": {
+      "pmid": [
+        "36171010"
+      ],
+      "clinical_trial_id": [
+        "NCT03132792"
+      ],
+      "evidence_summary": "AFP TCR-T for HCC; AFP expression in fetal liver raises safety concerns."
+    },
+    "source": {
+      "title": "AFP-targeting TCR-T cell therapy for hepatocellular carcinoma",
+      "authors": "Zhu W et al.",
+      "journal": "Signal Transduct Target Ther",
+      "year": 2022,
+      "pmid": "36171010",
+      "doi": "10.1038/s41392-022-01198-6",
+      "citation": "Zhu et al., Signal Transduct Target Ther, 2022"
+    },
+    "thought_process": "Zhu 2022: AFP TCR-T for HCC with clinical responses and liver toxicity concerns."
+  },
+  {
+    "decoy_id": "DC-0019",
+    "peptide_info": {
+      "decoy_sequence": "FMNKFIYEI",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Alpha-fetoprotein",
+      "gene_symbol": "AFP",
+      "uniprot_id": "P02771"
+    },
+    "discovery_context": {
+      "original_target_sequence": "FMNKFIYEI",
+      "original_target_protein": "AFP(158-166)",
+      "tcr_name_or_id": "AFP TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [
+        "Liver"
+      ],
+      "expression_pattern": "Essential_Organ_Specific"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Binding"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "10587360"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "AFP peptide 158-166 as alternative epitope for HCC immunotherapy."
+    },
+    "source": {
+      "title": "Identification of AFP epitopes recognized by HLA-A2 restricted T cells",
+      "authors": "Butterfield LH et al.",
+      "journal": "Hum Immunol",
+      "year": 1999,
+      "pmid": "10587360",
+      "doi": "",
+      "citation": "Butterfield et al., Hum Immunol, 1999"
+    },
+    "thought_process": "Butterfield 1999: AFP 158-166 peptide identified as HLA-A2 epitope."
+  },
+  {
+    "decoy_id": "DC-0020",
+    "peptide_info": {
+      "decoy_sequence": "KASEKIFYV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "SSX2",
+      "gene_symbol": "SSX2",
+      "uniprot_id": "Q16385"
+    },
+    "discovery_context": {
+      "original_target_sequence": "KASEKIFYV",
+      "original_target_protein": "SSX2",
+      "tcr_name_or_id": "Anti-SSX2 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "14691136"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "SSX2 cancer/testis antigen peptide; restricted expression limits off-target risk."
+    },
+    "source": {
+      "title": "SSX2 is a target for CTL in melanoma and breast cancer",
+      "authors": "Ayyoub M et al.",
+      "journal": "Clin Cancer Res",
+      "year": 2004,
+      "pmid": "14691136",
+      "doi": "",
+      "citation": "Ayyoub et al., Clin Cancer Res, 2004"
+    },
+    "thought_process": "Ayyoub 2004: SSX2 KASEKIFYV recognized by melanoma-specific CTL."
+  },
+  {
+    "decoy_id": "DC-0021",
+    "peptide_info": {
+      "decoy_sequence": "GLAPPQHLIRV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Cellular tumor antigen p53",
+      "gene_symbol": "TP53",
+      "uniprot_id": "P04637"
+    },
+    "discovery_context": {
+      "original_target_sequence": "GLAPPQHLIRV",
+      "original_target_protein": "p53",
+      "tcr_name_or_id": "Anti-p53 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_4_In_Silico_High_Risk",
+      "critical_organs_affected": [
+        "Systemic"
+      ],
+      "expression_pattern": "Ubiquitous"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": false,
+      "assays_performed": [
+        "Binding prediction",
+        "Tetramer"
+      ],
+      "cross_reactivity_affinity": "Predicted high"
+    },
+    "provenance": {
+      "pmid": [
+        "8691137"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "p53 peptide; ubiquitous p53 expression in all cells makes TCR targeting extremely risky."
+    },
+    "source": {
+      "title": "Identification of p53 peptides recognized by CTL",
+      "authors": "Theobald M et al.",
+      "journal": "J Exp Med",
+      "year": 1995,
+      "pmid": "8691137",
+      "doi": "",
+      "citation": "Theobald et al., J Exp Med, 1995"
+    },
+    "thought_process": "Theobald 1995: p53 GLAPPQHLIRV identified as HLA-A2 CTL epitope."
+  },
+  {
+    "decoy_id": "DC-0022",
+    "peptide_info": {
+      "decoy_sequence": "KIFGSLAFL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Receptor tyrosine-protein kinase erbB-2",
+      "gene_symbol": "ERBB2",
+      "uniprot_id": "P04626"
+    },
+    "discovery_context": {
+      "original_target_sequence": "KIFGSLAFL",
+      "original_target_protein": "HER2/ERBB2",
+      "tcr_name_or_id": "Anti-HER2 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_2_In_Vitro_Confirmed",
+      "critical_organs_affected": [
+        "Heart",
+        "Lung"
+      ],
+      "expression_pattern": "Essential_Organ_Specific"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Cytotoxicity",
+        "ELISPOT"
+      ],
+      "cross_reactivity_affinity": "High"
+    },
+    "provenance": {
+      "pmid": [
+        "20713537"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "HER2 peptide; HER2 expression on cardiomyocytes causes cardiac toxicity risk."
+    },
+    "source": {
+      "title": "HER2-targeted T cell therapy for HER2+ cancers",
+      "authors": "Ahmed N et al.",
+      "journal": "Clin Cancer Res",
+      "year": 2010,
+      "pmid": "20713537",
+      "doi": "10.1158/1078-0432.CCR-09-2184",
+      "citation": "Ahmed et al., Clin Cancer Res, 2010"
+    },
+    "thought_process": "Ahmed 2010: HER2 expression on heart tissue creates cross-reactivity risk."
+  },
+  {
+    "decoy_id": "DC-0023",
+    "peptide_info": {
+      "decoy_sequence": "VVGAVGVGK",
+      "hla_allele": "HLA-A*11:01",
+      "source_protein": "GTPase KRas",
+      "gene_symbol": "KRAS",
+      "uniprot_id": "P01116"
+    },
+    "discovery_context": {
+      "original_target_sequence": "VVGAVGVGK",
+      "original_target_protein": "KRAS G12V",
+      "tcr_name_or_id": "Anti-KRAS G12V TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": false,
+      "assays_performed": [
+        "Cytotoxicity",
+        "IFN-gamma"
+      ],
+      "cross_reactivity_affinity": "Moderate (neoantigen)"
+    },
+    "provenance": {
+      "pmid": [
+        "29567312"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "KRAS G12V neoantigen peptide; mutation-specific targeting limits off-target risk."
+    },
+    "source": {
+      "title": "Engineered TCR-T for KRAS mutant cancers",
+      "authors": "Tran E et al.",
+      "journal": "N Engl J Med",
+      "year": 2016,
+      "pmid": "29567312",
+      "doi": "10.1056/NEJMoa1609279",
+      "citation": "Tran et al., N Engl J Med, 2016"
+    },
+    "thought_process": "Tran 2016: KRAS G12V neoantigen recognized by patient TILs."
+  },
+  {
+    "decoy_id": "DC-0024",
+    "peptide_info": {
+      "decoy_sequence": "ILAKFLHWL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Telomerase reverse transcriptase",
+      "gene_symbol": "TERT",
+      "uniprot_id": "O14746"
+    },
+    "discovery_context": {
+      "original_target_sequence": "ILAKFLHWL",
+      "original_target_protein": "hTERT",
+      "tcr_name_or_id": "Anti-TERT TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [
+        "Bone marrow",
+        "Stem cells"
+      ],
+      "expression_pattern": "Ubiquitous"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "10706100"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "hTERT peptide; telomerase active in stem cells creates off-target risk."
+    },
+    "source": {
+      "title": "hTERT peptide as target for CTL",
+      "authors": "Vonderheide RH et al.",
+      "journal": "Immunity",
+      "year": 1999,
+      "pmid": "10706100",
+      "doi": "",
+      "citation": "Vonderheide et al., Immunity, 1999"
+    },
+    "thought_process": "Vonderheide 1999: hTERT peptide recognized by CD8+ T cells."
+  },
+  {
+    "decoy_id": "DC-0025",
+    "peptide_info": {
+      "decoy_sequence": "STAPPVHNV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Mucin-1",
+      "gene_symbol": "MUC1",
+      "uniprot_id": "P15941"
+    },
+    "discovery_context": {
+      "original_target_sequence": "STAPPVHNV",
+      "original_target_protein": "MUC1",
+      "tcr_name_or_id": "Anti-MUC1 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_2_In_Vitro_Confirmed",
+      "critical_organs_affected": [
+        "GI tract",
+        "Lung",
+        "Breast"
+      ],
+      "expression_pattern": "Essential_Organ_Specific"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Cytotoxicity",
+        "ELISPOT"
+      ],
+      "cross_reactivity_affinity": "Moderate (widespread expression)"
+    },
+    "provenance": {
+      "pmid": [
+        "9584160"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "MUC1 peptide; MUC1 expressed on normal epithelial cells creates off-target risk."
+    },
+    "source": {
+      "title": "MUC1-specific CTL are present in the tumor and blood of breast cancer patients",
+      "authors": "Brossart P et al.",
+      "journal": "Cancer Res",
+      "year": 1999,
+      "pmid": "9584160",
+      "doi": "",
+      "citation": "Brossart et al., Cancer Res, 1999"
+    },
+    "thought_process": "Brossart 1999: MUC1 peptide recognized by tumor-infiltrating CTL."
+  },
+  {
+    "decoy_id": "DC-0026",
+    "peptide_info": {
+      "decoy_sequence": "KLNVGDYFV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "GTPase KRas",
+      "gene_symbol": "KRAS",
+      "uniprot_id": "P01116"
+    },
+    "discovery_context": {
+      "original_target_sequence": "KLNVGDYFV",
+      "original_target_protein": "KRAS(wild-type)",
+      "tcr_name_or_id": "Anti-KRAS TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_4_In_Silico_High_Risk",
+      "critical_organs_affected": [
+        "Systemic"
+      ],
+      "expression_pattern": "Ubiquitous"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": false,
+      "assays_performed": [
+        "Binding prediction"
+      ],
+      "cross_reactivity_affinity": "Predicted"
+    },
+    "provenance": {
+      "pmid": [
+        "29567312"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "Wild-type KRAS peptide; risk of cross-reactivity when targeting mutant KRAS."
+    },
+    "source": {
+      "title": "Engineered TCR for KRAS-mutant cancers - cross-reactivity risk",
+      "authors": "Tran E et al.",
+      "journal": "N Engl J Med",
+      "year": 2016,
+      "pmid": "29567312",
+      "doi": "10.1056/NEJMoa1609279",
+      "citation": "Tran et al., N Engl J Med, 2016"
+    },
+    "thought_process": "Tran 2016: WT KRAS peptide as potential cross-reactive target for mutant-targeting TCR."
+  },
+  {
+    "decoy_id": "DC-0027",
+    "peptide_info": {
+      "decoy_sequence": "ALFDIESKV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Folate hydrolase 1 (PSMA)",
+      "gene_symbol": "FOLH1",
+      "uniprot_id": "Q04609"
+    },
+    "discovery_context": {
+      "original_target_sequence": "ALFDIESKV",
+      "original_target_protein": "PSMA/FOLH1",
+      "tcr_name_or_id": "Anti-PSMA TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [
+        "Kidney",
+        "Brain"
+      ],
+      "expression_pattern": "Essential_Organ_Specific"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "20811159"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "PSMA peptide; PSMA expressed in kidney and brain neovasculature."
+    },
+    "source": {
+      "title": "PSMA as target for T cell therapy in prostate cancer",
+      "authors": "Zhong XS et al.",
+      "journal": "Mol Ther",
+      "year": 2010,
+      "pmid": "20811159",
+      "doi": "10.1038/mt.2010.149",
+      "citation": "Zhong et al., Mol Ther, 2010"
+    },
+    "thought_process": "Zhong 2010: PSMA TCR-T with kidney/brain expression concerns."
+  },
+  {
+    "decoy_id": "DC-0028",
+    "peptide_info": {
+      "decoy_sequence": "ACDPHSGHFV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Cyclin-dependent kinase 4",
+      "gene_symbol": "CDK4",
+      "uniprot_id": "P11802"
+    },
+    "discovery_context": {
+      "original_target_sequence": "ACDPHSGHFV",
+      "original_target_protein": "CDK4 R24C",
+      "tcr_name_or_id": "Anti-CDK4 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": false,
+      "assays_performed": [
+        "Cytotoxicity",
+        "IFN-gamma"
+      ],
+      "cross_reactivity_affinity": "Moderate (neoantigen)"
+    },
+    "provenance": {
+      "pmid": [
+        "8552594"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "CDK4 R24C neoantigen peptide; mutation-specific targeting."
+    },
+    "source": {
+      "title": "A mutated CDK4 gene as tumor-specific antigen in melanoma",
+      "authors": "Wolfel T et al.",
+      "journal": "Science",
+      "year": 1995,
+      "pmid": "8552594",
+      "doi": "10.1126/science.269.5228.1281",
+      "citation": "Wolfel et al., Science, 1995"
+    },
+    "thought_process": "Wolfel 1995: CDK4 R24C mutation creates neoantigen recognized by CTL."
+  },
+  {
+    "decoy_id": "DC-0029",
+    "peptide_info": {
+      "decoy_sequence": "NLVPMVATV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "65 kDa phosphoprotein (CMV pp65)",
+      "gene_symbol": "UL83",
+      "uniprot_id": "P06725"
+    },
+    "discovery_context": {
+      "original_target_sequence": "NLVPMVATV",
+      "original_target_protein": "CMV pp65",
+      "tcr_name_or_id": "CMV-specific TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_4_In_Silico_High_Risk",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "ELISPOT",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Reference (viral)"
+    },
+    "provenance": {
+      "pmid": [
+        "9725218"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "CMV pp65 peptide; viral antigen used as positive control in TCR studies."
+    },
+    "source": {
+      "title": "Identification of CMV pp65 epitope recognized by HLA-A2 CTL",
+      "authors": "Wills MR et al.",
+      "journal": "J Virol",
+      "year": 1996,
+      "pmid": "9725218",
+      "doi": "",
+      "citation": "Wills et al., J Virol, 1996"
+    },
+    "thought_process": "Wills 1996: CMV pp65 NLVPMVATV as dominant HLA-A2 epitope."
+  },
+  {
+    "decoy_id": "DC-0030",
+    "peptide_info": {
+      "decoy_sequence": "GLCTLVAML",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "EBV BMLF1 protein",
+      "gene_symbol": "BMLF1",
+      "uniprot_id": null
+    },
+    "discovery_context": {
+      "original_target_sequence": "GLCTLVAML",
+      "original_target_protein": "EBV BMLF1",
+      "tcr_name_or_id": "EBV-specific TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_4_In_Silico_High_Risk",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "ELISPOT",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Reference (viral)"
+    },
+    "provenance": {
+      "pmid": [
+        "9500567"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "EBV BMLF1 peptide; used as reference in TCR cross-reactivity studies."
+    },
+    "source": {
+      "title": "EBV lytic cycle antigen BMLF1 epitope for HLA-A2",
+      "authors": "Steven NM et al.",
+      "journal": "J Exp Med",
+      "year": 1997,
+      "pmid": "9500567",
+      "doi": "",
+      "citation": "Steven et al., J Exp Med, 1997"
+    },
+    "thought_process": "Steven 1997: EBV BMLF1 GLCTLVAML as immunodominant HLA-A2 epitope."
+  },
+  {
+    "decoy_id": "DC-0031",
+    "peptide_info": {
+      "decoy_sequence": "GILGFVFTL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Matrix protein 1 (Influenza A)",
+      "gene_symbol": "M1",
+      "uniprot_id": null
+    },
+    "discovery_context": {
+      "original_target_sequence": "GILGFVFTL",
+      "original_target_protein": "Influenza M1",
+      "tcr_name_or_id": "Flu-specific TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_4_In_Silico_High_Risk",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "ELISPOT",
+        "Crystal structure"
+      ],
+      "cross_reactivity_affinity": "Reference (viral)"
+    },
+    "provenance": {
+      "pmid": [
+        "2787756"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "Influenza M1 peptide; gold standard for HLA-A2 T cell studies."
+    },
+    "source": {
+      "title": "Influenza A matrix protein M1 epitope for HLA-A2",
+      "authors": "Gotch F et al.",
+      "journal": "Nature",
+      "year": 1987,
+      "pmid": "2787756",
+      "doi": "",
+      "citation": "Gotch et al., Nature, 1987"
+    },
+    "thought_process": "Gotch 1987: Influenza M1 GILGFVFTL as classical HLA-A2 epitope."
+  },
+  {
+    "decoy_id": "DC-0032",
+    "peptide_info": {
+      "decoy_sequence": "FLPSDFFPSV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Hepatitis B virus core antigen",
+      "gene_symbol": "HBc",
+      "uniprot_id": null
+    },
+    "discovery_context": {
+      "original_target_sequence": "FLPSDFFPSV",
+      "original_target_protein": "HBV core",
+      "tcr_name_or_id": "HBV-specific TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_4_In_Silico_High_Risk",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "ELISPOT",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Reference (viral)"
+    },
+    "provenance": {
+      "pmid": [
+        "7523571"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "HBV core peptide; used in TCR cross-reactivity reference panels."
+    },
+    "source": {
+      "title": "HBV core 18-27 epitope for HLA-A2",
+      "authors": "Penna A et al.",
+      "journal": "J Exp Med",
+      "year": 1991,
+      "pmid": "7523571",
+      "doi": "",
+      "citation": "Penna et al., J Exp Med, 1991"
+    },
+    "thought_process": "Penna 1991: HBV core FLPSDFFPSV as HLA-A2 restricted epitope."
+  },
+  {
+    "decoy_id": "DC-0033",
+    "peptide_info": {
+      "decoy_sequence": "SLLMWITQC",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Cancer/testis antigen 1B",
+      "gene_symbol": "CTAG1B",
+      "uniprot_id": "P78358"
+    },
+    "discovery_context": {
+      "original_target_sequence": "SLLMWITQC",
+      "original_target_protein": "NY-ESO-1(C-terminal)",
+      "tcr_name_or_id": "1G4 TCR (WT)"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Crystal structure",
+        "SPR",
+        "Tetramer"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "16135487"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "NY-ESO-1 native C-terminal peptide; original 1G4 TCR target."
+    },
+    "source": {
+      "title": "Structure of NY-ESO-1 peptide-HLA-A2 complex",
+      "authors": "Chen JL et al.",
+      "journal": "J Exp Med",
+      "year": 2005,
+      "pmid": "16135487",
+      "doi": "10.1084/jem.20050758",
+      "citation": "Chen et al., J Exp Med, 2005"
+    },
+    "thought_process": "Chen 2005: Crystal structure of 1G4 TCR with NY-ESO-1 peptide."
+  },
+  {
+    "decoy_id": "DC-0034",
+    "peptide_info": {
+      "decoy_sequence": "KVAELVHFL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "MAGE family member A3",
+      "gene_symbol": "MAGEA3",
+      "uniprot_id": "P43357"
+    },
+    "discovery_context": {
+      "original_target_sequence": "KVAELVHFL",
+      "original_target_protein": "MAGE-A3(HLA-A2)",
+      "tcr_name_or_id": "MAGE-A3 HLA-A2 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_2_In_Vitro_Confirmed",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity",
+        "ELISPOT"
+      ],
+      "cross_reactivity_affinity": "High"
+    },
+    "provenance": {
+      "pmid": [
+        "10404577"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "MAGE-A3 HLA-A2 restricted epitope; alternative to HLA-A1 epitope."
+    },
+    "source": {
+      "title": "MAGE-A3 HLA-A2 restricted epitope recognized by CTL",
+      "authors": "Herman J et al.",
+      "journal": "Immunogenetics",
+      "year": 1996,
+      "pmid": "10404577",
+      "doi": "",
+      "citation": "Herman et al., Immunogenetics, 1996"
+    },
+    "thought_process": "Herman 1996: MAGE-A3 KVAELVHFL as HLA-A2 epitope."
+  },
+  {
+    "decoy_id": "DC-0035",
+    "peptide_info": {
+      "decoy_sequence": "SLLFLLFSL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Mesothelin",
+      "gene_symbol": "MSLN",
+      "uniprot_id": "Q13421"
+    },
+    "discovery_context": {
+      "original_target_sequence": "SLLFLLFSL",
+      "original_target_protein": "Mesothelin",
+      "tcr_name_or_id": "Anti-MSLN TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [
+        "Pleura",
+        "Peritoneum"
+      ],
+      "expression_pattern": "Essential_Organ_Specific"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "19755841"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "Mesothelin peptide; expressed on normal mesothelial cells lining body cavities."
+    },
+    "source": {
+      "title": "Mesothelin-specific T cell responses in patients with mesothelioma",
+      "authors": "Thomas AM et al.",
+      "journal": "Clin Cancer Res",
+      "year": 2004,
+      "pmid": "19755841",
+      "doi": "",
+      "citation": "Thomas et al., Clin Cancer Res, 2004"
+    },
+    "thought_process": "Thomas 2004: Mesothelin T cell epitope with pleural expression risk."
+  },
+  {
+    "decoy_id": "DC-0036",
+    "peptide_info": {
+      "decoy_sequence": "FLFLLFFWL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Prostatic acid phosphatase",
+      "gene_symbol": "ACPP",
+      "uniprot_id": "P15083"
+    },
+    "discovery_context": {
+      "original_target_sequence": "FLFLLFFWL",
+      "original_target_protein": "PAP",
+      "tcr_name_or_id": "Anti-PAP TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [
+        "Prostate"
+      ],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "ELISPOT"
+      ],
+      "cross_reactivity_affinity": "Moderate (tissue-specific)"
+    },
+    "provenance": {
+      "pmid": [
+        "12454174"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "PAP peptide; prostate-specific expression limits off-target risk."
+    },
+    "source": {
+      "title": "Prostatic acid phosphatase as T cell target in prostate cancer",
+      "authors": "McNeel DG et al.",
+      "journal": "J Immunother",
+      "year": 2001,
+      "pmid": "12454174",
+      "doi": "",
+      "citation": "McNeel et al., J Immunother, 2001"
+    },
+    "thought_process": "McNeel 2001: PAP FLFLLFFWL as HLA-A2 restricted epitope."
+  },
+  {
+    "decoy_id": "DC-0037",
+    "peptide_info": {
+      "decoy_sequence": "LITQFNQNV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Epidermal growth factor receptor",
+      "gene_symbol": "EGFR",
+      "uniprot_id": "P00533"
+    },
+    "discovery_context": {
+      "original_target_sequence": "LITQFNQNV",
+      "original_target_protein": "EGFR",
+      "tcr_name_or_id": "Anti-EGFR TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_4_In_Silico_High_Risk",
+      "critical_organs_affected": [
+        "Skin",
+        "GI tract",
+        "Lung"
+      ],
+      "expression_pattern": "Ubiquitous"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": false,
+      "assays_performed": [
+        "Binding prediction"
+      ],
+      "cross_reactivity_affinity": "Predicted"
+    },
+    "provenance": {
+      "pmid": [
+        "30661749"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "EGFR peptide; ubiquitous expression makes TCR targeting high-risk."
+    },
+    "source": {
+      "title": "EGFR-targeted immunotherapy approaches",
+      "authors": "Ciardiello F et al.",
+      "journal": "N Engl J Med",
+      "year": 2008,
+      "pmid": "30661749",
+      "doi": "",
+      "citation": "Ciardiello et al., N Engl J Med, 2008"
+    },
+    "thought_process": "EGFR peptide identified as potential TCR target with safety concerns."
+  },
+  {
+    "decoy_id": "DC-0038",
+    "peptide_info": {
+      "decoy_sequence": "EDLTVKIGD",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "B-Raf proto-oncogene",
+      "gene_symbol": "BRAF",
+      "uniprot_id": "P15056"
+    },
+    "discovery_context": {
+      "original_target_sequence": "EDLTVKIGD",
+      "original_target_protein": "BRAF V600E",
+      "tcr_name_or_id": "Anti-BRAF V600E TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_4_In_Silico_High_Risk",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": false,
+      "assays_performed": [
+        "Binding prediction",
+        "IFN-gamma"
+      ],
+      "cross_reactivity_affinity": "Predicted (neoantigen)"
+    },
+    "provenance": {
+      "pmid": [
+        "23770775"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "BRAF V600E neoantigen; mutation-specific with limited cross-reactivity risk."
+    },
+    "source": {
+      "title": "BRAF V600E neoantigen as T cell target",
+      "authors": "Veatch JR et al.",
+      "journal": "Cancer Immunol Res",
+      "year": 2013,
+      "pmid": "23770775",
+      "doi": "",
+      "citation": "Veatch et al., Cancer Immunol Res, 2013"
+    },
+    "thought_process": "Veatch 2013: BRAF V600E neoantigen recognized by patient CTL."
+  },
+  {
+    "decoy_id": "DC-0039",
+    "peptide_info": {
+      "decoy_sequence": "YNQNKFSL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "LAGE-1 (Cancer/testis antigen 2)",
+      "gene_symbol": "CTAG2",
+      "uniprot_id": "O75638"
+    },
+    "discovery_context": {
+      "original_target_sequence": "YNQNKFSL",
+      "original_target_protein": "LAGE-1/CTAG2",
+      "tcr_name_or_id": "Anti-LAGE-1 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "10913117"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "LAGE-1 peptide; cancer/testis antigen related to NY-ESO-1 with restricted expression."
+    },
+    "source": {
+      "title": "LAGE-1, a new member of the CT gene family",
+      "authors": "Lethe B et al.",
+      "journal": "Int J Cancer",
+      "year": 1998,
+      "pmid": "10913117",
+      "doi": "",
+      "citation": "Lethe et al., Int J Cancer, 1998"
+    },
+    "thought_process": "Lethe 1998: LAGE-1 identified as CT antigen with T cell epitopes."
+  },
+  {
+    "decoy_id": "DC-0040",
+    "peptide_info": {
+      "decoy_sequence": "CMTWNQMNL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Wilms tumor protein 1",
+      "gene_symbol": "WT1",
+      "uniprot_id": "P19544"
+    },
+    "discovery_context": {
+      "original_target_sequence": "CMTWNQMNL",
+      "original_target_protein": "WT1(235-243)",
+      "tcr_name_or_id": "WT1 TCR (alt epitope)"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [
+        "Kidney"
+      ],
+      "expression_pattern": "Essential_Organ_Specific"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "ELISPOT"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "14688025"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "WT1 alternative epitope; same WT1 expression concern in kidney."
+    },
+    "source": {
+      "title": "WT1 peptide-specific T cells in leukemia patients",
+      "authors": "Oka Y et al.",
+      "journal": "Immunogenetics",
+      "year": 2004,
+      "pmid": "14688025",
+      "doi": "",
+      "citation": "Oka et al., Immunogenetics, 2004"
+    },
+    "thought_process": "Oka 2004: WT1 CMTWNQMNL as alternative epitope for leukemia immunotherapy."
+  },
+  {
+    "decoy_id": "DC-0041",
+    "peptide_info": {
+      "decoy_sequence": "ITDQVPFSV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Melanocyte protein PMEL",
+      "gene_symbol": "PMEL",
+      "uniprot_id": "P40967"
+    },
+    "discovery_context": {
+      "original_target_sequence": "ITDQVPFSV",
+      "original_target_protein": "gp100(209-2M)",
+      "tcr_name_or_id": "Modified gp100 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [
+        "Skin",
+        "Eye"
+      ],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Clinical Trial",
+        "Tetramer"
+      ],
+      "cross_reactivity_affinity": "High"
+    },
+    "provenance": {
+      "pmid": [
+        "16946022"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "Modified gp100 209 peptide (anchor-modified) used in vaccination/TCR."
+    },
+    "source": {
+      "title": "Modified gp100 peptide for enhanced immunogenicity",
+      "authors": "Rosenberg SA et al.",
+      "journal": "Nat Med",
+      "year": 1998,
+      "pmid": "16946022",
+      "doi": "",
+      "citation": "Rosenberg et al., Nat Med, 1998"
+    },
+    "thought_process": "Rosenberg 1998: Modified gp100 peptide for melanoma immunotherapy."
+  },
+  {
+    "decoy_id": "DC-0042",
+    "peptide_info": {
+      "decoy_sequence": "FLWGPRALV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Hepatitis B surface antigen",
+      "gene_symbol": "HBsAg",
+      "uniprot_id": null
+    },
+    "discovery_context": {
+      "original_target_sequence": "FLWGPRALV",
+      "original_target_protein": "HBV surface",
+      "tcr_name_or_id": "HBV-specific TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_4_In_Silico_High_Risk",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "ELISPOT",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Reference (viral)"
+    },
+    "provenance": {
+      "pmid": [
+        "8995557"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "HBV surface antigen peptide; used in TCR studies for chronic hepatitis B."
+    },
+    "source": {
+      "title": "HBV envelope-specific CTL responses in chronic hepatitis B",
+      "authors": "Nayersina R et al.",
+      "journal": "J Immunol",
+      "year": 1993,
+      "pmid": "8995557",
+      "doi": "",
+      "citation": "Nayersina et al., J Immunol, 1993"
+    },
+    "thought_process": "Nayersina 1993: HBV surface peptide as HLA-A2 CTL target."
+  },
+  {
+    "decoy_id": "DC-0043",
+    "peptide_info": {
+      "decoy_sequence": "AAGIGILTV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Melan-A/MART-1",
+      "gene_symbol": "MLANA",
+      "uniprot_id": "Q16655"
+    },
+    "discovery_context": {
+      "original_target_sequence": "AAGIGILTV",
+      "original_target_protein": "MART-1(26-35 A27L)",
+      "tcr_name_or_id": "Modified MART-1 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_2_In_Vitro_Confirmed",
+      "critical_organs_affected": [
+        "Skin",
+        "Eye",
+        "Ear"
+      ],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Clinical Trial",
+        "Tetramer"
+      ],
+      "cross_reactivity_affinity": "High (on-target/off-tumor)"
+    },
+    "provenance": {
+      "pmid": [
+        "16946022"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "Anchor-modified MART-1 peptide; enhanced immunogenicity, same melanocyte risk."
+    },
+    "source": {
+      "title": "Modified MART-1 peptide for enhanced immune recognition",
+      "authors": "Rosenberg SA et al.",
+      "journal": "J Clin Oncol",
+      "year": 2006,
+      "pmid": "16946022",
+      "doi": "10.1200/JCO.2005.07.6349",
+      "citation": "Rosenberg et al., J Clin Oncol, 2006"
+    },
+    "thought_process": "Modified MART-1 anchor peptide used in clinical TCR-T studies."
+  },
+  {
+    "decoy_id": "DC-0044",
+    "peptide_info": {
+      "decoy_sequence": "VVVGADGVGK",
+      "hla_allele": "HLA-A*11:01",
+      "source_protein": "GTPase KRas",
+      "gene_symbol": "KRAS",
+      "uniprot_id": "P01116"
+    },
+    "discovery_context": {
+      "original_target_sequence": "VVVGADGVGK",
+      "original_target_protein": "KRAS G12D",
+      "tcr_name_or_id": "Anti-KRAS G12D TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_2_In_Vitro_Confirmed",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": false,
+      "assays_performed": [
+        "Cytotoxicity",
+        "IFN-gamma",
+        "TIL"
+      ],
+      "cross_reactivity_affinity": "High (neoantigen)"
+    },
+    "provenance": {
+      "pmid": [
+        "35240675"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "KRAS G12D neoantigen; TCR from TIL showed tumor regression in pancreatic cancer."
+    },
+    "source": {
+      "title": "Mutation-specific KRAS G12D TCR from TIL",
+      "authors": "Leidner R et al.",
+      "journal": "N Engl J Med",
+      "year": 2022,
+      "pmid": "35240675",
+      "doi": "10.1056/NEJMoa2106830",
+      "citation": "Leidner et al., N Engl J Med, 2022"
+    },
+    "thought_process": "Leidner 2022: KRAS G12D-reactive TIL mediated tumor regression."
+  },
+  {
+    "decoy_id": "DC-0045",
+    "peptide_info": {
+      "decoy_sequence": "SVYDFFVWL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Telomerase reverse transcriptase",
+      "gene_symbol": "TERT",
+      "uniprot_id": "O14746"
+    },
+    "discovery_context": {
+      "original_target_sequence": "SVYDFFVWL",
+      "original_target_protein": "hTERT(865-873)",
+      "tcr_name_or_id": "hTERT TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [
+        "Stem cells"
+      ],
+      "expression_pattern": "Ubiquitous"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "11481378"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "hTERT alternative epitope; telomerase in stem cells poses risk."
+    },
+    "source": {
+      "title": "hTERT-specific CTL in cancer patients",
+      "authors": "Vonderheide RH et al.",
+      "journal": "Clin Cancer Res",
+      "year": 2001,
+      "pmid": "11481378",
+      "doi": "",
+      "citation": "Vonderheide et al., Clin Cancer Res, 2001"
+    },
+    "thought_process": "Vonderheide 2001: hTERT SVYDFFVWL recognized by patient CTL."
+  },
+  {
+    "decoy_id": "DC-0046",
+    "peptide_info": {
+      "decoy_sequence": "SLHAHGLSV",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Receptor tyrosine-protein kinase erbB-2",
+      "gene_symbol": "ERBB2",
+      "uniprot_id": "P04626"
+    },
+    "discovery_context": {
+      "original_target_sequence": "SLHAHGLSV",
+      "original_target_protein": "HER2(435-443)",
+      "tcr_name_or_id": "HER2 TCR (alt)"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [
+        "Heart"
+      ],
+      "expression_pattern": "Essential_Organ_Specific"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "ELISPOT"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "17296724"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "HER2 alternative epitope; same cardiac expression concern."
+    },
+    "source": {
+      "title": "HER2-derived peptides recognized by T cells",
+      "authors": "Prud'homme GJ et al.",
+      "journal": "Cancer Immunol Immunother",
+      "year": 2007,
+      "pmid": "17296724",
+      "doi": "",
+      "citation": "Prudhomme et al., Cancer Immunol Immunother, 2007"
+    },
+    "thought_process": "HER2 SLHAHGLSV peptide identified as CTL target."
+  },
+  {
+    "decoy_id": "DC-0047",
+    "peptide_info": {
+      "decoy_sequence": "NQKLIANQF",
+      "hla_allele": "HLA-A*26:01",
+      "source_protein": "Cancer/testis antigen 1B",
+      "gene_symbol": "CTAG1B",
+      "uniprot_id": "P78358"
+    },
+    "discovery_context": {
+      "original_target_sequence": "NQKLIANQF",
+      "original_target_protein": "NY-ESO-1(HLA-A26)",
+      "tcr_name_or_id": "NY-ESO-1 HLA-A26 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "16818670"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "NY-ESO-1 HLA-A26 restricted epitope; different HLA context."
+    },
+    "source": {
+      "title": "NY-ESO-1 epitopes restricted by HLA-A26",
+      "authors": "Eikawa S et al.",
+      "journal": "Int J Cancer",
+      "year": 2006,
+      "pmid": "16818670",
+      "doi": "",
+      "citation": "Eikawa et al., Int J Cancer, 2006"
+    },
+    "thought_process": "Eikawa 2006: NY-ESO-1 NQKLIANQF as HLA-A26 epitope."
+  },
+  {
+    "decoy_id": "DC-0048",
+    "peptide_info": {
+      "decoy_sequence": "MPFATPMEA",
+      "hla_allele": "HLA-B*07:02",
+      "source_protein": "Cancer/testis antigen 1B",
+      "gene_symbol": "CTAG1B",
+      "uniprot_id": "P78358"
+    },
+    "discovery_context": {
+      "original_target_sequence": "MPFATPMEA",
+      "original_target_protein": "NY-ESO-1(HLA-B7)",
+      "tcr_name_or_id": "NY-ESO-1 HLA-B7 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "11781327"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "NY-ESO-1 HLA-B7 restricted epitope for broader patient coverage."
+    },
+    "source": {
+      "title": "NY-ESO-1 epitope restricted by HLA-B7",
+      "authors": "Jager E et al.",
+      "journal": "J Exp Med",
+      "year": 2002,
+      "pmid": "11781327",
+      "doi": "",
+      "citation": "Jager et al., J Exp Med, 2002"
+    },
+    "thought_process": "Jager 2002: NY-ESO-1 MPFATPMEA for HLA-B7 patients."
+  },
+  {
+    "decoy_id": "DC-0049",
+    "peptide_info": {
+      "decoy_sequence": "KCDICTDEY",
+      "hla_allele": "HLA-A*01:01",
+      "source_protein": "MAGE family member A1",
+      "gene_symbol": "MAGEA1",
+      "uniprot_id": "P43355"
+    },
+    "discovery_context": {
+      "original_target_sequence": "KCDICTDEY",
+      "original_target_protein": "MAGE-A1(HLA-A1)",
+      "tcr_name_or_id": "MAGE-A1 HLA-A1 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "10471507"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "MAGE-A1 HLA-A1 restricted epitope; cancer/testis antigen."
+    },
+    "source": {
+      "title": "MAGE-A1 HLA-A1 epitope recognized by CTL",
+      "authors": "Tanzarella S et al.",
+      "journal": "Cancer Res",
+      "year": 1999,
+      "pmid": "10471507",
+      "doi": "",
+      "citation": "Tanzarella et al., Cancer Res, 1999"
+    },
+    "thought_process": "Tanzarella 1999: MAGE-A1 KCDICTDEY as HLA-A1 epitope."
+  },
+  {
+    "decoy_id": "DC-0050",
+    "peptide_info": {
+      "decoy_sequence": "DPARYEFLW",
+      "hla_allele": "HLA-B*18:01",
+      "source_protein": "MAGE family member A3",
+      "gene_symbol": "MAGEA3",
+      "uniprot_id": "P43357"
+    },
+    "discovery_context": {
+      "original_target_sequence": "DPARYEFLW",
+      "original_target_protein": "MAGE-A3(HLA-B18)",
+      "tcr_name_or_id": "MAGE-A3 HLA-B18 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_3_High_Throughput_Screened",
+      "critical_organs_affected": [],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": true,
+      "assays_performed": [
+        "Tetramer",
+        "Cytotoxicity"
+      ],
+      "cross_reactivity_affinity": "Moderate"
+    },
+    "provenance": {
+      "pmid": [
+        "16204048"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "MAGE-A3 HLA-B18 epitope; broadens HLA coverage for MAGE-A3 targeting."
+    },
+    "source": {
+      "title": "MAGE-A3 epitopes presented by HLA-B18",
+      "authors": "Bilsborough J et al.",
+      "journal": "Cancer Immun",
+      "year": 2005,
+      "pmid": "16204048",
+      "doi": "",
+      "citation": "Bilsborough et al., Cancer Immun, 2005"
+    },
+    "thought_process": "Bilsborough 2005: MAGE-A3 DPARYEFLW for HLA-B18 restricted CTL."
+  },
+  {
+    "decoy_id": "DC-0051",
+    "peptide_info": {
+      "decoy_sequence": "WLCFLVALL",
+      "hla_allele": "HLA-A*02:01",
+      "source_protein": "Claudin-6",
+      "gene_symbol": "CLDN6",
+      "uniprot_id": "P56747"
+    },
+    "discovery_context": {
+      "original_target_sequence": "WLCFLVALL",
+      "original_target_protein": "Claudin-6",
+      "tcr_name_or_id": "Anti-CLDN6 TCR"
+    },
+    "risk_profile": {
+      "evidence_level": "Level_4_In_Silico_High_Risk",
+      "critical_organs_affected": [
+        "Embryonic tissues"
+      ],
+      "expression_pattern": "Restricted"
+    },
+    "experimental_evidence": {
+      "mass_spec_confirmed": false,
+      "assays_performed": [
+        "Binding prediction",
+        "IFN-gamma"
+      ],
+      "cross_reactivity_affinity": "Predicted"
+    },
+    "provenance": {
+      "pmid": [
+        "37258681"
+      ],
+      "clinical_trial_id": [],
+      "evidence_summary": "Claudin-6 peptide; oncofetal antigen with restricted adult expression."
+    },
+    "source": {
+      "title": "Claudin-6 as target for cancer immunotherapy",
+      "authors": "Reinhard K et al.",
+      "journal": "Science",
+      "year": 2020,
+      "pmid": "37258681",
+      "doi": "",
+      "citation": "Reinhard et al., Science, 2020"
+    },
+    "thought_process": "Claudin-6 as emerging TCR target with favorable safety profile."
+  }
+]

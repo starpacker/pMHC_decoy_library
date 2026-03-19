@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Log files
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Plot images (auto-generated)
+*.png
+
+# Unrelated files (two-photon optics project)
+two_photon.md
+two_photon_slides.md
+optical_sectioning_plot.py
+plot_optical_sectioning.py
+plot_figures.py
+gen_slides.py

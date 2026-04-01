@@ -113,7 +113,7 @@ PubMed / bioRxiv / arXiv / ClinicalTrials.gov / Semantic Scholar / Europe PMC
 
 ---
 
-## Decoy A — 序列同源扫描（已完成，全管线已部署）
+## Decoy A — 序列同源扫描（已完成，全管线已部署 + Presentation Score）
 
 ### 原理
 
@@ -123,10 +123,30 @@ PubMed / bioRxiv / arXiv / ClinicalTrials.gov / Semantic Scholar / Europe PMC
 
 | 资产 | 规模 | 文件 |
 |------|------|------|
-| 人类 K-mer 字典 | **41,684,988** 条唯一 8-11mer | `data/decoy_a/human_kmer_db.parquet` (380 MB) |
-| 组织表达谱 | **20,151** 基因 × 50 组织 | `data/decoy_a/gene_expression.parquet` (1.9 MB) |
-| HLA-A\*02:01 binders | **1,280,221** 条 (SB: 292,479 + WB: 987,742) | `data/decoy_a/hla_filtered_HLA-A0201.parquet` (27 MB) |
-| HLA 预测后端 | mhcflurry 2.2.0 (Class1AffinityPredictor) | `decoy_a/tools/mhcflurry.py` |
+| 人类 K-mer 字典 | **41,684,988** 条唯一 8-11mer | `human_kmer_db.parquet` (380 MB) |
+| 组织表达谱 | **20,151** 基因 × 50 组织 | `gene_expression.parquet` (1.9 MB) |
+| HLA-A\*02:01 binders (affinity) | **1,280,221** 条 (SB: 292,479 + WB: 987,742) | `hla_filtered_HLA-A0201.parquet` (27 MB) |
+| HLA-A\*02:01 binders (presentation) | **971,925** 条 (SB: 337,584 + WB: 634,341) | `hla_filtered_HLA-A0201_presentation.parquet` (48 MB) |
+
+### Presentation Score Model 升级
+
+原始过滤使用 `Class1AffinityPredictor`（仅结合亲和力）。已升级为 `Class1PresentationPredictor`，整合抗原处理通路：
+
+```
+Affinity Model:   肽段 + HLA → 结合力 (IC50)           → "能否结合 MHC"
+Presentation Model: 肽段 + HLA → 结合力 × 加工效率      → "能否真正呈递到细胞表面"
+                                  ↑
+                    蛋白酶体切割 + TAP 转运效率 (processing_score)
+```
+
+**Presentation Score 重新评分结果 (HLA-A\*02:01)**:
+
+| 变化 | 数量 | 说明 |
+|------|------|------|
+| Weak → Strong (升级) | 91,586 | 高 processing score 补偿了中等亲和力 |
+| Strong → Weak (降级) | 46,481 | affinity 虽强但 processing 差 |
+| Weak → Non-Binder (移出) | **308,296** | processing score 极低，无法被呈递 |
+| **有效 binder 池** | **971,925** | 从 128 万精确缩减至 97 万 (-24.1%) |
 
 ### 实现
 
@@ -135,7 +155,9 @@ Step 1: Swiss-Prot 20,431 蛋白 → 滑动窗口 → 41.7M 唯一 8-11mer
         + HPA RNA 组织表达谱（20,151 基因 × 50 组织，标注核心脏器 TPM）
         构建方式: SQLite 磁盘方案（适配 16GB RAM）
 
-Step 2: mhcflurry 2.2.0 → %Rank ≤ 2.0 → 1,280,221 HLA-A*02:01 可呈递肽
+Step 2: mhcflurry 2.2.0 Class1PresentationPredictor
+        → presentation_percentile ≤ 2.0 → 971,925 HLA-A*02:01 可呈递肽
+        输出: affinity_nM + processing_score + presentation_score + presentation_percentile
         后端优先级: NetMHCpan 4.1 > mhcflurry > IEDB API
         结果缓存为 Parquet，每个 HLA 型别只需运行一次
 
@@ -183,10 +205,11 @@ TAP2（抗原加工相关转运体）和 PKD1L1（多囊肾蛋白）均为正常
 | `decoy_a/run.py` | 独立运行器（demo / 自定义肽段池 / 全管线） |
 | `decoy_a/tools/mhcflurry.py` | mhcflurry 2.2.0 封装（本地 Python HLA 预测） |
 | `decoy_a/tools/netmhcpan.py` | NetMHCpan 4.1 封装（可选，需学术许可） |
+| `scripts/rescore_presentation.py` | Presentation Score 重新评分脚本 |
 
 ---
 
-## Decoy B — 结构相似扫描 + 逆向设计（框架已完成，待部署工具）
+## Decoy B — 结构相似扫描 + 逆向设计（代码完成，待部署 GPU 工具）
 
 ### 原理
 
@@ -417,14 +440,42 @@ export AF3_DB_DIR=~/tools/alphafold3/databases
 
 ---
 
+## 可视化
+
+每条管线均配有可视化脚本，运行即可生成全套图表：
+
+```bash
+python scripts/visualize_decoy_a.py       # Decoy A: 4 张 matplotlib + 1 个 Plotly HTML
+python scripts/visualize_decoy_c.py       # Decoy C: 4 张 matplotlib + 1 个 Plotly HTML
+python scripts/visualize_presentation.py  # Presentation Score 对比: 5 面板 matplotlib
+```
+
+| 文件 | 内容 |
+|------|------|
+| `figures/decoy_a_overview.png` | EL%Rank 分布、Binder 比例、肽段长度、各长度 violin |
+| `figures/decoy_a_funnel.png` | Pipeline 生成 + 过滤漏斗 (含 pass rate) |
+| `figures/decoy_a_scatter.png` | EL%Rank vs Hamming distance 散点图 |
+| `figures/decoy_a_mismatch_positions.png` | 突变位点分布 (TCR/Anchor/Other) |
+| `figures/decoy_a_interactive.html` | Plotly: EPS8L2 案例 + 50 组织表达热图 |
+| `figures/decoy_a_presentation_rescore.png` | Affinity vs Presentation 重新分类对比 (5 面板) |
+| `figures/decoy_c_pipeline.png` | 4-stage 管线流程图 |
+| `figures/decoy_c_overview.png` | 证据等级、验证状态、HLA 分布、受累器官 |
+| `figures/decoy_c_filtering.png` | 筛选漏斗 (~200 papers → 5 fatal) |
+| `figures/decoy_c_assay_year.png` | 实验方法频次 + 发表年份时间线 |
+| `figures/decoy_c_interactive.html` | Plotly: DC-0001 Case Study + MAGE-A3 网络 + 旭日图 |
+
+---
+
 ## 项目结构
 
 ```
 decoy_library/
 │
 ├── README.md
+├── .env.example
 │
 ├── decoy_a/                         # Decoy A: 序列同源扫描 + 共享基座
+│   ├── PROGRESS_REPORT.md           #   技术进展报告
 │   ├── config.py                    #   路径、阈值、Atchley 因子
 │   ├── models.py                    #   14 个 Pydantic v2 数据模型（A/B 共用）
 │   ├── kmer_builder.py              #   Step 1: Swiss-Prot → 41.7M k-mer + 表达谱
@@ -436,6 +487,8 @@ decoy_library/
 │       └── netmhcpan.py             #   NetMHCpan 4.1 封装（可选）
 │
 ├── decoy_b/                         # Decoy B: 结构相似 + 逆向设计
+│   ├── PROGRESS_REPORT.md           #   技术进展报告
+│   ├── DEPLOYMENT.md                #   部署指南
 │   ├── scanner.py                   #   Step 3B: Atchley → tFold → AF3 → 比对
 │   ├── risk_scorer.py               #   Step 4: 统一风险评分（合并 A+B）
 │   ├── orchestrator.py              #   全管线编排（Step 1-4 + 断点续传）
@@ -446,6 +499,7 @@ decoy_library/
 │       └── proteinmpnn.py           #   ProteinMPNN 逆向设计封装
 │
 ├── decoy_c/                         # Decoy C: 文献挖掘
+│   ├── PROGRESS_REPORT.md           #   技术进展报告
 │   ├── config.py                    #   API 配置（NCBI/UniProt/IEDB/LLM）
 │   ├── models.py                    #   Pydantic v2 schema (DecoyEntry)
 │   ├── fetcher.py                   #   PubMed/PMC 文献获取
@@ -457,11 +511,25 @@ decoy_library/
 │   ├── scale_up.py                  #   自动扩量（6 策略 / 无限模式）
 │   └── main.py                      #   CLI（python -m decoy_c）
 │
+├── scripts/                         # 工具脚本
+│   ├── visualize_decoy_a.py         #   Decoy A 可视化 (matplotlib + plotly)
+│   ├── visualize_decoy_c.py         #   Decoy C 可视化 (matplotlib + plotly)
+│   ├── visualize_presentation.py    #   Presentation Score 对比可视化
+│   ├── rescore_presentation.py      #   Presentation Score 重新评分脚本
+│   ├── setup_decoy_b.py             #   Decoy B 外部工具自动安装
+│   └── verify_decoy_b.py            #   Decoy B 工具可用性验证
+│
+├── figures/                         # 生成的可视化图表
+│   ├── decoy_a_*.png / .html        #   Decoy A 可视化 (6 文件)
+│   ├── decoy_c_*.png / .html        #   Decoy C 可视化 (5 文件)
+│   └── decoy_a_presentation_rescore.png  # Presentation Score 对比
+│
 └── data/
     ├── decoy_a/                     # Decoy A 数据（共享基座 + A 输出）
-    │   ├── human_kmer_db.parquet    #   41.7M 唯一人类短肽（380 MB）
-    │   ├── gene_expression.parquet  #   20,151 基因 × 50 组织 RNA 表达谱（1.9 MB）
-    │   ├── hla_filtered_HLA-A0201.parquet  #   1,280,221 HLA-A*02:01 binders（27 MB）
+    │   ├── human_kmer_db.parquet    #   41.7M 唯一人类短肽（380 MB, git-ignored）
+    │   ├── gene_expression.parquet  #   20,151 基因 × 50 组织（1.9 MB, git-ignored）
+    │   ├── hla_filtered_HLA-A0201.parquet           # 1.28M binders, affinity（27 MB）
+    │   ├── hla_filtered_HLA-A0201_presentation.parquet  # 同上 + presentation score（48 MB）
     │   └── decoy_a_results.json     #   最近一次扫描结果
     ├── decoy_b/                     # Decoy B 数据（结构模型 + 排名结果，待生成）
     └── decoy_c/                     # Decoy C 数据（文献库）
@@ -473,19 +541,29 @@ decoy_library/
 
 ---
 
+## 当前进度总览
+
+| 管线 | 状态 | 说明 |
+|------|------|------|
+| **Decoy A** | ✅ 已完成 | 全管线部署 + Presentation Score 升级 + 可视化 |
+| **Decoy B** | ⏳ 代码完成 | Atchley 物化筛选可用；tFold/AF3 待部署 GPU 工具 |
+| **Decoy C** | ✅ 已完成 | 250 条入库 (105 有证据等级) + 可视化 |
+| **可视化** | ✅ 已完成 | A + C + Presentation Score 全套图表 |
+
 ## 计算资源
 
 | 步骤 | 工具 | GPU | 耗时 | 状态 |
 |------|------|-----|------|------|
-| K-mer 构建 | SQLite + Python | 否 | ~45 分钟 | 已完成 |
-| 表达谱构建 | HPA 数据 | 否 | ~2 分钟 | 已完成 |
-| HLA 过滤 (每个 HLA) | mhcflurry | 否 | ~6 小时 | HLA-A\*02:01 已完成 |
-| **Decoy A 扫描** | **NumPy** | **否** | **~6 秒** | **可用** |
-| Decoy B Atchley 初筛 | NumPy | 否 | 1-5 分钟 | 可用 |
-| Decoy B tFold 批量 | A100/V100 | 是 | 1-2 天 (5K 条) | 待部署 tFold |
-| Decoy B AF3 精筛 | A100 80GB | 是 | 7-17 小时 (200 条) | 待部署 AF3 |
-| Decoy B MPNN 设计 | 任意 GPU / CPU | 可选 | ~10 分钟 | 待部署 MPNN |
-| Decoy C 文献挖掘 | LLM API | 否 | 持续运行 | 可用 |
+| K-mer 构建 | SQLite + Python | 否 | ~45 分钟 | ✅ 已完成 |
+| 表达谱构建 | HPA 数据 | 否 | ~2 分钟 | ✅ 已完成 |
+| HLA 过滤 (affinity) | mhcflurry AffinityPredictor | 否 | ~6 小时 | ✅ HLA-A\*02:01 已完成 |
+| HLA 重评 (presentation) | mhcflurry PresentationPredictor | 否 | ~16 分钟 | ✅ HLA-A\*02:01 已完成 |
+| **Decoy A 扫描** | **NumPy** | **否** | **~6 秒** | **✅ 可用** |
+| Decoy B Atchley 初筛 | NumPy | 否 | 1-5 分钟 | ✅ 可用 |
+| Decoy B tFold 批量 | A100/V100 | 是 | 1-2 天 (5K 条) | ⏳ 待部署 tFold |
+| Decoy B AF3 精筛 | A100 80GB | 是 | 7-17 小时 (200 条) | ⏳ 待部署 AF3 |
+| Decoy B MPNN 设计 | 任意 GPU / CPU | 可选 | ~10 分钟 | ⏳ 待部署 MPNN |
+| Decoy C 文献挖掘 | LLM API | 否 | 持续运行 | ✅ 可用 |
 
 ## 参考文献
 

@@ -1,0 +1,1437 @@
+{
+  "version": "0.3.0",
+  "metadata": {
+    "description": "Removed entries - not off-target toxicity targets (e.g. neoantigens are therapeutic targets)",
+    "total_entries": 46,
+    "last_updated": "2026-03-21T15:02:16.034237",
+    "reason": "Neoantigens (KRAS G12D, TP53, BRAF V600E etc.) are therapeutic targets, not off-target toxicity pMHC"
+  },
+  "entries": [
+    {
+      "decoy_id": "DC-0371",
+      "peptide_info": {
+        "decoy_sequence": "GADGVGKSA",
+        "length": 9,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-A*02:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A neoantigenic peptide derived from the KRAS G12D mutation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463366"
+      }
+    },
+    {
+      "decoy_id": "DC-0372",
+      "peptide_info": {
+        "decoy_sequence": "GVGKSAFAV",
+        "length": 9,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-B*07:02"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "KRAS G12D mutation-derived peptide with potential immunogenicity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463407"
+      }
+    },
+    {
+      "decoy_id": "DC-0373",
+      "peptide_info": {
+        "decoy_sequence": "QSGATIHGA",
+        "length": 9,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-C*07:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A KRAS G12D mutated peptide with neoantigen potential.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463432"
+      }
+    },
+    {
+      "decoy_id": "DC-0374",
+      "peptide_info": {
+        "decoy_sequence": "KLVVRGLQG",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-A*02:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A hotspot mutation peptide from TP53 with potential immunogenicity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463456"
+      }
+    },
+    {
+      "decoy_id": "DC-0375",
+      "peptide_info": {
+        "decoy_sequence": "RGLQGQHRM",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-B*08:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "Derived from a TP53 hotspot mutation, this peptide is a potential neoantigen.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463502"
+      }
+    },
+    {
+      "decoy_id": "DC-0376",
+      "peptide_info": {
+        "decoy_sequence": "QGQHRMCGA",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-C*04:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A neoantigenic peptide from TP53 hotspot mutations.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463524"
+      }
+    },
+    {
+      "decoy_id": "DC-0377",
+      "peptide_info": {
+        "decoy_sequence": "VVPYEPPEV",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-A*03:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A TP53 derived epitope with potential for immune recognition.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463547"
+      }
+    },
+    {
+      "decoy_id": "DC-0378",
+      "peptide_info": {
+        "decoy_sequence": "GLVGAVGVG",
+        "length": 9,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-B*27:05"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "KRAS G12D mutation-related epitope with possible immunogenicity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463568"
+      }
+    },
+    {
+      "decoy_id": "DC-0379",
+      "peptide_info": {
+        "decoy_sequence": "YIPPHLPWG",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-A*11:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A TP53 hotspot mutation-derived neoantigen.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463591"
+      }
+    },
+    {
+      "decoy_id": "DC-0380",
+      "peptide_info": {
+        "decoy_sequence": "QLGAVGVGK",
+        "length": 9,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-C*07:02"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "Neoantigenic epitope from KRAS G12D mutation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463615"
+      }
+    },
+    {
+      "decoy_id": "DC-0381",
+      "peptide_info": {
+        "decoy_sequence": "GADGVGKSAF",
+        "length": 10,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-B*15:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "Derived from KRAS G12D, this peptide may present an immune target.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463638"
+      }
+    },
+    {
+      "decoy_id": "DC-0382",
+      "peptide_info": {
+        "decoy_sequence": "VEPEVVRVC",
+        "length": 9,
+        "source_protein": "BRAF",
+        "hla_restriction": "HLA-A*01:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A neoantigenic peptide originating from BRAF V600E mutation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463689"
+      }
+    },
+    {
+      "decoy_id": "DC-0383",
+      "peptide_info": {
+        "decoy_sequence": "RAHSSYGVK",
+        "length": 9,
+        "source_protein": "BRAF",
+        "hla_restriction": "HLA-B*40:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "BRAF V600E derived peptide with potential immunogenic properties.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463711"
+      }
+    },
+    {
+      "decoy_id": "DC-0384",
+      "peptide_info": {
+        "decoy_sequence": "SSYGVKVEV",
+        "length": 9,
+        "source_protein": "BRAF",
+        "hla_restriction": "HLA-C*12:02"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "An immunogenic peptide derived from BRAF V600E mutation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463734"
+      }
+    },
+    {
+      "decoy_id": "DC-0385",
+      "peptide_info": {
+        "decoy_sequence": "AVKAFGPGV",
+        "length": 9,
+        "source_protein": "BRAF",
+        "hla_restriction": "HLA-A*26:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A BRAF V600E mutation-derived epitope with potential immune response.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463754"
+      }
+    },
+    {
+      "decoy_id": "DC-0386",
+      "peptide_info": {
+        "decoy_sequence": "KSHSSYGVK",
+        "length": 9,
+        "source_protein": "BRAF",
+        "hla_restriction": "HLA-B*18:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "Epitope from BRAF V600E with possible neoantigenic characteristics.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463775"
+      }
+    },
+    {
+      "decoy_id": "DC-0387",
+      "peptide_info": {
+        "decoy_sequence": "VVRVCACPG",
+        "length": 9,
+        "source_protein": "BRAF",
+        "hla_restriction": "HLA-C*05:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "Derived from BRAF V600E, this peptide may elicit an immune response.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463798"
+      }
+    },
+    {
+      "decoy_id": "DC-0388",
+      "peptide_info": {
+        "decoy_sequence": "HLKAGQIKT",
+        "length": 9,
+        "source_protein": "IDH1",
+        "hla_restriction": "HLA-A*02:06"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A neoantigenic peptide derived from IDH1 R132H mutation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463819"
+      }
+    },
+    {
+      "decoy_id": "DC-0389",
+      "peptide_info": {
+        "decoy_sequence": "VVGAVGVGKSAF",
+        "length": 12,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-DP*04:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A KRAS G12D mutation-derived peptide with neoantigen potential.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463840"
+      }
+    },
+    {
+      "decoy_id": "DC-0390",
+      "peptide_info": {
+        "decoy_sequence": "ALQLAGGVG",
+        "length": 9,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-DQ*05:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A potentially immunogenic peptide from KRAS G12D mutation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463861"
+      }
+    },
+    {
+      "decoy_id": "DC-0391",
+      "peptide_info": {
+        "decoy_sequence": "KLGLQYLQL",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-DRB1*15:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A TP53 hotspot mutation-derived epitope with potential immune recognition.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463902"
+      }
+    },
+    {
+      "decoy_id": "DC-0392",
+      "peptide_info": {
+        "decoy_sequence": "VLGGAVGVG",
+        "length": 9,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-DRB1*03:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "Epitope from KRAS G12D with potential neoantigenic characteristics.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463924"
+      }
+    },
+    {
+      "decoy_id": "DC-0393",
+      "peptide_info": {
+        "decoy_sequence": "KLTGQFLQL",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-DQ*03:02"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A neoantigenic peptide derived from TP53 hotspot mutations.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463946"
+      }
+    },
+    {
+      "decoy_id": "DC-0394",
+      "peptide_info": {
+        "decoy_sequence": "GQFLQLGAG",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-DP*02:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "Derived from TP53, this peptide may elicit an immune response.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463968"
+      }
+    },
+    {
+      "decoy_id": "DC-0395",
+      "peptide_info": {
+        "decoy_sequence": "VGAVGVGKS",
+        "length": 9,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-DRB1*04:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "KRAS G12D mutation-related epitope with possible immunogenicity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.463991"
+      }
+    },
+    {
+      "decoy_id": "DC-0396",
+      "peptide_info": {
+        "decoy_sequence": "SAFAVGVGK",
+        "length": 9,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-A*31:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A peptide derived from the KRAS G12D mutation with potential immunogenicity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464013"
+      }
+    },
+    {
+      "decoy_id": "DC-0397",
+      "peptide_info": {
+        "decoy_sequence": "KAGQIKTGA",
+        "length": 9,
+        "source_protein": "IDH1",
+        "hla_restriction": "HLA-B*35:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "An IDH1 R132H mutation-derived neoantigen.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464035"
+      }
+    },
+    {
+      "decoy_id": "DC-0398",
+      "peptide_info": {
+        "decoy_sequence": "AGQIKTGAT",
+        "length": 9,
+        "source_protein": "IDH1",
+        "hla_restriction": "HLA-C*03:04"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A neoantigenic epitope from IDH1 R132H mutation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464058"
+      }
+    },
+    {
+      "decoy_id": "DC-0399",
+      "peptide_info": {
+        "decoy_sequence": "IKTGATYGL",
+        "length": 9,
+        "source_protein": "IDH1",
+        "hla_restriction": "HLA-A*68:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "Derived from IDH1 R132H mutation, this peptide may trigger immune response.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464080"
+      }
+    },
+    {
+      "decoy_id": "DC-0400",
+      "peptide_info": {
+        "decoy_sequence": "LLGFLGLGQ",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-B*14:02"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A TP53 mutation-derived epitope with neoantigenic properties.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464104"
+      }
+    },
+    {
+      "decoy_id": "DC-0401",
+      "peptide_info": {
+        "decoy_sequence": "GLGQHSSYG",
+        "length": 9,
+        "source_protein": "BRAF",
+        "hla_restriction": "HLA-C*06:02"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "BRAF V600E mutation-derived peptide with potential immunogenicity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464128"
+      }
+    },
+    {
+      "decoy_id": "DC-0402",
+      "peptide_info": {
+        "decoy_sequence": "GQHSSYGVP",
+        "length": 9,
+        "source_protein": "BRAF",
+        "hla_restriction": "HLA-A*23:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "An epitope originating from BRAF V600E mutation with neoantigen potential.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464150"
+      }
+    },
+    {
+      "decoy_id": "DC-0403",
+      "peptide_info": {
+        "decoy_sequence": "HSSYGVKVE",
+        "length": 9,
+        "source_protein": "BRAF",
+        "hla_restriction": "HLA-B*58:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A potentially immunogenic peptide from BRAF V600E mutation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464173"
+      }
+    },
+    {
+      "decoy_id": "DC-0404",
+      "peptide_info": {
+        "decoy_sequence": "GADGVGKSAL",
+        "length": 10,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-DQ*02:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "KRAS G12D mutation-derived neoantigenic peptide.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464198"
+      }
+    },
+    {
+      "decoy_id": "DC-0405",
+      "peptide_info": {
+        "decoy_sequence": "GVGKSAFVVG",
+        "length": 10,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-DP*01:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A neoantigenic epitope from KRAS G12D mutation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464221"
+      }
+    },
+    {
+      "decoy_id": "DC-0406",
+      "peptide_info": {
+        "decoy_sequence": "AVGVGKSAF",
+        "length": 9,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-DRB1*13:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "Epitope derived from KRAS G12D with potential immunogenic properties.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464244"
+      }
+    },
+    {
+      "decoy_id": "DC-0407",
+      "peptide_info": {
+        "decoy_sequence": "QLGQGHRMA",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-DP*05:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "TP53 hotspot mutation-derived epitope with neoantigenic characteristics.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464266"
+      }
+    },
+    {
+      "decoy_id": "DC-0408",
+      "peptide_info": {
+        "decoy_sequence": "GHRMACGGM",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-DRB1*01:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A neoantigenic peptide from a TP53 mutation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464288"
+      }
+    },
+    {
+      "decoy_id": "DC-0409",
+      "peptide_info": {
+        "decoy_sequence": "MACGGMLLG",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-DQ*06:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "Derived from TP53, this peptide may trigger an immune response.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464311"
+      }
+    },
+    {
+      "decoy_id": "DC-0410",
+      "peptide_info": {
+        "decoy_sequence": "LQLAGGVGV",
+        "length": 9,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-DRB1*07:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A KRAS G12D mutation-related epitope with potential immunogenicity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464333"
+      }
+    },
+    {
+      "decoy_id": "DC-0411",
+      "peptide_info": {
+        "decoy_sequence": "GVGKSAAFG",
+        "length": 9,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-DP*09:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "An epitope from KRAS G12D mutation with possible neoantigenic properties.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464356"
+      }
+    },
+    {
+      "decoy_id": "DC-0412",
+      "peptide_info": {
+        "decoy_sequence": "LQAGGVGVG",
+        "length": 9,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-DRB1*11:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A potentially immunogenic peptide derived from KRAS G12D mutation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464378"
+      }
+    },
+    {
+      "decoy_id": "DC-0413",
+      "peptide_info": {
+        "decoy_sequence": "GAVGVGKSAL",
+        "length": 10,
+        "source_protein": "KRAS",
+        "hla_restriction": "HLA-DQ*07:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "Neoantigenic peptide from the KRAS G12D mutation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464401"
+      }
+    },
+    {
+      "decoy_id": "DC-0414",
+      "peptide_info": {
+        "decoy_sequence": "GLQGHRMAC",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-DRB1*12:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "TP53 mutation-derived neoantigen with potential immunogenic properties.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464421"
+      }
+    },
+    {
+      "decoy_id": "DC-0415",
+      "peptide_info": {
+        "decoy_sequence": "HRMACGGML",
+        "length": 9,
+        "source_protein": "TP53",
+        "hla_restriction": "HLA-DP*08:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "An epitope originating from a TP53 hotspot mutation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:31.464444"
+      }
+    },
+    {
+      "decoy_id": "DC-0552",
+      "peptide_info": {
+        "decoy_sequence": "MLQTKPLVL",
+        "length": 9,
+        "source_protein": "Mutant KRAS protein",
+        "hla_restriction": "HLA-DRB1*09:01"
+      },
+      "discovery_context": {
+        "category": "neoantigen",
+        "description": "A neoantigen derived from a common KRAS mutation in tumors.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "neoantigen"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275163"
+      }
+    }
+  ]
+}

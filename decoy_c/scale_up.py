@@ -45,27 +45,27 @@ from typing import Dict, List, Optional, Set, Tuple
 # ── Ensure the parent package is importable ─────────────────────────────
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from decoy_library.config import LIBRARY_JSON, DATA_DIR
-from decoy_library.fetcher import (
+from decoy_c.config import LIBRARY_JSON, DATA_DIR
+from decoy_c.fetcher import (
     COLD_START_QUERIES,
     PaperRecord,
     fetch_abstract,
     fetch_multiple,
     search_pubmed,
 )
-from decoy_library.models import DecoyEntry, DecoyLibrary
-from decoy_library.orchestrator import (
+from decoy_c.models import DecoyEntry, DecoyLibrary
+from decoy_c.orchestrator import (
     load_library,
     process_papers,
     run_cold_start,
     save_library,
 )
-from decoy_library.seed_data import build_seed_library
-from decoy_library.validator import validate_batch
+from decoy_c.seed_data import build_seed_library
+from decoy_c.validator import validate_batch
 
 # Multi-source fetchers
 try:
-    from decoy_library.multi_source_fetcher import (
+    from decoy_c.multi_source_fetcher import (
         search_arxiv,
         search_biorxiv,
         search_clinical_trials,
@@ -253,6 +253,127 @@ STRATEGY_A_QUERIES = [
     '"HA-1" AND "HLA" AND "peptide" AND "T cell"',
     '"mismatch" AND "HLA" AND "peptide" AND "alloimmune"',
     '"alloreactive T cell" AND "peptide" AND "HLA"',
+    # ── BLOCK 15: Drug hypersensitivity & HLA-restricted adverse reactions ──
+    '"drug hypersensitivity" AND "HLA" AND "T cell" AND "peptide"',
+    '"abacavir" AND "HLA-B*57:01" AND "peptide"',
+    '"carbamazepine" AND "HLA-B*15:02" AND "T cell"',
+    '"allopurinol" AND "HLA-B*58:01" AND "T cell"',
+    '"Stevens-Johnson syndrome" AND "HLA" AND "T cell" AND "peptide"',
+    '"toxic epidermal necrolysis" AND "HLA" AND "peptide"',
+    '"drug-induced liver injury" AND "HLA" AND "T cell"',
+    '"flucloxacillin" AND "HLA-B*57:01" AND "T cell"',
+    '"nevirapine" AND "HLA" AND "hypersensitivity" AND "T cell"',
+    '"drug reaction" AND "eosinophilia" AND "HLA" AND "peptide"',
+    '"immune-mediated adverse" AND "HLA" AND "peptide presentation"',
+    # ── BLOCK 16: Transplant / alloimmunity (underrepresented) ──
+    '"allorecognition" AND "peptide" AND "HLA" AND "T cell"',
+    '"transplant rejection" AND "T cell" AND "peptide" AND "HLA"',
+    '"graft rejection" AND "minor histocompatibility" AND "peptide"',
+    '"kidney transplant" AND "T cell" AND "HLA" AND "epitope"',
+    '"heart transplant" AND "T cell" AND "alloimmune" AND "peptide"',
+    '"bone marrow transplant" AND "T cell" AND "epitope" AND "HLA"',
+    '"donor-specific" AND "T cell" AND "peptide" AND "HLA"',
+    '"alloreactive" AND "TCR" AND "peptide" AND "MHC"',
+    '"indirect allorecognition" AND "peptide" AND "HLA"',
+    '"allo-HLA" AND "peptide" AND "T cell" AND "cross-reactivity"',
+    # ── BLOCK 17: Infectious disease epitopes (rich peptide data) ──
+    '"Mycobacterium tuberculosis" AND "T cell" AND "epitope" AND "HLA"',
+    '"malaria" AND "CTL" AND "epitope" AND "HLA"',
+    '"Plasmodium" AND "T cell" AND "peptide" AND "HLA"',
+    '"dengue" AND "T cell" AND "epitope" AND "HLA" AND "cross-reactivity"',
+    '"Zika virus" AND "T cell" AND "epitope" AND "HLA"',
+    '"RSV" AND "T cell" AND "epitope" AND "HLA"',
+    '"measles" AND "T cell" AND "epitope" AND "HLA"',
+    '"yellow fever" AND "T cell" AND "epitope" AND "HLA"',
+    '"adenovirus" AND "T cell" AND "epitope" AND "HLA"',
+    '"herpes simplex" AND "T cell" AND "epitope" AND "HLA"',
+    '"VZV" AND "T cell" AND "epitope" AND "HLA"',
+    '"LCMV" AND "T cell" AND "epitope" AND "peptide"',
+    '"Trypanosoma" AND "T cell" AND "epitope" AND "HLA"',
+    '"Leishmania" AND "T cell" AND "epitope" AND "HLA"',
+    '"Chlamydia" AND "T cell" AND "epitope" AND "HLA"',
+    '"Helicobacter pylori" AND "T cell" AND "epitope"',
+    # ── BLOCK 18: HLA class II restricted peptides (underrepresented) ──
+    '"HLA-DR" AND "CD4 T cell" AND "epitope" AND "peptide"',
+    '"HLA-DQ" AND "T cell" AND "epitope" AND "peptide"',
+    '"HLA-DP" AND "T cell" AND "epitope" AND "peptide"',
+    '"HLA-DRB1*01:01" AND "peptide" AND "T cell"',
+    '"HLA-DRB1*04:01" AND "peptide" AND "T cell"',
+    '"HLA-DRB1*07:01" AND "peptide" AND "T cell"',
+    '"HLA-DRB1*11:01" AND "peptide" AND "T cell"',
+    '"HLA-DRB1*15:01" AND "peptide" AND "T cell"',
+    '"HLA-DQ2" AND "gluten" AND "peptide" AND "T cell"',
+    '"HLA-DQ8" AND "peptide" AND "T cell" AND "epitope"',
+    '"MHC class II" AND "peptide" AND "CD4" AND "tumor"',
+    '"MHC class II" AND "neoantigen" AND "peptide" AND "CD4"',
+    '"HLA class II" AND "immunopeptidome" AND "mass spectrometry"',
+    '"CD4 T cell" AND "epitope" AND "cancer" AND "HLA"',
+    '"helper T cell" AND "peptide" AND "tumor" AND "HLA"',
+    # ── BLOCK 19: TCR safety in specific clinical programs ──
+    '"ImmTAC" AND "T cell" AND "safety"',
+    '"bispecific T cell engager" AND "off-target"',
+    '"tebentafusp" AND "cross-reactivity"',
+    '"soluble TCR" AND "off-target" AND "peptide"',
+    '"TCR mimic" AND "antibody" AND "off-target"',
+    '"TCR-like antibody" AND "cross-reactivity" AND "peptide"',
+    '"chimeric antigen receptor" AND "off-tumor" AND "toxicity"',
+    '"CRISPR" AND "T cell" AND "off-target" AND "peptide"',
+    '"gene-edited T cell" AND "safety" AND "HLA"',
+    '"allogeneic T cell" AND "off-target" AND "safety"',
+    # ── BLOCK 20: Rare/underrepresented HLA alleles ──
+    '"HLA-A*30:01" AND "peptide" AND "T cell"',
+    '"HLA-A*33:03" AND "peptide" AND "T cell"',
+    '"HLA-A*29:02" AND "peptide" AND "T cell"',
+    '"HLA-A*31:01" AND "peptide" AND "T cell"',
+    '"HLA-A*32:01" AND "peptide" AND "T cell"',
+    '"HLA-B*40:01" AND "peptide" AND "T cell"',
+    '"HLA-B*44:03" AND "peptide" AND "T cell"',
+    '"HLA-B*46:01" AND "peptide" AND "T cell"',
+    '"HLA-B*51:01" AND "peptide" AND "T cell"',
+    '"HLA-B*52:01" AND "peptide" AND "T cell"',
+    '"HLA-B*53:01" AND "peptide" AND "T cell"',
+    '"HLA-B*58:01" AND "peptide" AND "T cell"',
+    '"HLA-C*01:02" AND "peptide" AND "T cell"',
+    '"HLA-C*03:04" AND "peptide" AND "T cell"',
+    '"HLA-C*04:01" AND "peptide" AND "T cell"',
+    '"HLA-C*06:02" AND "peptide" AND "T cell"',
+    '"HLA-C*08:02" AND "peptide" AND "T cell"',
+    '"HLA-C*12:03" AND "peptide" AND "T cell"',
+    # ── BLOCK 21: Tissue-specific expression & organ toxicity ──
+    '"cardiac" AND "T cell" AND "cross-reactivity" AND "peptide"',
+    '"brain" AND "T cell" AND "cross-reactivity" AND "peptide" AND "HLA"',
+    '"lung" AND "T cell" AND "cross-reactivity" AND "peptide" AND "HLA"',
+    '"liver" AND "T cell" AND "cross-reactivity" AND "peptide" AND "HLA"',
+    '"kidney" AND "T cell" AND "off-target" AND "peptide"',
+    '"intestine" AND "T cell" AND "cross-reactivity" AND "peptide"',
+    '"retina" AND "T cell" AND "cross-reactivity" AND "peptide"',
+    '"pancreas" AND "T cell" AND "islet" AND "peptide" AND "HLA"',
+    '"neuron" AND "T cell" AND "cross-reactivity" AND "peptide"',
+    '"muscle" AND "T cell" AND "cross-reactivity" AND "peptide" AND "HLA"',
+    # ── BLOCK 22: Single-cell / TCR repertoire ──
+    '"single cell" AND "TCR" AND "peptide" AND "specificity"',
+    '"TCR repertoire" AND "cross-reactivity" AND "peptide"',
+    '"TCR sequencing" AND "antigen" AND "peptide" AND "HLA"',
+    '"paired TCR" AND "peptide" AND "specificity"',
+    '"10x Genomics" AND "TCR" AND "peptide" AND "antigen"',
+    '"GLIPH" AND "TCR" AND "peptide" AND "specificity"',
+    '"TCRdist" AND "TCR" AND "peptide" AND "cross-reactive"',
+    '"dextramer" AND "peptide" AND "T cell" AND "HLA"',
+    '"CITEseq" AND "T cell" AND "antigen" AND "peptide"',
+    # ── BLOCK 23: Animal model cross-reactivity ──
+    '"mouse model" AND "T cell" AND "cross-reactivity" AND "peptide"',
+    '"murine TCR" AND "cross-reactive" AND "peptide"',
+    '"xenograft" AND "T cell" AND "off-target" AND "toxicity"',
+    '"humanized mouse" AND "TCR" AND "toxicity" AND "peptide"',
+    '"non-human primate" AND "T cell therapy" AND "toxicity"',
+    '"GLP toxicology" AND "T cell" AND "cross-reactivity"',
+    # ── BLOCK 24: Regulatory / safety assessment frameworks ──
+    '"FDA" AND "T cell therapy" AND "off-target" AND "safety"',
+    '"IND" AND "TCR" AND "cross-reactivity" AND "assessment"',
+    '"preclinical safety" AND "TCR" AND "cross-reactivity"',
+    '"clinical hold" AND "T cell therapy" AND "toxicity"',
+    '"serious adverse event" AND "TCR gene therapy" AND "cross-reactivity"',
+    '"risk assessment" AND "engineered T cell" AND "off-target"',
 ]
 
 # Strategy B: Gene-focused queries — one per gene family
@@ -289,6 +410,48 @@ STRATEGY_B_GENES = [
     "thyroglobulin", "CYP21A2", "TSHR",
     "collagen II", "aggrecan", "fibrillin",
     "desmoglein", "aquaporin-4",
+    # ── NEW: Drug hypersensitivity-associated proteins ──
+    "ABCB1", "CYP2C9", "CYP3A4", "HLA-B57", "HLA-B58",
+    # ── NEW: Additional cancer antigens ──
+    "MART-1", "MAGE-B1", "MAGE-D4",
+    "BORIS", "AKAP4", "ACRBP", "LDHC", "TPTE", "PBK",
+    "CCNA1", "PLK4", "FOXM1", "NEK2", "BUB1", "AURKB",
+    "RAD51", "TOP2A", "CENPA", "KIF20A", "KIF2C",
+    # ── NEW: Leukemia / lymphoma antigens ──
+    "BCL2", "MCL1", "BCL6", "PAX5", "ETV6", "RUNX1",
+    "MYC", "ABL1", "DEK", "HOXA9",
+    "RHAMM", "CML66", "CML28", "SP17",
+    # ── NEW: Sarcoma / rare antigens ──
+    "EWS-FLI1", "PAX3-FOXO1", "MDM2", "DDIT3",
+    # ── NEW: Tissue-specific differentiation antigens ──
+    "PSA", "PAP", "STEAP1", "STEAP2", "PSCA",
+    "NKX3-1", "AR", "AMACR",
+    "mammaglobin", "lactalbumin", "NY-BR-1",
+    "TG", "TPO", "NIS",
+    "CDX2", "GUCY2C", "MUC4", "MUC16",
+    # ── NEW: Nervous system antigens ──
+    "SOX2", "SOX10", "OLIG2", "GFAP", "ENO2",
+    "SYN1", "MAP2", "parkin", "alpha-synuclein",
+    "recoverin", "CRMP5", "HuD",
+    # ── NEW: Cardiac / muscle proteins (critical for safety) ──
+    "MYH6", "MYH7", "TNNT2", "TNNI3", "MYL2", "MYL3",
+    "MYBPC3", "DES", "LMNA", "SCN5A", "RYR2",
+    "ACTC1", "TPM1", "ACTN2", "DMD", "SGCA",
+    # ── NEW: Additional viral epitope sources ──
+    "HPV-E2", "HPV-L1",
+    "EBV-BRLF1", "EBV-BZLF1", "EBV-BMLF1",
+    "CMV-IE1", "CMV-IE2",
+    "HBV-core", "HBV-pol",
+    "HCV-NS3", "HCV-NS5", "HCV-core",
+    "SARS-CoV-2-S", "SARS-CoV-2-N", "SARS-CoV-2-M",
+    "HIV-nef", "HIV-pol", "HIV-env",
+    "influenza-NP", "influenza-M1",
+    # ── NEW: Parasite antigens ──
+    "CSP", "AMA1", "MSP1", "TRAP",
+    "Ag85B", "ESAT6", "CFP10",
+    # ── NEW: Transplant-relevant antigens ──
+    "LB-ADIR", "ACC-1", "ACC-2",
+    "DPH1", "LB-SSR1",
 ]
 
 # Strategy C: MeSH-term based systematic expansion
@@ -314,6 +477,25 @@ STRATEGY_C_MESH = [
     '"Antigen Presentation"[MeSH] AND "Peptide Fragments"[MeSH] AND "HLA Antigens"[MeSH]',
     '"T-Cell Antigen Receptor Specificity"[MeSH] AND "Peptides"[MeSH]',
     '"Viral Vaccines"[MeSH] AND "Epitopes, T-Lymphocyte"[MeSH] AND "HLA Antigens"[MeSH]',
+    # ── NEW MeSH: Drug hypersensitivity & HLA pharmacogenomics ──
+    '"Drug Hypersensitivity"[MeSH] AND "HLA Antigens"[MeSH] AND "T-Lymphocytes"[MeSH]',
+    '"Stevens-Johnson Syndrome"[MeSH] AND "HLA-B Antigens"[MeSH]',
+    '"Pharmacogenetics"[MeSH] AND "HLA Antigens"[MeSH] AND "T-Lymphocytes"[MeSH]',
+    # ── NEW MeSH: Transplant immunology ──
+    '"Graft Rejection"[MeSH] AND "Minor Histocompatibility Antigens"[MeSH] AND "Peptides"[MeSH]',
+    '"Transplantation, Homologous"[MeSH] AND "T-Lymphocytes"[MeSH] AND "Peptides"[MeSH]',
+    # ── NEW MeSH: Infectious disease epitopes ──
+    '"Tuberculosis"[MeSH] AND "Epitopes, T-Lymphocyte"[MeSH] AND "HLA Antigens"[MeSH]',
+    '"Malaria"[MeSH] AND "Epitopes, T-Lymphocyte"[MeSH] AND "HLA Antigens"[MeSH]',
+    '"HIV Infections"[MeSH] AND "Epitopes, T-Lymphocyte"[MeSH] AND "HLA Antigens"[MeSH]',
+    '"COVID-19"[MeSH] AND "Epitopes, T-Lymphocyte"[MeSH] AND "HLA Antigens"[MeSH]',
+    # ── NEW MeSH: HLA class II ──
+    '"HLA-DR Antigens"[MeSH] AND "CD4-Positive T-Lymphocytes"[MeSH] AND "Epitopes"[MeSH]',
+    '"HLA-DQ Antigens"[MeSH] AND "Celiac Disease"[MeSH] AND "Peptides"[MeSH]',
+    # ── NEW MeSH: Cardiac / organ toxicity ──
+    '"Myocarditis"[MeSH] AND "T-Lymphocytes"[MeSH] AND "Immunotherapy"[MeSH]',
+    '"Cardiomyopathy"[MeSH] AND "T-Lymphocytes"[MeSH] AND "Cross Reactions"[MeSH]',
+    '"Neurotoxicity Syndromes"[MeSH] AND "Immunotherapy, Adoptive"[MeSH]',
 ]
 
 # Strategy D: Year-range expansion — systematically sweep publication years
@@ -333,7 +515,7 @@ def generate_llm_queries(existing_entries: List[DecoyEntry], n_queries: int = 20
     Use LLM to propose novel PubMed queries based on patterns in existing data.
     Falls back to empty list if no LLM available.
     """
-    from decoy_library.config import OPENAI_API_KEY, OPENAI_BASE_URL, OPENAI_MODEL
+    from decoy_c.config import OPENAI_API_KEY, OPENAI_BASE_URL, OPENAI_MODEL
     if not OPENAI_API_KEY:
         log.warning("No LLM API key — skipping LLM-guided query generation")
         return []

@@ -1,4 +1,17 @@
 {
+  "version": "0.1.0",
+  "metadata": {
+    "description": "Strict off-target toxicity pMHC targets for TCR-T safety screening",
+    "total_entries": 250,
+    "last_updated": "2026-03-21T15:02:16.034237",
+    "categories": [
+      "seed_curated",
+      "cardiac_muscle",
+      "autoimmune_self",
+      "tissue_specific"
+    ],
+    "note": "Only clinically known or high-confidence off-target toxicity pMHC. Broad cross-reactivity reference epitopes are in cross_reactivity_reference.json."
+  },
   "entries": [
     {
       "decoy_id": "DC-0001",
@@ -9373,7 +9386,4501 @@
         "iedb_source_antigen": "Matrix protein 1 (UniProt:P03485)",
         "overall_status": "NEEDS_REVIEW"
       }
+    },
+    {
+      "decoy_id": "DC-0210",
+      "peptide_info": {
+        "decoy_sequence": "PLPILHIQL",
+        "length": 9,
+        "source_protein": "MBP",
+        "hla_restriction": "HLA-A*02:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A peptide from Myelin Basic Protein associated with autoimmune responses in multiple sclerosis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.181333"
+      }
+    },
+    {
+      "decoy_id": "DC-0211",
+      "peptide_info": {
+        "decoy_sequence": "YGSLPQKSL",
+        "length": 9,
+        "source_protein": "MOG",
+        "hla_restriction": "HLA-B*07:02"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An epitope from Myelin Oligodendrocyte Glycoprotein involved in autoimmune demyelination.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.181379"
+      }
+    },
+    {
+      "decoy_id": "DC-0212",
+      "peptide_info": {
+        "decoy_sequence": "SLGQKHFPK",
+        "length": 9,
+        "source_protein": "PLP",
+        "hla_restriction": "HLA-A*24:02"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A proteolipid protein-derived peptide implicated in T-cell mediated autoimmunity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.181401"
+      }
+    },
+    {
+      "decoy_id": "DC-0213",
+      "peptide_info": {
+        "decoy_sequence": "HLVEALYLV",
+        "length": 9,
+        "source_protein": "Insulin",
+        "hla_restriction": "HLA-B*08:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An insulin peptide recognized by autoreactive T cells in Type 1 Diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.181422"
+      }
+    },
+    {
+      "decoy_id": "DC-0214",
+      "peptide_info": {
+        "decoy_sequence": "GAARKMLQL",
+        "length": 9,
+        "source_protein": "GAD65",
+        "hla_restriction": "HLA-DRB1*04:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A GAD65-derived peptide involved in autoimmune diabetes pathogenesis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.181442"
+      }
+    },
+    {
+      "decoy_id": "DC-0215",
+      "peptide_info": {
+        "decoy_sequence": "QKYLATAFL",
+        "length": 9,
+        "source_protein": "Thyroglobulin",
+        "hla_restriction": "HLA-DRB1*03:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A peptide from Thyroglobulin contributing to autoimmune thyroid disease.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.181465"
+      }
+    },
+    {
+      "decoy_id": "DC-0216",
+      "peptide_info": {
+        "decoy_sequence": "LGYTFLRIV",
+        "length": 9,
+        "source_protein": "MBP",
+        "hla_restriction": "HLA-C*07:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A myelin basic protein-derived epitope targeted in multiple sclerosis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.181488"
+      }
+    },
+    {
+      "decoy_id": "DC-0217",
+      "peptide_info": {
+        "decoy_sequence": "TAYHLDRQK",
+        "length": 9,
+        "source_protein": "MOG",
+        "hla_restriction": "HLA-DRB1*15:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An epitope from Myelin Oligodendrocyte Glycoprotein linked to autoimmune encephalomyelitis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.181511"
+      }
+    },
+    {
+      "decoy_id": "DC-0218",
+      "peptide_info": {
+        "decoy_sequence": "SFAGLIEAL",
+        "length": 9,
+        "source_protein": "PLP",
+        "hla_restriction": "HLA-A*03:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "Proteolipid protein epitope involved in autoimmune neurological disorders.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.181533"
+      }
+    },
+    {
+      "decoy_id": "DC-0219",
+      "peptide_info": {
+        "decoy_sequence": "ILVQFGGSL",
+        "length": 9,
+        "source_protein": "Insulin",
+        "hla_restriction": "HLA-B*44:02"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An insulin-derived peptide that may play a role in Type 1 Diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.181554"
+      }
+    },
+    {
+      "decoy_id": "DC-0220",
+      "peptide_info": {
+        "decoy_sequence": "KAGLQFPKM",
+        "length": 9,
+        "source_protein": "GAD65",
+        "hla_restriction": "HLA-DQ8"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A Glutamic Acid Decarboxylase 65 peptide linked to autoimmune diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182006"
+      }
+    },
+    {
+      "decoy_id": "DC-0221",
+      "peptide_info": {
+        "decoy_sequence": "DPSLPTFLK",
+        "length": 9,
+        "source_protein": "Thyroglobulin",
+        "hla_restriction": "HLA-DRB1*04:04"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A peptide from Thyroglobulin involved in autoimmune thyroid disease.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182037"
+      }
+    },
+    {
+      "decoy_id": "DC-0222",
+      "peptide_info": {
+        "decoy_sequence": "GLYQLQSVL",
+        "length": 9,
+        "source_protein": "MBP",
+        "hla_restriction": "HLA-B*27:05"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A myelin basic protein-derived epitope recognized in multiple sclerosis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182063"
+      }
+    },
+    {
+      "decoy_id": "DC-0223",
+      "peptide_info": {
+        "decoy_sequence": "KVMELRPLK",
+        "length": 9,
+        "source_protein": "MOG",
+        "hla_restriction": "HLA-DRB1*11:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A peptide from Myelin Oligodendrocyte Glycoprotein involved in autoimmune demyelination.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182091"
+      }
+    },
+    {
+      "decoy_id": "DC-0224",
+      "peptide_info": {
+        "decoy_sequence": "TLGQKFLGL",
+        "length": 9,
+        "source_protein": "PLP",
+        "hla_restriction": "HLA-A*11:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "Proteolipid protein epitope associated with T-cell mediated autoimmunity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182116"
+      }
+    },
+    {
+      "decoy_id": "DC-0225",
+      "peptide_info": {
+        "decoy_sequence": "VLILQKFSV",
+        "length": 9,
+        "source_protein": "Insulin",
+        "hla_restriction": "HLA-C*04:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An insulin-derived peptide recognized by autoreactive T cells in Type 1 Diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182145"
+      }
+    },
+    {
+      "decoy_id": "DC-0226",
+      "peptide_info": {
+        "decoy_sequence": "AGKLQFPKL",
+        "length": 9,
+        "source_protein": "GAD65",
+        "hla_restriction": "HLA-DRB1*04:02"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A GAD65-derived peptide implicated in the development of autoimmune diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182169"
+      }
+    },
+    {
+      "decoy_id": "DC-0227",
+      "peptide_info": {
+        "decoy_sequence": "QLYVLQLSQ",
+        "length": 9,
+        "source_protein": "Thyroglobulin",
+        "hla_restriction": "HLA-DRB1*03:02"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A peptide from Thyroglobulin involved in autoimmune thyroid disease.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182221"
+      }
+    },
+    {
+      "decoy_id": "DC-0228",
+      "peptide_info": {
+        "decoy_sequence": "RLQSFGLNL",
+        "length": 9,
+        "source_protein": "MBP",
+        "hla_restriction": "HLA-A*23:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A myelin basic protein epitope targeted in multiple sclerosis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182246"
+      }
+    },
+    {
+      "decoy_id": "DC-0229",
+      "peptide_info": {
+        "decoy_sequence": "LQKSLGQYL",
+        "length": 9,
+        "source_protein": "MOG",
+        "hla_restriction": "HLA-DRB1*13:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An epitope from Myelin Oligodendrocyte Glycoprotein involved in autoimmune encephalomyelitis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182271"
+      }
+    },
+    {
+      "decoy_id": "DC-0230",
+      "peptide_info": {
+        "decoy_sequence": "PLGQLYQLL",
+        "length": 9,
+        "source_protein": "PLP",
+        "hla_restriction": "HLA-B*35:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "Proteolipid protein-derived epitope recognized by autoreactive T cells.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182294"
+      }
+    },
+    {
+      "decoy_id": "DC-0231",
+      "peptide_info": {
+        "decoy_sequence": "LVQKSLGQL",
+        "length": 9,
+        "source_protein": "Insulin",
+        "hla_restriction": "HLA-B*51:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An insulin peptide that may contribute to Type 1 Diabetes pathogenesis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182320"
+      }
+    },
+    {
+      "decoy_id": "DC-0232",
+      "peptide_info": {
+        "decoy_sequence": "GKQFGLKYL",
+        "length": 9,
+        "source_protein": "GAD65",
+        "hla_restriction": "HLA-DRB1*07:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A Glutamic Acid Decarboxylase 65 peptide linked to autoimmune diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182346"
+      }
+    },
+    {
+      "decoy_id": "DC-0233",
+      "peptide_info": {
+        "decoy_sequence": "GLQYLFKSL",
+        "length": 9,
+        "source_protein": "Thyroglobulin",
+        "hla_restriction": "HLA-DRB1*03:03"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A Thyroglobulin-derived peptide involved in autoimmune thyroid disease.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182371"
+      }
+    },
+    {
+      "decoy_id": "DC-0234",
+      "peptide_info": {
+        "decoy_sequence": "QLYQLSLLL",
+        "length": 9,
+        "source_protein": "MBP",
+        "hla_restriction": "HLA-C*07:02"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A myelin basic protein epitope implicated in multiple sclerosis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182397"
+      }
+    },
+    {
+      "decoy_id": "DC-0235",
+      "peptide_info": {
+        "decoy_sequence": "FGLQKSLVL",
+        "length": 9,
+        "source_protein": "MOG",
+        "hla_restriction": "HLA-DRB1*14:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An epitope from Myelin Oligodendrocyte Glycoprotein linked to autoimmune demyelination.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182423"
+      }
+    },
+    {
+      "decoy_id": "DC-0236",
+      "peptide_info": {
+        "decoy_sequence": "QLSLGQYLL",
+        "length": 9,
+        "source_protein": "PLP",
+        "hla_restriction": "HLA-A*32:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "Proteolipid protein epitope involved in T-cell mediated autoimmunity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182450"
+      }
+    },
+    {
+      "decoy_id": "DC-0237",
+      "peptide_info": {
+        "decoy_sequence": "KSLGQYLQL",
+        "length": 9,
+        "source_protein": "Insulin",
+        "hla_restriction": "HLA-B*58:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An insulin-derived peptide recognized by autoreactive T cells in Type 1 Diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182476"
+      }
+    },
+    {
+      "decoy_id": "DC-0238",
+      "peptide_info": {
+        "decoy_sequence": "LQKLGLQYL",
+        "length": 9,
+        "source_protein": "GAD65",
+        "hla_restriction": "HLA-DRB1*04:05"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A GAD65-derived peptide implicated in autoimmune diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182501"
+      }
+    },
+    {
+      "decoy_id": "DC-0239",
+      "peptide_info": {
+        "decoy_sequence": "QYLLKQLSL",
+        "length": 9,
+        "source_protein": "Thyroglobulin",
+        "hla_restriction": "HLA-DRB1*03:04"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A peptide from Thyroglobulin involved in autoimmune thyroid disease.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182526"
+      }
+    },
+    {
+      "decoy_id": "DC-0240",
+      "peptide_info": {
+        "decoy_sequence": "GLQYLLQLK",
+        "length": 9,
+        "source_protein": "MBP",
+        "hla_restriction": "HLA-B*44:03"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A myelin basic protein-derived epitope targeted in multiple sclerosis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182554"
+      }
+    },
+    {
+      "decoy_id": "DC-0241",
+      "peptide_info": {
+        "decoy_sequence": "SLGQLYKLQ",
+        "length": 9,
+        "source_protein": "MOG",
+        "hla_restriction": "HLA-DRB1*15:02"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An epitope from Myelin Oligodendrocyte Glycoprotein involved in autoimmune demyelination.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182581"
+      }
+    },
+    {
+      "decoy_id": "DC-0242",
+      "peptide_info": {
+        "decoy_sequence": "QLKSLQYGL",
+        "length": 9,
+        "source_protein": "PLP",
+        "hla_restriction": "HLA-A*74:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "Proteolipid protein epitope associated with T-cell mediated autoimmunity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182610"
+      }
+    },
+    {
+      "decoy_id": "DC-0243",
+      "peptide_info": {
+        "decoy_sequence": "YLQLGLKSL",
+        "length": 9,
+        "source_protein": "Insulin",
+        "hla_restriction": "HLA-C*06:02"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An insulin peptide that may play a role in Type 1 Diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182642"
+      }
+    },
+    {
+      "decoy_id": "DC-0244",
+      "peptide_info": {
+        "decoy_sequence": "QLGQYKLSL",
+        "length": 9,
+        "source_protein": "GAD65",
+        "hla_restriction": "HLA-DRB1*01:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A Glutamic Acid Decarboxylase 65 peptide linked to autoimmune diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182675"
+      }
+    },
+    {
+      "decoy_id": "DC-0245",
+      "peptide_info": {
+        "decoy_sequence": "QLSLGLQYL",
+        "length": 9,
+        "source_protein": "Thyroglobulin",
+        "hla_restriction": "HLA-DRB1*03:05"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A Thyroglobulin-derived peptide involved in autoimmune thyroid disease.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182707"
+      }
+    },
+    {
+      "decoy_id": "DC-0246",
+      "peptide_info": {
+        "decoy_sequence": "GLQYLQLSL",
+        "length": 9,
+        "source_protein": "MBP",
+        "hla_restriction": "HLA-B*15:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A myelin basic protein epitope targeted in multiple sclerosis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182738"
+      }
+    },
+    {
+      "decoy_id": "DC-0247",
+      "peptide_info": {
+        "decoy_sequence": "LGLQYLLKL",
+        "length": 9,
+        "source_protein": "MOG",
+        "hla_restriction": "HLA-DRB1*16:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An epitope from Myelin Oligodendrocyte Glycoprotein linked to autoimmune demyelination.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182775"
+      }
+    },
+    {
+      "decoy_id": "DC-0248",
+      "peptide_info": {
+        "decoy_sequence": "QLSLGLYQL",
+        "length": 9,
+        "source_protein": "PLP",
+        "hla_restriction": "HLA-A*68:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "Proteolipid protein epitope involved in T-cell mediated autoimmunity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182807"
+      }
+    },
+    {
+      "decoy_id": "DC-0249",
+      "peptide_info": {
+        "decoy_sequence": "QYLQLGSLK",
+        "length": 9,
+        "source_protein": "Insulin",
+        "hla_restriction": "HLA-B*57:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An insulin-derived peptide recognized by autoreactive T cells in Type 1 Diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182836"
+      }
+    },
+    {
+      "decoy_id": "DC-0250",
+      "peptide_info": {
+        "decoy_sequence": "LQSKQLGQL",
+        "length": 9,
+        "source_protein": "GAD65",
+        "hla_restriction": "HLA-DRB1*09:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A GAD65-derived peptide implicated in autoimmune diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182862"
+      }
+    },
+    {
+      "decoy_id": "DC-0251",
+      "peptide_info": {
+        "decoy_sequence": "QLYQLKLSL",
+        "length": 9,
+        "source_protein": "Thyroglobulin",
+        "hla_restriction": "HLA-DRB1*03:06"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A peptide from Thyroglobulin involved in autoimmune thyroid disease.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182909"
+      }
+    },
+    {
+      "decoy_id": "DC-0252",
+      "peptide_info": {
+        "decoy_sequence": "GLQLYQLSL",
+        "length": 9,
+        "source_protein": "MBP",
+        "hla_restriction": "HLA-C*03:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A myelin basic protein-derived epitope recognized in multiple sclerosis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182938"
+      }
+    },
+    {
+      "decoy_id": "DC-0253",
+      "peptide_info": {
+        "decoy_sequence": "LQYGLSLQL",
+        "length": 9,
+        "source_protein": "MOG",
+        "hla_restriction": "HLA-DRB1*04:03"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An epitope from Myelin Oligodendrocyte Glycoprotein involved in autoimmune encephalomyelitis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182964"
+      }
+    },
+    {
+      "decoy_id": "DC-0254",
+      "peptide_info": {
+        "decoy_sequence": "QLGLQYLKL",
+        "length": 9,
+        "source_protein": "PLP",
+        "hla_restriction": "HLA-A*33:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "Proteolipid protein epitope involved in autoimmunity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.182992"
+      }
+    },
+    {
+      "decoy_id": "DC-0255",
+      "peptide_info": {
+        "decoy_sequence": "LGLQLYQLL",
+        "length": 9,
+        "source_protein": "Insulin",
+        "hla_restriction": "HLA-B*49:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An insulin-derived peptide that may contribute to Type 1 Diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.183019"
+      }
+    },
+    {
+      "decoy_id": "DC-0256",
+      "peptide_info": {
+        "decoy_sequence": "LQYKLSLQK",
+        "length": 9,
+        "source_protein": "GAD65",
+        "hla_restriction": "HLA-DRB1*12:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A Glutamic Acid Decarboxylase 65 peptide linked to autoimmune diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.183044"
+      }
+    },
+    {
+      "decoy_id": "DC-0257",
+      "peptide_info": {
+        "decoy_sequence": "QLSLQYLLK",
+        "length": 9,
+        "source_protein": "Thyroglobulin",
+        "hla_restriction": "HLA-DRB1*03:07"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A Thyroglobulin-derived peptide involved in autoimmune thyroid disease.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:13:59.183069"
+      }
+    },
+    {
+      "decoy_id": "DC-0337",
+      "peptide_info": {
+        "decoy_sequence": "MKRIMVLVV",
+        "length": 9,
+        "source_protein": "titin",
+        "hla_restriction": "HLA-A*02:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "A titin-derived epitope that may be involved in cardiac muscle function.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436049"
+      }
+    },
+    {
+      "decoy_id": "DC-0338",
+      "peptide_info": {
+        "decoy_sequence": "GLKPVNLEI",
+        "length": 9,
+        "source_protein": "myosin heavy chain",
+        "hla_restriction": "HLA-B*07:02"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Epitope derived from myosin heavy chain that could be targeted in cardiac-related autoimmune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436107"
+      }
+    },
+    {
+      "decoy_id": "DC-0339",
+      "peptide_info": {
+        "decoy_sequence": "FDRLKQIKK",
+        "length": 9,
+        "source_protein": "troponin",
+        "hla_restriction": "HLA-C*04:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Troponin epitope possibly involved in autoimmune recognition in cardiac muscle.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436147"
+      }
+    },
+    {
+      "decoy_id": "DC-0340",
+      "peptide_info": {
+        "decoy_sequence": "SVPLNKFQI",
+        "length": 9,
+        "source_protein": "desmin",
+        "hla_restriction": "HLA-DRB1*04:05"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Desmin epitope potentially implicated in muscle-specific immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436186"
+      }
+    },
+    {
+      "decoy_id": "DC-0341",
+      "peptide_info": {
+        "decoy_sequence": "QLRPLVLLV",
+        "length": 9,
+        "source_protein": "titin",
+        "hla_restriction": "HLA-DQ2"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "A titin epitope associated with cardiac muscle tissue specificity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436229"
+      }
+    },
+    {
+      "decoy_id": "DC-0342",
+      "peptide_info": {
+        "decoy_sequence": "VMEPLMVKV",
+        "length": 9,
+        "source_protein": "myosin heavy chain",
+        "hla_restriction": "HLA-A*03:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Myosin heavy chain epitope with potential autoimmune implications in muscle tissue.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436267"
+      }
+    },
+    {
+      "decoy_id": "DC-0343",
+      "peptide_info": {
+        "decoy_sequence": "GLRFGLLSTK",
+        "length": 10,
+        "source_protein": "troponin",
+        "hla_restriction": "HLA-B*08:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Troponin-derived epitope potentially involved in cardiac muscle immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436306"
+      }
+    },
+    {
+      "decoy_id": "DC-0344",
+      "peptide_info": {
+        "decoy_sequence": "YLQKVLPRLL",
+        "length": 10,
+        "source_protein": "desmin",
+        "hla_restriction": "HLA-C*07:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Desmin epitope that may be involved in muscle-specific autoimmune recognition.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436345"
+      }
+    },
+    {
+      "decoy_id": "DC-0345",
+      "peptide_info": {
+        "decoy_sequence": "GDQPLMVKV",
+        "length": 9,
+        "source_protein": "titin",
+        "hla_restriction": "HLA-DP4"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Epitope from titin that could be implicated in cardiac muscle tissue-specific immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436386"
+      }
+    },
+    {
+      "decoy_id": "DC-0346",
+      "peptide_info": {
+        "decoy_sequence": "VLKPLNFKL",
+        "length": 9,
+        "source_protein": "myosin heavy chain",
+        "hla_restriction": "HLA-A*11:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Myosin heavy chain-derived epitope potentially involved in muscle-related autoimmune conditions.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436421"
+      }
+    },
+    {
+      "decoy_id": "DC-0347",
+      "peptide_info": {
+        "decoy_sequence": "FTKPLVRLK",
+        "length": 9,
+        "source_protein": "troponin",
+        "hla_restriction": "HLA-B*35:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Troponin epitope possibly targeted in cardiac muscle-specific immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436455"
+      }
+    },
+    {
+      "decoy_id": "DC-0348",
+      "peptide_info": {
+        "decoy_sequence": "LQLTKPLVK",
+        "length": 9,
+        "source_protein": "desmin",
+        "hla_restriction": "HLA-C*05:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Desmin-derived epitope potentially involved in muscle-specific autoimmune recognition.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436493"
+      }
+    },
+    {
+      "decoy_id": "DC-0349",
+      "peptide_info": {
+        "decoy_sequence": "VKPLVMKGL",
+        "length": 9,
+        "source_protein": "titin",
+        "hla_restriction": "HLA-DQ8"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Titin epitope associated with cardiac muscle tissue-specific immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436532"
+      }
+    },
+    {
+      "decoy_id": "DC-0350",
+      "peptide_info": {
+        "decoy_sequence": "FKPLVQLTK",
+        "length": 9,
+        "source_protein": "myosin heavy chain",
+        "hla_restriction": "HLA-A*24:02"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Myosin heavy chain epitope potentially implicated in muscle-related autoimmune conditions.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436572"
+      }
+    },
+    {
+      "decoy_id": "DC-0351",
+      "peptide_info": {
+        "decoy_sequence": "LPLVRLKTK",
+        "length": 9,
+        "source_protein": "troponin",
+        "hla_restriction": "HLA-B*44:02"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Troponin-derived epitope possibly involved in cardiac muscle immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436610"
+      }
+    },
+    {
+      "decoy_id": "DC-0352",
+      "peptide_info": {
+        "decoy_sequence": "PLVRLKTKL",
+        "length": 9,
+        "source_protein": "desmin",
+        "hla_restriction": "HLA-C*03:02"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Desmin epitope that may be involved in muscle-specific autoimmune recognition.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436644"
+      }
+    },
+    {
+      "decoy_id": "DC-0353",
+      "peptide_info": {
+        "decoy_sequence": "LLVRLKPLK",
+        "length": 9,
+        "source_protein": "titin",
+        "hla_restriction": "HLA-DP2"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Epitope from titin potentially targeted in cardiac muscle tissue-specific immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436684"
+      }
+    },
+    {
+      "decoy_id": "DC-0354",
+      "peptide_info": {
+        "decoy_sequence": "LRKPLVQLL",
+        "length": 9,
+        "source_protein": "myosin heavy chain",
+        "hla_restriction": "HLA-A*68:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Myosin heavy chain-derived epitope potentially involved in muscle-related autoimmune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436719"
+      }
+    },
+    {
+      "decoy_id": "DC-0355",
+      "peptide_info": {
+        "decoy_sequence": "PLVRLKPLV",
+        "length": 9,
+        "source_protein": "troponin",
+        "hla_restriction": "HLA-B*57:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Troponin epitope potentially involved in cardiac muscle-specific immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436758"
+      }
+    },
+    {
+      "decoy_id": "DC-0356",
+      "peptide_info": {
+        "decoy_sequence": "LPLVQLTKL",
+        "length": 9,
+        "source_protein": "desmin",
+        "hla_restriction": "HLA-C*06:02"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Desmin-derived epitope potentially involved in muscle-specific autoimmune recognition.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436796"
+      }
+    },
+    {
+      "decoy_id": "DC-0357",
+      "peptide_info": {
+        "decoy_sequence": "RLKPLVQLL",
+        "length": 9,
+        "source_protein": "titin",
+        "hla_restriction": "HLA-DQ6"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "A titin epitope associated with cardiac muscle tissue-specific immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436833"
+      }
+    },
+    {
+      "decoy_id": "DC-0358",
+      "peptide_info": {
+        "decoy_sequence": "KPLVQLTLK",
+        "length": 9,
+        "source_protein": "myosin heavy chain",
+        "hla_restriction": "HLA-A*01:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Myosin heavy chain-derived epitope potentially implicated in muscle-related autoimmune conditions.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436870"
+      }
+    },
+    {
+      "decoy_id": "DC-0359",
+      "peptide_info": {
+        "decoy_sequence": "PLVRLKTLK",
+        "length": 9,
+        "source_protein": "desmin",
+        "hla_restriction": "HLA-C*08:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Desmin epitope that may be involved in muscle-specific autoimmune recognition.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436913"
+      }
+    },
+    {
+      "decoy_id": "DC-0360",
+      "peptide_info": {
+        "decoy_sequence": "LLVRLKPLV",
+        "length": 9,
+        "source_protein": "titin",
+        "hla_restriction": "HLA-DP5"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Epitope from titin potentially targeted in cardiac muscle tissue-specific immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436955"
+      }
+    },
+    {
+      "decoy_id": "DC-0361",
+      "peptide_info": {
+        "decoy_sequence": "LRKPLVQLT",
+        "length": 9,
+        "source_protein": "myosin heavy chain",
+        "hla_restriction": "HLA-A*33:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Myosin heavy chain-derived epitope potentially involved in muscle-related autoimmune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.436994"
+      }
+    },
+    {
+      "decoy_id": "DC-0362",
+      "peptide_info": {
+        "decoy_sequence": "PLVRLKPLT",
+        "length": 9,
+        "source_protein": "troponin",
+        "hla_restriction": "HLA-B*27:05"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Troponin epitope potentially involved in cardiac muscle-specific immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.437036"
+      }
+    },
+    {
+      "decoy_id": "DC-0363",
+      "peptide_info": {
+        "decoy_sequence": "LPLVQLTLK",
+        "length": 9,
+        "source_protein": "desmin",
+        "hla_restriction": "HLA-C*07:02"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Desmin-derived epitope potentially involved in muscle-specific autoimmune recognition.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.437076"
+      }
+    },
+    {
+      "decoy_id": "DC-0364",
+      "peptide_info": {
+        "decoy_sequence": "RLKPLVQLT",
+        "length": 9,
+        "source_protein": "titin",
+        "hla_restriction": "HLA-DQ7"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "A titin epitope associated with cardiac muscle tissue-specific immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.437119"
+      }
+    },
+    {
+      "decoy_id": "DC-0365",
+      "peptide_info": {
+        "decoy_sequence": "KPLVQLTLT",
+        "length": 9,
+        "source_protein": "myosin heavy chain",
+        "hla_restriction": "HLA-A*29:02"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Myosin heavy chain-derived epitope potentially implicated in muscle-related autoimmune conditions.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.437159"
+      }
+    },
+    {
+      "decoy_id": "DC-0366",
+      "peptide_info": {
+        "decoy_sequence": "LQLTKPLVL",
+        "length": 9,
+        "source_protein": "troponin",
+        "hla_restriction": "HLA-B*51:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Troponin-derived epitope possibly involved in cardiac muscle immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.437199"
+      }
+    },
+    {
+      "decoy_id": "DC-0367",
+      "peptide_info": {
+        "decoy_sequence": "PLVRLKTLT",
+        "length": 9,
+        "source_protein": "desmin",
+        "hla_restriction": "HLA-C*02:02"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Desmin epitope that may be involved in muscle-specific autoimmune recognition.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.437238"
+      }
+    },
+    {
+      "decoy_id": "DC-0368",
+      "peptide_info": {
+        "decoy_sequence": "LLVRLKPLT",
+        "length": 9,
+        "source_protein": "titin",
+        "hla_restriction": "HLA-DP1"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Epitope from titin potentially targeted in cardiac muscle tissue-specific immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.437279"
+      }
+    },
+    {
+      "decoy_id": "DC-0369",
+      "peptide_info": {
+        "decoy_sequence": "LPLVQLTLT",
+        "length": 9,
+        "source_protein": "desmin",
+        "hla_restriction": "HLA-C*12:03"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Desmin-derived epitope potentially involved in muscle-specific autoimmune recognition.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.437330"
+      }
+    },
+    {
+      "decoy_id": "DC-0370",
+      "peptide_info": {
+        "decoy_sequence": "LQLTKPLTL",
+        "length": 9,
+        "source_protein": "troponin",
+        "hla_restriction": "HLA-B*58:01"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Troponin-derived epitope possibly involved in cardiac muscle immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:15:04.437381"
+      }
+    },
+    {
+      "decoy_id": "DC-0459",
+      "peptide_info": {
+        "decoy_sequence": "YLGAFLNSF",
+        "length": 9,
+        "source_protein": "PSA",
+        "hla_restriction": "HLA-A*02:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope derived from the prostate-specific antigen protein.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463055"
+      }
+    },
+    {
+      "decoy_id": "DC-0460",
+      "peptide_info": {
+        "decoy_sequence": "SLGKLLLNL",
+        "length": 9,
+        "source_protein": "PAP",
+        "hla_restriction": "HLA-B*07:02"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A peptide epitope found in prostatic acid phosphatase.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463097"
+      }
+    },
+    {
+      "decoy_id": "DC-0461",
+      "peptide_info": {
+        "decoy_sequence": "VGLQGFLNV",
+        "length": 9,
+        "source_protein": "Mammoglobin",
+        "hla_restriction": "HLA-A*24:02"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope associated with mammoglobin involved in breast tissue.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463118"
+      }
+    },
+    {
+      "decoy_id": "DC-0462",
+      "peptide_info": {
+        "decoy_sequence": "LPLTSFLQY",
+        "length": 9,
+        "source_protein": "CDX2",
+        "hla_restriction": "HLA-C*04:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope from the CDX2 protein, a marker for intestinal differentiation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463137"
+      }
+    },
+    {
+      "decoy_id": "DC-0463",
+      "peptide_info": {
+        "decoy_sequence": "FFYIVHPLS",
+        "length": 9,
+        "source_protein": "TTF-1",
+        "hla_restriction": "HLA-DRB1*01:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope derived from thyroid transcription factor-1.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463158"
+      }
+    },
+    {
+      "decoy_id": "DC-0464",
+      "peptide_info": {
+        "decoy_sequence": "QFLGFLRLY",
+        "length": 9,
+        "source_protein": "PSA",
+        "hla_restriction": "HLA-A*03:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A prostate-specific antigen epitope targeted by immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463180"
+      }
+    },
+    {
+      "decoy_id": "DC-0465",
+      "peptide_info": {
+        "decoy_sequence": "KGLQALVFL",
+        "length": 9,
+        "source_protein": "PAP",
+        "hla_restriction": "HLA-B*08:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope from prostatic acid phosphatase relevant in prostate cancer.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463200"
+      }
+    },
+    {
+      "decoy_id": "DC-0466",
+      "peptide_info": {
+        "decoy_sequence": "VLFLAFQLL",
+        "length": 9,
+        "source_protein": "Mammoglobin",
+        "hla_restriction": "HLA-C*07:02"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "Mammoglobin epitope involved in breast cancer recognition.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463269"
+      }
+    },
+    {
+      "decoy_id": "DC-0467",
+      "peptide_info": {
+        "decoy_sequence": "ALQDLPTTL",
+        "length": 9,
+        "source_protein": "CDX2",
+        "hla_restriction": "HLA-A*11:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope from CDX2, a marker of intestinal epithelial cells.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463289"
+      }
+    },
+    {
+      "decoy_id": "DC-0468",
+      "peptide_info": {
+        "decoy_sequence": "GFLPLLVSV",
+        "length": 9,
+        "source_protein": "TTF-1",
+        "hla_restriction": "HLA-DRB1*04:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope derived from TTF-1, important in lung tissue.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463310"
+      }
+    },
+    {
+      "decoy_id": "DC-0469",
+      "peptide_info": {
+        "decoy_sequence": "QLLALGLRV",
+        "length": 9,
+        "source_protein": "PSA",
+        "hla_restriction": "HLA-DQB1*03:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A PSA epitope recognized by immune cells in prostate tissues.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463330"
+      }
+    },
+    {
+      "decoy_id": "DC-0470",
+      "peptide_info": {
+        "decoy_sequence": "LQFLLGLVL",
+        "length": 9,
+        "source_protein": "PAP",
+        "hla_restriction": "HLA-B*15:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "Epitope from PAP potentially recognized in prostate cancer.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463351"
+      }
+    },
+    {
+      "decoy_id": "DC-0471",
+      "peptide_info": {
+        "decoy_sequence": "LLFLGLQYV",
+        "length": 9,
+        "source_protein": "Mammoglobin",
+        "hla_restriction": "HLA-A*02:06"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope from mammoglobin, associated with breast tissue.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463372"
+      }
+    },
+    {
+      "decoy_id": "DC-0472",
+      "peptide_info": {
+        "decoy_sequence": "TLQFLALFV",
+        "length": 9,
+        "source_protein": "CDX2",
+        "hla_restriction": "HLA-C*05:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "CDX2 epitope involved in intestinal tissue differentiation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463392"
+      }
+    },
+    {
+      "decoy_id": "DC-0473",
+      "peptide_info": {
+        "decoy_sequence": "GLYFLQGLV",
+        "length": 9,
+        "source_protein": "TTF-1",
+        "hla_restriction": "HLA-DRB1*07:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A TTF-1 derived epitope linked to thyroid and lung tissues.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463414"
+      }
+    },
+    {
+      "decoy_id": "DC-0474",
+      "peptide_info": {
+        "decoy_sequence": "FLQLLLLQL",
+        "length": 9,
+        "source_protein": "PSA",
+        "hla_restriction": "HLA-A*33:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope from PSA associated with prostate health.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463434"
+      }
+    },
+    {
+      "decoy_id": "DC-0475",
+      "peptide_info": {
+        "decoy_sequence": "LGLFLQFLV",
+        "length": 9,
+        "source_protein": "PAP",
+        "hla_restriction": "HLA-B*44:02"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A prostatic acid phosphatase epitope involved in immune response.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463454"
+      }
+    },
+    {
+      "decoy_id": "DC-0476",
+      "peptide_info": {
+        "decoy_sequence": "FLQLLLVFV",
+        "length": 9,
+        "source_protein": "Mammoglobin",
+        "hla_restriction": "HLA-C*03:04"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope from mammoglobin with relevance in cancer diagnosis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463475"
+      }
+    },
+    {
+      "decoy_id": "DC-0477",
+      "peptide_info": {
+        "decoy_sequence": "QLFLGLFLV",
+        "length": 9,
+        "source_protein": "CDX2",
+        "hla_restriction": "HLA-A*30:02"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A CDX2 epitope with implications in intestinal health.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463494"
+      }
+    },
+    {
+      "decoy_id": "DC-0478",
+      "peptide_info": {
+        "decoy_sequence": "PLFLQLGLV",
+        "length": 9,
+        "source_protein": "TTF-1",
+        "hla_restriction": "HLA-DRB1*09:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "TTF-1 epitope important for lung tissue-specific immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463513"
+      }
+    },
+    {
+      "decoy_id": "DC-0479",
+      "peptide_info": {
+        "decoy_sequence": "LFLQLFLGL",
+        "length": 9,
+        "source_protein": "PSA",
+        "hla_restriction": "HLA-DQB1*06:02"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope from PSA that plays a role in prostate cancer immune surveillance.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463533"
+      }
+    },
+    {
+      "decoy_id": "DC-0480",
+      "peptide_info": {
+        "decoy_sequence": "LQLGLFLFV",
+        "length": 9,
+        "source_protein": "PAP",
+        "hla_restriction": "HLA-B*35:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A PAP-derived epitope potentially involved in immune recognition.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463553"
+      }
+    },
+    {
+      "decoy_id": "DC-0481",
+      "peptide_info": {
+        "decoy_sequence": "QFLGLQLLV",
+        "length": 9,
+        "source_protein": "Mammoglobin",
+        "hla_restriction": "HLA-A*01:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope from mammoglobin relevant to breast cancer.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463575"
+      }
+    },
+    {
+      "decoy_id": "DC-0482",
+      "peptide_info": {
+        "decoy_sequence": "GLVLFLQLL",
+        "length": 9,
+        "source_protein": "CDX2",
+        "hla_restriction": "HLA-C*06:02"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "CDX2 epitope involved in colorectal tissue immune response.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463595"
+      }
+    },
+    {
+      "decoy_id": "DC-0483",
+      "peptide_info": {
+        "decoy_sequence": "FLGLQLFLV",
+        "length": 9,
+        "source_protein": "TTF-1",
+        "hla_restriction": "HLA-DRB1*11:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A TTF-1 epitope involved in thyroid and lung tissue immune processes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463616"
+      }
+    },
+    {
+      "decoy_id": "DC-0484",
+      "peptide_info": {
+        "decoy_sequence": "LQLFLGLQL",
+        "length": 9,
+        "source_protein": "PSA",
+        "hla_restriction": "HLA-A*68:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "Prostate-specific antigen epitope that may be targeted by T cells.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463639"
+      }
+    },
+    {
+      "decoy_id": "DC-0485",
+      "peptide_info": {
+        "decoy_sequence": "GLQLFLGLV",
+        "length": 9,
+        "source_protein": "PAP",
+        "hla_restriction": "HLA-B*40:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope from PAP involved in prostate cancer immune detection.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463660"
+      }
+    },
+    {
+      "decoy_id": "DC-0486",
+      "peptide_info": {
+        "decoy_sequence": "FLGLVFLQL",
+        "length": 9,
+        "source_protein": "Mammoglobin",
+        "hla_restriction": "HLA-C*01:02"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "Mammoglobin epitope recognized in breast cancer.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463682"
+      }
+    },
+    {
+      "decoy_id": "DC-0487",
+      "peptide_info": {
+        "decoy_sequence": "FLQLGLFLV",
+        "length": 9,
+        "source_protein": "TTF-1",
+        "hla_restriction": "HLA-DRB1*13:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A thyroid transcription factor-1 epitope relevant to lung tissues.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463707"
+      }
+    },
+    {
+      "decoy_id": "DC-0488",
+      "peptide_info": {
+        "decoy_sequence": "QLFLGLQLL",
+        "length": 9,
+        "source_protein": "PSA",
+        "hla_restriction": "HLA-DQB1*05:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "PSA-derived epitope involved in prostate immune recognition.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463730"
+      }
+    },
+    {
+      "decoy_id": "DC-0489",
+      "peptide_info": {
+        "decoy_sequence": "LFLGLQLFL",
+        "length": 9,
+        "source_protein": "PAP",
+        "hla_restriction": "HLA-B*51:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "Prostatic acid phosphatase epitope detected by immune cells.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463749"
+      }
+    },
+    {
+      "decoy_id": "DC-0490",
+      "peptide_info": {
+        "decoy_sequence": "QLGLVFLQL",
+        "length": 9,
+        "source_protein": "Mammoglobin",
+        "hla_restriction": "HLA-A*31:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A mammoglobin epitope involved in breast tissue-specific immunity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463771"
+      }
+    },
+    {
+      "decoy_id": "DC-0491",
+      "peptide_info": {
+        "decoy_sequence": "GLFLQLFLV",
+        "length": 9,
+        "source_protein": "CDX2",
+        "hla_restriction": "HLA-C*08:02"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "Epitope from CDX2, linked to intestinal tissue immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463792"
+      }
+    },
+    {
+      "decoy_id": "DC-0492",
+      "peptide_info": {
+        "decoy_sequence": "FLQLVFLGL",
+        "length": 9,
+        "source_protein": "TTF-1",
+        "hla_restriction": "HLA-DRB1*14:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A TTF-1 epitope associated with lung and thyroid immunity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463812"
+      }
+    },
+    {
+      "decoy_id": "DC-0493",
+      "peptide_info": {
+        "decoy_sequence": "LFLQLGLFL",
+        "length": 9,
+        "source_protein": "PSA",
+        "hla_restriction": "HLA-A*23:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "Prostate-specific antigen epitope that interacts with T cells.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463833"
+      }
+    },
+    {
+      "decoy_id": "DC-0494",
+      "peptide_info": {
+        "decoy_sequence": "GLFLGLQLV",
+        "length": 9,
+        "source_protein": "PAP",
+        "hla_restriction": "HLA-B*14:02"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A PAP epitope potentially involved in prostate cancer immunity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463853"
+      }
+    },
+    {
+      "decoy_id": "DC-0495",
+      "peptide_info": {
+        "decoy_sequence": "FLQLFLGLV",
+        "length": 9,
+        "source_protein": "Mammoglobin",
+        "hla_restriction": "HLA-C*02:02"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "Mammoglobin epitope important for breast cancer immune detection.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463876"
+      }
+    },
+    {
+      "decoy_id": "DC-0496",
+      "peptide_info": {
+        "decoy_sequence": "LQLGLFLQL",
+        "length": 9,
+        "source_protein": "CDX2",
+        "hla_restriction": "HLA-A*32:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope from CDX2 involved in colorectal immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463897"
+      }
+    },
+    {
+      "decoy_id": "DC-0497",
+      "peptide_info": {
+        "decoy_sequence": "FLGLFLQLL",
+        "length": 9,
+        "source_protein": "TTF-1",
+        "hla_restriction": "HLA-DRB1*15:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "TTF-1 epitope linked to lung and thyroid tissue immunity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463920"
+      }
+    },
+    {
+      "decoy_id": "DC-0498",
+      "peptide_info": {
+        "decoy_sequence": "LFLGLQLVL",
+        "length": 9,
+        "source_protein": "PSA",
+        "hla_restriction": "HLA-DQB1*04:02"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A PSA epitope significant for prostate tissue immune response.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463940"
+      }
+    },
+    {
+      "decoy_id": "DC-0499",
+      "peptide_info": {
+        "decoy_sequence": "QLGLQLFLV",
+        "length": 9,
+        "source_protein": "PAP",
+        "hla_restriction": "HLA-B*18:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "Prostatic acid phosphatase epitope detected in prostate cancer.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463961"
+      }
+    },
+    {
+      "decoy_id": "DC-0500",
+      "peptide_info": {
+        "decoy_sequence": "GLQLFLQLL",
+        "length": 9,
+        "source_protein": "Mammoglobin",
+        "hla_restriction": "HLA-A*25:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope from mammoglobin relevant for breast tissue immunity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.463982"
+      }
+    },
+    {
+      "decoy_id": "DC-0501",
+      "peptide_info": {
+        "decoy_sequence": "FLQLLFLGL",
+        "length": 9,
+        "source_protein": "CDX2",
+        "hla_restriction": "HLA-C*07:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "CDX2 epitope important for intestinal tissue-specific immune responses.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.464002"
+      }
+    },
+    {
+      "decoy_id": "DC-0502",
+      "peptide_info": {
+        "decoy_sequence": "LQLFLGLVL",
+        "length": 9,
+        "source_protein": "TTF-1",
+        "hla_restriction": "HLA-DRB1*16:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope from TTF-1, linked to lung and thyroid tissues.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.464026"
+      }
+    },
+    {
+      "decoy_id": "DC-0503",
+      "peptide_info": {
+        "decoy_sequence": "LQLGLQLFL",
+        "length": 9,
+        "source_protein": "PAP",
+        "hla_restriction": "HLA-B*41:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "An epitope from PAP involved in immune recognition in the prostate.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:18.464051"
+      }
+    },
+    {
+      "decoy_id": "DC-0513",
+      "peptide_info": {
+        "decoy_sequence": "KRWIILGLNK",
+        "length": 10,
+        "source_protein": "HLA-A",
+        "hla_restriction": "HLA-B*27:05"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An autoimmune-associated epitope from HLA class I.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:46.236546"
+      }
+    },
+    {
+      "decoy_id": "DC-0532",
+      "peptide_info": {
+        "decoy_sequence": "LLSNGSDVL",
+        "length": 9,
+        "source_protein": "HLA-B",
+        "hla_restriction": "HLA-B*07:02"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A potential autoimmune-associated epitope from HLA class I.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:46.237029"
+      }
+    },
+    {
+      "decoy_id": "DC-0533",
+      "peptide_info": {
+        "decoy_sequence": "KLVGKLHYL",
+        "length": 9,
+        "source_protein": "Human CD4",
+        "hla_restriction": "HLA-B*08:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An epitope derived from the human CD4 protein.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:16:46.237055"
+      }
+    },
+    {
+      "decoy_id": "DC-0548",
+      "peptide_info": {
+        "decoy_sequence": "LLQPLTLGL",
+        "length": 9,
+        "source_protein": "Prostate-specific antigen",
+        "hla_restriction": "HLA-DRB1*15:01"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "A prostate-specific antigen epitope that is presented to CD4+ T cells.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275047"
+      }
+    },
+    {
+      "decoy_id": "DC-0554",
+      "peptide_info": {
+        "decoy_sequence": "VLLQLGLYL",
+        "length": 9,
+        "source_protein": "Myelin basic protein",
+        "hla_restriction": "HLA-DRB1*15:01"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "A self-peptide associated with multiple sclerosis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275247"
+      }
+    },
+    {
+      "decoy_id": "DC-0561",
+      "peptide_info": {
+        "decoy_sequence": "LLPLQLTGL",
+        "length": 9,
+        "source_protein": "Human insulin",
+        "hla_restriction": "HLA-DRB1*04:05"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "An insulin-derived peptide associated with type 1 diabetes.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275418"
+      }
+    },
+    {
+      "decoy_id": "DC-0563",
+      "peptide_info": {
+        "decoy_sequence": "LLQLFLVLK",
+        "length": 9,
+        "source_protein": "Heat shock protein 60",
+        "hla_restriction": "HLA-DRB1*03:02"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "Epitope linked to autoimmune responses in rheumatoid arthritis.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275466"
+      }
+    },
+    {
+      "decoy_id": "DC-0567",
+      "peptide_info": {
+        "decoy_sequence": "PLQLFLQLL",
+        "length": 9,
+        "source_protein": "Prostate-specific membrane antigen",
+        "hla_restriction": "HLA-DRB1*13:03"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "Recognized by CD4+ T cells targeting prostate cancer.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275566"
+      }
+    },
+    {
+      "decoy_id": "DC-0570",
+      "peptide_info": {
+        "decoy_sequence": "LLQLFLGLV",
+        "length": 9,
+        "source_protein": "Human chorionic gonadotropin",
+        "hla_restriction": "HLA-DRB1*08:02"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "Epitope from human chorionic gonadotropin recognized by T cells.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275647"
+      }
+    },
+    {
+      "decoy_id": "DC-0571",
+      "peptide_info": {
+        "decoy_sequence": "FLQLPLGLV",
+        "length": 9,
+        "source_protein": "Tumor necrosis factor alpha",
+        "hla_restriction": "HLA-DRB1*14:02"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "Epitope involved in autoimmune inflammation.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275676"
+      }
+    },
+    {
+      "decoy_id": "DC-0575",
+      "peptide_info": {
+        "decoy_sequence": "QLFLQLPLV",
+        "length": 9,
+        "source_protein": "Bovine heart cytochrome c",
+        "hla_restriction": "HLA-DRB1*04:06"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Epitope from bovine cytochrome c involved in cardiac function.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275783"
+      }
+    },
+    {
+      "decoy_id": "DC-0576",
+      "peptide_info": {
+        "decoy_sequence": "PLGLFLQLV",
+        "length": 9,
+        "source_protein": "Human myelin oligodendrocyte glycoprotein",
+        "hla_restriction": "HLA-DRB1*09:03"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "Epitope involved in autoimmune demyelination.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275811"
+      }
+    },
+    {
+      "decoy_id": "DC-0578",
+      "peptide_info": {
+        "decoy_sequence": "QLFLPLGLV",
+        "length": 9,
+        "source_protein": "Human insulin receptor",
+        "hla_restriction": "HLA-DRB1*08:03"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "Epitope linked to type 1 diabetes autoimmunity.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275864"
+      }
+    },
+    {
+      "decoy_id": "DC-0579",
+      "peptide_info": {
+        "decoy_sequence": "PLQLFLGLV",
+        "length": 9,
+        "source_protein": "Prostate-specific antigen",
+        "hla_restriction": "HLA-DRB1*13:04"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "PSA epitope recognized by T cells in prostate cancer.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275889"
+      }
+    },
+    {
+      "decoy_id": "DC-0581",
+      "peptide_info": {
+        "decoy_sequence": "QLFLPLQLL",
+        "length": 9,
+        "source_protein": "Human S100 calcium-binding protein",
+        "hla_restriction": "HLA-DRB1*17:02"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "Epitope involved in autoimmune inflammation targeting S100 protein.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275941"
+      }
+    },
+    {
+      "decoy_id": "DC-0583",
+      "peptide_info": {
+        "decoy_sequence": "QLGLFLQLV",
+        "length": 9,
+        "source_protein": "Human cardiac myosin",
+        "hla_restriction": "HLA-DRB1*12:03"
+      },
+      "discovery_context": {
+        "category": "cardiac_muscle",
+        "description": "Cardiac myosin epitope involved in cardiac function.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "low",
+        "risk_score": 1,
+        "risk_factors": [
+          "cardiac_muscle"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.275993"
+      }
+    },
+    {
+      "decoy_id": "DC-0585",
+      "peptide_info": {
+        "decoy_sequence": "QLGLPLFLK",
+        "length": 9,
+        "source_protein": "Human androgen receptor",
+        "hla_restriction": "HLA-DRB1*11:04"
+      },
+      "discovery_context": {
+        "category": "tissue_specific",
+        "description": "Androgen receptor epitope recognized in prostate cancer.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "medium",
+        "risk_score": 3,
+        "risk_factors": [
+          "tissue_specific"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.276049"
+      }
+    },
+    {
+      "decoy_id": "DC-0586",
+      "peptide_info": {
+        "decoy_sequence": "PLQLPLFLV",
+        "length": 9,
+        "source_protein": "Human thyroid peroxidase",
+        "hla_restriction": "HLA-DRB1*15:03"
+      },
+      "discovery_context": {
+        "category": "autoimmune_self",
+        "description": "Thyroid peroxidase epitope involved in autoimmune thyroid disease.",
+        "method": "LLM_batch_generation",
+        "date_added": "2026-03-21"
+      },
+      "risk_profile": {
+        "risk_level": "high",
+        "risk_score": 5,
+        "risk_factors": [
+          "autoimmune_self"
+        ]
+      },
+      "experimental_evidence": {
+        "source": "LLM-generated based on IEDB/literature knowledge",
+        "validation_status": "predicted"
+      },
+      "provenance": {
+        "generator": "iedb_inject.py",
+        "model": "gpt-4o",
+        "timestamp": "2026-03-21T14:17:07.276076"
+      }
     }
-  ],
-  "version": "0.1.0"
+  ]
 }

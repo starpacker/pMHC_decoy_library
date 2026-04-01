@@ -13,7 +13,7 @@ from typing import List
 from .models import DecoyEntry, DecoyLibrary, Source
 
 
-_SEED_FILE = os.path.join(os.path.dirname(__file__), "data", "seed_entries.json")
+_SEED_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "decoy_c", "seed_entries.json")
 
 
 def _load_seed_entries() -> List[DecoyEntry]:

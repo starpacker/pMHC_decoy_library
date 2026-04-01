@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Decoy A — Interactive Case Studies</title>
+<script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
+<style>
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8f9fa;
+         margin: 0; padding: 20px; color: #333; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+  h2 { color: #2c3e50; margin-top: 40px; }
+  .case-card { background: white; border-radius: 12px; padding: 24px;
+                margin: 20px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .seq-align { font-family: 'Consolas', 'Courier New', monospace; font-size: 18px;
+                line-height: 2.2; background: #1a1a2e; color: #e0e0e0;
+                padding: 20px 24px; border-radius: 8px; letter-spacing: 4px; }
+  .seq-align .match { color: #a0a0a0; }
+  .seq-align .mismatch-tcr { color: #ff6b6b; font-weight: bold;
+                               background: rgba(255,107,107,0.15);
+                               border-radius: 3px; padding: 2px 1px; }
+  .seq-align .mismatch-anchor { color: #ffd93d; font-weight: bold;
+                                  background: rgba(255,217,61,0.15);
+                                  border-radius: 3px; padding: 2px 1px; }
+  .seq-align .mismatch-other { color: #6bcb77; font-weight: bold;
+                                 background: rgba(107,203,119,0.15);
+                                 border-radius: 3px; padding: 2px 1px; }
+  .label-row { color: #888; font-size: 13px; letter-spacing: 4px; }
+  .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 12px; margin: 16px 0; }
+  .meta-item { background: #f0f4f8; border-radius: 8px; padding: 12px 16px; }
+  .meta-item .val { font-size: 22px; font-weight: bold; color: #2c3e50; }
+  .meta-item .lbl { font-size: 12px; color: #7f8c8d; text-transform: uppercase; }
+  .risk-high { border-left: 4px solid #e74c3c; }
+  .risk-low { border-left: 4px solid #27ae60; }
+  .legend { font-size: 13px; color: #666; margin-top: 8px; }
+  .legend span { padding: 2px 8px; border-radius: 3px; margin: 0 4px; }
+  .legend .tcr { background: rgba(255,107,107,0.2); color: #ff6b6b; }
+  .legend .anchor { background: rgba(255,217,61,0.2); color: #c89b00; }
+  .legend .other { background: rgba(107,203,119,0.2); color: #27ae60; }
+</style>
+</head><body><div class="container">
+<h1>Decoy A — Interactive Case Studies</h1>
+<p>Target: <strong>EVDPIGHLY</strong> &nbsp;|&nbsp; Total hits: <strong>13</strong>
+&nbsp;|&nbsp; HLA: HLA-A*01:01</p>
+<div class="legend">
+  Mismatch types:
+  <span class="tcr">TCR Contact</span>
+  <span class="anchor">Anchor</span>
+  <span class="other">Other</span>
+</div>
+
+
+<div class="case-card risk-high">
+  <h2>Case 1: EVDPIGHVY — Gene: EPS8L2</h2>
+  <div class="seq-align">
+    <div class="label-row">p1  p2  p3  p4  p5  p6  p7  p8  p9  </div>
+    <div>Target:&nbsp; <span class="match">E</span><span class="match">V</span><span class="match">D</span><span class="match">P</span><span class="match">I</span><span class="match">G</span><span class="match">H</span><span class="mismatch-tcr">L</span><span class="match">Y</span></div>
+    <div>Decoy:&nbsp;&nbsp; <span class="match">E</span><span class="match">V</span><span class="match">D</span><span class="match">P</span><span class="match">I</span><span class="match">G</span><span class="match">H</span><span class="mismatch-tcr">V</span><span class="match">Y</span></div>
+  </div>
+  <div class="meta-grid">
+    <div class="meta-item"><div class="val">1</div><div class="lbl">Hamming Distance</div></div>
+    <div class="meta-item"><div class="val">0.28</div><div class="lbl">EL %Rank</div></div>
+    <div class="meta-item"><div class="val">1</div><div class="lbl">TCR Contact Mismatches</div></div>
+    <div class="meta-item"><div class="val">0</div><div class="lbl">Anchor Mismatches</div></div>
+    <div class="meta-item"><div class="val">88.9%</div><div class="lbl">Sequence Similarity</div></div>
+    <div class="meta-item"><div class="val" style="font-size:16px">High Risk</div><div class="lbl">Expression Risk</div></div>
+  </div>
+
+  <div id="expr_plot_1" style="margin-top: 16px;"></div>
+  <script>
+  (function() {
+    var spec = {"data":[{"hovertemplate":"%{y}: %{x:.1f} TPM\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#3498db","#e74c3c","#e74c3c","#3498db","#e74c3c","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#e74c3c","#e74c3c","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#f39c12","#3498db","#f39c12","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db","#3498db"],"line":{"color":"white","width":0.5}},"orientation":"h","x":[183.1,100.6,99.2,96.7,95.6,91.7,77.7,74.0,67.8,47.9,46.0,42.4,41.4,30.9,28.4,26.1,20.3,18.6,16.9,16.8,14.9,14.5,12.1,11.3,11.2,11.0,10.8,10.5,7.6,6.6,5.5,5.5,4.8,4.2,3.7,3.6,3.4,3.2,3.1,3.0,3.0,2.8,2.6,1.9,1.4,1.3,0.9,0.6,0.4,0.0],"y":["esophagus","small intestine","liver","duodenum","kidney","salivary gland","vagina","skin","thyroid gland","cervix","stomach","pancreas","colon","lung","prostate","breast","cerebellum","fallopian tube","urinary bladder","placenta","rectum","seminal vesicle","gallbladder","ovary","pituitary gland","endometrium","adrenal gland","tonsil","adipose tissue","choroid plexus","appendix","hypothalamus","basal ganglia","heart muscle","parathyroid gland","cerebral cortex","epididymis","spinal cord","testis","hippocampal formation","midbrain","smooth muscle","amygdala","thymus","spleen","skeletal muscle","retina","lymph node","tongue","bone marrow"],"type":"bar"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"shapes":[{"line":{"color":"#e74c3c","dash":"dash"},"type":"line","x0":10,"x1":10,"xref":"x","y0":0,"y1":1,"yref":"y domain"}],"annotations":[{"font":{"size":10},"showarrow":false,"text":"High Risk (10 TPM)","x":10,"xanchor":"left","xref":"x","y":1,"yanchor":"top","yref":"y domain"}],"title":{"font":{"size":14},"text":"Tissue Expression \u2014 EPS8L2"},"margin":{"l":150,"r":30,"t":50,"b":40},"yaxis":{"autorange":"reversed"},"xaxis":{"title":{"text":"TPM (nTPM consensus)"}},"height":800,"width":700,"plot_bgcolor":"white"}};
+    Plotly.newPlot('expr_plot_1', spec.data, spec.layout);
+  })();
+  </script>
+</div>
+
+<div class="case-card risk-low">
+  <h2>Case 2: EVDPIGHLF — Gene: DEMO2</h2>
+  <div class="seq-align">
+    <div class="label-row">p1  p2  p3  p4  p5  p6  p7  p8  p9  </div>
+    <div>Target:&nbsp; <span class="match">E</span><span class="match">V</span><span class="match">D</span><span class="match">P</span><span class="match">I</span><span class="match">G</span><span class="match">H</span><span class="match">L</span><span class="mismatch-anchor">Y</span></div>
+    <div>Decoy:&nbsp;&nbsp; <span class="match">E</span><span class="match">V</span><span class="match">D</span><span class="match">P</span><span class="match">I</span><span class="match">G</span><span class="match">H</span><span class="match">L</span><span class="mismatch-anchor">F</span></div>
+  </div>
+  <div class="meta-grid">
+    <div class="meta-item"><div class="val">1</div><div class="lbl">Hamming Distance</div></div>
+    <div class="meta-item"><div class="val">0.55</div><div class="lbl">EL %Rank</div></div>
+    <div class="meta-item"><div class="val">0</div><div class="lbl">TCR Contact Mismatches</div></div>
+    <div class="meta-item"><div class="val">1</div><div class="lbl">Anchor Mismatches</div></div>
+    <div class="meta-item"><div class="val">88.9%</div><div class="lbl">Sequence Similarity</div></div>
+    <div class="meta-item"><div class="val" style="font-size:16px">No Data</div><div class="lbl">Expression Risk</div></div>
+  </div>
+
+  <p style="color: #999; font-style: italic; margin-top: 16px;">
+    No tissue expression data available (demo entry)
+  </p>
+</div>
+</div></body></html>

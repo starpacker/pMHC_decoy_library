@@ -12,15 +12,15 @@ from pathlib import Path
 if __name__ == "__main__":
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from decoy_library.models import DecoyLibrary
-from decoy_library.orchestrator import (
+from decoy_c.models import DecoyLibrary
+from decoy_c.orchestrator import (
     load_library,
     run_cold_start,
     run_pipeline,
     save_library,
 )
-from decoy_library.seed_data import build_seed_library
-from decoy_library.validator import validate_batch
+from decoy_c.seed_data import build_seed_library
+from decoy_c.validator import validate_batch
 
 
 def setup_logging(verbose=False):

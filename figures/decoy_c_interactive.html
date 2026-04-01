@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Decoy C — Interactive Case Study</title>
+<script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
+<style>
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8f9fa;
+         margin: 0; padding: 20px; color: #333; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 { color: #2c3e50; border-bottom: 3px solid #9b59b6; padding-bottom: 10px; }
+  h2 { color: #2c3e50; margin-top: 40px; }
+  .case-card { background: white; border-radius: 12px; padding: 28px;
+               margin: 20px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+               border-left: 5px solid #c0392b; }
+  .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+               gap: 12px; margin: 16px 0; }
+  .meta-item { background: #f0f4f8; border-radius: 8px; padding: 14px 18px; }
+  .meta-item .val { font-size: 20px; font-weight: bold; color: #2c3e50; }
+  .meta-item .lbl { font-size: 11px; color: #7f8c8d; text-transform: uppercase;
+                     margin-top: 2px; }
+  .badge { display: inline-block; padding: 4px 12px; border-radius: 20px;
+           font-size: 12px; font-weight: bold; color: white; margin: 2px 4px; }
+  .badge-fatal { background: #c0392b; }
+  .badge-validated { background: #27ae60; }
+  .badge-ms { background: #8e44ad; }
+  .badge-assay { background: #2980b9; }
+  .seq-display { font-family: 'Consolas', monospace; font-size: 28px;
+                  letter-spacing: 6px; background: #1a1a2e; color: #ffd93d;
+                  padding: 16px 24px; border-radius: 8px; display: inline-block;
+                  margin: 10px 0; }
+  .provenance { background: #fef9e7; border-radius: 8px; padding: 16px;
+                margin-top: 16px; border-left: 4px solid #f39c12; }
+  .provenance a { color: #2980b9; text-decoration: none; }
+  .provenance a:hover { text-decoration: underline; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  th { background: #2c3e50; color: white; padding: 10px 12px; text-align: left;
+       font-size: 12px; }
+  td { padding: 8px 12px; border-bottom: 1px solid #eee; font-size: 13px; }
+  tr:hover { background: #f5f5f5; }
+  .section-card { background: white; border-radius: 12px; padding: 24px;
+                  margin: 20px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+</style>
+</head><body><div class="container">
+<h1>Decoy C Library — Interactive Case Study</h1>
+<p>Literature-mined cross-reactivity database with experimental evidence classification</p>
+
+
+<h2>Case Study: DC-0001 — The MAGE-A3 / Titin Cardiac Fatality</h2>
+<div class="case-card">
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+    <span class="badge badge-fatal">Level 1: Clinical Fatal</span>
+    <span class="badge badge-validated">VALIDATED</span>
+    <span class="badge badge-ms">Mass-Spec Confirmed</span>
+  </div>
+
+  <div style="background:#1a1a2e; padding:18px 24px; border-radius:8px; margin:12px 0;
+              font-family:Consolas; color:#e0e0e0; font-size:15px; line-height:2.4;">
+    <div style="color:#888; font-size:12px;">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      p1&nbsp;&nbsp;p2&nbsp;&nbsp;p3&nbsp;&nbsp;p4&nbsp;&nbsp;p5&nbsp;&nbsp;p6&nbsp;&nbsp;p7&nbsp;&nbsp;p8&nbsp;&nbsp;p9
+    </div>
+    <div>Target (MAGE-A3):&nbsp; <span style="font-family:Consolas;letter-spacing:4px;font-size:18px">E<span style="color:#e74c3c;font-weight:bold">V</span>DPI<span style="color:#e74c3c;font-weight:bold">G</span><span style="color:#e74c3c;font-weight:bold">H</span><span style="color:#e74c3c;font-weight:bold">L</span>Y</span></div>
+    <div>Decoy&nbsp; (Titin):&nbsp;&nbsp;&nbsp; <span style="font-family:Consolas;letter-spacing:4px;font-size:18px"><span style="opacity:0.6">E</span><span style="color:#ffd93d;font-weight:bold">S</span><span style="opacity:0.6">D</span><span style="opacity:0.6">P</span><span style="opacity:0.6">I</span><span style="color:#ffd93d;font-weight:bold">V</span><span style="color:#ffd93d;font-weight:bold">A</span><span style="color:#ffd93d;font-weight:bold">Q</span><span style="opacity:0.6">Y</span></span></div>
+  </div>
+
+  <div class="meta-grid">
+    <div class="meta-item">
+      <div class="val">ESDPIVAQY</div>
+      <div class="lbl">Decoy Peptide</div>
+    </div>
+    <div class="meta-item">
+      <div class="val">HLA-A*01:01</div>
+      <div class="lbl">HLA Allele</div>
+    </div>
+    <div class="meta-item">
+      <div class="val">Titin (TTN)</div>
+      <div class="lbl">Source Protein</div>
+    </div>
+    <div class="meta-item">
+      <div class="val">Q8WZ42</div>
+      <div class="lbl">UniProt ID</div>
+    </div>
+    <div class="meta-item">
+      <div class="val">MAGE-A3</div>
+      <div class="lbl">Original Target</div>
+    </div>
+    <div class="meta-item">
+      <div class="val">MAGE-A3 a3a TCR</div>
+      <div class="lbl">TCR Clone</div>
+    </div>
+    <div class="meta-item">
+      <div class="val">Heart, Skeletal Muscle</div>
+      <div class="lbl">Organs Affected</div>
+    </div>
+    <div class="meta-item">
+      <div class="val">Essential Organ Specific</div>
+      <div class="lbl">Expression Pattern</div>
+    </div>
+  </div>
+
+  <div style="margin-top:12px;">
+    <strong>Key Assays:</strong><br><span class="badge badge-assay">Clinical Trial</span><span class="badge badge-assay">Cytotoxicity</span><span class="badge badge-assay">IFN-gamma</span><span class="badge badge-assay">3D structure</span><span class="badge badge-assay">dissociation constant KD</span><span class="badge badge-assay">IFNg release</span><span class="badge badge-assay">ligand presentation</span><span class="badge badge-assay">ligand presentation</span><span class="badge badge-assay">ligand presentation</span>
+  </div>
+
+  <div class="provenance">
+    <strong>Evidence Summary:</strong> Affinity-enhanced MAGE-A3 TCR caused fatal cardiac shock; Titin ESDPIVAQY as off-target.<br><br>
+    <strong>Primary Source:</strong> Cameron et al., Sci Transl Med, 2013;5:197ra103
+     — <a href="https://doi.org/10.1126/scitranslmed.3006927" target="_blank">DOI</a><br>
+    <strong>PMIDs:</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/23926201/" target="_blank">PMID:23926201</a> <a href="https://pubmed.ncbi.nlm.nih.gov/23863783/" target="_blank">PMID:23863783</a> <a href="https://pubmed.ncbi.nlm.nih.gov/26758806/" target="_blank">PMID:26758806</a> <a href="https://pubmed.ncbi.nlm.nih.gov/27862975/" target="_blank">PMID:27862975</a> <a href="https://pubmed.ncbi.nlm.nih.gov/29557506/" target="_blank">PMID:29557506</a> <a href="https://pubmed.ncbi.nlm.nih.gov/31154438/" target="_blank">PMID:31154438</a> ... +4 more<br>
+    <strong>Clinical Trials:</strong> <a href="https://clinicaltrials.gov/study/NCT01273181" target="_blank">NCT01273181</a> <a href="https://clinicaltrials.gov/study/NCT01350401" target="_blank">NCT01350401</a>
+  </div>
+</div>
+
+
+<div class="section-card">
+  <h2>MAGE-A3 Cross-Reactivity Network (10 entries)</h2>
+  <p>All decoy peptides discovered in context of MAGE-A3 targeted TCR therapies:</p>
+  <table>
+    <tr>
+      <th>ID</th><th>Peptide</th><th>HLA</th><th>Gene</th>
+      <th>Evidence</th><th>Organs</th><th>Mass-Spec</th><th>Status</th>
+    </tr>
+    <tr>
+  <td><strong>DC-0001</strong></td>
+  <td style="font-family:Consolas; letter-spacing:2px">ESDPIVAQY</td>
+  <td>HLA-A*01:01</td>
+  <td>TTN</td>
+  <td><span style="color:#c0392b;font-weight:bold">L1 Fatal</span></td>
+  <td>Heart, Skeletal Muscle</td>
+  <td>Yes</td>
+  <td>VALIDATED</td>
+</tr><tr>
+  <td><strong>DC-0002</strong></td>
+  <td style="font-family:Consolas; letter-spacing:2px">EVDPIGHVY</td>
+  <td>HLA-A*01:01</td>
+  <td>EPS8L2</td>
+  <td><span style="color:#c0392b;font-weight:bold">L1 Fatal</span></td>
+  <td>Brain</td>
+  <td>No</td>
+  <td>VALIDATED</td>
+</tr><tr>
+  <td><strong>DC-0011</strong></td>
+  <td style="font-family:Consolas; letter-spacing:2px">EVDPIGHLY</td>
+  <td>HLA-A*01:01</td>
+  <td>MAGEA3</td>
+  <td><span style="color:#e74c3c;font-weight:bold">L2 In Vitro</span></td>
+  <td></td>
+  <td>Yes</td>
+  <td>VALIDATED</td>
+</tr><tr>
+  <td><strong>DC-0012</strong></td>
+  <td style="font-family:Consolas; letter-spacing:2px">KVLEYVIKV</td>
+  <td>HLA-A*02:01</td>
+  <td>MAGEA1</td>
+  <td><span style="color:#f39c12;font-weight:bold">L3 HT Screen</span></td>
+  <td></td>
+  <td>Yes</td>
+  <td>VALIDATED</td>
+</tr><tr>
+  <td><strong>DC-0013</strong></td>
+  <td style="font-family:Consolas; letter-spacing:2px">GVYDGREHTV</td>
+  <td>HLA-A*02:01</td>
+  <td>MAGEA4</td>
+  <td><span style="color:#e74c3c;font-weight:bold">L2 In Vitro</span></td>
+  <td></td>
+  <td>Yes</td>
+  <td>VALIDATED</td>
+</tr><tr>
+  <td><strong>DC-0034</strong></td>
+  <td style="font-family:Consolas; letter-spacing:2px">KVAELVHFL</td>
+  <td>HLA-A*02:01</td>
+  <td>MAGEA3</td>
+  <td><span style="color:#e74c3c;font-weight:bold">L2 In Vitro</span></td>
+  <td></td>
+  <td>Yes</td>
+  <td>VALIDATED</td>
+</tr><tr>
+  <td><strong>DC-0049</strong></td>
+  <td style="font-family:Consolas; letter-spacing:2px">KCDICTDEY</td>
+  <td>HLA-A*01:01</td>
+  <td>MAGEA1</td>
+  <td><span style="color:#f39c12;font-weight:bold">L3 HT Screen</span></td>
+  <td></td>
+  <td>Yes</td>
+  <td>VALIDATED</td>
+</tr><tr>
+  <td><strong>DC-0050</strong></td>
+  <td style="font-family:Consolas; letter-spacing:2px">DPARYEFLW</td>
+  <td>HLA-B*18:01</td>
+  <td>MAGEA3</td>
+  <td><span style="color:#f39c12;font-weight:bold">L3 HT Screen</span></td>
+  <td></td>
+  <td>Yes</td>
+  <td>PARTIAL</td>
+</tr><tr>
+  <td><strong>DC-0052</strong></td>
+  <td style="font-family:Consolas; letter-spacing:2px">KMAELVHFL</td>
+  <td>HLA-A*02:01</td>
+  <td>MAGEA12</td>
+  <td><span style="color:#c0392b;font-weight:bold">L1 Fatal</span></td>
+  <td>Brain</td>
+  <td>Yes</td>
+  <td>NEEDS_REVIEW</td>
+</tr><tr>
+  <td><strong>DC-0087</strong></td>
+  <td style="font-family:Consolas; letter-spacing:2px">SAAELVHFL</td>
+  <td>HLA-A*02:01</td>
+  <td>EPS8L2</td>
+  <td><span style="color:#c0392b;font-weight:bold">L1 Fatal</span></td>
+  <td>Brain</td>
+  <td>Yes</td>
+  <td>NEEDS_REVIEW</td>
+</tr>
+  </table>
+</div>
+
+
+<div class="section-card">
+  <h2>Library Composition — Evidence & Validation</h2>
+  <p>Interactive sunburst: click to drill down from evidence level to validation status.</p>
+  <div id="sunburst_plot" style="margin: 0 auto; width: 650px;"></div>
+  <script>
+  (function() {
+    var spec = {"data":[{"branchvalues":"total","hovertemplate":"\u003cb\u003e%{label}\u003c\u002fb\u003e\u003cbr\u003eCount: %{value}\u003cextra\u003e\u003c\u002fextra\u003e","insidetextorientation":"radial","labels":["All Entries","L1: Fatal","L1: Fatal \u002f VALIDATED","L1: Fatal \u002f NEEDS_REVIEW","L2: In Vitro","L2: In Vitro \u002f VALIDATED","L2: In Vitro \u002f NEEDS_REVIEW","L2: In Vitro \u002f PARTIAL","L3: HT Screen","L3: HT Screen \u002f VALIDATED","L3: HT Screen \u002f NEEDS_REVIEW","L3: HT Screen \u002f PARTIAL","L4: In Silico","L4: In Silico \u002f VALIDATED","L4: In Silico \u002f PARTIAL","Unknown","Unknown \u002f Unknown"],"marker":{"colors":["#2c3e50","#c0392b","#27ae60","#e74c3c","#e74c3c","#27ae60","#e74c3c","#f39c12","#f39c12","#27ae60","#e74c3c","#f39c12","#3498db","#27ae60","#f39c12","#bdc3c7","#bdc3c7"]},"parents":["","All Entries","L1: Fatal","L1: Fatal","All Entries","L2: In Vitro","L2: In Vitro","L2: In Vitro","All Entries","L3: HT Screen","L3: HT Screen","L3: HT Screen","All Entries","L4: In Silico","L4: In Silico","All Entries","Unknown"],"textinfo":"label+value","values":[250,5,3,2,61,37,9,15,27,21,1,5,12,2,10,145,145],"type":"sunburst"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":14},"text":"Evidence Level \u2192 Validation Status (Sunburst)"},"margin":{"t":50,"l":10,"r":10,"b":10},"width":650,"height":550}};
+    Plotly.newPlot('sunburst_plot', spec.data, spec.layout);
+  })();
+  </script>
+</div>
+
+</div></body></html>

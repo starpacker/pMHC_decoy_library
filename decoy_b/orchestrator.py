@@ -243,6 +243,7 @@ def _run_step3b(
     target_sequence: str,
     hla_allele: str,
     run_structural: bool = True,
+    run_mpnn: bool = False,
     cosine_threshold: float = PHYSICOCHEMICAL_COSINE_THRESHOLD,
     top_k: int = PHYSICOCHEMICAL_TOP_K,
     surface_threshold: float = SURFACE_SIMILARITY_THRESHOLD,
@@ -257,6 +258,7 @@ def _run_step3b(
         target_sequence=target_sequence,
         hla_allele=hla_allele,
         run_structural=run_structural,
+        run_mpnn=run_mpnn,
         cosine_threshold=cosine_threshold,
         top_k=top_k,
         surface_threshold=surface_threshold,
@@ -403,6 +405,7 @@ def run_full_pipeline(
     target_protein: str = "",
     force: bool = False,
     skip_structural: bool = False,
+    run_mpnn: bool = False,
     top_n: int = FINAL_TOP_N,
     resume: bool = False,
 ) -> PipelineResult:
@@ -421,6 +424,8 @@ def run_full_pipeline(
         Re-build all cached databases and re-run all steps.
     skip_structural : bool
         Skip 3D modeling in Decoy B (use physicochemical only).
+    run_mpnn : bool
+        Enable MPNN inverse design branch in Decoy B.
     top_n : int
         Number of final ranked entries to output.
     resume : bool
@@ -476,6 +481,7 @@ def run_full_pipeline(
             target_sequence,
             hla_allele,
             run_structural=not skip_structural,
+            run_mpnn=run_mpnn,
         )
         save_state(state)
 

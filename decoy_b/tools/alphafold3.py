@@ -47,10 +47,8 @@ from typing import Dict, List, Optional
 log = logging.getLogger(__name__)
 
 # ── Configuration ───────────────────────────────────────────────────────
+from decoy_a.config import AF3_DIR, AF3_MODEL_DIR, AF3_DB_DIR
 
-AF3_DIR = Path(os.getenv("AF3_DIR", os.path.expanduser("~/tools/alphafold3")))
-AF3_MODEL_DIR = Path(os.getenv("AF3_MODEL_DIR", str(AF3_DIR / "models")))
-AF3_DB_DIR = Path(os.getenv("AF3_DB_DIR", str(AF3_DIR / "databases")))
 AF3_DOCKER_IMAGE = os.getenv("AF3_DOCKER_IMAGE", "alphafold3")
 AF3_USE_DOCKER = os.getenv("AF3_USE_DOCKER", "true").lower() in ("true", "1", "yes")
 AF3_GPU_DEVICE = os.getenv("AF3_GPU_DEVICE", "all")

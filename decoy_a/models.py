@@ -164,6 +164,23 @@ class DecoyBHit(BaseModel):
     similarity_score: float = Field(
         0.0, description="Combined physicochemical + structural similarity"
     )
+    # MPNN inverse design metadata
+    mpnn_source: str = Field(
+        "",
+        description=(
+            "Origin of this hit in the MPNN branch: "
+            "'proteome_matched' (Tier 1: exact human proteome match) | "
+            "'hla_qualified_synthetic' (Tier 2: no proteome match but "
+            "mhcflurry predicts HLA-presentable) | '' (not from MPNN)"
+        ),
+    )
+    mpnn_score: float = Field(
+        0.0,
+        description=(
+            "ProteinMPNN negative log-probability score "
+            "(lower = higher confidence that the sequence folds correctly)"
+        ),
+    )
 
 
 # ── Final ranked entry (Step 4 output) ──────────────────────────────────

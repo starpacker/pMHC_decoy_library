@@ -28,11 +28,14 @@ from typing import Dict, List, Optional
 log = logging.getLogger(__name__)
 
 # ── Configuration ───────────────────────────────────────────────────────
+from decoy_a.config import PROTEINMPNN_DIR
 
-PROTEINMPNN_DIR = Path(os.getenv(
-    "PROTEINMPNN_DIR",
-    os.path.expanduser("~/tools/ProteinMPNN"),
-))
+import sys
+# Add local external path to sys.path
+_EXTERNAL_DIR = Path(__file__).resolve().parent.parent / "external"
+if str(_EXTERNAL_DIR) not in sys.path:
+    sys.path.insert(0, str(_EXTERNAL_DIR))
+
 PROTEINMPNN_WEIGHTS = PROTEINMPNN_DIR / "vanilla_model_weights"
 PROTEINMPNN_RUN = PROTEINMPNN_DIR / "protein_mpnn_run.py"
 PROTEINMPNN_PARSE = PROTEINMPNN_DIR / "helper_scripts" / "parse_multiple_chains.py"
@@ -315,11 +318,14 @@ def design_and_filter(
     anchor_positions: Optional[List[int]] = None,
     num_designs: int = 1000,
     temperatures: Optional[List[float]] = None,
+    el_rank_threshold: float = 2.0,
 ) -> List[MPNNDesign]:
     """
-    Design sequences, then filter for HLA binding.
+    Design sequences, then filter for HLA binding using mhcflurry.
 
-    Uses NetMHCpan > mhcflurry > no filter (fallback chain).
+    This is the standalone version of the HLA qualification filter.
+    The full two-tier pipeline (proteome match + HLA filter) is in
+    ``decoy_b.scanner.run_mpnn_design()``.
 
     Parameters
     ----------
@@ -335,6 +341,8 @@ def design_and_filter(
         Number of initial designs.
     temperatures : list[float], optional
         Sampling temperatures.
+    el_rank_threshold : float
+        Max EL %Rank to qualify as HLA-presentable (default 2.0).
 
     Returns
     -------
@@ -351,28 +359,8 @@ def design_and_filter(
         return []
 
     peptides = [d.sequence for d in designs]
-    EL_RANK_WEAK = 2.0
 
-    # Try NetMHCpan first
-    try:
-        from decoy_a.tools.netmhcpan import (
-            check_available as nmhc_available,
-            predict_binding,
-        )
-
-        if nmhc_available():
-            results = predict_binding(peptides, target_hla)
-            binder_seqs = {r.sequence for r in results if r.el_rank <= EL_RANK_WEAK}
-            filtered = [d for d in designs if d.sequence in binder_seqs]
-            log.info(
-                "MPNN + NetMHCpan filter: %d designs -> %d HLA binders",
-                len(designs), len(filtered),
-            )
-            return filtered
-    except ImportError:
-        pass
-
-    # Try mhcflurry as fallback
+    # Try mhcflurry (preferred — always available in our deployment)
     try:
         from decoy_a.tools.mhcflurry import (
             check_available as mhcf_available,
@@ -381,11 +369,38 @@ def design_and_filter(
 
         if mhcf_available():
             results = mhcf_predict(peptides, target_hla)
-            binder_seqs = {r.sequence for r in results if r.el_rank <= EL_RANK_WEAK}
+            binder_seqs = {
+                r.sequence for r in results
+                if r.el_rank <= el_rank_threshold
+            }
             filtered = [d for d in designs if d.sequence in binder_seqs]
             log.info(
-                "MPNN + mhcflurry filter: %d designs -> %d HLA binders",
-                len(designs), len(filtered),
+                "MPNN + mhcflurry filter: %d designs -> %d HLA binders "
+                "(EL%%Rank ≤ %.1f)",
+                len(designs), len(filtered), el_rank_threshold,
+            )
+            return filtered
+    except ImportError:
+        pass
+
+    # Fallback: try NetMHCpan
+    try:
+        from decoy_a.tools.netmhcpan import (
+            check_available as nmhc_available,
+            predict_binding,
+        )
+
+        if nmhc_available():
+            results = predict_binding(peptides, target_hla)
+            binder_seqs = {
+                r.sequence for r in results
+                if r.el_rank <= el_rank_threshold
+            }
+            filtered = [d for d in designs if d.sequence in binder_seqs]
+            log.info(
+                "MPNN + NetMHCpan filter: %d designs -> %d HLA binders "
+                "(EL%%Rank ≤ %.1f)",
+                len(designs), len(filtered), el_rank_threshold,
             )
             return filtered
     except ImportError:

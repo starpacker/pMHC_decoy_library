@@ -36,3 +36,14 @@ optical_sectioning_plot.py
 plot_optical_sectioning.py
 plot_figures.py
 gen_slides.py
+
+# Large external data & weights
+decoy_b/external/proteinmpnn/examples/
+decoy_b/external/proteinmpnn/*_model_weights/
+decoy_b/external/proteinmpnn/output_results/
+
+# Intermediate demo and report files
+archive/
+data/decoy_b/
+reports/
+figures/

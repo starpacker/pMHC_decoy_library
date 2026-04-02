@@ -37,14 +37,23 @@ import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional
+import sys
+
+# Add local external path to sys.path so that 'import tfold' works natively
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+_EXTERNAL_DIR = _PROJECT_ROOT / "decoy_b" / "external"
+if str(_EXTERNAL_DIR) not in sys.path:
+    sys.path.insert(0, str(_EXTERNAL_DIR))
 
 log = logging.getLogger(__name__)
 
 # ── Configuration ───────────────────────────────────────────────────────
-
-TFOLD_DIR = Path(os.getenv("TFOLD_DIR", os.path.expanduser("~/tools/tfold")))
-TFOLD_WEIGHTS_DIR = Path(os.getenv("TFOLD_WEIGHTS_DIR", str(TFOLD_DIR / "weights")))
+from decoy_a.config import TFOLD_DIR
 TFOLD_SERVER_URL = os.getenv("TFOLD_SERVER_URL", "")
+
+# Singleton predictor to avoid reloading model for each peptide
+_predictor = None
+_predictor_device = None
 
 # ── Reference MHC Sequences ────────────────────────────────────────────
 # Full extracellular domain sequences for common HLA alleles.
@@ -171,16 +180,34 @@ def _predict_python_api(
     pdb_path: Path,
 ) -> TFoldResult:
     """Run tFold via the Python API (pip install tfold)."""
+    global _predictor, _predictor_device
+    import torch
     import tfold
+    from tfold.deploy import PeptideMHCPredictor, TCRpMHCPredictor
+    from tfold.model.pretrain import esm_ppi_650m_tcr, tfold_tcr_pmhc_trunk
 
-    # Try the pMHC-specific predictor first (tfold >= 1.0)
-    try:
-        predictor = tfold.deploy.pMHCPredictor.from_pretrained()
-    except AttributeError:
-        # Fallback for older API: TCRpMHCPredictor
-        ppi_model = tfold.model.esm_ppi_650m_tcr()
-        trunk_model = tfold.model.tfold_tcr_pmhc_trunk()
-        predictor = tfold.deploy.TCRpMHCPredictor(ppi_model, trunk_model)
+    device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+
+    if _predictor is None or _predictor_device != device:
+        log.info("Loading tFold predictor (first call, will be cached)...")
+        # Use TCRpMHCPredictor with local weights (we have esm_ppi_650m_tcr + tfold_tcr_pmhc_trunk)
+        ppi_path = esm_ppi_650m_tcr()
+        trunk_path = tfold_tcr_pmhc_trunk()
+
+        # Try PeptideMHCPredictor first (lighter, pMHC-only)
+        try:
+            from tfold.model.pretrain import tfold_pmhc_trunk
+            pmhc_trunk_path = tfold_pmhc_trunk()
+            _predictor = PeptideMHCPredictor.restore_from_module(
+                ppi_path=ppi_path, trunk_path=pmhc_trunk_path
+            )
+        except Exception:
+            # Fallback to TCRpMHCPredictor (also handles pMHC)
+            _predictor = TCRpMHCPredictor(ppi_path=ppi_path, trunk_path=trunk_path)
+
+        _predictor.to(device)
+        _predictor_device = device
+        log.info("tFold predictor loaded on %s", device)
 
     data = [
         {"id": "M", "sequence": mhc_heavy_seq},
@@ -188,7 +215,7 @@ def _predict_python_api(
         {"id": "P", "sequence": peptide},
     ]
 
-    predictor.infer_pdb(data, str(pdb_path))
+    _predictor.infer_pdb(data, str(pdb_path))
 
     if pdb_path.exists():
         return TFoldResult(
@@ -204,16 +231,15 @@ def _predict_python_api(
 # ── Mode 2: CLI Script ──────────────────────────────────────────────────
 
 def _find_predict_script() -> Optional[Path]:
-    """Find the tFold prediction script."""
-    for project in ["tfold_ag", "tfold_tcr"]:
-        script = TFOLD_DIR / "projects" / project / "predict.py"
-        if script.exists():
-            return script
-    # Also check root-level scripts
-    for name in ["predict.py", "infer.py", "run_prediction.py"]:
-        script = TFOLD_DIR / name
-        if script.exists():
-            return script
+    """Find the tFold prediction script. Prefer tfold_tcr for pMHC prediction."""
+    # tfold_tcr/predict.py supports --model_version pMHC
+    script = TFOLD_DIR / "projects" / "tfold_tcr" / "predict.py"
+    if script.exists():
+        return script
+    # Fallback to tfold_ag
+    script = TFOLD_DIR / "projects" / "tfold_ag" / "predict.py"
+    if script.exists():
+        return script
     return None
 
 
@@ -232,14 +258,20 @@ def _predict_cli(
             error=f"tFold predict script not found under {TFOLD_DIR}",
         )
 
-    # Write input JSON
-    input_data = {
-        "sequences": [
-            {"id": "M", "sequence": mhc_heavy_seq},
-            {"id": "N", "sequence": b2m_seq},
-            {"id": "P", "sequence": peptide},
-        ]
-    }
+    name = _safe_name(peptide, hla_allele)
+
+    # Write input JSON in tFold-TCR batch format:
+    # [{"name": "...", "chains": [{"id": "M", "sequence": "..."}, ...]}]
+    input_data = [
+        {
+            "name": name,
+            "chains": [
+                {"id": "M", "sequence": mhc_heavy_seq},
+                {"id": "N", "sequence": b2m_seq},
+                {"id": "P", "sequence": peptide},
+            ],
+        }
+    ]
 
     with tempfile.NamedTemporaryFile(
         mode="w", suffix=".json", delete=False, encoding="utf-8",
@@ -252,21 +284,15 @@ def _predict_cli(
             "python", str(predict_script),
             "--json", input_path,
             "--output", str(pdb_path.parent),
+            "--model_version", "pMHC",
         ]
-
-        # Add model directory if weights exist
-        if TFOLD_WEIGHTS_DIR.exists():
-            cmd.extend(["--model_dir", str(TFOLD_WEIGHTS_DIR)])
-
-        # Some tFold versions use --mode flag
-        if "tfold_ag" in str(predict_script):
-            cmd.extend(["--mode", "pmhc"])
 
         log.debug("tFold CLI: %s", " ".join(cmd))
 
         proc = subprocess.run(
             cmd, capture_output=True, text=True, timeout=600,
             env={**os.environ, "PYTHONUTF8": "1"},
+            cwd=str(TFOLD_DIR),
         )
 
         if proc.returncode != 0:
@@ -282,14 +308,17 @@ def _predict_cli(
                 pdb_path=str(pdb_path), success=True,
             )
 
-        # tFold may use a different output naming convention
-        for p in pdb_path.parent.glob("*.pdb"):
-            if peptide.lower() in p.name.lower() or "pmhc" in p.name.lower():
-                p.rename(pdb_path)
-                return TFoldResult(
-                    peptide=peptide, hla_allele=hla_allele,
-                    pdb_path=str(pdb_path), success=True,
-                )
+        # tFold-TCR outputs as {name}_pMHC.pdb
+        for pattern in [f"{name}_pMHC.pdb", f"{name}_Complex.pdb", f"{name}*.pdb", "*.pdb"]:
+            for p in pdb_path.parent.glob(pattern):
+                if p.is_file():
+                    if p != pdb_path:
+                        import shutil
+                        shutil.copy2(str(p), str(pdb_path))
+                    return TFoldResult(
+                        peptide=peptide, hla_allele=hla_allele,
+                        pdb_path=str(pdb_path), success=True,
+                    )
 
         return TFoldResult(
             peptide=peptide, hla_allele=hla_allele,
@@ -409,7 +438,7 @@ def predict_pmhc(
         )
 
     # Try each mode in order
-    # Mode 1: Python API
+    # Mode 1: Python API (requires tfold_pmhc_trunk.pth which may not be available)
     try:
         result = _predict_python_api(
             peptide, hla_allele, mhc_heavy_seq, b2m_seq, pdb_path,
@@ -422,7 +451,7 @@ def predict_pmhc(
     except Exception as e:
         log.debug("Python API error: %s", e)
 
-    # Mode 2: CLI
+    # Mode 2: CLI (tfold_tcr/predict.py --model_version pMHC)
     try:
         result = _predict_cli(
             peptide, hla_allele, mhc_heavy_seq, b2m_seq, pdb_path,

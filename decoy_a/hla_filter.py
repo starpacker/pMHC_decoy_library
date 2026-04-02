@@ -398,15 +398,30 @@ def run_hla_filter(
 
 
 def load_hla_filtered(hla_allele: str = DEFAULT_HLA_ALLELE) -> "pd.DataFrame":
-    """Load cached HLA-filtered k-mers."""
+    """Load cached HLA-filtered k-mers.
+
+    Prefers the presentation-scored file (``_presentation.parquet``) over the
+    affinity-only file, since it includes processing_score and
+    presentation_percentile for more accurate filtering.
+    """
     import pandas as pd
 
-    cache_path = AB_DATA_DIR / f"hla_filtered_{hla_allele.replace('*', '').replace(':', '')}.parquet"
-    if not cache_path.exists():
-        # Try the default path
-        if HLA_FILTERED_PATH.exists():
-            return pd.read_parquet(HLA_FILTERED_PATH)
-        raise FileNotFoundError(
-            f"No HLA-filtered data for {hla_allele}. Run `run_hla_filter()` first."
-        )
-    return pd.read_parquet(cache_path)
+    allele_tag = hla_allele.replace('*', '').replace(':', '')
+
+    # Priority 1: presentation-scored file (97万+)
+    presentation_path = AB_DATA_DIR / f"hla_filtered_{allele_tag}_presentation.parquet"
+    if presentation_path.exists():
+        return pd.read_parquet(presentation_path)
+
+    # Priority 2: affinity-only file
+    cache_path = AB_DATA_DIR / f"hla_filtered_{allele_tag}.parquet"
+    if cache_path.exists():
+        return pd.read_parquet(cache_path)
+
+    # Priority 3: default path
+    if HLA_FILTERED_PATH.exists():
+        return pd.read_parquet(HLA_FILTERED_PATH)
+
+    raise FileNotFoundError(
+        f"No HLA-filtered data for {hla_allele}. Run `run_hla_filter()` first."
+    )

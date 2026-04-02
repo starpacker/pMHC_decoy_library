@@ -1,277 +1,282 @@
 [
   {
-    "sequence": "EVDPIGHVY",
-    "target_sequence": "EVDPIGHLY",
+    "sequence": "GILGFVFRL",
+    "target_sequence": "GILGFVFTL",
     "hamming_distance": 1,
     "mismatches": [
       {
         "position": 7,
-        "target_aa": "L",
-        "candidate_aa": "V",
+        "target_aa": "T",
+        "candidate_aa": "R",
         "is_anchor": false,
         "is_tcr_contact": true
       }
     ],
     "n_tcr_contact_mismatches": 1,
     "n_anchor_mismatches": 0,
-    "el_rank": 0.28,
-    "hla_allele": "HLA-A*01:01",
+    "el_rank": 1.522,
+    "hla_allele": "HLA-A*02:01",
     "gene_symbols": [
-      "EPS8L2"
+      "KRAS"
     ],
     "source_proteins": [
-      "Q9H6S3"
+      "P00013"
     ],
     "expression": {
-      "gene_symbol": "EPS8L2",
+      "gene_symbol": "KRAS",
       "tissue_tpm": {
-        "adipose tissue": 7.6,
-        "adrenal gland": 10.8,
-        "amygdala": 2.6,
-        "appendix": 5.5,
-        "basal ganglia": 4.8,
-        "bone marrow": 0.0,
-        "breast": 26.1,
-        "cerebellum": 20.3,
-        "cerebral cortex": 3.6,
-        "cervix": 47.9,
-        "choroid plexus": 6.6,
-        "colon": 41.4,
-        "duodenum": 96.7,
-        "endometrium": 11.0,
-        "epididymis": 3.4,
-        "esophagus": 183.1,
-        "fallopian tube": 18.6,
-        "gallbladder": 12.1,
-        "heart muscle": 4.2,
-        "hippocampal formation": 3.0,
-        "hypothalamus": 5.5,
-        "kidney": 95.6,
-        "liver": 99.2,
-        "lung": 30.9,
-        "lymph node": 0.6,
-        "midbrain": 3.0,
-        "ovary": 11.3,
-        "pancreas": 42.4,
-        "parathyroid gland": 3.7,
-        "pituitary gland": 11.2,
-        "placenta": 16.8,
-        "prostate": 28.4,
-        "rectum": 14.9,
-        "retina": 0.9,
-        "salivary gland": 91.7,
-        "seminal vesicle": 14.5,
-        "skeletal muscle": 1.3,
-        "skin": 74.0,
-        "small intestine": 100.6,
-        "smooth muscle": 2.8,
-        "spinal cord": 3.2,
-        "spleen": 1.4,
-        "stomach": 46.0,
-        "testis": 3.1,
-        "thymus": 1.9,
-        "thyroid gland": 67.8,
-        "tongue": 0.4,
-        "tonsil": 10.5,
-        "urinary bladder": 16.9,
-        "vagina": 77.7
+        "heart muscle": 41.2,
+        "cerebral cortex": 33.1,
+        "lung": 14.5,
+        "liver": 16.4,
+        "kidney": 35.9,
+        "colon": 26.5,
+        "small intestine": 49.6,
+        "testis": 9.8,
+        "placenta": 35.0,
+        "skin": 40.3,
+        "bone marrow": 15.5,
+        "thymus": 7.6
       },
-      "max_vital_organ_tpm": 100.6,
+      "max_vital_organ_tpm": 41.2,
       "vital_organ_expressed": true,
       "expression_category": "high_risk"
     },
     "similarity_score": 0.8888888888888888
   },
   {
-    "sequence": "EVDPIGKLY",
-    "target_sequence": "EVDPIGHLY",
-    "hamming_distance": 1,
-    "mismatches": [
-      {
-        "position": 6,
-        "target_aa": "H",
-        "candidate_aa": "K",
-        "is_anchor": false,
-        "is_tcr_contact": true
-      }
-    ],
-    "n_tcr_contact_mismatches": 1,
-    "n_anchor_mismatches": 0,
-    "el_rank": 0.35,
-    "hla_allele": "HLA-A*01:01",
-    "gene_symbols": [
-      "DEMO7"
-    ],
-    "source_proteins": [
-      "DEMO"
-    ],
-    "expression": null,
-    "similarity_score": 0.8888888888888888
-  },
-  {
-    "sequence": "EVDPIGHAY",
-    "target_sequence": "EVDPIGHLY",
+    "sequence": "GILGFVFSL",
+    "target_sequence": "GILGFVFTL",
     "hamming_distance": 1,
     "mismatches": [
       {
         "position": 7,
-        "target_aa": "L",
-        "candidate_aa": "A",
+        "target_aa": "T",
+        "candidate_aa": "S",
         "is_anchor": false,
         "is_tcr_contact": true
       }
     ],
     "n_tcr_contact_mismatches": 1,
     "n_anchor_mismatches": 0,
-    "el_rank": 0.4,
-    "hla_allele": "HLA-A*01:01",
+    "el_rank": 0.252,
+    "hla_allele": "HLA-A*02:01",
     "gene_symbols": [
-      "DEMO1"
+      "RB1"
     ],
     "source_proteins": [
-      "DEMO"
+      "P00015"
     ],
-    "expression": null,
+    "expression": {
+      "gene_symbol": "RB1",
+      "tissue_tpm": {
+        "heart muscle": 33.1,
+        "cerebral cortex": 34.8,
+        "lung": 29.3,
+        "liver": 38.8,
+        "kidney": 7.0,
+        "colon": 40.2,
+        "small intestine": 48.3,
+        "testis": 21.3,
+        "placenta": 26.1,
+        "skin": 46.7,
+        "bone marrow": 9.0,
+        "thymus": 28.8
+      },
+      "max_vital_organ_tpm": 33.1,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
     "similarity_score": 0.8888888888888888
   },
   {
-    "sequence": "EVDPIAHLY",
-    "target_sequence": "EVDPIGHLY",
+    "sequence": "GILGGVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 1,
+    "mismatches": [
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "G",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.152,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "TP53"
+    ],
+    "source_proteins": [
+      "P00010"
+    ],
+    "expression": {
+      "gene_symbol": "TP53",
+      "tissue_tpm": {
+        "heart muscle": 26.7,
+        "cerebral cortex": 12.1,
+        "lung": 6.0,
+        "liver": 29.0,
+        "kidney": 24.0,
+        "colon": 21.2,
+        "small intestine": 46.7,
+        "testis": 20.9,
+        "placenta": 38.7,
+        "skin": 48.0,
+        "bone marrow": 34.8,
+        "thymus": 17.7
+      },
+      "max_vital_organ_tpm": 26.7,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
+    "similarity_score": 0.8888888888888888
+  },
+  {
+    "sequence": "GILGFMFTL",
+    "target_sequence": "GILGFVFTL",
     "hamming_distance": 1,
     "mismatches": [
       {
         "position": 5,
-        "target_aa": "G",
-        "candidate_aa": "A",
+        "target_aa": "V",
+        "candidate_aa": "M",
         "is_anchor": false,
         "is_tcr_contact": true
       }
     ],
     "n_tcr_contact_mismatches": 1,
     "n_anchor_mismatches": 0,
-    "el_rank": 0.45,
-    "hla_allele": "HLA-A*01:01",
+    "el_rank": 1.344,
+    "hla_allele": "HLA-A*02:01",
     "gene_symbols": [
-      "DEMO5"
+      "TP53"
     ],
     "source_proteins": [
-      "DEMO"
+      "P00010"
     ],
-    "expression": null,
+    "expression": {
+      "gene_symbol": "TP53",
+      "tissue_tpm": {
+        "heart muscle": 26.7,
+        "cerebral cortex": 12.1,
+        "lung": 6.0,
+        "liver": 29.0,
+        "kidney": 24.0,
+        "colon": 21.2,
+        "small intestine": 46.7,
+        "testis": 20.9,
+        "placenta": 38.7,
+        "skin": 48.0,
+        "bone marrow": 34.8,
+        "thymus": 17.7
+      },
+      "max_vital_organ_tpm": 26.7,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
     "similarity_score": 0.8888888888888888
   },
   {
-    "sequence": "AVDPIGHLY",
-    "target_sequence": "EVDPIGHLY",
+    "sequence": "GILGFVWTL",
+    "target_sequence": "GILGFVFTL",
     "hamming_distance": 1,
     "mismatches": [
       {
-        "position": 0,
-        "target_aa": "E",
-        "candidate_aa": "A",
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "W",
         "is_anchor": false,
-        "is_tcr_contact": false
+        "is_tcr_contact": true
       }
     ],
-    "n_tcr_contact_mismatches": 0,
+    "n_tcr_contact_mismatches": 1,
     "n_anchor_mismatches": 0,
-    "el_rank": 0.5,
-    "hla_allele": "HLA-A*01:01",
+    "el_rank": 0.083,
+    "hla_allele": "HLA-A*02:01",
     "gene_symbols": [
-      "DEMO6"
+      "MAGEA8"
     ],
     "source_proteins": [
-      "DEMO"
+      "P00005"
     ],
-    "expression": null,
+    "expression": {
+      "gene_symbol": "MAGEA8",
+      "tissue_tpm": {
+        "heart muscle": 23.6,
+        "cerebral cortex": 3.4,
+        "lung": 29.0,
+        "liver": 7.5,
+        "kidney": 44.9,
+        "colon": 18.8,
+        "small intestine": 29.4,
+        "testis": 16.4,
+        "placenta": 39.0,
+        "skin": 41.9,
+        "bone marrow": 40.3,
+        "thymus": 14.2
+      },
+      "max_vital_organ_tpm": 23.6,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
     "similarity_score": 0.8888888888888888
   },
   {
-    "sequence": "EVDPIGHLF",
-    "target_sequence": "EVDPIGHLY",
+    "sequence": "GILGFVETL",
+    "target_sequence": "GILGFVFTL",
     "hamming_distance": 1,
     "mismatches": [
       {
-        "position": 8,
-        "target_aa": "Y",
-        "candidate_aa": "F",
-        "is_anchor": true,
-        "is_tcr_contact": false
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "E",
+        "is_anchor": false,
+        "is_tcr_contact": true
       }
     ],
-    "n_tcr_contact_mismatches": 0,
-    "n_anchor_mismatches": 1,
-    "el_rank": 0.55,
-    "hla_allele": "HLA-A*01:01",
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 1.094,
+    "hla_allele": "HLA-A*02:01",
     "gene_symbols": [
-      "DEMO2"
+      "BRCA1"
     ],
     "source_proteins": [
-      "DEMO"
+      "P00009"
     ],
-    "expression": null,
+    "expression": {
+      "gene_symbol": "BRCA1",
+      "tissue_tpm": {
+        "heart muscle": 7.8,
+        "cerebral cortex": 34.5,
+        "lung": 49.7,
+        "liver": 41.2,
+        "kidney": 47.2,
+        "colon": 20.3,
+        "small intestine": 21.1,
+        "testis": 8.2,
+        "placenta": 31.0,
+        "skin": 36.1,
+        "bone marrow": 44.7,
+        "thymus": 25.2
+      },
+      "max_vital_organ_tpm": 7.8,
+      "vital_organ_expressed": true,
+      "expression_category": "expressed"
+    },
     "similarity_score": 0.8888888888888888
   },
   {
-    "sequence": "EVDPIGHLS",
-    "target_sequence": "EVDPIGHLY",
-    "hamming_distance": 1,
-    "mismatches": [
-      {
-        "position": 8,
-        "target_aa": "Y",
-        "candidate_aa": "S",
-        "is_anchor": true,
-        "is_tcr_contact": false
-      }
-    ],
-    "n_tcr_contact_mismatches": 0,
-    "n_anchor_mismatches": 1,
-    "el_rank": 0.6,
-    "hla_allele": "HLA-A*01:01",
-    "gene_symbols": [
-      "DEMO3"
-    ],
-    "source_proteins": [
-      "DEMO"
-    ],
-    "expression": null,
-    "similarity_score": 0.8888888888888888
-  },
-  {
-    "sequence": "EVDPNGHLY",
-    "target_sequence": "EVDPIGHLY",
+    "sequence": "GILGAVFTL",
+    "target_sequence": "GILGFVFTL",
     "hamming_distance": 1,
     "mismatches": [
       {
         "position": 4,
-        "target_aa": "I",
-        "candidate_aa": "N",
-        "is_anchor": false,
-        "is_tcr_contact": true
-      }
-    ],
-    "n_tcr_contact_mismatches": 1,
-    "n_anchor_mismatches": 0,
-    "el_rank": 0.65,
-    "hla_allele": "HLA-A*01:01",
-    "gene_symbols": [
-      "DEMO8"
-    ],
-    "source_proteins": [
-      "DEMO"
-    ],
-    "expression": null,
-    "similarity_score": 0.8888888888888888
-  },
-  {
-    "sequence": "EVDAIGHLY",
-    "target_sequence": "EVDPIGHLY",
-    "hamming_distance": 1,
-    "mismatches": [
-      {
-        "position": 3,
-        "target_aa": "P",
+        "target_aa": "F",
         "candidate_aa": "A",
         "is_anchor": false,
         "is_tcr_contact": true
@@ -279,65 +284,238 @@
     ],
     "n_tcr_contact_mismatches": 1,
     "n_anchor_mismatches": 0,
-    "el_rank": 0.7,
-    "hla_allele": "HLA-A*01:01",
+    "el_rank": 0.192,
+    "hla_allele": "HLA-A*02:01",
     "gene_symbols": [
-      "DEMO4"
+      "PKD1L1"
     ],
     "source_proteins": [
-      "DEMO"
+      "P00001"
+    ],
+    "expression": {
+      "gene_symbol": "PKD1L1",
+      "tissue_tpm": {
+        "heart muscle": 6.5,
+        "cerebral cortex": 22.5,
+        "lung": 17.3,
+        "liver": 37.6,
+        "kidney": 33.8,
+        "colon": 33.9,
+        "small intestine": 1.2,
+        "testis": 2.7,
+        "placenta": 23.8,
+        "skin": 9.9,
+        "bone marrow": 45.1,
+        "thymus": 18.0
+      },
+      "max_vital_organ_tpm": 6.5,
+      "vital_organ_expressed": true,
+      "expression_category": "expressed"
+    },
+    "similarity_score": 0.8888888888888888
+  },
+  {
+    "sequence": "GILGWVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 1,
+    "mismatches": [
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "W",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.271,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "WT1"
+    ],
+    "source_proteins": [
+      "P00018"
+    ],
+    "expression": {
+      "gene_symbol": "WT1",
+      "tissue_tpm": {
+        "heart muscle": 5.3,
+        "cerebral cortex": 0.5,
+        "lung": 8.0,
+        "liver": 39.7,
+        "kidney": 40.7,
+        "colon": 15.9,
+        "small intestine": 0.9,
+        "testis": 20.8,
+        "placenta": 0.3,
+        "skin": 9.9,
+        "bone marrow": 22.1,
+        "thymus": 47.3
+      },
+      "max_vital_organ_tpm": 5.3,
+      "vital_organ_expressed": true,
+      "expression_category": "expressed"
+    },
+    "similarity_score": 0.8888888888888888
+  },
+  {
+    "sequence": "GILGFQFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 1,
+    "mismatches": [
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "Q",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 1.39,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "WT1"
+    ],
+    "source_proteins": [
+      "P00018"
+    ],
+    "expression": {
+      "gene_symbol": "WT1",
+      "tissue_tpm": {
+        "heart muscle": 5.3,
+        "cerebral cortex": 0.5,
+        "lung": 8.0,
+        "liver": 39.7,
+        "kidney": 40.7,
+        "colon": 15.9,
+        "small intestine": 0.9,
+        "testis": 20.8,
+        "placenta": 0.3,
+        "skin": 9.9,
+        "bone marrow": 22.1,
+        "thymus": 47.3
+      },
+      "max_vital_organ_tpm": 5.3,
+      "vital_organ_expressed": true,
+      "expression_category": "expressed"
+    },
+    "similarity_score": 0.8888888888888888
+  },
+  {
+    "sequence": "GILGFVCTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 1,
+    "mismatches": [
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "C",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.383,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "MSH2"
+    ],
+    "source_proteins": [
+      "P00023"
     ],
     "expression": null,
     "similarity_score": 0.8888888888888888
   },
   {
-    "sequence": "EVDPKGHLS",
-    "target_sequence": "EVDPIGHLY",
-    "hamming_distance": 2,
+    "sequence": "GILGFKFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 1,
     "mismatches": [
       {
-        "position": 4,
-        "target_aa": "I",
+        "position": 5,
+        "target_aa": "V",
         "candidate_aa": "K",
         "is_anchor": false,
         "is_tcr_contact": true
-      },
-      {
-        "position": 8,
-        "target_aa": "Y",
-        "candidate_aa": "S",
-        "is_anchor": true,
-        "is_tcr_contact": false
       }
     ],
     "n_tcr_contact_mismatches": 1,
-    "n_anchor_mismatches": 1,
-    "el_rank": 0.75,
-    "hla_allele": "HLA-A*01:01",
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.653,
+    "hla_allele": "HLA-A*02:01",
     "gene_symbols": [
-      "DEMO11"
+      "ATM"
     ],
     "source_proteins": [
-      "DEMO"
+      "P00025"
     ],
     "expression": null,
-    "similarity_score": 0.7777777777777778
+    "similarity_score": 0.8888888888888888
   },
   {
-    "sequence": "AVDPIGHVY",
-    "target_sequence": "EVDPIGHLY",
-    "hamming_distance": 2,
+    "sequence": "GILGFVFDL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 1,
+    "mismatches": [
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "D",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.945,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "CHEK2"
+    ],
+    "source_proteins": [
+      "P00026"
+    ],
+    "expression": null,
+    "similarity_score": 0.8888888888888888
+  },
+  {
+    "sequence": "HILGFVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 1,
     "mismatches": [
       {
         "position": 0,
-        "target_aa": "E",
-        "candidate_aa": "A",
+        "target_aa": "G",
+        "candidate_aa": "H",
         "is_anchor": false,
         "is_tcr_contact": false
-      },
+      }
+    ],
+    "n_tcr_contact_mismatches": 0,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.946,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "RAD51"
+    ],
+    "source_proteins": [
+      "P00028"
+    ],
+    "expression": null,
+    "similarity_score": 0.8888888888888888
+  },
+  {
+    "sequence": "GILGVVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 1,
+    "mismatches": [
       {
-        "position": 7,
-        "target_aa": "L",
+        "position": 4,
+        "target_aa": "F",
         "candidate_aa": "V",
         "is_anchor": false,
         "is_tcr_contact": true
@@ -345,65 +523,474 @@
     ],
     "n_tcr_contact_mismatches": 1,
     "n_anchor_mismatches": 0,
-    "el_rank": 0.8,
-    "hla_allele": "HLA-A*01:01",
+    "el_rank": 1.085,
+    "hla_allele": "HLA-A*02:01",
     "gene_symbols": [
-      "DEMO9"
+      "RAD51"
     ],
     "source_proteins": [
-      "DEMO"
+      "P00028"
     ],
     "expression": null,
-    "similarity_score": 0.7777777777777778
+    "similarity_score": 0.8888888888888888
   },
   {
-    "sequence": "AVDPIGHLF",
-    "target_sequence": "EVDPIGHLY",
-    "hamming_distance": 2,
+    "sequence": "GILGFVFTA",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 1,
     "mismatches": [
       {
-        "position": 0,
-        "target_aa": "E",
-        "candidate_aa": "A",
-        "is_anchor": false,
-        "is_tcr_contact": false
-      },
-      {
         "position": 8,
-        "target_aa": "Y",
-        "candidate_aa": "F",
+        "target_aa": "L",
+        "candidate_aa": "A",
         "is_anchor": true,
         "is_tcr_contact": false
       }
     ],
     "n_tcr_contact_mismatches": 0,
     "n_anchor_mismatches": 1,
-    "el_rank": 0.85,
-    "hla_allele": "HLA-A*01:01",
+    "el_rank": 1.319,
+    "hla_allele": "HLA-A*02:01",
     "gene_symbols": [
-      "DEMO12"
+      "FANCA"
     ],
     "source_proteins": [
-      "DEMO"
+      "P00029"
     ],
     "expression": null,
+    "similarity_score": 0.8888888888888888
+  },
+  {
+    "sequence": "GSLGFVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 1,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "S",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      }
+    ],
+    "n_tcr_contact_mismatches": 0,
+    "n_anchor_mismatches": 1,
+    "el_rank": 1.38,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "ATM"
+    ],
+    "source_proteins": [
+      "P00025"
+    ],
+    "expression": null,
+    "similarity_score": 0.8888888888888888
+  },
+  {
+    "sequence": "GCLGFVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 1,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "C",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      }
+    ],
+    "n_tcr_contact_mismatches": 0,
+    "n_anchor_mismatches": 1,
+    "el_rank": 1.78,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "CDH1"
+    ],
+    "source_proteins": [
+      "P00020"
+    ],
+    "expression": null,
+    "similarity_score": 0.8888888888888888
+  },
+  {
+    "sequence": "GILGYVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 1,
+    "mismatches": [
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 1.843,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "RAD51"
+    ],
+    "source_proteins": [
+      "P00028"
+    ],
+    "expression": null,
+    "similarity_score": 0.8888888888888888
+  },
+  {
+    "sequence": "GILGHVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 1,
+    "mismatches": [
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "H",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 1.994,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "PALB2"
+    ],
+    "source_proteins": [
+      "P00027"
+    ],
+    "expression": null,
+    "similarity_score": 0.8888888888888888
+  },
+  {
+    "sequence": "GLLGFVWTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "W",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 1,
+    "el_rank": 0.952,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "MAGEA6"
+    ],
+    "source_proteins": [
+      "P00002"
+    ],
+    "expression": {
+      "gene_symbol": "MAGEA6",
+      "tissue_tpm": {
+        "heart muscle": 44.6,
+        "cerebral cortex": 15.9,
+        "lung": 33.0,
+        "liver": 33.7,
+        "kidney": 45.2,
+        "colon": 20.4,
+        "small intestine": 5.0,
+        "testis": 39.0,
+        "placenta": 42.8,
+        "skin": 6.9,
+        "bone marrow": 30.9,
+        "thymus": 38.7
+      },
+      "max_vital_organ_tpm": 44.6,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
     "similarity_score": 0.7777777777777778
   },
   {
-    "sequence": "EVDAIAHLY",
-    "target_sequence": "EVDPIGHLY",
+    "sequence": "GILYFVFFL",
+    "target_sequence": "GILGFVFTL",
     "hamming_distance": 2,
     "mismatches": [
       {
         "position": 3,
-        "target_aa": "P",
-        "candidate_aa": "A",
+        "target_aa": "G",
+        "candidate_aa": "Y",
         "is_anchor": false,
         "is_tcr_contact": true
       },
       {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 2,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.472,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "APC"
+    ],
+    "source_proteins": [
+      "P00016"
+    ],
+    "expression": {
+      "gene_symbol": "APC",
+      "tissue_tpm": {
+        "heart muscle": 40.5,
+        "cerebral cortex": 10.9,
+        "lung": 29.0,
+        "liver": 14.1,
+        "kidney": 27.8,
+        "colon": 33.2,
+        "small intestine": 3.9,
+        "testis": 37.9,
+        "placenta": 48.3,
+        "skin": 42.9,
+        "bone marrow": 37.8,
+        "thymus": 29.5
+      },
+      "max_vital_organ_tpm": 40.5,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GIFGFVDTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "D",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.944,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "APC"
+    ],
+    "source_proteins": [
+      "P00016"
+    ],
+    "expression": {
+      "gene_symbol": "APC",
+      "tissue_tpm": {
+        "heart muscle": 40.5,
+        "cerebral cortex": 10.9,
+        "lung": 29.0,
+        "liver": 14.1,
+        "kidney": 27.8,
+        "colon": 33.2,
+        "small intestine": 3.9,
+        "testis": 37.9,
+        "placenta": 48.3,
+        "skin": 42.9,
+        "bone marrow": 37.8,
+        "thymus": 29.5
+      },
+      "max_vital_organ_tpm": 40.5,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GILGFWFCL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
         "position": 5,
-        "target_aa": "G",
+        "target_aa": "V",
+        "candidate_aa": "W",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "C",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 2,
+    "n_anchor_mismatches": 0,
+    "el_rank": 1.239,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "RB1"
+    ],
+    "source_proteins": [
+      "P00015"
+    ],
+    "expression": {
+      "gene_symbol": "RB1",
+      "tissue_tpm": {
+        "heart muscle": 33.1,
+        "cerebral cortex": 34.8,
+        "lung": 29.3,
+        "liver": 38.8,
+        "kidney": 7.0,
+        "colon": 40.2,
+        "small intestine": 48.3,
+        "testis": 21.3,
+        "placenta": 26.1,
+        "skin": 46.7,
+        "bone marrow": 9.0,
+        "thymus": 28.8
+      },
+      "max_vital_organ_tpm": 33.1,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GIAGFVFLL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.102,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "FGD5"
+    ],
+    "source_proteins": [
+      "P00003"
+    ],
+    "expression": {
+      "gene_symbol": "FGD5",
+      "tissue_tpm": {
+        "heart muscle": 31.4,
+        "cerebral cortex": 39.9,
+        "lung": 17.7,
+        "liver": 31.6,
+        "kidney": 38.4,
+        "colon": 9.7,
+        "small intestine": 14.3,
+        "testis": 17.9,
+        "placenta": 4.4,
+        "skin": 22.5,
+        "bone marrow": 48.7,
+        "thymus": 24.0
+      },
+      "max_vital_organ_tpm": 31.4,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GPLGFVVTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "P",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "V",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 1,
+    "el_rank": 1.604,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "TP53"
+    ],
+    "source_proteins": [
+      "P00010"
+    ],
+    "expression": {
+      "gene_symbol": "TP53",
+      "tissue_tpm": {
+        "heart muscle": 26.7,
+        "cerebral cortex": 12.1,
+        "lung": 6.0,
+        "liver": 29.0,
+        "kidney": 24.0,
+        "colon": 21.2,
+        "small intestine": 46.7,
+        "testis": 20.9,
+        "placenta": 38.7,
+        "skin": 48.0,
+        "bone marrow": 34.8,
+        "thymus": 17.7
+      },
+      "max_vital_organ_tpm": 26.7,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GILGSVFAL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "S",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
         "candidate_aa": "A",
         "is_anchor": false,
         "is_tcr_contact": true
@@ -411,13 +998,929 @@
     ],
     "n_tcr_contact_mismatches": 2,
     "n_anchor_mismatches": 0,
-    "el_rank": 0.9,
-    "hla_allele": "HLA-A*01:01",
+    "el_rank": 1.803,
+    "hla_allele": "HLA-A*02:01",
     "gene_symbols": [
-      "DEMO10"
+      "TP53"
     ],
     "source_proteins": [
-      "DEMO"
+      "P00010"
+    ],
+    "expression": {
+      "gene_symbol": "TP53",
+      "tissue_tpm": {
+        "heart muscle": 26.7,
+        "cerebral cortex": 12.1,
+        "lung": 6.0,
+        "liver": 29.0,
+        "kidney": 24.0,
+        "colon": 21.2,
+        "small intestine": 46.7,
+        "testis": 20.9,
+        "placenta": 38.7,
+        "skin": 48.0,
+        "bone marrow": 34.8,
+        "thymus": 17.7
+      },
+      "max_vital_organ_tpm": 26.7,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GILIFLFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "I",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 2,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.607,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "MAGEA8"
+    ],
+    "source_proteins": [
+      "P00005"
+    ],
+    "expression": {
+      "gene_symbol": "MAGEA8",
+      "tissue_tpm": {
+        "heart muscle": 23.6,
+        "cerebral cortex": 3.4,
+        "lung": 29.0,
+        "liver": 7.5,
+        "kidney": 44.9,
+        "colon": 18.8,
+        "small intestine": 29.4,
+        "testis": 16.4,
+        "placenta": 39.0,
+        "skin": 41.9,
+        "bone marrow": 40.3,
+        "thymus": 14.2
+      },
+      "max_vital_organ_tpm": 23.6,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GIWGAVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "W",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 1.109,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "MAGEA8"
+    ],
+    "source_proteins": [
+      "P00005"
+    ],
+    "expression": {
+      "gene_symbol": "MAGEA8",
+      "tissue_tpm": {
+        "heart muscle": 23.6,
+        "cerebral cortex": 3.4,
+        "lung": 29.0,
+        "liver": 7.5,
+        "kidney": 44.9,
+        "colon": 18.8,
+        "small intestine": 29.4,
+        "testis": 16.4,
+        "placenta": 39.0,
+        "skin": 41.9,
+        "bone marrow": 40.3,
+        "thymus": 14.2
+      },
+      "max_vital_organ_tpm": 23.6,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GILGFIFHL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "I",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "H",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 2,
+    "n_anchor_mismatches": 0,
+    "el_rank": 1.148,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "PTEN"
+    ],
+    "source_proteins": [
+      "P00014"
+    ],
+    "expression": {
+      "gene_symbol": "PTEN",
+      "tissue_tpm": {
+        "heart muscle": 21.4,
+        "cerebral cortex": 2.5,
+        "lung": 12.1,
+        "liver": 27.4,
+        "kidney": 39.1,
+        "colon": 33.8,
+        "small intestine": 34.1,
+        "testis": 41.8,
+        "placenta": 6.9,
+        "skin": 45.0,
+        "bone marrow": 23.1,
+        "thymus": 44.6
+      },
+      "max_vital_organ_tpm": 21.4,
+      "vital_organ_expressed": true,
+      "expression_category": "high_risk"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GPLGFVGTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "P",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "G",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 1,
+    "el_rank": 0.49,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "EPS8L2"
+    ],
+    "source_proteins": [
+      "P00006"
+    ],
+    "expression": {
+      "gene_symbol": "EPS8L2",
+      "tissue_tpm": {
+        "heart muscle": 9.0,
+        "cerebral cortex": 35.4,
+        "lung": 4.7,
+        "liver": 43.1,
+        "kidney": 48.8,
+        "colon": 38.0,
+        "small intestine": 34.8,
+        "testis": 27.1,
+        "placenta": 33.8,
+        "skin": 10.7,
+        "bone marrow": 29.2,
+        "thymus": 1.0
+      },
+      "max_vital_organ_tpm": 9.0,
+      "vital_organ_expressed": true,
+      "expression_category": "expressed"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GILRDVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "R",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "D",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 2,
+    "n_anchor_mismatches": 0,
+    "el_rank": 1.957,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "EPS8L2"
+    ],
+    "source_proteins": [
+      "P00006"
+    ],
+    "expression": {
+      "gene_symbol": "EPS8L2",
+      "tissue_tpm": {
+        "heart muscle": 9.0,
+        "cerebral cortex": 35.4,
+        "lung": 4.7,
+        "liver": 43.1,
+        "kidney": 48.8,
+        "colon": 38.0,
+        "small intestine": 34.8,
+        "testis": 27.1,
+        "placenta": 33.8,
+        "skin": 10.7,
+        "bone marrow": 29.2,
+        "thymus": 1.0
+      },
+      "max_vital_organ_tpm": 9.0,
+      "vital_organ_expressed": true,
+      "expression_category": "expressed"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GELGFVFVL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "E",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "V",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 1,
+    "el_rank": 1.822,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "TAP2"
+    ],
+    "source_proteins": [
+      "P00000"
+    ],
+    "expression": {
+      "gene_symbol": "TAP2",
+      "tissue_tpm": {
+        "heart muscle": 7.9,
+        "cerebral cortex": 20.5,
+        "lung": 29.1,
+        "liver": 43.8,
+        "kidney": 5.2,
+        "colon": 33.1,
+        "small intestine": 1.6,
+        "testis": 41.0,
+        "placenta": 2.0,
+        "skin": 43.9,
+        "bone marrow": 0.9,
+        "thymus": 3.7
+      },
+      "max_vital_organ_tpm": 7.9,
+      "vital_organ_expressed": true,
+      "expression_category": "expressed"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GELSFVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "E",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "S",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 1,
+    "el_rank": 1.299,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "BRCA1"
+    ],
+    "source_proteins": [
+      "P00009"
+    ],
+    "expression": {
+      "gene_symbol": "BRCA1",
+      "tissue_tpm": {
+        "heart muscle": 7.8,
+        "cerebral cortex": 34.5,
+        "lung": 49.7,
+        "liver": 41.2,
+        "kidney": 47.2,
+        "colon": 20.3,
+        "small intestine": 21.1,
+        "testis": 8.2,
+        "placenta": 31.0,
+        "skin": 36.1,
+        "bone marrow": 44.7,
+        "thymus": 25.2
+      },
+      "max_vital_organ_tpm": 7.8,
+      "vital_organ_expressed": true,
+      "expression_category": "expressed"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GILWFVFRL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "W",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "R",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 2,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.298,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "MYC"
+    ],
+    "source_proteins": [
+      "P00012"
+    ],
+    "expression": {
+      "gene_symbol": "MYC",
+      "tissue_tpm": {
+        "heart muscle": 2.5,
+        "cerebral cortex": 29.0,
+        "lung": 48.1,
+        "liver": 35.3,
+        "kidney": 5.8,
+        "colon": 9.6,
+        "small intestine": 40.1,
+        "testis": 38.3,
+        "placenta": 0.2,
+        "skin": 11.2,
+        "bone marrow": 6.1,
+        "thymus": 6.0
+      },
+      "max_vital_organ_tpm": 2.5,
+      "vital_organ_expressed": true,
+      "expression_category": "expressed"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GILGFRHTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "R",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "H",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 2,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.797,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "MYC"
+    ],
+    "source_proteins": [
+      "P00012"
+    ],
+    "expression": {
+      "gene_symbol": "MYC",
+      "tissue_tpm": {
+        "heart muscle": 2.5,
+        "cerebral cortex": 29.0,
+        "lung": 48.1,
+        "liver": 35.3,
+        "kidney": 5.8,
+        "colon": 9.6,
+        "small intestine": 40.1,
+        "testis": 38.3,
+        "placenta": 0.2,
+        "skin": 11.2,
+        "bone marrow": 6.1,
+        "thymus": 6.0
+      },
+      "max_vital_organ_tpm": 2.5,
+      "vital_organ_expressed": true,
+      "expression_category": "expressed"
+    },
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GLLGFVTTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "T",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 1,
+    "el_rank": 0.097,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "BRCA2"
+    ],
+    "source_proteins": [
+      "P00024"
+    ],
+    "expression": null,
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GIGGFVHTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "G",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "H",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.167,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "BRCA2"
+    ],
+    "source_proteins": [
+      "P00024"
+    ],
+    "expression": null,
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GICGFVTTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "C",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "T",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.261,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "SMAD4"
+    ],
+    "source_proteins": [
+      "P00021"
+    ],
+    "expression": null,
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GILGPQFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "P",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "Q",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 2,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.3,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "MRE11"
+    ],
+    "source_proteins": [
+      "P00033"
+    ],
+    "expression": null,
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GCLLFVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "C",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 1,
+    "el_rank": 0.467,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "FANCC"
+    ],
+    "source_proteins": [
+      "P00030"
+    ],
+    "expression": null,
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GIWGFVFSL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "W",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "S",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.697,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "BRCA2"
+    ],
+    "source_proteins": [
+      "P00024"
+    ],
+    "expression": null,
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GILGLVFVL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "V",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 2,
+    "n_anchor_mismatches": 0,
+    "el_rank": 0.837,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "FANCC"
+    ],
+    "source_proteins": [
+      "P00030"
+    ],
+    "expression": null,
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "TILGFVNTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "T",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "N",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 0,
+    "el_rank": 1.413,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "BRCA2"
+    ],
+    "source_proteins": [
+      "P00024"
+    ],
+    "expression": null,
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GILGMAFTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "M",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 2,
+    "n_anchor_mismatches": 0,
+    "el_rank": 1.455,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "FANCG"
+    ],
+    "source_proteins": [
+      "P00031"
+    ],
+    "expression": null,
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GLLGFVQTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "Q",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 1,
+    "el_rank": 1.489,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "BRCA2"
+    ],
+    "source_proteins": [
+      "P00024"
+    ],
+    "expression": null,
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GIKGFVFTD",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "K",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 8,
+        "target_aa": "L",
+        "candidate_aa": "D",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      }
+    ],
+    "n_tcr_contact_mismatches": 0,
+    "n_anchor_mismatches": 1,
+    "el_rank": 1.548,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "CHEK2"
+    ],
+    "source_proteins": [
+      "P00026"
+    ],
+    "expression": null,
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GELGFVGTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "E",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "G",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 1,
+    "n_anchor_mismatches": 1,
+    "el_rank": 1.675,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "FANCG"
+    ],
+    "source_proteins": [
+      "P00031"
+    ],
+    "expression": null,
+    "similarity_score": 0.7777777777777778
+  },
+  {
+    "sequence": "GILGFDNTL",
+    "target_sequence": "GILGFVFTL",
+    "hamming_distance": 2,
+    "mismatches": [
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "D",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "N",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "n_tcr_contact_mismatches": 2,
+    "n_anchor_mismatches": 0,
+    "el_rank": 1.706,
+    "hla_allele": "HLA-A*02:01",
+    "gene_symbols": [
+      "BRCA2"
+    ],
+    "source_proteins": [
+      "P00024"
     ],
     "expression": null,
     "similarity_score": 0.7777777777777778

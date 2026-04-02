@@ -139,31 +139,60 @@ def physicochemical_screen(
         target_sequence, min_hamming, cosine_threshold,
     )
 
-    same_len = hla_filtered_df[
-        hla_filtered_df["sequence"].str.len() == target_len
+    # Accept peptides of length 8-11 (HLA-I binding range), not just same-length.
+    # Atchley TCR-contact core is always 5 residues regardless of peptide length,
+    # so cross-length cosine similarity is well-defined.
+    ALLOWED_LENGTHS = {8, 9, 10, 11}
+    candidates_df = hla_filtered_df[
+        hla_filtered_df["sequence"].str.len().isin(ALLOWED_LENGTHS)
     ].copy()
 
-    if same_len.empty:
+    if candidates_df.empty:
         return pd.DataFrame()
 
-    same_len = same_len[same_len["sequence"] != target_sequence]
+    candidates_df = candidates_df[candidates_df["sequence"] != target_sequence]
 
-    # Exclude Decoy A territory
-    candidates = same_len["sequence"].values
-    distances = hamming_distance_vectorised(target_sequence, candidates)
-    mask = distances >= min_hamming
-    same_len = same_len[mask].copy()
-    same_len["hamming_distance"] = distances[mask]
+    # Exclude Decoy A territory (Hamming distance only defined for same-length)
+    # For different-length peptides, they are automatically outside Decoy A scope
+    cand_seqs = candidates_df["sequence"].values
+    cand_lens = np.array([len(s) for s in cand_seqs])
 
-    log.info("After excluding Hamming <= %d: %d candidates", min_hamming - 1, len(same_len))
-    if same_len.empty:
+    # Same-length candidates: apply Hamming filter
+    same_mask = cand_lens == target_len
+    diff_mask = ~same_mask
+
+    hamming_dists = np.full(len(cand_seqs), -1, dtype=np.int32)
+    if same_mask.any():
+        hamming_dists[same_mask] = hamming_distance_vectorised(
+            target_sequence, cand_seqs[same_mask]
+        )
+
+    # Keep: same-length with HD >= min_hamming, OR different-length (always HD > length)
+    keep_mask = (same_mask & (hamming_dists >= min_hamming)) | diff_mask
+    candidates_df = candidates_df[keep_mask].copy()
+    candidates_df["hamming_distance"] = hamming_dists[keep_mask]
+    # For different-length peptides, set hamming_distance = peptide length (max dissimilarity)
+    diff_len_mask = candidates_df["hamming_distance"] < 0
+    candidates_df["hamming_distance"] = candidates_df["hamming_distance"].astype(np.int64)
+    candidates_df.loc[diff_len_mask, "hamming_distance"] = \
+        candidates_df.loc[diff_len_mask, "sequence"].str.len().astype(np.int64)
+
+    log.info(
+        "After excluding Decoy A territory: %d candidates "
+        "(same-len %d-mer: %d, other lengths: %d)",
+        len(candidates_df),
+        target_len,
+        int((candidates_df["sequence"].str.len() == target_len).sum()),
+        int((candidates_df["sequence"].str.len() != target_len).sum()),
+    )
+    if candidates_df.empty:
         return pd.DataFrame()
 
     # Batch Atchley cosine similarity
     target_contact = _get_tcr_contact_residues(target_sequence)
     target_vec = _sequence_to_atchley_vector(target_contact)
 
-    candidate_seqs = same_len["sequence"].values
+    candidate_seqs = candidates_df["sequence"].values
     contact_residues = [_get_tcr_contact_residues(str(s)) for s in candidate_seqs]
 
     dim = len(target_vec)
@@ -173,15 +202,15 @@ def physicochemical_screen(
 
     cos_sims = _batch_cosine_similarity(target_vec, feature_matrix)
 
-    same_len["cosine_similarity"] = cos_sims
-    same_len["contact_residues"] = contact_residues
+    candidates_df["cosine_similarity"] = cos_sims
+    candidates_df["contact_residues"] = contact_residues
 
-    above_threshold = same_len[same_len["cosine_similarity"] >= cosine_threshold]
+    above_threshold = candidates_df[candidates_df["cosine_similarity"] >= cosine_threshold]
     result = above_threshold.nlargest(top_k, "cosine_similarity")
 
     log.info(
         "Physicochemical screen: %d -> %d above threshold -> top %d",
-        len(same_len), len(above_threshold), len(result),
+        len(candidates_df), len(above_threshold), len(result),
     )
     return result
 
@@ -275,29 +304,94 @@ def compute_structure_similarity(
         target_struct = parser.get_structure("target", str(target_pdb))
         cand_struct = parser.get_structure("candidate", str(candidate_pdb))
 
-        # Extract CA atoms
-        target_cas = [a for a in target_struct.get_atoms() if a.get_name() == "CA"]
-        cand_cas = [a for a in cand_struct.get_atoms() if a.get_name() == "CA"]
+        # ── Separate MHC (chains M+N) and peptide (chain P) CA atoms ──
+        # tFold outputs: chain M = MHC heavy, N = β2m, P = peptide
+        PEPTIDE_CHAIN = "P"
+        MHC_CHAINS = {"M", "N"}
 
-        rmsd = None
-        if len(target_cas) == len(cand_cas) and len(target_cas) > 0:
-            sup = Superimposer()
-            sup.set_atoms(target_cas, cand_cas)
-            rmsd = sup.rms
+        def _get_cas_by_chains(struct, chain_ids):
+            """Extract CA atoms from specified chains."""
+            cas = []
+            for model in struct:
+                for chain in model:
+                    if chain.id in chain_ids:
+                        for residue in chain:
+                            for atom in residue:
+                                if atom.get_name() == "CA":
+                                    cas.append(atom)
+            return cas
 
-        # B-factor correlation (surface flexibility proxy)
-        target_bf = np.array([a.get_bfactor() for a in target_cas])
-        cand_bf = np.array([a.get_bfactor() for a in cand_cas])
+        target_mhc_cas = _get_cas_by_chains(target_struct, MHC_CHAINS)
+        cand_mhc_cas = _get_cas_by_chains(cand_struct, MHC_CHAINS)
+        target_pep_cas = _get_cas_by_chains(target_struct, {PEPTIDE_CHAIN})
+        cand_pep_cas = _get_cas_by_chains(cand_struct, {PEPTIDE_CHAIN})
+
+        peptide_rmsd = None
+        whole_rmsd = None
+
+        # Step 1: Superimpose on MHC backbone (align the HLA groove)
+        if (len(target_mhc_cas) == len(cand_mhc_cas) and len(target_mhc_cas) > 0):
+            sup_mhc = Superimposer()
+            sup_mhc.set_atoms(target_mhc_cas, cand_mhc_cas)
+            whole_rmsd = sup_mhc.rms
+
+            # Apply the MHC-derived rotation to ALL candidate atoms
+            sup_mhc.apply(list(cand_struct.get_atoms()))
+
+            # Step 2: Peptide RMSD (no further fitting, just measure after MHC alignment)
+            n_tgt = len(target_pep_cas)
+            n_cand = len(cand_pep_cas)
+
+            if n_tgt > 0 and n_cand > 0:
+                if n_tgt == n_cand:
+                    # Same length: full peptide RMSD
+                    target_pep_coords = np.array([a.get_vector().get_array() for a in target_pep_cas])
+                    cand_pep_coords = np.array([a.get_vector().get_array() for a in cand_pep_cas])
+                    diff = target_pep_coords - cand_pep_coords
+                    peptide_rmsd = float(np.sqrt(np.mean(np.sum(diff ** 2, axis=1))))
+                else:
+                    # Cross-length: compare TCR-contact core (central 5 residues)
+                    # For a peptide of length n, the TCR-contact core is the central
+                    # min(5, n-2) residues. We extract these CA atoms and compute RMSD.
+                    def _core_cas(cas_list):
+                        n = len(cas_list)
+                        n_contact = min(5, n - 2) if n > 5 else n
+                        start = (n - n_contact) // 2
+                        return cas_list[start : start + n_contact]
+
+                    tgt_core = _core_cas(target_pep_cas)
+                    cand_core = _core_cas(cand_pep_cas)
+
+                    if len(tgt_core) == len(cand_core) and len(tgt_core) > 0:
+                        tgt_coords = np.array([a.get_vector().get_array() for a in tgt_core])
+                        cand_coords = np.array([a.get_vector().get_array() for a in cand_core])
+                        diff = tgt_coords - cand_coords
+                        peptide_rmsd = float(np.sqrt(np.mean(np.sum(diff ** 2, axis=1))))
+
+        # B-factor correlation on peptide chain (surface flexibility proxy)
+        # For cross-length, use the shorter set for correlation
+        n_bf = min(len(target_pep_cas), len(cand_pep_cas))
+        target_pep_bf = np.array([a.get_bfactor() for a in target_pep_cas[:n_bf]])
+        cand_pep_bf = np.array([a.get_bfactor() for a in cand_pep_cas[:n_bf]])
 
         corr = 0.0
-        if len(target_bf) == len(cand_bf) and len(target_bf) > 1:
-            if np.std(target_bf) > 0 and np.std(cand_bf) > 0:
-                corr = float(np.corrcoef(target_bf, cand_bf)[0, 1])
+        if len(target_pep_bf) == len(cand_pep_bf) and len(target_pep_bf) > 1:
+            if np.std(target_pep_bf) > 0 and np.std(cand_pep_bf) > 0:
+                corr = float(np.corrcoef(target_pep_bf, cand_pep_bf)[0, 1])
 
         tool = "biopython"
-        if rmsd is not None and rmsd < 2.0:
-            corr = max(corr, 1.0 - rmsd / 5.0)  # Boost for low RMSD
-            tool = "biopython+rmsd"
+        # Use peptide RMSD for scoring (this is what matters for TCR cross-reactivity)
+        rmsd = peptide_rmsd if peptide_rmsd is not None else whole_rmsd
+        if rmsd is not None and rmsd < 3.0:
+            # Convert RMSD to a 0-1 similarity: RMSD=0 → 1.0, RMSD=3 → 0.0
+            rmsd_similarity = max(0.0, 1.0 - rmsd / 3.0)
+            corr = max(corr, rmsd_similarity)
+            n_tgt = len(target_pep_cas)
+            n_cand = len(cand_pep_cas)
+            if n_tgt == n_cand:
+                tool = "biopython+peptide_rmsd"
+            else:
+                tool = f"biopython+core_rmsd({n_tgt}v{n_cand})"
 
         return StructuralScore(
             modeling_tool=tool,
@@ -331,10 +425,32 @@ def run_mpnn_design(
     num_designs: int = 1000,
     hla_filtered_df=None,
     expr_df=None,
+    el_rank_threshold: float = 2.0,
 ) -> List[DecoyBHit]:
     """
-    MPNN inverse design branch: generate sequences from structure,
-    then map back to human proteome.
+    MPNN inverse design branch — enhanced two-tier qualification pipeline.
+
+    Tier 1 (Proteome-matched):
+        MPNN designs that exactly match a human proteome peptide already
+        known to be HLA-presentable.  Highest confidence.
+
+    Tier 2 (HLA-qualified synthetic):
+        Designs that do NOT exist in the proteome, but are predicted by
+        mhcflurry to be presentable (presentation_percentile ≤ threshold).
+        These represent *theoretical* cross-reactivity risks — sequences
+        that could arise from somatic mutations, non-canonical ORFs, or
+        proteins absent from Swiss-Prot.
+
+    Pipeline
+    --------
+    1. ProteinMPNN generates ~N designs from the target pMHC backbone,
+       fixing HLA anchor positions (p2/p9) and redesigning TCR-contact
+       residues (p4-p8).
+    2. Each design is checked against the HLA-filtered human proteome.
+       → Exact match  → Tier 1 hit (gene/expression annotated).
+    3. Non-matched designs are batch-predicted by mhcflurry.
+       → presentation_percentile ≤ threshold → Tier 2 hit.
+    4. Both tiers are merged, scored, and returned.
 
     Parameters
     ----------
@@ -354,11 +470,13 @@ def run_mpnn_design(
         HLA-filtered k-mer pool for proteome matching.
     expr_df : DataFrame, optional
         Expression database.
+    el_rank_threshold : float
+        Max presentation_percentile for Tier 2 qualification (default 2.0).
 
     Returns
     -------
     list[DecoyBHit]
-        Designed peptides that exist in human proteome.
+        Qualified designs from both tiers, sorted by similarity_score.
     """
     from .tools.proteinmpnn import check_available, design_peptide
 
@@ -366,9 +484,9 @@ def run_mpnn_design(
         log.warning("ProteinMPNN not available; skipping inverse design")
         return []
 
-    log.info("== MPNN Inverse Design Branch ==")
+    log.info("== MPNN Inverse Design Branch (Enhanced Two-Tier) ==")
 
-    # Step 1: Generate designs
+    # ── Step 1: Generate designs ────────────────────────────────────────
     designs = design_peptide(
         pdb_path=target_pdb,
         peptide_chain_id=peptide_chain_id,
@@ -380,43 +498,82 @@ def run_mpnn_design(
     if not designs:
         return []
 
-    # Step 2: Map back to human proteome
+    # Build a lookup: sequence → MPNNDesign (for score access)
+    design_lookup = {d.sequence: d for d in designs}
+
+    # ── Step 2: Load proteome data ──────────────────────────────────────
     import pandas as pd
     if hla_filtered_df is None:
         try:
             from decoy_a.hla_filter import load_hla_filtered
             hla_filtered_df = load_hla_filtered(hla_allele)
         except FileNotFoundError:
-            # Fall back to full k-mer DB
             from decoy_a.kmer_builder import load_kmer_db
             hla_filtered_df = load_kmer_db()
             hla_filtered_df["el_rank"] = 1.0
 
-    design_seqs = {d.sequence for d in designs}
+    design_seqs = set(design_lookup.keys())
     proteome_seqs = set(hla_filtered_df["sequence"].values)
-    matched = design_seqs & proteome_seqs
+
+    # ── Tier 1: Exact proteome matches ──────────────────────────────────
+    tier1_seqs = design_seqs & proteome_seqs
+    tier2_candidates = design_seqs - proteome_seqs
 
     log.info(
-        "Proteome match: %d/%d designs found in human proteome",
-        len(matched), len(designs),
+        "Proteome match: %d/%d designs found in human proteome (Tier 1)",
+        len(tier1_seqs), len(designs),
+    )
+    log.info(
+        "Non-matched designs for HLA qualification: %d (Tier 2 candidates)",
+        len(tier2_candidates),
     )
 
-    if not matched:
-        return []
+    # ── Tier 2: mhcflurry HLA presentation filter ──────────────────────
+    tier2_seqs: Dict[str, float] = {}  # sequence → el_rank
+    if tier2_candidates:
+        try:
+            from decoy_a.tools.mhcflurry import (
+                check_available as mhcf_available,
+                predict_binding as mhcf_predict,
+            )
 
-    # Step 3: Build DecoyBHit objects for matched designs
+            if mhcf_available():
+                candidate_list = sorted(tier2_candidates)
+                log.info(
+                    "Running mhcflurry HLA presentation filter on %d "
+                    "non-proteome designs (threshold: EL%%Rank ≤ %.1f)...",
+                    len(candidate_list), el_rank_threshold,
+                )
+                results = mhcf_predict(candidate_list, hla_allele)
+                for r in results:
+                    if r.el_rank <= el_rank_threshold:
+                        tier2_seqs[r.sequence] = r.el_rank
+
+                log.info(
+                    "mhcflurry Tier 2 filter: %d/%d designs predicted as "
+                    "HLA-presentable (EL%%Rank ≤ %.1f)",
+                    len(tier2_seqs), len(candidate_list), el_rank_threshold,
+                )
+            else:
+                log.warning("mhcflurry not available; Tier 2 skipped")
+        except ImportError:
+            log.warning("mhcflurry import failed; Tier 2 skipped")
+
+    # ── Step 3: Build DecoyBHit objects ─────────────────────────────────
     target_contact = _get_tcr_contact_residues(target_sequence)
     target_vec = _sequence_to_atchley_vector(target_contact)
 
-    # Expression lookup
     expr_lookup: Dict[str, dict] = {}
     if expr_df is not None:
         from decoy_a.kmer_builder import get_gene_expression
 
-    hits: List[DecoyBHit] = []
-    for seq in matched:
-        row = hla_filtered_df[hla_filtered_df["sequence"] == seq].iloc[0]
+    from decoy_a.scanner import hamming_distance
 
+    hits: List[DecoyBHit] = []
+
+    # ── Tier 1 hits (proteome-matched) ──────────────────────────────────
+    for seq in tier1_seqs:
+        row = hla_filtered_df[hla_filtered_df["sequence"] == seq].iloc[0]
         physchem = compute_physicochemical_features(seq, target_vec)
 
         gene_symbols = row.get("gene_symbols", [])
@@ -440,7 +597,6 @@ def run_mpnn_design(
                 if ed and (expression is None or ed["max_vital_organ_tpm"] > (expression.max_vital_organ_tpm if expression else 0)):
                     expression = TissueExpression(**ed)
 
-        from decoy_a.scanner import hamming_distance
         hd = hamming_distance(target_sequence, seq)
 
         hit = DecoyBHit(
@@ -455,11 +611,44 @@ def run_mpnn_design(
             physicochemical=physchem,
             structural=None,
             similarity_score=physchem.cosine_similarity,
+            mpnn_source="proteome_matched",
+        )
+        hits.append(hit)
+
+    # ── Tier 2 hits (HLA-qualified synthetic) ───────────────────────────
+    for seq, el_rank in tier2_seqs.items():
+        physchem = compute_physicochemical_features(seq, target_vec)
+        hd = hamming_distance(target_sequence, seq)
+
+        mpnn_design = design_lookup.get(seq)
+        mpnn_score = mpnn_design.score if mpnn_design else 0.0
+
+        hit = DecoyBHit(
+            sequence=seq,
+            target_sequence=target_sequence,
+            hamming_distance=hd,
+            el_rank=el_rank,
+            hla_allele=hla_allele,
+            gene_symbols=[],
+            source_proteins=[],
+            expression=None,
+            physicochemical=physchem,
+            structural=None,
+            similarity_score=physchem.cosine_similarity,
+            mpnn_source="hla_qualified_synthetic",
+            mpnn_score=mpnn_score,
         )
         hits.append(hit)
 
     hits.sort(key=lambda h: -h.similarity_score)
-    log.info("MPNN branch: %d proteome-matched decoy candidates", len(hits))
+
+    n_t1 = sum(1 for h in hits if getattr(h, "mpnn_source", "") == "proteome_matched")
+    n_t2 = sum(1 for h in hits if getattr(h, "mpnn_source", "") == "hla_qualified_synthetic")
+    log.info(
+        "MPNN branch complete: %d total hits "
+        "(Tier 1 proteome-matched: %d, Tier 2 HLA-qualified: %d)",
+        len(hits), n_t1, n_t2,
+    )
     return hits
 
 
@@ -687,11 +876,15 @@ def scan_decoy_b(
 
         hits.sort(key=lambda h: -h.similarity_score)
 
+    n_mpnn_t1 = sum(1 for h in hits if getattr(h, "mpnn_source", "") == "proteome_matched")
+    n_mpnn_t2 = sum(1 for h in hits if getattr(h, "mpnn_source", "") == "hla_qualified_synthetic")
     log.info(
-        "Decoy B complete: %d hits (physchem-only: %d, with structure: %d)",
+        "Decoy B complete: %d hits (physchem-only: %d, with structure: %d, "
+        "MPNN Tier1: %d, MPNN Tier2: %d)",
         len(hits),
-        sum(1 for h in hits if h.structural is None),
+        sum(1 for h in hits if h.structural is None and not getattr(h, "mpnn_source", "")),
         sum(1 for h in hits if h.structural is not None),
+        n_mpnn_t1, n_mpnn_t2,
     )
 
     return hits

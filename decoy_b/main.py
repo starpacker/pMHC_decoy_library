@@ -53,6 +53,7 @@ def cmd_run(args: argparse.Namespace) -> None:
         target_protein=args.protein or "",
         force=args.force,
         skip_structural=args.skip_structural,
+        run_mpnn=args.mpnn,
         top_n=args.top_n,
         resume=args.resume,
     )
@@ -121,8 +122,16 @@ def cmd_scan_b(args: argparse.Namespace) -> None:
         target_sequence=args.target,
         hla_allele=args.hla,
         run_structural=not args.skip_structural,
+        run_mpnn=args.mpnn,
     )
     print("Decoy B: {} hits found".format(len(hits)))
+
+    # Separate MPNN tier stats
+    n_mpnn_t1 = sum(1 for h in hits if getattr(h, "mpnn_source", "") == "proteome_matched")
+    n_mpnn_t2 = sum(1 for h in hits if getattr(h, "mpnn_source", "") == "hla_qualified_synthetic")
+    if n_mpnn_t1 or n_mpnn_t2:
+        print("  MPNN Tier 1 (proteome-matched): {}".format(n_mpnn_t1))
+        print("  MPNN Tier 2 (HLA-qualified):    {}".format(n_mpnn_t2))
     if hits:
         print("\nTop 10 hits:")
         header = "{:<15} {:>8} {:>10} {}".format(
@@ -273,6 +282,7 @@ def main() -> None:
     p_run.add_argument("--protein", default="", help="Target protein name")
     p_run.add_argument("--force", action="store_true", help="Force re-run all steps")
     p_run.add_argument("--skip-structural", action="store_true", help="Skip 3D modeling")
+    p_run.add_argument("--mpnn", action="store_true", help="Enable MPNN inverse design branch")
     p_run.add_argument("--top-n", type=int, default=100, help="Number of top results")
     p_run.add_argument("--resume", action="store_true", help="Resume from checkpoint")
     p_run.set_defaults(func=cmd_run)
@@ -300,6 +310,7 @@ def main() -> None:
     p_b.add_argument("--target", required=True, help="Target peptide sequence")
     p_b.add_argument("--hla", default="HLA-A*02:01", help="HLA allele")
     p_b.add_argument("--skip-structural", action="store_true", help="Skip 3D modeling")
+    p_b.add_argument("--mpnn", action="store_true", help="Enable MPNN inverse design branch")
     p_b.set_defaults(func=cmd_scan_b)
 
     # -- score ------------------------------------------------------

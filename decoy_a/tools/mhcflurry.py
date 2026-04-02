@@ -27,6 +27,9 @@ log = logging.getLogger(__name__)
 # Ensure UTF-8 on Windows (mhcgnomes YAML parser requirement)
 os.environ.setdefault("PYTHONUTF8", "1")
 
+# Force mhcflurry data to /share/liuyutian (not home directory)
+os.environ.setdefault("MHCFLURRY_DATA_DIR", "/share/liuyutian/mhcflurry_data/4")
+
 # Thresholds (same as NetMHCpan convention)
 EL_RANK_STRONG = 0.5
 EL_RANK_WEAK = 2.0

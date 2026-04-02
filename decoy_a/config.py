@@ -135,17 +135,20 @@ PHYSICOCHEMICAL_TOP_K = 5000  # Keep top-K for structural modeling
 SURFACE_SIMILARITY_THRESHOLD = 0.75
 
 # ── Decoy B: 3D Modeling Tools ──────────────────────────────────────────
+# Modeling tool configurations
+
 # tFold (preferred for bulk pMHC prediction)
-TFOLD_DIR = Path(os.getenv("TFOLD_DIR", os.path.expanduser("~/tools/tfold")))
-TFOLD_WEIGHTS_DIR = Path(os.getenv("TFOLD_WEIGHTS_DIR", str(TFOLD_DIR / "weights")))
+TFOLD_DIR = PROJECT_ROOT / "decoy_b" / "external" / "tfold"
 
 # AlphaFold3 (for high-accuracy refinement)
-AF3_DIR = Path(os.getenv("AF3_DIR", os.path.expanduser("~/tools/alphafold3")))
+# AF3 is not self-contained due to massive weights and custom runtime.
+# Point this to your AF3 installation directory.
+AF3_DIR = Path(os.getenv("AF3_DIR", "/share/liuyutian/alphafold3"))
 AF3_MODEL_DIR = Path(os.getenv("AF3_MODEL_DIR", str(AF3_DIR / "models")))
 AF3_DB_DIR = Path(os.getenv("AF3_DB_DIR", str(AF3_DIR / "databases")))
 
 # ProteinMPNN (for inverse sequence design)
-PROTEINMPNN_DIR = Path(os.getenv("PROTEINMPNN_DIR", os.path.expanduser("~/tools/ProteinMPNN")))
+PROTEINMPNN_DIR = PROJECT_ROOT / "decoy_b" / "external" / "proteinmpnn"
 
 # Legacy (PANDORA/APE-Gen — still supported as fallback)
 MODELING_TOOL = os.getenv("PMHC_MODELING_TOOL", "tfold")  # tfold | af3 | pandora | apegen

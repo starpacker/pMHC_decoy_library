@@ -96,7 +96,7 @@ $$StructSim = \frac{1}{2}\left[\max\left(0,\ 1 - \frac{PeptideRMSD_A}{3.0}\right
 | 工具 | 用途 | 路径 |
 |------|------|------|
 | tFold | pMHC 结构预测（Decoy B 必选） | `/share/liuyutian/tfold` |
-| AlphaFold 3 | 精细结构验证（可选） | `/share/liuyutian/alphafold3` |
+| AlphaFold 3 | 精细结构验证（可选） | 见下方 AF3 部署指南 |
 | ProteinMPNN | 逆向序列设计（Decoy D） | `/share/liuyutian/S3AI/rebuttal/ProteinMPNN` |
 | mhcflurry | HLA 呈递预测 | 已 pip 安装 |
 
@@ -104,6 +104,51 @@ $$StructSim = \frac{1}{2}\left[\max\left(0,\ 1 - \frac{PeptideRMSD_A}{3.0}\right
 # 验证工具可用性
 python scripts/verify_decoy_b.py
 ```
+
+### AlphaFold 3 部署指南（Server 端）
+
+AF3 用于对 tFold 筛出的 Top-N 候选做高精度结构复核，是 **可选** 的精筛步骤。
+
+**Step 1: 安装**
+```bash
+pip install alphafold3 biopython
+```
+
+**Step 2: 模型权重**
+将 `af3.bin.zst` 放到指定目录，并设置环境变量：
+```bash
+export AF3_WEIGHTS_PATH=/share/liuyutian/alphafold3/models/af3.bin.zst
+# 或直接将权重放在默认路径: $AF3_MODEL_DIR/af3.bin.zst
+```
+
+**Step 3: 序列数据库**（可选，用于 MSA 特征提取）
+```bash
+python -m alphafold3.download_databases --db_dir /share/liuyutian/alphafold3/databases
+```
+
+**Step 4: 运行精筛**
+```bash
+# 对 Decoy B Top-10 进行 AF3 精筛
+python scripts/run_af3_refinement.py \
+    --target GILGFVFTL \
+    --hla "HLA-A*02:01" \
+    --top-n 10
+
+# 指定特定序列
+python scripts/run_af3_refinement.py \
+    --target GILGFVFTL \
+    --hla "HLA-A*02:01" \
+    --sequences LLVGFVFVV LYLGILFAV RALGFLIGL
+
+# 从已有排名文件中取 Top-20
+python scripts/run_af3_refinement.py \
+    --target GILGFVFTL \
+    --hla "HLA-A*02:01" \
+    --ranked-json data/GILGFVFTL_summary/Decoy_B/final_ranked_decoys.json \
+    --top-n 20
+```
+
+AF3 输出的 PDB 会自动将链 ID 从 AF3 格式 (A/B/C) 重映射为 tFold 格式 (M/N/P)，与下游结构比较管线无缝兼容。结果保存在 `data/decoy_b/pmhc_models/af3/`。
 
 ---
 
@@ -146,6 +191,7 @@ pMHC_decoy_library/
 ├── scripts/                         # 工具脚本
 │   ├── run_decoy_b_stepwise.py      #   Decoy B 四阶段逐步演示
 │   ├── compare_superposition_methods.py  # 双叠合方法对比验证
+│   ├── run_af3_refinement.py        #   AF3 精筛脚本（Server 端运行）
 │   └── visualize_*.py               #   各类可视化
 │
 ├── data/                            # 运行数据与结果

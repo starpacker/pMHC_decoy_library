@@ -204,3 +204,67 @@ Rank 31-50 **完全一致**（差的就是差的，没有分歧）。
 
 验证脚本：`scripts/compare_superposition_methods.py`
 验证图表：`figures/superposition_method_comparison.png`
+
+---
+
+## 9. AlphaFold 3 精筛模块
+
+### 定位
+
+AF3 是 Decoy B 管线的 **可选精筛步骤**。在 Atchley 初筛 + tFold 批量预测之后，对 Top-N 候选使用 AF3 重新预测结构，提供更高精度的结构比较依据。
+
+### 管线位置
+
+```
+128万 HLA 可呈递肽段
+    ↓ Atchley 理化因子初筛
+Top 5000
+    ↓ tFold 批量结构预测 (~2s/结构)
+Top 50-200 (按双叠合 RMSD 排名)
+    ↓ AF3 精筛 (可选, ~2-5min/结构)     ← 新增
+Top 10-50 (AF3 高精度结构)
+    ↓ 双叠合结构比较 + 综合评分
+最终风险排名
+```
+
+### 技术实现
+
+**三种执行模式**（按优先级尝试）：
+1. **Python API** (`pip install alphafold3`) — Server 端推荐
+2. **Docker** — 容器化部署
+3. **Local script** — `run_alphafold.py`
+
+**链 ID 重映射**：AF3 输出链为 A/B/C（MHC heavy / β2m / peptide），与 tFold 的 M/N/P 不同。wrapper 自动将 AF3 输出的 PDB 重映射为 M/N/P 格式，确保下游 `compute_structure_similarity()` 无需修改。
+
+**缓存机制**：已预测过的序列自动跳过，支持断点续跑。
+
+### 部署步骤 (Server 端)
+
+```bash
+# 1. 安装
+pip install alphafold3 biopython
+
+# 2. 放置模型权重
+export AF3_WEIGHTS_PATH=/share/liuyutian/alphafold3/models/af3.bin.zst
+
+# 3. (可选) 下载序列数据库
+python -m alphafold3.download_databases --db_dir /share/liuyutian/alphafold3/databases
+
+# 4. 运行精筛
+python scripts/run_af3_refinement.py \
+    --target GILGFVFTL --hla "HLA-A*02:01" --top-n 10
+```
+
+### 输出
+
+- 结构文件：`data/decoy_b/pmhc_models/af3/pmhc_<SEQ>_<HLA>/`
+- 汇总报告：`data/decoy_b/pmhc_models/af3/af3_refinement_<TARGET>.json`
+- 报告内容：每个候选的 AF3 pLDDT / ipTM / ranking_score，以及基于 AF3 结构的双叠合 structural_similarity
+
+### 相关代码
+
+| 文件 | 职责 |
+|------|------|
+| `decoy_b/tools/alphafold3.py` | AF3 封装：三模式执行 + 链重映射 + 缓存 + CIF→PDB 转换 |
+| `scripts/run_af3_refinement.py` | 独立精筛脚本：加载候选 → AF3 预测 → 双叠合比较 → JSON 报告 |
+| `decoy_a/config.py` | AF3 路径配置：`AF3_DIR`, `AF3_WEIGHTS_PATH`, `AF3_DB_DIR` |

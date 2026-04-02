@@ -110,3 +110,97 @@
 2. **Decoy D 模块化独立**：将原本作为 Decoy B 附加分支的 MPNN 逆向设计管线完全独立为 **Decoy D**。支持独立调用 ProteinMPNN 固定锚定位进行靶向设计，结合 mhcflurry 亲和力门控过滤，并利用 tFold 为 Top-K AI 生成序列预测真实 3D 结构，形成自洽且完整的纯合成风险预测分支。
 3. **结构可视化比对工具 (`visualize_3d.py`)**：新增轻量级结构比对查看工具，采用 3Dmol.js，可在一键生成的 HTML 文件中同时渲染 Target 骨架与批量预测 Candidate 肽段，直观验证 TCR 结合核心的结构异同。
 4. **完整样本聚合输出**：已针对 `GILGFVFTL` (HLA-A*02:01) 真实执行完整评估流，并将 Decoy A、B、D 的核心输出文件（含表格排名及 `.pdb` 结构模型和 HTML 可视化报告）统一归档至 `data/GILGFVFTL_summary/` 目录下。
+
+---
+
+## 7. 全管线 Bug 修复 (2026年4月2日)
+
+对四条管线进行了系统性代码审查，修复了以下关键缺陷：
+
+### Decoy A
+| 严重性 | 修复 | 文件 |
+|--------|------|------|
+| **严重** | Non_Binder 过滤只检查 `presentation_binding` 列（不存在），增加 `binding` 列检查 | `scanner.py:213` |
+| **严重** | 基因注释 LEFT JOIN 改为 INNER JOIN + drop_duplicates，防止数据丢失和行膨胀 | `hla_filter.py:377` |
+| 中等 | mhcflurry 优先使用 `Class1PresentationPredictor` 获取真实 presentation_score | `tools/mhcflurry.py` |
+| 中等 | 排序逻辑区分"缺失表达数据"(unknown) 和 TPM=0 (confirmed low risk) | `scanner.py:313` |
+
+### Decoy B
+| 严重性 | 修复 | 文件 |
+|--------|------|------|
+| 高 | BOTH 来源 risk 计算改为加权组合 (0.5×seq + 0.5×physchem)，不再 max() 混用不同度量 | `risk_scorer.py:195` |
+| 高 | `get_gene_expression()` 返回 None 时的 NoneType crash | `scanner.py:596` |
+| 中等 | EL rank 倒数增加上限 clamp (100.0) 防止极端 risk score | `risk_scorer.py:121` |
+| 中等 | 结构数据只要存在就使用 (`structural is not None`)，不再要求 correlation > 0 | `scanner.py:839` |
+
+### Decoy C
+| 严重性 | 修复 | 文件 |
+|--------|------|------|
+| **严重** | `PaperRecord.pmid` 对非 PubMed 来源返回 `source:id` 格式，防止 PMID 字段污染 | `multi_source_fetcher.py:57` |
+| **严重** | 去重改为 `(sequence, hla_allele)` 双键，同序列不同 HLA 不再被误删 | `models.py:221` |
+| 高 | LLM 失败时回退到 `extract_rule_based()`，不再 crash | `extractor.py:364` |
+
+### Decoy D
+| 严重性 | 修复 | 文件 |
+|--------|------|------|
+| **严重** | anchor 位点改用 HLA-allele 特异查找表，而非 `[2, len(seq)]` | `scanner.py:44` |
+| **严重** | `_parse_pdb()` return 后的死代码删除，增加输出验证 | `tools/proteinmpnn.py:82` |
+| 高 | tFold 失败的预测 (pdb_path=None) 不再写入结果 CSV | `scanner.py:91` |
+| 中等 | 替换 stale orchestrator.py（原文件有不存在模块的 import） | `orchestrator.py` |
+
+---
+
+## 8. 双叠合结构比较方法 (Dual Superposition)
+
+### 背景
+
+原有的 Decoy B 结构比较只使用一种策略：在 MHC 上叠合后测量肽段 RMSD (Method A)。我们新增了一种互补策略：在肽段上叠合后测量 MHC groove 螺旋的 RMSD (Method B)，用于验证两者是否给出一致结论。
+
+### 方法
+
+| | Method A（原有） | Method B（新增） |
+|--|----------------|----------------|
+| **叠合基准** | MHC 骨架 (Chain M+N, 301 CA) | 肽段骨架 (Chain P CA) |
+| **测量对象** | 肽段 RMSD (Chain P) | MHC groove 螺旋 RMSD (α1: res 50-85, α2: res 138-175) |
+| **物理含义** | 在同一个 HLA 凹槽中，肽段的构象偏差有多大 | 在同一个肽段构象下，MHC groove 的包裹方式偏差有多大 |
+| **归一化** | $\max(0, 1 - RMSD/3.0)$ | $\max(0, 1 - RMSD/3.0)$ |
+
+最终 StructSim = 两种方法 similarity 的平均值。
+
+### 验证结果 (GILGFVFTL, 50 个 decoy)
+
+**整体一致性极高**：
+- Pearson r = **0.9514** (p = 3.4e-26)
+- Spearman ρ = **0.8955** (p = 1.7e-18)
+- Kendall τ = **0.7318** (p = 1.3e-12)
+
+Rank 31-50 **完全一致**（差的就是差的，没有分歧）。
+
+### 有意义的排名分歧
+
+**A 好 B 差**（肽段近似但 groove 偏差大）：
+
+| Sequence | Rank A | Rank B | ΔRank | 解释 |
+|----------|:------:|:------:|:-----:|------|
+| YLLGFLFNY | 3 | 15 | +12 | 肽段骨架位置相近，但 groove 螺旋有扭转 |
+| LLLGILFLI | 8 | 19 | +11 | 同上 |
+| ILLGFLFCA | 10 | 21 | +11 | 同上 |
+| FLLGFLFWN | 1 | 9 | +8 | 同上 |
+| LLVGFVFVV | 7 | 14 | +7 | 同上 |
+
+**B 好 A 差**（groove 保守但肽段位移大）：
+
+| Sequence | Rank A | Rank B | ΔRank | 解释 |
+|----------|:------:|:------:|:-----:|------|
+| RALGFLIGL | 13 | 1 | -12 | groove 包裹几乎完全一致，但肽段有整体平移 |
+| KTLGIVIGV | 21 | 10 | -11 | 同上 |
+| KTLGIVMGV | 23 | 12 | -11 | 同上 |
+| SALGFVIPA | 24 | 13 | -11 | 同上 |
+| YGLGIVFPI | 9 | 2 | -7 | 同上 |
+
+### 结论
+
+单独使用 Method A 会漏掉 groove 上下文保守的候选（肽段平移但整体 TCR 呈递表面保守），单独使用 Method B 会漏掉肽段构象保守但 groove 有偏转的候选。**取平均值可同时捕获两类风险**。
+
+验证脚本：`scripts/compare_superposition_methods.py`
+验证图表：`figures/superposition_method_comparison.png`

@@ -183,6 +183,7 @@ def format_results_table(
     target: str,
     hits: List[DecoyAHit],
     hla_allele: str,
+    max_hamming: int,
 ) -> str:
     """Format Decoy A results as a readable table."""
     lines = []
@@ -192,7 +193,7 @@ def format_results_table(
     lines.append("=" * 90)
     lines.append(f"  Target peptide : {target}")
     lines.append(f"  HLA allele     : {hla_allele}")
-    lines.append(f"  Max Hamming    : {HAMMING_DISTANCE_MAX}")
+    lines.append(f"  Max Hamming    : {max_hamming}")
     lines.append(f"  Total hits     : {len(hits)}")
 
     n1 = sum(1 for h in hits if h.hamming_distance == 1)
@@ -202,7 +203,7 @@ def format_results_table(
     lines.append("-" * 90)
 
     if not hits:
-        lines.append("  No hits found within Hamming distance <= {}".format(HAMMING_DISTANCE_MAX))
+        lines.append(f"  No hits found within Hamming distance <= {max_hamming}")
         lines.append("=" * 90)
         return "\n".join(lines)
 
@@ -359,7 +360,7 @@ def run_decoy_a(
     )
 
     # Display results
-    table = format_results_table(target_sequence, hits, hla_allele)
+    table = format_results_table(target_sequence, hits, hla_allele, max_hamming)
     print(table)
 
     # Save results

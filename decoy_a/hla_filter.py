@@ -408,20 +408,31 @@ def load_hla_filtered(hla_allele: str = DEFAULT_HLA_ALLELE) -> "pd.DataFrame":
 
     allele_tag = hla_allele.replace('*', '').replace(':', '')
 
+    df = None
+
     # Priority 1: presentation-scored file (97万+)
     presentation_path = AB_DATA_DIR / f"hla_filtered_{allele_tag}_presentation.parquet"
     if presentation_path.exists():
-        return pd.read_parquet(presentation_path)
+        df = pd.read_parquet(presentation_path)
+    else:
+        # Priority 2: affinity-only file
+        cache_path = AB_DATA_DIR / f"hla_filtered_{allele_tag}.parquet"
+        if cache_path.exists():
+            df = pd.read_parquet(cache_path)
+        else:
+            # Priority 3: default path
+            if HLA_FILTERED_PATH.exists():
+                df = pd.read_parquet(HLA_FILTERED_PATH)
 
-    # Priority 2: affinity-only file
-    cache_path = AB_DATA_DIR / f"hla_filtered_{allele_tag}.parquet"
-    if cache_path.exists():
-        return pd.read_parquet(cache_path)
+    if df is None:
+        raise FileNotFoundError(
+            f"No HLA-filtered data for {hla_allele}. Run `run_hla_filter()` first."
+        )
 
-    # Priority 3: default path
-    if HLA_FILTERED_PATH.exists():
-        return pd.read_parquet(HLA_FILTERED_PATH)
+    # Filter out Non_Binder explicitly as requested
+    if "presentation_binding" in df.columns:
+        df = df[df["presentation_binding"] != "Non_Binder"].copy()
+    elif "binding" in df.columns:
+        df = df[df["binding"] != "Non_Binder"].copy()
 
-    raise FileNotFoundError(
-        f"No HLA-filtered data for {hla_allele}. Run `run_hla_filter()` first."
-    )
+    return df

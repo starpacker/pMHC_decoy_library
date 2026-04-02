@@ -91,7 +91,7 @@ NETMHCPAN_BATCH_SIZE = 50000        # Peptides per batch call
 DEFAULT_HLA_ALLELE = "HLA-A*02:01"
 
 # ── Decoy A: Sequence Homology ──────────────────────────────────────────
-HAMMING_DISTANCE_MAX = 2
+HAMMING_DISTANCE_MAX = 4
 
 # Anchor positions for HLA-A*02:01 (0-indexed): p2 and p9 (for 9-mers)
 # Mutations at anchor positions that still pass EL threshold are included
@@ -129,7 +129,7 @@ ATCHLEY_FACTORS: dict[str, list[float]] = {
 
 # Physicochemical similarity threshold (cosine similarity)
 PHYSICOCHEMICAL_COSINE_THRESHOLD = 0.70
-PHYSICOCHEMICAL_TOP_K = 5000  # Keep top-K for structural modeling
+PHYSICOCHEMICAL_TOP_K = 50  # Keep top-K for structural modeling
 
 # Surface electrostatic similarity threshold
 SURFACE_SIMILARITY_THRESHOLD = 0.75
@@ -148,7 +148,7 @@ AF3_MODEL_DIR = Path(os.getenv("AF3_MODEL_DIR", str(AF3_DIR / "models")))
 AF3_DB_DIR = Path(os.getenv("AF3_DB_DIR", str(AF3_DIR / "databases")))
 
 # ProteinMPNN (for inverse sequence design)
-PROTEINMPNN_DIR = PROJECT_ROOT / "decoy_b" / "external" / "proteinmpnn"
+PROTEINMPNN_DIR = Path(os.getenv("PROTEINMPNN_DIR", "/share/liuyutian/S3AI/rebuttal/ProteinMPNN"))
 
 # Legacy (PANDORA/APE-Gen — still supported as fallback)
 MODELING_TOOL = os.getenv("PMHC_MODELING_TOOL", "tfold")  # tfold | af3 | pandora | apegen

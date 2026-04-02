@@ -122,26 +122,31 @@ python -m decoy_c show
 
 ## 环境配置与外部工具部署
 
-本项目已高度 **self-contained（自包含）**。核心的预测和设计代码（如 tFold 和 ProteinMPNN）均已复制并重构至 `decoy_b/external` 目录。
-代码库外**只允许存在**大模型权重文件与个别独立容器（AlphaFold 3）。
+所有的依赖、模型和工具必须部署在 `/share/liuyutian` 目录下。
 
-所有的依赖和外部工具路径均统一在 `decoy_a/config.py` 中管理，使用者只需修改这一个配置文件即可指向自己的模型权重。
+环境变量已在 `decoy_a/config.py` 中自动映射：
+```python
+_SHARE_ROOT = Path("/share/liuyutian")
+TFOLD_DIR = Path(os.getenv("TFOLD_DIR", str(_SHARE_ROOT / "tfold")))
+AF3_DIR = Path(os.getenv("AF3_DIR", str(_SHARE_ROOT / "alphafold3")))
+PROTEINMPNN_DIR = Path(os.getenv("PROTEINMPNN_DIR", str(_SHARE_ROOT / "S3AI" / "rebuttal" / "ProteinMPNN")))
+```
 
 ### 1. tFold — 批量结构预测 (Decoy B 必选)
-tFold 的推理代码已经完全内置到本项目中 (`decoy_b/external/tfold`)。
-- **模型检查点**: `esm_ppi_650m_tcr.pth` + `tfold_pmhc_trunk.pth`
-- **权重位置**: 默认需要放置在 `~/.cache/torch/hub/checkpoints/`，或者通过 `decoy_a/config.py` 中的设置进行自定义配置。
+tFold 用于 Decoy B 的大批量 pMHC 结构建模。
+- **路径**: `/share/liuyutian/tfold`
+- **模型检查点**: `esm_ppi_650m_tcr.pth` + `tfold_pmhc_trunk.pth`（需放置在 `~/.cache/torch/hub/checkpoints/`）
 - **输出 PDB 链约定**: Chain M = MHC 重链 (201 CA), Chain N = β2m (100 CA), Chain P = 肽段 (9 CA for 9-mer)
 - **性能**: ~2s/结构 (GPU), 批量 5000 条约 3 小时
 
-### 2. AlphaFold3 — 精细结构验证 (Decoy B 可选)
-AF3 由于其庞大的模型权重与特殊的运行环境，**不在内置代码内**。
-- **配置方式**: 通过 `decoy_a/config.py` 中的 `AF3_DIR` 指向您的本地 AF3 安装目录。默认指向 `/share/liuyutian/alphafold3`。
+### 2. AlphaFold 3 — 精细结构验证 (Decoy B 可选)
+AF3 用于对 tFold 筛选出的 Top 候选进行高精度重构验证。
+- **路径**: `/share/liuyutian/alphafold3`
 - **模型**: `af3.bin.zst`
 
 ### 3. ProteinMPNN — 逆向设计 (Decoy B 扩展)
-ProteinMPNN 的推理代码已经内置到本项目中 (`decoy_b/external/proteinmpnn`)。
-- **模型检查点**: 内置在 `vanilla_model_weights` 目录中。
+ProteinMPNN 用于在特定的 pMHC 结构骨架上进行序列逆向设计，生成可能的变体。
+- **路径**: `/share/liuyutian/S3AI/rebuttal/ProteinMPNN`
 
 ### 验证工具可用性
 你可以使用自带脚本检查外部工具的状态：

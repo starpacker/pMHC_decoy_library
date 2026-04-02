@@ -208,7 +208,12 @@ def scan_decoy_a(
     same_len = hla_filtered_df[
         hla_filtered_df["sequence"].str.len() == target_len
     ].copy()
-    log.info("Candidates of length %d: %d", target_len, len(same_len))
+    
+    # Exclude Non_Binders if the column exists
+    if "presentation_binding" in same_len.columns:
+        same_len = same_len[same_len["presentation_binding"] != "Non_Binder"]
+    
+    log.info("Candidates of length %d (excluding Non_Binders): %d", target_len, len(same_len))
 
     if same_len.empty:
         log.warning("No candidates of matching length found")

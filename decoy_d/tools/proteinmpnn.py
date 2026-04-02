@@ -289,7 +289,7 @@ def design_peptide(
         )
 
         if proc.returncode != 0:
-            raise RuntimeError(f"ProteinMPNN failed: {proc.stderr[:500]}")
+            raise RuntimeError(f"ProteinMPNN failed: {proc.stderr}")
 
         # Step 5: Parse output
         fasta_dir = output_dir / "seqs"

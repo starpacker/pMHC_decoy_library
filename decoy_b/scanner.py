@@ -420,7 +420,7 @@ def run_mpnn_design(
     target_pdb: str,
     target_sequence: str,
     hla_allele: str = DEFAULT_HLA_ALLELE,
-    peptide_chain_id: str = "C",
+    peptide_chain_id: str = "P",
     anchor_positions: Optional[List[int]] = None,
     num_designs: int = 1000,
     hla_filtered_df=None,

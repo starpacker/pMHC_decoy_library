@@ -218,9 +218,23 @@ class DecoyLibrary(BaseModel):
                 return e
         return None
 
+    def find_by_sequence_and_hla(self, seq: str, hla_allele: str) -> Optional[DecoyEntry]:
+        """Find an entry matching both sequence and HLA allele."""
+        seq = seq.strip().upper()
+        hla_allele = hla_allele.strip()
+        for e in self.entries:
+            if (e.peptide_info.decoy_sequence == seq
+                    and e.peptide_info.hla_allele == hla_allele):
+                return e
+        return None
+
     def add_entry(self, entry: DecoyEntry, deduplicate: bool = True) -> bool:
-        """Add entry; returns False if duplicate sequence already exists."""
-        if deduplicate and self.find_by_sequence(entry.peptide_info.decoy_sequence):
+        """Add entry; returns False if duplicate (sequence + HLA) already exists.
+        The same peptide on different HLA alleles represents distinct decoys."""
+        if deduplicate and self.find_by_sequence_and_hla(
+            entry.peptide_info.decoy_sequence,
+            entry.peptide_info.hla_allele,
+        ):
             return False
         self.entries.append(entry)
         return True

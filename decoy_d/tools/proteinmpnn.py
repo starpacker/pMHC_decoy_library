@@ -81,15 +81,11 @@ def _parse_pdb(pdb_path: Path, output_dir: Path) -> Path:
     
     if proc.returncode != 0:
         raise RuntimeError(f"PDB parsing failed: {proc.stderr[:300]}")
-    
+
+    if not jsonl_path.exists() or jsonl_path.stat().st_size == 0:
+        raise RuntimeError(f"PDB parsing produced no output at {jsonl_path}")
+
     return jsonl_path
-
-    # The output is a JSONL file
-    jsonl_files = list(output_dir.glob("*.jsonl"))
-    if not jsonl_files:
-        raise RuntimeError("No JSONL output from PDB parsing")
-
-    return output_dir
 
 
 def _write_fixed_positions(
@@ -252,7 +248,7 @@ def design_peptide(
         # Step 2: Write fixed positions (anchor residues)
         fixed_path = work_dir / "fixed_positions.jsonl"
         _write_fixed_positions(
-            peptide_chain_id, 9, anchor_positions, fixed_path, pdb_name,
+            peptide_chain_id, len(anchor_positions), anchor_positions, fixed_path, pdb_name,
         )
 
         # Step 3: Write chain design spec (only peptide chain is designable)

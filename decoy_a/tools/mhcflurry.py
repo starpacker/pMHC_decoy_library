@@ -126,6 +126,35 @@ def predict_binding(
     alleles = [allele] * len(peptides)
 
     try:
+        # Try presentation predictor first (includes processing score)
+        try:
+            from mhcflurry import Class1PresentationPredictor
+            pres_predictor = Class1PresentationPredictor.load()
+            df = pres_predictor.predict(
+                peptides=peptides,
+                alleles=[allele] * len(peptides),
+            )
+            results = []
+            for _, row in df.iterrows():
+                proc_score = float(row.get("processing_score", 0.0))
+                pres_score = float(row.get("presentation_score", 0.0))
+                pres_pct = float(row.get("presentation_percentile", 100.0))
+                aff = float(row.get("affinity", 50000.0))
+                aff_pct = float(row.get("affinity_percentile", 100.0))
+                results.append(MHCflurryResult(
+                    sequence=str(row.get("peptide", "")),
+                    hla_allele=hla_allele,
+                    affinity_nm=aff,
+                    affinity_percentile=aff_pct,
+                    processing_score=proc_score,
+                    presentation_score=pres_score,
+                    presentation_percentile=pres_pct,
+                ))
+            return results
+        except (ImportError, Exception) as pres_exc:
+            log.debug("Presentation predictor not available, falling back to affinity: %s", pres_exc)
+
+        # Fallback: affinity-only predictor
         df = predictor.predict_to_dataframe(
             peptides=peptides,
             allele=allele,
@@ -141,8 +170,8 @@ def predict_binding(
                 affinity_nm=aff,
                 affinity_percentile=pct,
                 processing_score=0.0,
-                presentation_score=0.0,
-                presentation_percentile=pct,  # Use affinity %Rank as EL proxy
+                presentation_score=aff,  # Use affinity as presentation proxy
+                presentation_percentile=pct,
             ))
         return results
 

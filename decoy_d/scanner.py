@@ -41,9 +41,17 @@ def run_decoy_d(
     # Step 2: ProteinMPNN Design
     log.info(f"Running ProteinMPNN on {target_pdb} for {num_designs} designs...")
     
-    # Fix anchor positions for A*02:01 (p2 and p9 for 9-mer)
+    # Fix anchor positions based on HLA allele.
+    # For HLA-A*02:01: p2 and pΩ (last position) are the canonical anchors.
+    # Position numbering is 1-indexed for ProteinMPNN.
+    HLA_ANCHOR_MAP = {
+        "HLA-A*02:01": {8: [2, 8], 9: [2, 9], 10: [2, 10], 11: [2, 11]},
+        "HLA-A*01:01": {9: [2, 9], 10: [2, 10]},
+        "HLA-B*07:02": {9: [2, 9], 10: [2, 10]},
+    }
     n = len(target_sequence)
-    anchor_positions = [2, n]
+    allele_anchors = HLA_ANCHOR_MAP.get(hla_allele, {})
+    anchor_positions = allele_anchors.get(n, [2, n])  # fallback: p2 and pΩ
     
     designs = design_peptide(
         pdb_path=target_pdb,
@@ -89,8 +97,12 @@ def run_decoy_d(
     
     log.info(f"Predicting 3D structures for top {len(top_k_seqs)} candidates...")
     tfold_res = predict_pmhc_batch(top_k_seqs, hla_allele, output_dir / "tfold_pdbs")
-    
-    pdb_paths = {r.peptide: r.pdb_path for r in tfold_res}
+
+    # Only include successful predictions (pdb_path is not None)
+    pdb_paths = {r.peptide: r.pdb_path for r in tfold_res if r.pdb_path is not None}
+    n_failed = sum(1 for r in tfold_res if r.pdb_path is None)
+    if n_failed > 0:
+        log.warning(f"{n_failed}/{len(tfold_res)} tFold predictions failed — excluded from results")
     filtered_df["pdb_path"] = filtered_df["sequence"].map(pdb_paths)
     
     # Target pdb path

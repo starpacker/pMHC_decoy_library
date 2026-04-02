@@ -592,9 +592,10 @@ def run_mpnn_design(
         if expr_df is not None and gene_symbols:
             for gene in gene_symbols:
                 if gene not in expr_lookup:
-                    expr_lookup[gene] = get_gene_expression(gene, expr_df)
+                    result = get_gene_expression(gene, expr_df)
+                    expr_lookup[gene] = result  # may be None
                 ed = expr_lookup.get(gene)
-                if ed and (expression is None or ed["max_vital_organ_tpm"] > (expression.max_vital_organ_tpm if expression else 0)):
+                if ed is not None and (expression is None or ed["max_vital_organ_tpm"] > (expression.max_vital_organ_tpm if expression else 0)):
                     expression = TissueExpression(**ed)
 
         hd = hamming_distance(target_sequence, seq)
@@ -835,8 +836,10 @@ def scan_decoy_b(
             if best_expr:
                 expression = TissueExpression(**best_expr)
 
-        # Combined score
-        if structural and structural.surface_correlation > 0:
+        # Combined score: use structural data whenever available, regardless
+        # of whether surface_correlation is exactly zero (which can happen
+        # from numerical precision, not just missing data)
+        if structural is not None:
             combined = 0.4 * cos_sim + 0.6 * structural.surface_correlation
         else:
             combined = cos_sim

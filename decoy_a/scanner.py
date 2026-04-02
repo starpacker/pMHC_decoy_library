@@ -212,6 +212,8 @@ def scan_decoy_a(
     # Exclude Non_Binders if the column exists
     if "presentation_binding" in same_len.columns:
         same_len = same_len[same_len["presentation_binding"] != "Non_Binder"]
+    elif "binding" in same_len.columns:
+        same_len = same_len[same_len["binding"] != "Non_Binder"]
     
     log.info("Candidates of length %d (excluding Non_Binders): %d", target_len, len(same_len))
 
@@ -310,11 +312,16 @@ def scan_decoy_a(
         hits.append(hit)
 
     # Sort: fewer mismatches first, then by expression risk (high TPM = high risk)
-    hits.sort(key=lambda h: (
-        h.hamming_distance,
-        -(h.expression.max_vital_organ_tpm if h.expression else 0.0),
-        h.el_rank,
-    ))
+    # Missing expression data (None) is sorted after 0.0 TPM to avoid conflating
+    # "unknown risk" with "confirmed low risk"
+    def _sort_key(h):
+        if h.expression is None:
+            tpm_key = (1, 0.0)   # (unknown=1, _) → sorts after known
+        else:
+            tpm_key = (0, -h.expression.max_vital_organ_tpm)  # (known=0, -tpm)
+        return (h.hamming_distance, tpm_key, h.el_rank)
+
+    hits.sort(key=_sort_key)
 
     log.info(
         "Decoy A complete: %d hits (1-mismatch: %d, 2-mismatch: %d)",

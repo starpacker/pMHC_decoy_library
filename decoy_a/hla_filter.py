@@ -374,10 +374,12 @@ def run_hla_filter(
     binders_df = results_df[results_df["el_rank"] <= NETMHCPAN_EL_RANK_THRESHOLD].copy()
 
     # Merge back gene/protein annotations from k-mer DB
+    # Use inner join: only keep peptides that exist in the k-mer DB,
+    # so every binder retains its gene/protein annotations.
     binders_df = binders_df.merge(
-        kmer_df[["sequence", "source_proteins", "gene_symbols"]],
+        kmer_df[["sequence", "source_proteins", "gene_symbols"]].drop_duplicates(subset=["sequence"]),
         on="sequence",
-        how="left",
+        how="inner",
     )
 
     # Cache results

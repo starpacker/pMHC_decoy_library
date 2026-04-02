@@ -361,36 +361,21 @@ def extract_from_paper(paper: PaperRecord) -> List[DecoyEntry]:
     RuntimeError
         If LLM API key is not configured or LLM call fails.
     """
-    # ── Check API Key ────────────────────────────────────────────────────
+    # ── Try LLM first, fall back to rule-based extraction ──────────────
     if not OPENAI_API_KEY:
-        error_msg = (
-            "\n" + "=" * 60 + "\n"
-            "❌ FATAL ERROR: No LLM API Key Configured!\n"
-            "=" * 60 + "\n"
-            "The OPENAI_API_KEY is not set. This pipeline requires an LLM.\n\n"
-            "To fix this, set the environment variable:\n"
-            "  export OPENAI_API_KEY='your-api-key-here'\n\n"
-            "Or configure it in config.py.\n"
-            "=" * 60
+        log.warning(
+            "OPENAI_API_KEY not set — falling back to rule-based extraction "
+            "for PMID %s (results will be lower quality)",
+            paper.pmid,
         )
-        log.error(error_msg)
-        raise RuntimeError("OPENAI_API_KEY not configured. Cannot proceed without LLM.")
+        return extract_rule_based(paper)
 
-    # ── Call LLM (no fallback to rule-based) ─────────────────────────────
     try:
         return extract_with_llm(paper)
     except Exception as exc:
-        error_msg = (
-            "\n" + "=" * 60 + "\n"
-            f"❌ FATAL ERROR: LLM Extraction Failed for PMID {paper.pmid}\n"
-            "=" * 60 + "\n"
-            f"Error: {exc}\n\n"
-            "This pipeline does NOT fallback to rule-based extraction.\n"
-            "Please check:\n"
-            "  1. API key is valid\n"
-            "  2. API endpoint is reachable\n"
-            "  3. Model name is correct\n"
-            "=" * 60
+        log.warning(
+            "LLM extraction failed for PMID %s (%s) — "
+            "falling back to rule-based extraction",
+            paper.pmid, exc,
         )
-        log.error(error_msg)
-        raise RuntimeError(f"LLM extraction failed for PMID {paper.pmid}: {exc}") from exc
+        return extract_rule_based(paper)

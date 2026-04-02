@@ -117,8 +117,9 @@ def compute_risk_score(
     float
         Composite risk score (higher = more dangerous).
     """
-    # Clamp EL rank to avoid division by zero
+    # Clamp EL rank to avoid division by zero and extreme outlier scores
     el_rank = max(el_rank, 0.01)
+    el_rank = min(el_rank, 100.0)
     return similarity * (1.0 / el_rank) * tpm_weight
 
 
@@ -191,10 +192,14 @@ def score_and_rank(
                     e.source = DecoySource.BOTH
                     e.physicochemical_similarity = hit.similarity_score
                     e.structural = hit.structural
-                    # Recalculate risk with the better similarity
-                    best_sim = max(e.sequence_similarity, hit.similarity_score)
+                    if hit.structural:
+                        e.structural_similarity = hit.structural.surface_correlation
+                    # Use sequence_similarity (Hamming-based) and physicochemical
+                    # similarity (cosine-based) separately — they are different
+                    # metrics. Take the weighted combination for risk scoring.
+                    combined_sim = 0.5 * e.sequence_similarity + 0.5 * hit.similarity_score
                     e.total_risk_score = compute_risk_score(
-                        best_sim, e.el_rank, e.vital_organ_tpm_weight,
+                        combined_sim, e.el_rank, e.vital_organ_tpm_weight,
                     )
                     break
             continue

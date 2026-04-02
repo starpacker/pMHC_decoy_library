@@ -51,12 +51,23 @@ class PaperRecord:
     full_text: str = ""
     url: str = ""
     keywords: List[str] = field(default_factory=list)
-    
-    # For compatibility with existing code
+    _pmid: Optional[str] = field(default=None, repr=False)
+
     @property
     def pmid(self) -> str:
-        """Return source_id for backward compatibility."""
-        return self.source_id
+        """Return the actual PubMed ID. Only valid for pubmed/europepmc sources.
+        For non-PubMed sources, returns a source-prefixed ID to avoid
+        contaminating PMID fields with arXiv/DOI/NCT identifiers."""
+        if self._pmid is not None:
+            return self._pmid
+        if self.source in ("pubmed", "europepmc"):
+            return self.source_id
+        # Non-PubMed: return prefixed ID so it is never confused with a real PMID
+        return f"{self.source}:{self.source_id}"
+
+    @pmid.setter
+    def pmid(self, value: str) -> None:
+        self._pmid = value
 
 
 # ══════════════════════════════════════════════════════════════════════════

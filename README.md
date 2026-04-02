@@ -75,12 +75,37 @@ python -m decoy_a scan --target EVDPIGHLY --hla "HLA-A*02:01"
 **四阶段管线**:
 1. **Atchley 理化因子初筛**: 从 ~128 万 8-11mer 候选中，排除 Decoy A 领地 (同长度 HD≤2)，按 TCR 接触核心 (中央 5 残基) 的 Atchley 向量余弦相似度筛选 Top 5000
 2. **tFold 批量结构预测**: 对 Top 候选批量生成 pMHC 三维结构 (PDB)，支持 8-11mer
-3. **肽段 RMSD 精筛**: 以 MHC 重链+β2m (Chain M+N, 301 CA) 为对齐基准，计算肽段 RMSD：
-   - **同长度**: 全肽段 (Chain P) CA 原子 RMSD
-   - **跨长度**: TCR 接触核心 (中央 5 个 CA 原子) RMSD
+3. **双叠合结构比较**: 使用两种互补的叠合策略综合评估 3D 相似度（详见下文）
 4. **综合评分**: 融合 Atchley 余弦相似度 (40%) 与结构相似度 (60%)，输出最终排名
 
-> **RMSD 计算方法**: 先在 MHC 骨架 (Chain M + Chain N, 共 301 个 CA 原子) 上做 Superimpose 对齐，然后计算肽段 RMSD。同长度时使用全肽段 CA 原子；**跨长度时仅比较 TCR 接触核心** (中央 5 个 CA 原子)，因为 TCR 识别主要依赖这些残基的空间构象。典型的肽段 RMSD 范围为 0.2–2.5 Å（同长度），2.0–3.0 Å（跨长度）。
+> **双叠合结构比较方法 (Dual Superposition)**
+>
+> 我们采用两种互补的叠合策略来衡量 candidate 与 target 的 3D 结构相似度：
+>
+> | 方法 | 叠合基准 | 测量对象 | 回答的问题 |
+> |------|---------|---------|-----------|
+> | **Method A** | MHC 骨架 (Chain M+N, 301 CA) | 肽段 RMSD (Chain P) | "在同一个 HLA 凹槽中，肽段的构象偏差有多大？" |
+> | **Method B** | 肽段骨架 (Chain P CA) | MHC groove 螺旋 RMSD (α1: res 50-85, α2: res 138-175) | "在同一个肽段构象下，MHC groove 的包裹方式偏差有多大？" |
+>
+> 最终结构相似度 = **两种方法 similarity 的平均值**（均按 `max(0, 1 - RMSD/3.0)` 归一化到 0-1）。
+>
+> **为什么需要两种方法？**
+>
+> 在 GILGFVFTL (HLA-A\*02:01) 的 50 个 decoy 候选上验证，两种方法高度一致（**Pearson r = 0.95, Spearman ρ = 0.90**），但存在有意义的互补差异：
+>
+> | 分歧类型 | 典型案例 | Method A 排名 | Method B 排名 | 解释 |
+> |---------|---------|:---:|:---:|------|
+> | **A 好 B 差** | ILLGFLFCA | 10 | 21 | 肽段骨架近似，但 groove 螺旋对肽段的包裹方式不同 |
+> | | LLLGILFLI | 8 | 19 | 同上：groove 两侧 α 螺旋有扭转偏移 |
+> | | YLLGFLFNY | 3 | 15 | 同上 |
+> | **B 好 A 差** | RALGFLIGL | 13 | 1 | groove 包裹几乎完全一致，但肽段有整体平移 |
+> | | KTLGIVIGV | 21 | 10 | 同上：groove 上下文保守但肽段位置偏移 |
+> | | KTLGIVMGV | 23 | 12 | 同上 |
+> | | SALGFVIPA | 24 | 13 | 同上 |
+>
+> 单独使用 Method A 会漏掉 **groove 上下文保守** 的候选（肽段平移但整体表面保守），单独使用 Method B 会漏掉 **肽段构象保守** 但 groove 有偏转的候选。取平均值可同时捕获两类风险。
+>
+> 验证脚本：`scripts/compare_superposition_methods.py`
 
 **子命令** (`python -m decoy_b <command>`):
 - `run`: 运行完整的 Decoy B 管线
@@ -174,12 +199,13 @@ Decoy B 的综合评分融合理化相似度与结构相似度：
 
 $$ Combined = 0.4 \times CosSim + 0.6 \times StructSim $$
 
-其中结构相似度基于**肽段 RMSD**：
+其中结构相似度由**双叠合方法**综合得出：
 
-$$ StructSim = \max\left(0,\ 1 - \frac{PeptideRMSD}{3.0}\right) $$
+$$StructSim = \frac{1}{2}\left[\max\left(0,\ 1 - \frac{PeptideRMSD_A}{3.0}\right) + \max\left(0,\ 1 - \frac{GrooveRMSD_B}{3.0}\right)\right]$$
 
 - **CosSim**: TCR 接触核心 (p4-p8) 的 Atchley 向量余弦相似度
-- **PeptideRMSD**: 在 MHC 骨架 (Chain M+N) 对齐后计算的肽段 RMSD (Å)。同长度→全肽段 CA；跨长度→TCR 接触核心 (中央 5 CA)
+- **PeptideRMSD_A** (Method A): 在 MHC 骨架 (Chain M+N, 301 CA) 对齐后计算的肽段 RMSD。同长度→全肽段 CA；跨长度→TCR 接触核心 (中央 5 CA)
+- **GrooveRMSD_B** (Method B): 在肽段骨架 (Chain P CA) 对齐后计算的 MHC groove 螺旋 RMSD (α1 res 50-85 + α2 res 138-175)
 - **3.0 Å**: 归一化常数，RMSD ≥ 3.0 Å 视为完全不相似
 
 ### 通用权重因子
@@ -366,7 +392,8 @@ pMHC_decoy_library/
 │   ├── generate_decoy_b_viewer.py   #   3D 结构对比查看器
 │   ├── visualize_decoy_a.py         #   Decoy A 可视化
 │   ├── visualize_decoy_c.py         #   Decoy C 可视化
-│   └── visualize_presentation.py    #   Presentation Score 对比可视化
+│   ├── visualize_presentation.py    #   Presentation Score 对比可视化
+│   └── compare_superposition_methods.py  # 双叠合方法对比验证
 │
 ├── data/
 │   ├── decoy_a/                     #   K-mer 库 + HLA 过滤 + 扫描结果

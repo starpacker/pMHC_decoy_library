@@ -277,7 +277,7 @@ def design_peptide(
             "--num_seq_per_target", str(num_designs),
             "--sampling_temp", temp_str,
             "--seed", "42",
-            "--batch_size", "1",
+            "--batch_size", str(min(num_designs, 100)),
             "--path_to_model_weights", str(PROTEINMPNN_WEIGHTS),
             "--model_name", model_name,
         ]

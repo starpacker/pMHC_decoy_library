@@ -277,19 +277,54 @@ def design_peptide(
             "--num_seq_per_target", str(num_designs),
             "--sampling_temp", temp_str,
             "--seed", "42",
-            "--batch_size", "1",
+            "--batch_size", str(min(num_designs, 10)),
             "--path_to_model_weights", str(PROTEINMPNN_WEIGHTS),
             "--model_name", model_name,
         ]
 
-        log.info("Running ProteinMPNN: %d designs at T=%s", num_designs, temp_str)
+        log.info("Running ProteinMPNN: %d designs per temperature at T=[%s]", num_designs, temp_str)
 
-        proc = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=600,
+        import time
+        import sys
+
+        proc = subprocess.Popen(
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
         )
 
+        fasta_dir = output_dir / "seqs"
+        expected_fasta = fasta_dir / f"{pdb_name}.fa"
+        
+        total_expected = num_designs * len(temperatures)
+        start_time = time.time()
+        last_printed = 0
+        
+        while proc.poll() is None:
+            time.sleep(1.0)
+            if expected_fasta.exists():
+                with open(expected_fasta, 'r') as f:
+                    # count headers starting with >T=
+                    lines = f.readlines()
+                    generated = sum(1 for line in lines if line.startswith(">T="))
+                
+                # Print progress every 10
+                if generated > 0 and generated != last_printed and (generated % 100 == 0 or generated == total_expected or generated - last_printed >= 100):
+                    elapsed = time.time() - start_time
+                    speed = generated / elapsed
+                    remaining = total_expected - generated
+                    eta = remaining / speed if speed > 0 else 0
+                    log.info(f"Progress: {generated}/{total_expected} designs generated. ETA: {eta:.1f}s")
+                    last_printed = generated
+
+        stdout, stderr = proc.communicate()
         if proc.returncode != 0:
-            raise RuntimeError(f"ProteinMPNN failed: {proc.stderr}")
+            raise RuntimeError(f"ProteinMPNN failed: {stderr}")
+
+        if expected_fasta.exists():
+            with open(expected_fasta, 'r') as f:
+                lines = f.readlines()
+                generated = sum(1 for line in lines if line.startswith(">T="))
+            elapsed = time.time() - start_time
+            log.info(f"Finished generating {generated}/{total_expected} designs in {elapsed:.1f}s")
 
         # Step 5: Parse output
         fasta_dir = output_dir / "seqs"

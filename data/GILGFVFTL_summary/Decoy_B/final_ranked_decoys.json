@@ -1,0 +1,2551 @@
+[
+  {
+    "decoy_ab_id": "DAB-0001",
+    "sequence": "LLVGFVFVV",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_B_Structural_Similarity",
+    "gene_symbols": [
+      "AGPAT3"
+    ],
+    "source_proteins": [
+      "Q9NRZ7"
+    ],
+    "el_rank": 0.0115,
+    "hamming_distance": 5,
+    "sequence_similarity": 0.0,
+    "physicochemical_similarity": 0.9743340391347695,
+    "structural_similarity": 0.9454069632920706,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 83.21546031557827,
+    "risk_rank": 1,
+    "mismatches": [],
+    "structural": {
+      "modeling_tool": "biopython+peptide_rmsd",
+      "pdb_path": "/share/liuyutian/pMHC_decoy_library/data/decoy_b/pmhc_models/tfold/pmhc_LLVGFVFVV_HLA-A0201.pdb",
+      "surface_correlation": 0.9454069632920706,
+      "rmsd": 0.4521247341090562,
+      "electrostatic_fingerprint_distance": null
+    }
+  },
+  {
+    "decoy_ab_id": "DAB-0002",
+    "sequence": "KVLGIVFFV",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_B_Structural_Similarity",
+    "gene_symbols": [
+      "HTR2C"
+    ],
+    "source_proteins": [
+      "P28335"
+    ],
+    "el_rank": 0.015375,
+    "hamming_distance": 5,
+    "sequence_similarity": 0.0,
+    "physicochemical_similarity": 0.9869617077634669,
+    "structural_similarity": 0.8100417300902986,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 57.28843714858966,
+    "risk_rank": 2,
+    "mismatches": [],
+    "structural": {
+      "modeling_tool": "biopython+peptide_rmsd",
+      "pdb_path": "/share/liuyutian/pMHC_decoy_library/data/decoy_b/pmhc_models/tfold/pmhc_KVLGIVFFV_HLA-A0201.pdb",
+      "surface_correlation": 0.8100417300902986,
+      "rmsd": 0.5698748097291044,
+      "electrostatic_fingerprint_distance": null
+    }
+  },
+  {
+    "decoy_ab_id": "DAB-0003",
+    "sequence": "AMLDFVFTV",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "TAMM41"
+    ],
+    "source_proteins": [
+      "Q96BW9"
+    ],
+    "el_rank": 0.0,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 55.55555555555556,
+    "risk_rank": 3,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "M",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "D",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 8,
+        "target_aa": "L",
+        "candidate_aa": "V",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0004",
+    "sequence": "FLIGFIFTL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "SLC6A19"
+    ],
+    "source_proteins": [
+      "Q695T7"
+    ],
+    "el_rank": 0.0015,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 55.55555555555556,
+    "risk_rank": 4,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "I",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "I",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0005",
+    "sequence": "GLAGFLFTV",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "ABCA10"
+    ],
+    "source_proteins": [
+      "Q8WWZ4"
+    ],
+    "el_rank": 0.002375,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 55.55555555555556,
+    "risk_rank": 5,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 8,
+        "target_aa": "L",
+        "candidate_aa": "V",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0006",
+    "sequence": "SLLGLVFTV",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "RNF145"
+    ],
+    "source_proteins": [
+      "Q96MT1"
+    ],
+    "el_rank": 0.002875,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 55.55555555555556,
+    "risk_rank": 6,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "S",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 8,
+        "target_aa": "L",
+        "candidate_aa": "V",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0007",
+    "sequence": "FLLGTVFLL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "PATE2"
+    ],
+    "source_proteins": [
+      "Q6UY27"
+    ],
+    "el_rank": 0.0042499999999999,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 55.55555555555556,
+    "risk_rank": 7,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "T",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0008",
+    "sequence": "SLLGFVATV",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "DPAGT1"
+    ],
+    "source_proteins": [
+      "Q9H3H5"
+    ],
+    "el_rank": 0.00675,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 55.55555555555556,
+    "risk_rank": 8,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "S",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 8,
+        "target_aa": "L",
+        "candidate_aa": "V",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0009",
+    "sequence": "YILGDNFTV",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "EBP"
+    ],
+    "source_proteins": [
+      "Q15125"
+    ],
+    "el_rank": 0.00675,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 55.55555555555556,
+    "risk_rank": 9,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "D",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "N",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 8,
+        "target_aa": "L",
+        "candidate_aa": "V",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0010",
+    "sequence": "FILPAVFYL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "SLC38A4"
+    ],
+    "source_proteins": [
+      "Q969I6"
+    ],
+    "el_rank": 0.007375,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 55.55555555555556,
+    "risk_rank": 10,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "P",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0011",
+    "sequence": "FLLGLPFTL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "PCNX1"
+    ],
+    "source_proteins": [
+      "Q96RV3"
+    ],
+    "el_rank": 0.007375,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 55.55555555555556,
+    "risk_rank": 11,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "P",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0012",
+    "sequence": "YLLGVVLTL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "HILPDA"
+    ],
+    "source_proteins": [
+      "Q9Y5L2"
+    ],
+    "el_rank": 0.0115,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 48.309178743961354,
+    "risk_rank": 12,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "V",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0013",
+    "sequence": "FILGGVFVV",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "PRXL2A"
+    ],
+    "source_proteins": [
+      "Q9BRX8"
+    ],
+    "el_rank": 0.012125,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 45.81901489117984,
+    "risk_rank": 13,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "G",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "V",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 8,
+        "target_aa": "L",
+        "candidate_aa": "V",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0014",
+    "sequence": "GLYGFIFYL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "EMC6"
+    ],
+    "source_proteins": [
+      "Q9BV81"
+    ],
+    "el_rank": 0.012125,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 45.81901489117984,
+    "risk_rank": 14,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "I",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0015",
+    "sequence": "SLLGFVYKL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "IFIT1"
+    ],
+    "source_proteins": [
+      "P09914"
+    ],
+    "el_rank": 0.01425,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 38.98635477582846,
+    "risk_rank": 15,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "S",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "K",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0016",
+    "sequence": "FLLGSVLTL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "TMEM235"
+    ],
+    "source_proteins": [
+      "A6NFC5"
+    ],
+    "el_rank": 0.015875,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 34.99562554680665,
+    "risk_rank": 16,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "S",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0017",
+    "sequence": "MVAGFVFYL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "CLN8"
+    ],
+    "source_proteins": [
+      "Q9UBY8"
+    ],
+    "el_rank": 0.015875,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 34.99562554680665,
+    "risk_rank": 17,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "M",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "V",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0018",
+    "sequence": "YILGKFFAL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "TIMELESS"
+    ],
+    "source_proteins": [
+      "Q9UNS1"
+    ],
+    "el_rank": 0.016875,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 32.92181069958848,
+    "risk_rank": 18,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "K",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0019",
+    "sequence": "FISGFAFLL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "SLC22A9"
+    ],
+    "source_proteins": [
+      "Q8IVM8"
+    ],
+    "el_rank": 0.019375,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 28.673835125448033,
+    "risk_rank": 19,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "S",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0020",
+    "sequence": "ILLGYSFTL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "SLC22A20P"
+    ],
+    "source_proteins": [
+      "A6NK97"
+    ],
+    "el_rank": 0.02025,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 27.434842249657066,
+    "risk_rank": 20,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "I",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "S",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0021",
+    "sequence": "HLLGCVFFL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "ADIPOR2"
+    ],
+    "source_proteins": [
+      "Q86V24"
+    ],
+    "el_rank": 0.021625,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 25.690430314707772,
+    "risk_rank": 21,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "H",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "C",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0022",
+    "sequence": "FILHAVFHL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "OR52D1"
+    ],
+    "source_proteins": [
+      "Q9H346"
+    ],
+    "el_rank": 0.023125,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 24.024024024024026,
+    "risk_rank": 22,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "H",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "H",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0023",
+    "sequence": "FMLGFVVVL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "ZDHHC4"
+    ],
+    "source_proteins": [
+      "Q9NPG8"
+    ],
+    "el_rank": 0.023125,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 24.024024024024026,
+    "risk_rank": 23,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "M",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "V",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "V",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0024",
+    "sequence": "MLLCFIFTL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "SFT2D1"
+    ],
+    "source_proteins": [
+      "Q8WV19"
+    ],
+    "el_rank": 0.023125,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 24.024024024024026,
+    "risk_rank": 24,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "M",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "C",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "I",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0025",
+    "sequence": "TLLGFLIPL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_B_Structural_Similarity",
+    "gene_symbols": [
+      "SUCNR1"
+    ],
+    "source_proteins": [
+      "Q9BXA5"
+    ],
+    "el_rank": 0.03825,
+    "hamming_distance": 5,
+    "sequence_similarity": 0.0,
+    "physicochemical_similarity": 0.9638810720326512,
+    "structural_similarity": 0.8016430510330419,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 22.654595017853218,
+    "risk_rank": 25,
+    "mismatches": [],
+    "structural": {
+      "modeling_tool": "biopython+peptide_rmsd",
+      "pdb_path": "/share/liuyutian/pMHC_decoy_library/data/decoy_b/pmhc_models/tfold/pmhc_TLLGFLIPL_HLA-A0201.pdb",
+      "surface_correlation": 0.8016430510330419,
+      "rmsd": 0.5950708469008744,
+      "electrostatic_fingerprint_distance": null
+    }
+  },
+  {
+    "decoy_ab_id": "DAB-0026",
+    "sequence": "WLLGFLIAL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_B_Structural_Similarity",
+    "gene_symbols": [
+      "ADAM32"
+    ],
+    "source_proteins": [
+      "Q8TC27"
+    ],
+    "el_rank": 0.041125,
+    "hamming_distance": 5,
+    "sequence_similarity": 0.0,
+    "physicochemical_similarity": 0.9638810720326512,
+    "structural_similarity": 0.8022510974716424,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 21.079710329387133,
+    "risk_rank": 26,
+    "mismatches": [],
+    "structural": {
+      "modeling_tool": "biopython+peptide_rmsd",
+      "pdb_path": "/share/liuyutian/pMHC_decoy_library/data/decoy_b/pmhc_models/tfold/pmhc_WLLGFLIAL_HLA-A0201.pdb",
+      "surface_correlation": 0.8022510974716424,
+      "rmsd": 0.5932467075850728,
+      "electrostatic_fingerprint_distance": null
+    }
+  },
+  {
+    "decoy_ab_id": "DAB-0027",
+    "sequence": "FILGFLVPL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "SSTR2"
+    ],
+    "source_proteins": [
+      "P30874"
+    ],
+    "el_rank": 0.027125,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 20.481310803891454,
+    "risk_rank": 27,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "V",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "P",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0028",
+    "sequence": "HLLGFVLFL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "ADIPOR1"
+    ],
+    "source_proteins": [
+      "Q96A54"
+    ],
+    "el_rank": 0.027125,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 20.481310803891454,
+    "risk_rank": 28,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "H",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0029",
+    "sequence": "GLLGSLFFL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "DERL3"
+    ],
+    "source_proteins": [
+      "Q96Q80"
+    ],
+    "el_rank": 0.02825,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 19.66568338249754,
+    "risk_rank": 29,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "S",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0030",
+    "sequence": "LLLGILFLI",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_B_Structural_Similarity",
+    "gene_symbols": [
+      "XKR9"
+    ],
+    "source_proteins": [
+      "Q5GH70"
+    ],
+    "el_rank": 0.049,
+    "hamming_distance": 6,
+    "sequence_similarity": 0.0,
+    "physicochemical_similarity": 0.963881072032651,
+    "structural_similarity": 0.9056241156018817,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 18.957691799473253,
+    "risk_rank": 30,
+    "mismatches": [],
+    "structural": {
+      "modeling_tool": "biopython+peptide_rmsd",
+      "pdb_path": "/share/liuyutian/pMHC_decoy_library/data/decoy_b/pmhc_models/tfold/pmhc_LLLGILFLI_HLA-A0201.pdb",
+      "surface_correlation": 0.9056241156018817,
+      "rmsd": 0.45393791092915475,
+      "electrostatic_fingerprint_distance": null
+    }
+  },
+  {
+    "decoy_ab_id": "DAB-0031",
+    "sequence": "FILDYVGTL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "FBXO24"
+    ],
+    "source_proteins": [
+      "O75426"
+    ],
+    "el_rank": 0.035375,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 15.704750687082845,
+    "risk_rank": 31,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "D",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "G",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0032",
+    "sequence": "FIAGIVFRL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "TRPM8"
+    ],
+    "source_proteins": [
+      "Q7Z2W7"
+    ],
+    "el_rank": 0.03675,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 15.117157974300833,
+    "risk_rank": 32,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "I",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "R",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0033",
+    "sequence": "HLLPEVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "ALOX15B"
+    ],
+    "source_proteins": [
+      "O15296"
+    ],
+    "el_rank": 0.03675,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 15.117157974300833,
+    "risk_rank": 33,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "H",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "P",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "E",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0034",
+    "sequence": "GILGFFLFV",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "STEAP4"
+    ],
+    "source_proteins": [
+      "Q687X5"
+    ],
+    "el_rank": 0.03825,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 14.524328249818446,
+    "risk_rank": 34,
+    "mismatches": [
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 8,
+        "target_aa": "L",
+        "candidate_aa": "V",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0035",
+    "sequence": "VLLGFLFLL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "SIDT1"
+    ],
+    "source_proteins": [
+      "Q9NXL6"
+    ],
+    "el_rank": 0.03825,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 14.524328249818446,
+    "risk_rank": 35,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "V",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0036",
+    "sequence": "IIFGGFFTL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "SCN10A"
+    ],
+    "source_proteins": [
+      "Q9Y5Y9"
+    ],
+    "el_rank": 0.041125,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 13.508949679162445,
+    "risk_rank": 36,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "I",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "G",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0037",
+    "sequence": "VLLGFVLPL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "RXFP3"
+    ],
+    "source_proteins": [
+      "Q9NSD7"
+    ],
+    "el_rank": 0.043625,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 12.734797835084368,
+    "risk_rank": 37,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "V",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "P",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0038",
+    "sequence": "YLLMFLFTL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "OR10H3",
+      "OR10H4"
+    ],
+    "source_proteins": [
+      "O60404",
+      "Q8NGA5"
+    ],
+    "el_rank": 0.043625,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 12.734797835084368,
+    "risk_rank": 38,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "M",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0039",
+    "sequence": "SILGFVGFV",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "SLC36A1",
+      "SLC36A2"
+    ],
+    "source_proteins": [
+      "Q495M3",
+      "Q7Z2H8"
+    ],
+    "el_rank": 0.047125,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 11.788977306218687,
+    "risk_rank": 39,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "S",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "G",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 8,
+        "target_aa": "L",
+        "candidate_aa": "V",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0040",
+    "sequence": "YIIGGVATL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "FLVCR2"
+    ],
+    "source_proteins": [
+      "Q9UPI3"
+    ],
+    "el_rank": 0.049,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 11.337868480725623,
+    "risk_rank": 40,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "I",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "G",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0041",
+    "sequence": "KLLFAVFTL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "OR4C5"
+    ],
+    "source_proteins": [
+      "Q8NGB2"
+    ],
+    "el_rank": 0.053125,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 10.457516339869281,
+    "risk_rank": 41,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "K",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0042",
+    "sequence": "KILGFTMFL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "SLC24A1"
+    ],
+    "source_proteins": [
+      "O60721"
+    ],
+    "el_rank": 0.054,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 10.2880658436214,
+    "risk_rank": 42,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "K",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "T",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "M",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0043",
+    "sequence": "GLIGFLFML",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "SVOPL"
+    ],
+    "source_proteins": [
+      "Q8N434"
+    ],
+    "el_rank": 0.055875,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 9.942828734775045,
+    "risk_rank": 43,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "I",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "L",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "M",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0044",
+    "sequence": "RLLGYVATL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "CSDE1"
+    ],
+    "source_proteins": [
+      "O75534"
+    ],
+    "el_rank": 0.055875,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 9.942828734775045,
+    "risk_rank": 44,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "R",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "Y",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0045",
+    "sequence": "GLLGFFVGL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "MTCH1"
+    ],
+    "source_proteins": [
+      "Q9NZJ7"
+    ],
+    "el_rank": 0.0585,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 9.49667616334283,
+    "risk_rank": 45,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 5,
+        "target_aa": "V",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "V",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "G",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0046",
+    "sequence": "KVLGIVFFL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "HTR2A",
+      "HTR2B"
+    ],
+    "source_proteins": [
+      "P28223",
+      "P41595"
+    ],
+    "el_rank": 0.0585,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 9.49667616334283,
+    "risk_rank": 46,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "K",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "V",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 4,
+        "target_aa": "F",
+        "candidate_aa": "I",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "F",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0047",
+    "sequence": "ILLGFLFCA",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_B_Structural_Similarity",
+    "gene_symbols": [
+      "ALG10",
+      "ALG10B"
+    ],
+    "source_proteins": [
+      "Q5BKT4",
+      "Q5I7T1"
+    ],
+    "el_rank": 0.097,
+    "hamming_distance": 5,
+    "sequence_similarity": 0.0,
+    "physicochemical_similarity": 0.9754174021071961,
+    "structural_similarity": 0.8329975489233918,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 9.174901960792921,
+    "risk_rank": 47,
+    "mismatches": [],
+    "structural": {
+      "modeling_tool": "biopython+peptide_rmsd",
+      "pdb_path": "/share/liuyutian/pMHC_decoy_library/data/decoy_b/pmhc_models/tfold/pmhc_ILLGFLFCA_HLA-A0201.pdb",
+      "surface_correlation": 0.8329975489233918,
+      "rmsd": 0.5010073532298244,
+      "electrostatic_fingerprint_distance": null
+    }
+  },
+  {
+    "decoy_ab_id": "DAB-0048",
+    "sequence": "SLDGFVFAL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "NPAS1",
+      "NPAS3"
+    ],
+    "source_proteins": [
+      "Q8IXF0",
+      "Q99742"
+    ],
+    "el_rank": 0.06075,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 9.144947416552355,
+    "risk_rank": 48,
+    "mismatches": [
+      {
+        "position": 0,
+        "target_aa": "G",
+        "candidate_aa": "S",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 2,
+        "target_aa": "L",
+        "candidate_aa": "D",
+        "is_anchor": false,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "A",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0049",
+    "sequence": "GLLEFVEEL",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_A_Sequence_Homology",
+    "gene_symbols": [
+      "DIPK1B"
+    ],
+    "source_proteins": [
+      "Q5VUD6"
+    ],
+    "el_rank": 0.062875,
+    "hamming_distance": 4,
+    "sequence_similarity": 0.5555555555555556,
+    "physicochemical_similarity": 0.0,
+    "structural_similarity": 0.0,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 8.83587364700685,
+    "risk_rank": 49,
+    "mismatches": [
+      {
+        "position": 1,
+        "target_aa": "I",
+        "candidate_aa": "L",
+        "is_anchor": true,
+        "is_tcr_contact": false
+      },
+      {
+        "position": 3,
+        "target_aa": "G",
+        "candidate_aa": "E",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 6,
+        "target_aa": "F",
+        "candidate_aa": "E",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      },
+      {
+        "position": 7,
+        "target_aa": "T",
+        "candidate_aa": "E",
+        "is_anchor": false,
+        "is_tcr_contact": true
+      }
+    ],
+    "structural": null
+  },
+  {
+    "decoy_ab_id": "DAB-0050",
+    "sequence": "AIAGIVFGI",
+    "target_sequence": "GILGFVFTL",
+    "hla_allele": "HLA-A*02:01",
+    "source": "Decoy_B_Structural_Similarity",
+    "gene_symbols": [
+      "CYYR1"
+    ],
+    "source_proteins": [
+      "Q96J86"
+    ],
+    "el_rank": 0.09425,
+    "hamming_distance": 5,
+    "sequence_similarity": 0.0,
+    "physicochemical_similarity": 0.9623894719966628,
+    "structural_similarity": 0.725788014903893,
+    "expression": null,
+    "vital_organ_tpm_weight": 1.0,
+    "critical_organs": [],
+    "total_risk_score": 8.704812708127331,
+    "risk_rank": 50,
+    "mismatches": [],
+    "structural": {
+      "modeling_tool": "biopython+peptide_rmsd",
+      "pdb_path": "/share/liuyutian/pMHC_decoy_library/data/decoy_b/pmhc_models/tfold/pmhc_AIAGIVFGI_HLA-A0201.pdb",
+      "surface_correlation": 0.725788014903893,
+      "rmsd": 0.822635955288321,
+      "electrostatic_fingerprint_distance": null
+    }
+  }
+]

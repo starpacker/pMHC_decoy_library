@@ -143,10 +143,10 @@ TFOLD_DIR = PROJECT_ROOT / "decoy_b" / "external" / "tfold"
 # AlphaFold3 (for high-accuracy refinement)
 # AF3 is not self-contained due to massive weights and custom runtime.
 # Point this to your AF3 installation directory.
-AF3_DIR = Path(os.getenv("AF3_DIR", "/share/liuyutian/alphafold3"))
-AF3_MODEL_DIR = Path(os.getenv("AF3_MODEL_DIR", str(AF3_DIR / "models")))
+AF3_DIR = Path(os.getenv("AF3_DIR", "/share/liuyutian/alphafold3_repo"))
+AF3_MODEL_DIR = Path(os.getenv("AF3_MODEL_DIR", "/share/liuyutian/alphafold3"))
 AF3_DB_DIR = Path(os.getenv("AF3_DB_DIR", str(AF3_DIR / "databases")))
-AF3_WEIGHTS_PATH = Path(os.getenv("AF3_WEIGHTS_PATH", str(AF3_MODEL_DIR / "af3.bin.zst")))
+AF3_WEIGHTS_PATH = Path(os.getenv("AF3_WEIGHTS_PATH", "/share/liuyutian/alphafold3/af3.bin.zst"))
 
 # ProteinMPNN (for inverse sequence design)
 PROTEINMPNN_DIR = Path(os.getenv("PROTEINMPNN_DIR", "/share/liuyutian/S3AI/rebuttal/ProteinMPNN"))

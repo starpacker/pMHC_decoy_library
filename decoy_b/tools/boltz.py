@@ -110,6 +110,8 @@ def _build_yaml_input(
         A = MHC heavy chain
         B = Beta-2-microglobulin
         C = Peptide
+
+    Uses msa: "empty" for single-sequence mode (no MSA server needed).
     """
     yaml_content = (
         "version: 1\n"
@@ -117,12 +119,15 @@ def _build_yaml_input(
         "  - protein:\n"
         f"      id: A\n"
         f"      sequence: {mhc_heavy_seq}\n"
+        '      msa: "empty"\n'
         "  - protein:\n"
         f"      id: B\n"
         f"      sequence: {b2m_seq}\n"
+        '      msa: "empty"\n'
         "  - protein:\n"
         f"      id: C\n"
         f"      sequence: {peptide}\n"
+        '      msa: "empty"\n'
     )
     yaml_path.write_text(yaml_content, encoding="utf-8")
 
@@ -155,15 +160,15 @@ def _parse_confidence_json(output_dir: Path, stem: str) -> Dict[str, float]:
 
 def _find_output_structure(output_dir: Path, stem: str) -> Optional[Path]:
     """Find the output CIF or PDB file from Boltz."""
-    # Boltz outputs: <stem>_model_0.cif (or .pdb)
-    for suffix in [".cif", ".pdb"]:
+    # Boltz outputs: <stem>_model_0.pdb (or .cif)
+    for suffix in [".pdb", ".cif"]:
         for pattern in [f"{stem}_model*{suffix}", f"*model*{suffix}"]:
             matches = list(output_dir.rglob(pattern))
             if matches:
                 return matches[0]
 
     # Fallback: any structure file
-    for suffix in ["*.cif", "*.pdb"]:
+    for suffix in ["*.pdb", "*.cif"]:
         matches = list(output_dir.rglob(suffix))
         if matches:
             return matches[0]
@@ -202,24 +207,47 @@ def _predict_python_api(
     """Run Boltz via Python API (import boltz)."""
     try:
         from boltz.main import predict as boltz_predict
+        import click
 
-        boltz_predict(
-            data=str(yaml_path),
-            out_dir=str(output_dir),
-            cache=str(BOLTZ_CACHE),
-            accelerator=BOLTZ_DEVICE,
-            model=BOLTZ_MODEL,
-            output_format="mmcif",
-            devices=1,
-            recycling_steps=3,
-            sampling_steps=200,
-            diffusion_samples=1,
-            override=False,
-            use_msa_server=False,
-        )
-        return True, ""
+        # boltz_predict is a Click command — invoke it programmatically
+        if isinstance(boltz_predict, click.BaseCommand):
+            args = [
+                str(yaml_path),
+                "--out_dir", str(output_dir),
+                "--cache", str(BOLTZ_CACHE),
+                "--accelerator", BOLTZ_DEVICE,
+                "--recycling_steps", "3",
+                "--sampling_steps", "200",
+                "--diffusion_samples", "1",
+                "--output_format", "mmcif",
+                "--devices", "1",
+            ]
+            result = boltz_predict(args, standalone_mode=False)
+            return True, ""
+        else:
+            # Legacy: direct function call
+            boltz_predict(
+                data=str(yaml_path),
+                out_dir=str(output_dir),
+                cache=str(BOLTZ_CACHE),
+                accelerator=BOLTZ_DEVICE,
+                model=BOLTZ_MODEL,
+                output_format="mmcif",
+                devices=1,
+                recycling_steps=3,
+                sampling_steps=200,
+                diffusion_samples=1,
+                override=False,
+                use_msa_server=False,
+            )
+            return True, ""
     except ImportError:
         return False, "boltz package not importable"
+    except SystemExit as e:
+        # Click commands may call sys.exit(0) on success
+        if e.code == 0 or e.code is None:
+            return True, ""
+        return False, f"Boltz Python API exited with code {e.code}"
     except Exception as e:
         return False, f"Boltz Python API error: {e}"
 
@@ -230,23 +258,26 @@ def _predict_cli(
     yaml_path: Path,
     output_dir: Path,
 ) -> tuple[bool, str]:
-    """Run Boltz via `boltz predict` CLI."""
+    """Run Boltz-2 via `conda run -n boltz boltz predict` CLI."""
+    # Use conda run to invoke Boltz-2 from the dedicated 'boltz' conda env
     cmd = [
+        "conda", "run", "-n", "boltz", "--no-capture-output",
         "boltz", "predict",
         str(yaml_path),
         "--out_dir", str(output_dir),
         "--cache", str(BOLTZ_CACHE),
         "--accelerator", BOLTZ_DEVICE,
         "--model", BOLTZ_MODEL,
-        "--output_format", "mmcif",
+        "--output_format", "pdb",
         "--devices", "1",
         "--recycling_steps", "3",
         "--sampling_steps", "200",
         "--diffusion_samples", "1",
+        "--no_kernels",
     ]
 
     try:
-        log.debug("Boltz CLI: %s", " ".join(cmd))
+        log.info("Boltz-2 CLI: %s", " ".join(cmd))
         proc = subprocess.run(
             cmd, capture_output=True, text=True, timeout=1800,
             env={**os.environ, "PYTHONUTF8": "1"},
@@ -255,7 +286,7 @@ def _predict_cli(
             return False, f"Boltz CLI failed (rc={proc.returncode}): {proc.stderr[:500]}"
         return True, ""
     except FileNotFoundError:
-        return False, "boltz command not found on PATH"
+        return False, "conda or boltz command not found on PATH"
     except subprocess.TimeoutExpired:
         return False, "Boltz CLI timed out (30 min)"
 
@@ -386,10 +417,10 @@ def predict_pmhc(
     yaml_path = input_dir / f"{name}.yaml"
     _build_yaml_input(peptide, mhc_heavy_seq, b2m_seq, yaml_path)
 
-    # Try each mode in order
+    # Try each mode in order — prefer CLI (conda run) for Boltz-2
     modes = [
-        ("Python API", _predict_python_api),
         ("CLI", _predict_cli),
+        ("Python API", _predict_python_api),
         ("Subprocess", _predict_subprocess),
     ]
 

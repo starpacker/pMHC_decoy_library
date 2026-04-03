@@ -334,8 +334,9 @@ def _run_local(
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    af3_python = "/home/liuyutian/server/miniconda3/envs/af3/bin/python"
     cmd = [
-        "python", str(run_script),
+        af3_python if Path(af3_python).exists() else "python", str(run_script),
         f"--json_path={input_path}",
         f"--model_dir={AF3_MODEL_DIR}",
         f"--output_dir={output_dir}",
@@ -350,7 +351,7 @@ def _run_local(
         proc = subprocess.run(
             cmd, capture_output=True, text=True,
             timeout=3600,
-            env={**os.environ, "PYTHONUTF8": "1"},
+            env={**os.environ, "PYTHONUTF8": "1", "PYTHONPATH": f"{str(AF3_DIR / 'src')}:{os.environ.get('PYTHONPATH', '')}"},
         )
         if proc.returncode != 0:
             return False, f"AF3 local failed (rc={proc.returncode}): {proc.stderr[:500]}"

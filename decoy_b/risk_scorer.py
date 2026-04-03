@@ -222,6 +222,18 @@ def score_and_rank(
             structural_similarity=(
                 hit.structural.surface_correlation if hit.structural else 0.0
             ),
+            plip_tanimoto=(
+                hit.structural.plip_tanimoto if hit.structural else None
+            ),
+            bsa_similarity=(
+                hit.structural.bsa_similarity if hit.structural else None
+            ),
+            prodigy_similarity=(
+                hit.structural.prodigy_similarity if hit.structural else None
+            ),
+            interface_combined=(
+                hit.structural.interface_combined if hit.structural else None
+            ),
             expression=hit.expression,
             vital_organ_tpm_weight=tpm_weight,
             critical_organs=critical_organs,

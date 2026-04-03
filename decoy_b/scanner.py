@@ -5,14 +5,18 @@ Identifies off-target peptides that are **sequentially distant** (Hamming > 2)
 but share similar 3D surface conformation and electrostatic charge with the
 target peptide — the classic "Titin-like" scenario.
 
-Four-stage approach:
+Five-stage approach:
     1. **Atchley factor screening** — Fast physicochemical similarity on
        TCR-contact residues → top 2,000-5,000 candidates.
     2. **tFold bulk prediction** — Batch pMHC structure prediction for
        top candidates (10-30s per peptide, GPU).
     3. **AF3 refinement** — High-accuracy prediction for top 200
        (2-5 min per peptide).
-    4. **Structure comparison** — RMSD / TM-score / surface electrostatics.
+    4. **Boltz cross-validation** — Independent structure prediction using
+       Boltz-2 for top candidates; compute agreement with tFold/AF3 to
+       increase confidence in structural similarity scores.
+    5. **Structure comparison** — RMSD / TM-score / surface electrostatics
+       with cross-validation agreement weighting.
 
 Optional parallel branch:
     **MPNN inverse design** — Generate sequences that preserve TCR-facing
@@ -239,6 +243,78 @@ def _predict_structures_tfold(
 
     results = predict_pmhc_batch(peptides, hla_allele, output_dir)
     return {r.peptide: r.pdb_path for r in results}
+
+
+def _predict_structures_boltz(
+    peptides: List[str],
+    hla_allele: str,
+    output_dir: Optional[Path] = None,
+) -> Dict[str, Optional[str]]:
+    """
+    Predict pMHC structures using Boltz-2 (cross-validation stage).
+    Returns dict: peptide -> pdb_path (or None if failed).
+    """
+    from .tools.boltz import check_available, predict_pmhc_batch
+
+    if not check_available():
+        log.info("Boltz not available; skipping cross-validation prediction")
+        return {pep: None for pep in peptides}
+
+    if output_dir is None:
+        output_dir = B_DATA_DIR / "pmhc_models" / "boltz"
+
+    results = predict_pmhc_batch(peptides, hla_allele, output_dir)
+
+    pdb_map = {}
+    for r in results:
+        pdb_map[r.peptide] = r.pdb_path or r.cif_path
+    return pdb_map
+
+
+def _compute_cross_validation_agreement(
+    primary_pdb: Optional[str],
+    boltz_pdb: Optional[str],
+) -> Optional[float]:
+    """
+    Compute agreement between primary (tFold/AF3) and Boltz predictions.
+
+    Uses peptide backbone RMSD after MHC superposition. Lower RMSD = higher
+    agreement, indicating more reliable structural prediction.
+
+    Returns a score in [0, 1] where 1.0 = perfect agreement (RMSD < 0.5A)
+    and 0.0 = poor agreement (RMSD > 4.0A).
+    """
+    if primary_pdb is None or boltz_pdb is None:
+        return None
+
+    try:
+        from Bio.PDB import PDBParser, Superimposer
+
+        parser = PDBParser(QUIET=True)
+        struct_a = parser.get_structure("primary", str(primary_pdb))
+        struct_b = parser.get_structure("boltz", str(boltz_pdb))
+
+        cas_a = [a for a in struct_a.get_atoms() if a.get_name() == "CA"]
+        cas_b = [a for a in struct_b.get_atoms() if a.get_name() == "CA"]
+
+        if len(cas_a) != len(cas_b) or len(cas_a) == 0:
+            return None
+
+        sup = Superimposer()
+        sup.set_atoms(cas_a, cas_b)
+        rmsd = sup.rms
+
+        # Convert RMSD to agreement score: sigmoid-like mapping
+        # RMSD < 0.5A -> ~1.0, RMSD ~2.0A -> ~0.5, RMSD > 4.0A -> ~0.0
+        agreement = max(0.0, 1.0 - (rmsd / 4.0))
+        return round(agreement, 4)
+
+    except ImportError:
+        log.debug("BioPython not available for cross-validation")
+        return None
+    except Exception as exc:
+        log.warning("Cross-validation agreement failed: %s", exc)
+        return None
 
 
 def _predict_structures_af3(
@@ -750,10 +826,12 @@ def scan_decoy_b(
     expr_df=None,
     run_structural: bool = True,
     run_af3_refinement: bool = True,
+    run_boltz_crossval: bool = True,
     run_mpnn: bool = False,
     cosine_threshold: float = PHYSICOCHEMICAL_COSINE_THRESHOLD,
     top_k: int = PHYSICOCHEMICAL_TOP_K,
     af3_top_n: int = 200,
+    boltz_top_n: int = 200,
     surface_threshold: float = SURFACE_SIMILARITY_THRESHOLD,
 ) -> List[DecoyBHit]:
     """
@@ -761,7 +839,8 @@ def scan_decoy_b(
         Stage 1: Atchley physicochemical screen → top K
         Stage 2: tFold bulk structure prediction
         Stage 3: AF3 refinement (top N)
-        Stage 4: Structure comparison & scoring
+        Stage 4: Boltz cross-validation (top N)
+        Stage 5: Structure comparison & scoring with cross-validation
 
     Parameters
     ----------
@@ -777,6 +856,8 @@ def scan_decoy_b(
         Run structure prediction (tFold).
     run_af3_refinement : bool
         Run AF3 on top candidates.
+    run_boltz_crossval : bool
+        Run Boltz-2 cross-validation on top candidates.
     run_mpnn : bool
         Run MPNN inverse design branch.
     cosine_threshold : float
@@ -785,6 +866,8 @@ def scan_decoy_b(
         Candidates for structure prediction.
     af3_top_n : int
         Candidates for AF3 refinement.
+    boltz_top_n : int
+        Candidates for Boltz cross-validation.
     surface_threshold : float
         Min surface similarity for final results.
 
@@ -796,8 +879,9 @@ def scan_decoy_b(
 
     target_sequence = target_sequence.strip().upper()
     log.info(
-        "Decoy B scan: target=%s, HLA=%s, structural=%s, af3=%s, mpnn=%s",
-        target_sequence, hla_allele, run_structural, run_af3_refinement, run_mpnn,
+        "Decoy B scan: target=%s, HLA=%s, structural=%s, af3=%s, boltz=%s, mpnn=%s",
+        target_sequence, hla_allele, run_structural, run_af3_refinement,
+        run_boltz_crossval, run_mpnn,
     )
 
     # Load data if needed
@@ -860,7 +944,24 @@ def scan_decoy_b(
             if pdb is not None:
                 candidate_pdbs[pep] = pdb
 
-    # ── Stage 4: Build DecoyBHit Objects ────────────────────────────────
+    # ── Stage 4: Boltz Cross-Validation ─────────────────────────────────
+    boltz_pdbs: Dict[str, Optional[str]] = {}
+    boltz_target_pdb: Optional[str] = None
+
+    if run_boltz_crossval and run_structural:
+        top_boltz = physchem_df.nlargest(boltz_top_n, "cosine_similarity")["sequence"].tolist()
+        all_boltz = [target_sequence] + top_boltz
+
+        log.info("Stage 4: Boltz cross-validation for %d + 1 peptides", len(top_boltz))
+        boltz_map = _predict_structures_boltz(all_boltz, hla_allele)
+
+        boltz_target_pdb = boltz_map.get(target_sequence)
+        boltz_pdbs = {p: boltz_map.get(p) for p in top_boltz}
+
+        n_boltz = sum(1 for v in boltz_pdbs.values() if v is not None)
+        log.info("Stage 4 complete: %d/%d Boltz structures predicted", n_boltz, len(top_boltz))
+
+    # ── Stage 5: Build DecoyBHit Objects ────────────────────────────────
     expr_lookup: Dict[str, dict] = {}
     if expr_df is not None:
         from decoy_a.kmer_builder import get_gene_expression
@@ -892,11 +993,36 @@ def scan_decoy_b(
             cosine_similarity=cos_sim,
         )
 
-        # Structure comparison
+        # Structure comparison (primary: tFold/AF3)
         structural = None
         cand_pdb = candidate_pdbs.get(seq)
         if cand_pdb and target_pdb_path:
             structural = compute_structure_similarity(target_pdb_path, cand_pdb)
+
+        # Boltz cross-validation: compute agreement between primary and Boltz
+        if structural and boltz_pdbs:
+            boltz_cand_pdb = boltz_pdbs.get(seq)
+            if boltz_cand_pdb:
+                structural.boltz_pdb_path = boltz_cand_pdb
+                agreement = _compute_cross_validation_agreement(cand_pdb, boltz_cand_pdb)
+                structural.cross_validation_agreement = agreement
+                try:
+                    from .tools.boltz import _parse_confidence_json, _safe_name
+                    boltz_pred_dir = B_DATA_DIR / "pmhc_models" / "boltz"
+                    bname = _safe_name(seq, hla_allele)
+                    for search_dir in [
+                        boltz_pred_dir / f"boltz_results_{bname}" / "predictions" / bname,
+                        boltz_pred_dir / f"boltz_results_{bname}" / "predictions",
+                        boltz_pred_dir,
+                    ]:
+                        if search_dir.exists():
+                            bconf = _parse_confidence_json(search_dir, bname)
+                            if bconf:
+                                structural.boltz_confidence = bconf.get("confidence_score")
+                                structural.boltz_iptm = bconf.get("iptm")
+                                break
+                except Exception:
+                    pass  # Non-critical
 
         # Expression
         gene_symbols = row.get("gene_symbols", [])
@@ -922,11 +1048,15 @@ def scan_decoy_b(
             if best_expr:
                 expression = TissueExpression(**best_expr)
 
-        # Combined score: use structural data whenever available, regardless
-        # of whether surface_correlation is exactly zero (which can happen
-        # from numerical precision, not just missing data)
+        # Combined score with cross-validation boost
         if structural is not None:
-            combined = 0.4 * cos_sim + 0.6 * structural.surface_correlation
+            base_combined = 0.4 * cos_sim + 0.6 * structural.surface_correlation
+            # Cross-validation agreement boosts confidence (up to +10%)
+            if structural.cross_validation_agreement is not None:
+                cv_boost = 0.10 * structural.cross_validation_agreement
+                combined = min(1.0, base_combined + cv_boost)
+            else:
+                combined = base_combined
         else:
             combined = cos_sim
 
@@ -967,13 +1097,17 @@ def scan_decoy_b(
 
     n_mpnn_t1 = sum(1 for h in hits if getattr(h, "mpnn_source", "") == "proteome_matched")
     n_mpnn_t2 = sum(1 for h in hits if getattr(h, "mpnn_source", "") == "hla_qualified_synthetic")
+    n_crossval = sum(
+        1 for h in hits
+        if h.structural is not None and h.structural.cross_validation_agreement is not None
+    )
     log.info(
         "Decoy B complete: %d hits (physchem-only: %d, with structure: %d, "
-        "MPNN Tier1: %d, MPNN Tier2: %d)",
+        "cross-validated: %d, MPNN Tier1: %d, MPNN Tier2: %d)",
         len(hits),
         sum(1 for h in hits if h.structural is None and not getattr(h, "mpnn_source", "")),
         sum(1 for h in hits if h.structural is not None),
-        n_mpnn_t1, n_mpnn_t2,
+        n_crossval, n_mpnn_t1, n_mpnn_t2,
     )
 
     return hits

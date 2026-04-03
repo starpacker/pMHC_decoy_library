@@ -138,14 +138,55 @@ class PhysicochemFeatures(BaseModel):
 
 class StructuralScore(BaseModel):
     """3D structural and electrostatic similarity assessment."""
-    modeling_tool: str = Field("", description="Tool used: pandora | apegen")
+    modeling_tool: str = Field("", description="Tool used: biopython+dual_superposition | none | unavailable | error")
     pdb_path: Optional[str] = Field(None, description="Path to modeled pMHC PDB")
     surface_correlation: float = Field(
-        0.0, description="Pearson correlation of surface electrostatic potential"
+        0.0, description="Combined structural similarity score [0-1]"
     )
-    rmsd: Optional[float] = Field(None, description="Backbone RMSD to target pMHC")
+    rmsd: Optional[float] = Field(None, description="Peptide backbone RMSD to target pMHC (A)")
     electrostatic_fingerprint_distance: Optional[float] = Field(
         None, description="Distance in electrostatic fingerprint space"
+    )
+    # Phase 1: Interface descriptors
+    plip_tanimoto: Optional[float] = Field(
+        None, description="PLIP non-covalent interaction Tanimoto similarity [0-1]"
+    )
+    bsa_target: Optional[float] = Field(
+        None, description="Target pMHC buried surface area (A^2)"
+    )
+    bsa_candidate: Optional[float] = Field(
+        None, description="Candidate pMHC buried surface area (A^2)"
+    )
+    bsa_similarity: Optional[float] = Field(
+        None, description="BSA similarity [0-1]"
+    )
+    prodigy_dg_target: Optional[float] = Field(
+        None, description="Target PRODIGY dG prediction (kcal/mol)"
+    )
+    prodigy_dg_candidate: Optional[float] = Field(
+        None, description="Candidate PRODIGY dG prediction (kcal/mol)"
+    )
+    prodigy_similarity: Optional[float] = Field(
+        None, description="PRODIGY dG similarity [0-1]"
+    )
+    interface_combined: Optional[float] = Field(
+        None, description="Weighted combination of all interface descriptors [0-1]"
+    )
+    # Cross-validation (Boltz)
+    boltz_pdb_path: Optional[str] = Field(
+        None, description="Path to Boltz-predicted pMHC structure"
+    )
+    boltz_confidence: Optional[float] = Field(
+        None, description="Boltz confidence score (0.8*pLDDT + 0.2*PTM) [0-1]"
+    )
+    boltz_iptm: Optional[float] = Field(
+        None, description="Boltz interface TM-score [0-1]"
+    )
+    boltz_rmsd: Optional[float] = Field(
+        None, description="Peptide backbone RMSD between Boltz and primary model (A)"
+    )
+    cross_validation_agreement: Optional[float] = Field(
+        None, description="Agreement score between primary (tFold/AF3) and Boltz predictions [0-1]"
     )
 
 
@@ -209,6 +250,12 @@ class DecoyABEntry(BaseModel):
     sequence_similarity: float = Field(0.0)
     physicochemical_similarity: float = Field(0.0)
     structural_similarity: float = Field(0.0)
+
+    # Interface descriptor details (from Phase 1 upgrade)
+    plip_tanimoto: Optional[float] = Field(None, description="PLIP interaction Tanimoto [0-1]")
+    bsa_similarity: Optional[float] = Field(None, description="BSA similarity [0-1]")
+    prodigy_similarity: Optional[float] = Field(None, description="PRODIGY dG similarity [0-1]")
+    interface_combined: Optional[float] = Field(None, description="Interface descriptor combined [0-1]")
 
     # Expression risk
     expression: Optional[TissueExpression] = None

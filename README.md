@@ -70,7 +70,9 @@ python -m decoy_c show
 $$ Risk_A = \left(1 - \frac{\text{Hamming}}{\text{Length}}\right) \times \frac{1}{EL\_Rank} \times TPM\_Weight $$
 
 ### Decoy B
-$$ Combined = 0.4 \times CosSim + 0.6 \times StructSim $$
+$$ Combined = 0.4 \times CosSim + 0.6 \times StructSim + CV\_Boost $$
+
+其中 `CV_Boost = 0.10 × cross_validation_agreement`（Boltz-2 交叉验证一致性加成，最高 +10%）。
 
 其中 **StructSim** 由双叠合方法综合得出：
 
@@ -129,6 +131,7 @@ conda activate base   # 或直接使用默认 shell（base 通常已自动激活
 | **mhcflurry 数据** | 预训练模型权重 | `/share/liuyutian/mhcflurry_data/4/` | 环境变量 `MHCFLURRY_DATA_DIR` |
 | **AlphaFold 3** | 精细结构验证（可选） | `/share/liuyutian/alphafold3_repo/` | subprocess 调用 |
 | **AlphaFold 3 权重** | AF3 模型参数 | `/share/liuyutian/alphafold3/af3.bin.zst` | 配置文件指定 |
+| **Boltz-2** | 结构交叉验证（推荐） | `~/tools/boltz` | `pip install -e .` / CLI |
 
 ### 环境变量
 
@@ -144,6 +147,8 @@ export TFOLD_DIR="<project>/decoy_b/external/tfold"
 export PROTEINMPNN_DIR="/share/liuyutian/S3AI/rebuttal/ProteinMPNN"
 export AF3_DIR="/share/liuyutian/alphafold3_repo"
 export AF3_WEIGHTS_PATH="/share/liuyutian/alphafold3/af3.bin.zst"
+export BOLTZ_DIR="~/tools/boltz"
+export BOLTZ_CACHE="~/.boltz"
 ```
 
 ```bash
@@ -189,7 +194,7 @@ pMHC_decoy_library/
 │   └── tools/                       #   mhcflurry + NetMHCpan 封装
 │
 ├── decoy_b/                         # Decoy B: 结构相似筛选
-│   ├── scanner.py                   #   四阶段管线 + 双叠合结构比较
+│   ├── scanner.py                   #   五阶段管线 + 双叠合 + Boltz 交叉验证
 │   ├── risk_scorer.py               #   统一风险评分（合并 A+B）
 │   ├── orchestrator.py              #   全管线编排 + 断点续传
 │   └── tools/                       #   tFold + AF3 + ProteinMPNN 封装

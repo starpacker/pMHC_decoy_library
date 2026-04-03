@@ -68,28 +68,29 @@ python -m decoy_c show
 $$ Risk_A = \left(1 - \frac{\text{Hamming}}{\text{Length}}\right) \times \frac{1}{EL\_Rank} \times TPM\_Weight $$
 
 ### Decoy B
-$$ Combined = 0.4 \times CosSim + 0.6 \times StructSim + CV\_Boost $$
+$$ Combined = StructSim + CV\_Boost $$
 
 其中 `CV_Boost = 0.10 × cross_validation_agreement`（Boltz-2 交叉验证一致性加成，最高 +10%）。
 
-**StructSim** 由双叠合 RMSD 和 5 维界面描述符综合得出：
+> **v2 变更**: Atchley cosine 从最终评分移除（solo rank 分析 ρ≈0 与结构排名无关），仅保留在 Stage 1 物化筛选。
 
-$$StructSim = 0.50 \times RMSD\_Geo + 0.50 \times Interface\_Combined$$
+**StructSim** 由双叠合 RMSD 和 **TCR-facing 表面描述符** 综合得出：
+
+$$StructSim = 0.50 \times RMSD\_Geo + 0.50 \times TCR\_Combined$$
 
 | 组件 | 计算方式 |
 |------|---------|
 | **RMSD_Geo** | avg(Method A: MHC叠合→肽段RMSD, Method B: 肽段叠合→groove RMSD) |
-| **Interface_Combined** | 0.25×PLIP + 0.10×BSA + 0.20×PRODIGY + 0.25×ESP + 0.20×PeSTo |
+| **TCR_Combined** | 0.30×ESP + 0.30×Shape + 0.20×SASA + 0.20×Hydrophobicity |
 
-5 个界面描述符：
+4 个 **TCR-facing** 表面描述符（度量 pMHC 暴露给 TCR 的上表面）：
 
 | 描述符 | 度量方式 | 权重 | 捕捉维度 |
 |--------|---------|------|---------|
-| PLIP | 非共价相互作用 Tanimoto | 0.25 | 侧链 H-bond/疏水/盐桥 |
-| APBS/ESP | 静电势 Pearson 相关 | 0.25 | 电荷互补性 (molecular mimicry 核心) |
-| PRODIGY | 结合亲和力 ΔG 差值 | 0.20 | 热力学稳定性 |
-| PeSTo | 界面嵌入 Cosine 相似度 | 0.20 | learned 界面兼容性 |
-| FreeSASA/BSA | 埋藏面积差值 | 0.10 | 界面几何 |
+| TCR-facing ESP | 暴露原子 Coulomb 势 → Hodgkin SI | 0.30 | TCR 看到的电荷分布 |
+| Exposed Shape | 暴露侧链质心 Kabsch RMSD | 0.30 | TCR 接触的 3D 形状 |
+| rSASA Profile | per-position 相对 SASA → Cosine | 0.20 | 哪些位点面向 TCR |
+| Exposed Hydrophobicity | rSASA 加权 Kyte-Doolittle → Cosine | 0.20 | TCR 面的疏水性 |
 
 ### 通用权重因子
 - **EL_Rank**: mhcflurry presentation_percentile，越小亲和力越强

@@ -1034,20 +1034,22 @@ def compute_interface_similarity(
     Runs all five descriptors on both structures, computes per-descriptor
     similarity, and returns a weighted combination.
 
-    Default weights (5-descriptor):
-        {"plip": 0.25, "bsa": 0.10, "prodigy": 0.20, "esp": 0.25, "pesto": 0.20}
-    - PLIP (0.25): non-covalent interaction pattern — direct TCR recognition
-    - APBS/ESP (0.25): electrostatic complementarity — core molecular mimicry driver
-    - PRODIGY (0.20): binding affinity — thermodynamic stability
-    - PeSTo (0.20): learned interface compatibility — robust to prediction error
-    - BSA (0.10): interface area — necessary but not sufficient
+    Default weights (4-descriptor, ESP removed):
+        {"plip": 0.35, "bsa": 0.15, "prodigy": 0.25, "pesto": 0.25}
+    - PLIP (0.35): non-covalent interaction pattern — direct TCR recognition
+    - PRODIGY (0.25): binding affinity — thermodynamic stability
+    - PeSTo (0.25): learned interface compatibility — robust to prediction error
+    - BSA (0.15): interface area — necessary but not sufficient
+
+    ESP/APBS removed: Coulomb proxy ρ=0.13-0.43 with structural metrics
+    in solo rank analysis (too noisy without full APBS).
 
     If a descriptor fails, its weight is redistributed to successful ones.
     """
     if weights is None:
         weights = {
-            "plip": 0.25, "bsa": 0.10, "prodigy": 0.20,
-            "esp": 0.25, "pesto": 0.20,
+            "plip": 0.35, "bsa": 0.15, "prodigy": 0.25,
+            "pesto": 0.25,
         }
 
     desc_target = compute_all_descriptors(target_pdb, peptide_chain, mhc_chains)

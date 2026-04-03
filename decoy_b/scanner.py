@@ -511,16 +511,6 @@ def compute_structure_similarity(
                     _ca_coords(target_groove), _ca_coords(cand_groove),
                 )
 
-        # ── B-factor correlation (peptide surface flexibility proxy) ─────
-        n_bf = min(len(target_pep_cas), len(cand_pep_cas))
-        target_pep_bf = np.array([a.get_bfactor() for a in target_pep_cas[:n_bf]])
-        cand_pep_bf = np.array([a.get_bfactor() for a in cand_pep_cas[:n_bf]])
-
-        bf_corr = 0.0
-        if len(target_pep_bf) == len(cand_pep_bf) and len(target_pep_bf) > 1:
-            if np.std(target_pep_bf) > 0 and np.std(cand_pep_bf) > 0:
-                bf_corr = float(np.corrcoef(target_pep_bf, cand_pep_bf)[0, 1])
-
         # ── Combine scores ───────────────────────────────────────────────
         # Method A similarity: peptide RMSD → 0-1
         sim_a = 0.0
@@ -533,9 +523,10 @@ def compute_structure_similarity(
         if groove_rmsd is not None and groove_rmsd < 3.0:
             sim_b = max(0.0, 1.0 - groove_rmsd / 3.0)
 
-        # Final surface_correlation: average of both methods + B-factor floor
-        # Both methods are highly correlated (r=0.95), but averaging captures
+        # Final surface_correlation: average of both methods.
+        # Both methods are highly correlated (r=0.85), but averaging captures
         # cases where one method flags a risk the other misses.
+        # B-factor correlation removed: ρ=0.961 with rmsd_geo (redundant).
         if sim_a > 0 and sim_b > 0:
             combined = 0.5 * sim_a + 0.5 * sim_b
         elif sim_a > 0:
@@ -544,8 +535,6 @@ def compute_structure_similarity(
             combined = sim_b
         else:
             combined = 0.0
-
-        combined = max(combined, bf_corr)
 
         # Determine tool label
         n_tgt = len(target_pep_cas)
@@ -557,58 +546,57 @@ def compute_structure_similarity(
 
         rmsd_geo_score = max(0.0, combined)
 
-        # ── Interface descriptor integration ────────────────────────────
-        # Blend RMSD-based geometric score with interface descriptors
-        # (PLIP, FreeSASA, PRODIGY, APBS, PeSTo) at 50/50 weighting.
+        # ── TCR-facing surface descriptor integration ──────────────────
+        # Blend RMSD-based geometric score with TCR-facing surface descriptors
+        # (ESP Hodgkin, rSASA profile, exposed hydrophobicity, exposed shape)
+        # at 50/50 weighting.
+        # These descriptors measure the pMHC surface EXPOSED TO TCR, not the
+        # peptide-MHC binding groove (which is what the old descriptors measured).
         iface_fields = {}
         try:
-            from decoy_b.tools.interface_descriptors import (
-                compute_all_descriptors,
-                compute_plip_tanimoto,
-                compute_bsa_similarity,
-                compute_prodigy_similarity,
-                compute_esp_similarity,
-                compute_pesto_similarity,
+            from decoy_b.tools.tcr_surface_descriptors import (
+                compute_tcr_facing_descriptors,
+                compute_esp_hodgkin_similarity,
+                compute_sasa_similarity,
+                compute_hydrophobicity_similarity,
+                compute_shape_similarity,
             )
 
-            desc_tgt = compute_all_descriptors(str(target_pdb))
-            desc_cand = compute_all_descriptors(str(candidate_pdb))
+            desc_tgt = compute_tcr_facing_descriptors(str(target_pdb))
+            desc_cand = compute_tcr_facing_descriptors(str(candidate_pdb))
 
-            # Per-descriptor similarity
             scores = {}
             weights = {
-                "plip": 0.25, "bsa": 0.10, "prodigy": 0.20,
-                "esp": 0.25, "pesto": 0.20,
+                "esp": 0.30, "shape": 0.30,
+                "sasa": 0.20, "hydrophobicity": 0.20,
             }
 
-            if desc_tgt.fingerprint and desc_cand.fingerprint:
-                s = compute_plip_tanimoto(desc_tgt.fingerprint, desc_cand.fingerprint)
-                scores["plip"] = s
-                iface_fields["plip_tanimoto"] = s
-
-            if desc_tgt.bsa_total is not None and desc_cand.bsa_total is not None:
-                s = compute_bsa_similarity(desc_tgt.bsa_total, desc_cand.bsa_total)
-                scores["bsa"] = s
-                iface_fields["bsa_target"] = desc_tgt.bsa_total
-                iface_fields["bsa_candidate"] = desc_cand.bsa_total
-                iface_fields["bsa_similarity"] = s
-
-            if desc_tgt.prodigy_dg is not None and desc_cand.prodigy_dg is not None:
-                s = compute_prodigy_similarity(desc_tgt.prodigy_dg, desc_cand.prodigy_dg)
-                scores["prodigy"] = s
-                iface_fields["prodigy_dg_target"] = desc_tgt.prodigy_dg
-                iface_fields["prodigy_dg_candidate"] = desc_cand.prodigy_dg
-                iface_fields["prodigy_similarity"] = s
-
-            if desc_tgt.esp_vector is not None and desc_cand.esp_vector is not None:
-                s = compute_esp_similarity(desc_tgt.esp_vector, desc_cand.esp_vector)
+            if desc_tgt.esp_profile is not None and desc_cand.esp_profile is not None:
+                s = compute_esp_hodgkin_similarity(desc_tgt.esp_profile, desc_cand.esp_profile)
                 scores["esp"] = s
                 iface_fields["esp_similarity"] = s
 
-            if desc_tgt.pesto_embedding is not None and desc_cand.pesto_embedding is not None:
-                s = compute_pesto_similarity(desc_tgt.pesto_embedding, desc_cand.pesto_embedding)
-                scores["pesto"] = s
-                iface_fields["pesto_similarity"] = s
+            if desc_tgt.sasa_profile is not None and desc_cand.sasa_profile is not None:
+                s = compute_sasa_similarity(desc_tgt.sasa_profile, desc_cand.sasa_profile)
+                scores["sasa"] = s
+                iface_fields["sasa_similarity"] = s
+
+            if (desc_tgt.hydrophobicity_profile is not None
+                    and desc_cand.hydrophobicity_profile is not None):
+                s = compute_hydrophobicity_similarity(
+                    desc_tgt.hydrophobicity_profile, desc_cand.hydrophobicity_profile,
+                )
+                scores["hydrophobicity"] = s
+                iface_fields["hydrophobicity_similarity"] = s
+
+            if (desc_tgt.exposed_sidechain_coords is not None
+                    and desc_cand.exposed_sidechain_coords is not None):
+                s = compute_shape_similarity(
+                    desc_tgt.exposed_sidechain_coords,
+                    desc_cand.exposed_sidechain_coords,
+                )
+                scores["shape"] = s
+                iface_fields["shape_similarity"] = s
 
             # Adaptive weighted combination
             if scores:
@@ -618,14 +606,14 @@ def compute_structure_similarity(
                     (active_w[k] / w_sum) * scores[k] for k in scores
                 )
                 iface_fields["interface_combined"] = interface_combined
-                # Blend: 50% RMSD geometry + 50% interface descriptors
+                # Blend: 50% RMSD geometry + 50% TCR-facing surface descriptors
                 final_score = 0.50 * rmsd_geo_score + 0.50 * interface_combined
-                tool += "+interface"
+                tool += "+tcr_surface"
             else:
                 final_score = rmsd_geo_score
 
         except (ImportError, Exception) as exc:
-            log.debug("Interface descriptors unavailable: %s", exc)
+            log.debug("TCR-facing descriptors unavailable: %s", exc)
             final_score = rmsd_geo_score
 
         return StructuralScore(
@@ -1122,9 +1110,12 @@ def scan_decoy_b(
             if best_expr:
                 expression = TissueExpression(**best_expr)
 
-        # Combined score with cross-validation boost
+        # Combined score: pure structural (Atchley removed from final scoring;
+        # Atchley cosine is used only for Stage 1 physicochemical screening,
+        # not in the final risk ranking — solo rank analysis showed ρ≈0
+        # correlation with structural metrics).
         if structural is not None:
-            base_combined = 0.4 * cos_sim + 0.6 * structural.surface_correlation
+            base_combined = structural.surface_correlation
             # Cross-validation agreement boosts confidence (up to +10%)
             if structural.cross_validation_agreement is not None:
                 cv_boost = 0.10 * structural.cross_validation_agreement
@@ -1132,6 +1123,7 @@ def scan_decoy_b(
             else:
                 combined = base_combined
         else:
+            # Fallback when no structural data yet (pre-Stage 2)
             combined = cos_sim
 
         hit = DecoyBHit(

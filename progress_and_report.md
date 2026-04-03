@@ -14,8 +14,10 @@
 5. [双叠合结构比较方法](#5-双叠合结构比较方法)
 6. [界面描述符升级 (5-Descriptor)](#6-界面描述符升级-5-descriptor)
 7. [界面描述符实验结果](#7-界面描述符实验结果)
-8. [全管线 Bug 修复记录](#8-全管线-bug-修复记录)
-9. [部署教程 (Linux Server)](#9-部署教程-linux-server)
+8. [TCR-Facing 表面描述符重设计 (v2)](#8-tcr-facing-表面描述符重设计-v2)
+9. [全管线 Bug 修复记录](#9-全管线-bug-修复记录)
+10. [部署教程 (Linux Server)](#10-部署教程-linux-server)
+11. [3D 结构可视化最佳实践](#11-3d-结构可视化最佳实践)
 
 ---
 
@@ -236,7 +238,89 @@ decoy_b/risk_scorer.py: 传递新字段到最终输出
 
 ---
 
-## 8. 全管线 Bug 修复记录
+## 8. TCR-Facing 表面描述符重设计 (v2)
+
+### 8.1 问题发现
+
+通过对 GILGFVFTL 的 50 个候选 PDB 进行 **solo rank analysis**（每个描述符独立排名 → Spearman 相关矩阵），发现 v1 描述符存在严重问题：
+
+**v1 Spearman 相关矩阵**:
+
+| 对比 | ρ | 问题 |
+|------|---|------|
+| Atchley ↔ sim_A | -0.01 | **完全无关**，不应混入最终评分 |
+| ESP Coulomb ↔ rmsd_geo | 0.43 | 噪声过大 (proxy 精度不足) |
+| bf_corr ↔ rmsd_geo | 0.96 | **完全冗余** |
+| ESP ↔ PeSTo | 0.13 | 两者都不可靠 |
+
+**更根本的问题**: 所有 v1 描述符（PLIP、BSA、PRODIGY、ESP、PeSTo）度量的是 **peptide-MHC groove 结合界面**（peptide 埋在 groove 里的面），而 TCR 交叉反应取决于 **pMHC 暴露给 TCR 的上表面**，这是两个不同的界面。
+
+### 8.2 v2 TCR-Facing 描述符
+
+新描述符通过 **per-atom SASA > 0 过滤**，自动排除 groove 埋藏的锚定残基，只度量 TCR 实际接触的溶剂暴露面：
+
+| 描述符 | 计算方法 | 度量 | 权重 |
+|--------|---------|------|------|
+| **TCR-facing ESP** | 暴露肽原子处的 Coulomb 电位 (来自周围所有原子) | Hodgkin SI | 0.30 |
+| **Exposed Shape** | MHC 叠合后暴露侧链质心坐标 (Kabsch RMSD) | 1-RMSD/3 | 0.30 |
+| **rSASA Profile** | per-position 相对溶剂可及面积 (complex/free) | Cosine sim | 0.20 |
+| **Exposed Hydrophobicity** | rSASA 加权 Kyte-Doolittle 疏水性 | Cosine sim | 0.20 |
+
+**关键技术**:
+- **ShrakeRupley SASA** (BioPython): 区分溶剂暴露原子 vs groove 埋藏原子
+- **Hodgkin SI**: `2·dot(A,B) / (dot(A,A)+dot(B,B))`，PIPSA/MatchTope 领域标准
+- **Kabsch alignment**: SVD 最优旋转对齐暴露侧链质心
+- **rSASA**: `SASA_complex(i) / SASA_free(i)`，验证: P4-P8 rSASA=0.36-0.76 (暴露), P2/P9 rSASA≈0 (锚定)
+
+### 8.3 v2 验证结果
+
+**v2 Spearman 相关矩阵** (50 candidates, GILGFVFTL):
+
+| | tcr_esp | tcr_sasa | tcr_hydro | tcr_shape | tcr_combined | sim_A |
+|---|---|---|---|---|---|---|
+| **tcr_esp** | 1.00 | 0.65 | 0.33 | 0.44 | 0.67 | 0.43 |
+| **tcr_sasa** | 0.65 | 1.00 | 0.40 | 0.31 | 0.59 | 0.72 |
+| **tcr_hydro** | 0.33 | 0.40 | 1.00 | 0.02 | 0.43 | 0.15 |
+| **tcr_shape** | 0.44 | 0.31 | 0.02 | 1.00 | 0.85 | 0.22 |
+| **sim_A** | 0.43 | 0.72 | 0.15 | 0.22 | 0.38 | 1.00 |
+
+**改进**:
+- 4 个描述符之间无冗余（最高 ρ=0.65，v1 bf_corr↔rmsd 达 0.96）
+- 每个描述符与 RMSD 的相关性适中 (0.15-0.72)，提供独立信息
+- `tcr_shape` (暴露侧链形状) 是最有区分力的新维度，v1 完全缺失
+
+### 8.4 v2 评分公式
+
+```
+similarity_score = surface_correlation    # 纯结构 (Atchley 移除)
+
+surface_correlation = 0.50 * rmsd_geo + 0.50 * tcr_combined
+rmsd_geo = avg(sim_A, sim_B)             # B-factor floor 移除
+tcr_combined = 0.30*ESP + 0.30*Shape + 0.20*SASA + 0.20*Hydro
+```
+
+### 8.5 代码变更
+
+| 文件 | 变更 |
+|------|------|
+| `decoy_b/tools/tcr_surface_descriptors.py` | **新增** — 4 个 TCR-facing 描述符 |
+| `decoy_b/scanner.py` | 评分公式重写: 移除 Atchley/bf_corr，接入 TCR 描述符 |
+| `decoy_b/tools/interface_descriptors.py` | 旧 groove 描述符，标记弃用 |
+| `docs/deep-research_tcr-facing-descriptors.md` | 文献调研: MatchTope/PepSim/MaSIF/IMPRINT/dMaSIF |
+
+### 8.6 参考文献
+
+| 方法 | 论文 |
+|------|------|
+| MatchTope (PIPSA/MEP) | Mendes et al. Front Immunol 13:930590, 2022 |
+| PepSim (表面+序列) | Hall-Swan et al. Front Immunol 14:1108303, 2023 |
+| MaSIF (surface fingerprint) | Gainza et al. Nature Methods 17:184-192, 2020 |
+| IMPRINT (immunological fingerprint) | Shang et al. Brief Bioinform 27(2):bbag048, 2026 |
+| Titin/MAGE-A3 案例 | Cameron et al. Sci Transl Med 5:197ra103, 2013 |
+
+---
+
+## 9. 全管线 Bug 修复记录
 
 ### 2026-04-02
 
@@ -275,7 +359,7 @@ decoy_b/risk_scorer.py: 传递新字段到最终输出
 
 ---
 
-## 9. 部署教程 (Linux Server)
+## 10. 部署教程 (Linux Server)
 
 ### 9.1 基础环境
 
@@ -287,36 +371,22 @@ cd /share/liuyutian/pMHC_decoy_library
 conda activate base
 ```
 
-### 9.2 界面描述符依赖安装
+### 10.2 TCR-Facing 描述符依赖
+
+v2 TCR-facing 描述符仅依赖 BioPython (ShrakeRupley SASA)，**无额外安装**：
 
 ```bash
-# PLIP (需要 OpenBabel)
-conda install -c conda-forge openbabel -y
-pip install plip
-
-# FreeSASA
-pip install freesasa
-
-# PRODIGY
-pip install prodigy-prot
-
-# APBS + pdb2pqr
-conda install -c conda-forge apbs pdb2pqr -y
-
-# PeSTo (需要 PyTorch)
-pip install pesto-protein  # 或从源码安装
+pip install biopython  # 已在 base 环境中
 ```
 
-### 9.3 验证安装
+旧 v1 groove 描述符依赖（PLIP/FreeSASA/PRODIGY/APBS/PeSTo）已弃用，无需安装。
+
+### 10.3 验证安装
 
 ```bash
 python -c "
-from decoy_b.tools.interface_descriptors import (
-    compute_plip_fingerprint, compute_bsa,
-    compute_prodigy_affinity, compute_esp_vector,
-    compute_pesto_embedding
-)
-print('All descriptors available')
+from decoy_b.tools.tcr_surface_descriptors import compute_tcr_facing_similarity
+print('TCR-facing descriptors available')
 "
 ```
 
@@ -340,6 +410,221 @@ export TFOLD_DIR="/share/liuyutian/pMHC_decoy_library/decoy_b/external/tfold"
 
 ---
 
+## 11. 3D 结构可视化最佳实践
+
+### 10.1 技术选型
+
+| 方案 | 优点 | 缺点 | **结论** |
+|------|------|------|---------|
+| PyMOL 静态图 | 出版级质量 | 不可交互、需安装、不可分享 | 仅用于论文 figure |
+| py3Dmol / Jupyter | 快速原型 | 绑定 notebook 环境 | 开发调试用 |
+| **3Dmol.js 自包含 HTML** | 零依赖、可交互、浏览器直接打开、可嵌入报告 | 文件较大 (~3MB) | **Pipeline 标准输出** |
+| NGL Viewer | 功能丰富 | API 复杂、加载慢 | 不推荐 |
+| Mol\* (RCSB) | 专业级 | 过于重量级 | 不推荐 |
+
+**决策**: 所有管线的结构可视化统一使用 **3Dmol.js 自包含 HTML**，PDB 数据内嵌 JSON string，无需后端服务器。
+
+### 10.2 Decoy B/D 3D Viewer (`decoy_3d_comparison.html`)
+
+#### 10.2.1 四种展示模式
+
+| 模式 | 快捷键 | MHC 显示 | 背景色 | 肽段渲染 | 用途 |
+|------|--------|---------|--------|---------|------|
+| **Side-by-Side** | `1` | 半透明 cartoon | `#0d1117` (暗黑) | 绿/橙 Stick + Tube + Surface (0.28 opacity) | 默认浏览，比较整体构象 |
+| **Superpose** | `2` | 仅 target 的 | `#0d1117` | 两条肽段叠合，mismatch 红色高亮 | **核心分析模式**，判断结构相似性 |
+| **pLDDT Confidence** | `3` | **隐藏** | `#0d1117` | ROYGB 渐变 (红→黄→绿→蓝) + 半透明 Surface | 判断预测可信度 |
+| **Surface Compare** | `4` | **隐藏** | `#2b2b2b` (深灰) | 按氨基酸电荷性质着色 + 不透明 Surface (0.88) | 比较电荷分布 |
+
+**关键设计决策**:
+- pLDDT 和 Surface 模式下 **MHC 完全隐藏**。MHC cartoon 颜色 (`#30363d`) 与暗色背景撞色，保留会产生"幽灵蛋白"干扰。
+- Surface 模式背景改为 `#2b2b2b` 深灰（非纯黑），让白色中性残基可见。切回其他模式时自动恢复暗黑背景。
+
+#### 10.2.2 颜色体系
+
+**基础配色 (Side-by-Side / Superpose)**:
+
+| 元素 | 颜色 | Hex | 渲染方式 |
+|------|------|-----|---------|
+| Target 肽段 | 绿色 | `#7ee787` | Stick (r=0.16) + Cartoon tube + Surface (0.28) |
+| Decoy 肽段 | 橙色 | `#ffa657` | Stick (r=0.16) + Cartoon tube + Surface (0.28) |
+| 突变残基 | 红色 | `#ff7b72` | 加粗 Stick (r=0.28)，覆盖原色 |
+| MHC groove | 深灰 | `#30363d` | Cartoon, opacity 0.20 |
+| β2m | 深灰 | `#30363d` | Cartoon, opacity 0.10 |
+
+**pLDDT 配色** (ROYGB 渐变，映射 B-factor 0.5→1.0):
+
+| pLDDT 值 | 颜色 | 含义 |
+|-----------|------|------|
+| > 0.90 | 蓝色 | 高置信度 |
+| 0.70-0.90 | 绿色 | 中等置信度 |
+| 0.50-0.70 | 黄色 | 低置信度 |
+| < 0.50 | 红色 | 极低置信度 |
+
+**Surface Compare 配色** (按氨基酸残基电荷，`colorfunc` 逐原子回调):
+
+| 残基类型 | 颜色 | Hex |
+|----------|------|-----|
+| D, E (酸性) | 红色 | `#ff4444` |
+| K, R (碱性) | 蓝色 | `#4466ff` |
+| H (弱碱性) | 浅蓝 | `#7799ff` |
+| G, A, P (小/中性) | 白色 | `#ffffff` / `#f5f5f5` |
+| V, I, L, M, F (疏水) | 暖色 | `#ffddaa` / `#ffcc88` |
+| S, T, N, Q (极性) | 浅灰 | `#e8e8e8` |
+
+**注意**: 不能使用 PDB 的 B-factor 做电荷着色。tFold 输出的 B-factor 是 pLDDT（全部 ~0.93-0.98），用 RWB 渐变会映射到同一颜色。必须根据残基类型重新赋色。
+
+#### 10.2.3 色标图例 (Color Scale)
+
+pLDDT 和 Surface 模式在 **viewer 右下角**叠加一个半透明色标面板:
+
+```
+┌─────────────────────────────┐
+│ pLDDT Confidence            │
+│ ████████████████████████    │
+│ 0.5 (low)       1.0 (high) │
+└─────────────────────────────┘
+```
+
+- 使用 `position:absolute; bottom:14px; right:14px` 定位
+- 背景 `rgba(0,0,0,0.82)` + `backdrop-filter:blur(8px)`
+- 切换到 Side-by-Side / Superpose 时自动隐藏
+
+#### 10.2.4 残基级热力图 (Heatmap Bar)
+
+Viewer 下方展示 **per-residue comparison panel**:
+
+```
+         p1    p2    p3    p4    p5    p6    p7    p8    p9
+Target:  [G]   [I]   [L]   [G]   [F]   [V]   [F]   [T]   [L]    (绿底)
+Decoy:   [L]   [L]   [V]   [G]   [F]   [V]   [F]   [V]   [V]    (匹配绿/错配红底)
+pLDDT:   ███   ████  ████  ████  ███   ████  ███   ████  ████   (按置信度着色)
+```
+
+- 匹配位: 绿色底 `rgba(126,231,135,0.15)`
+- 错配位: 红色底 `rgba(255,123,114,0.15)`
+- pLDDT 条: 宽度 = pLDDT%，颜色 = 蓝(>0.9)/青(>0.7)/黄(>0.5)/红(<0.5)
+- Hover 显示精确数值
+
+#### 10.2.5 交互功能
+
+| 操作 | 效果 |
+|------|------|
+| 左键拖拽 | 旋转 |
+| 滚轮 | 缩放 |
+| 右键拖拽 | 平移 |
+| `↑` / `↓` 方向键 | 切换上/下一个 decoy |
+| `1` `2` `3` `4` 键 | 切换四种显示模式 |
+| 侧边栏 Filter pills | 筛选 Decoy B / Decoy D / All |
+| 点击 decoy 卡片 | 加载对应结构，自动滚动到当前卡片 |
+
+#### 10.2.6 信息面板
+
+底部 info-bar 包含:
+
+| 字段 | 来源 |
+|------|------|
+| Source | Decoy B / Decoy D (MPNN) |
+| Hamming Distance | 序列比对 |
+| Physicochemical Similarity | Atchley cosine |
+| Structural Similarity | Dual-superposition score |
+| Risk Score | Composite risk |
+| Gene | 基因名 |
+| ipTM badge | tFold REMARK 提取，颜色编码 (绿>0.85, 黄>0.7, 红<0.7) |
+
+#### 10.2.7 Chain 约定
+
+Pipeline 输出的 PDB 文件统一使用以下 chain ID:
+
+| Chain | 内容 |
+|-------|------|
+| `M` | MHC heavy chain (α1+α2+α3) |
+| `N` | β2-microglobulin |
+| `P` | Peptide |
+
+### 10.3 Decoy A Overview (`decoy_a_overview.html`)
+
+Decoy A 无 3D 结构，使用 **SVG 气泡图 + 序列对齐面板** 的纯 2D 可视化。
+
+#### 10.3.1 气泡图
+
+| 轴 / 属性 | 映射 |
+|-----------|------|
+| X 轴 | Hamming distance (0-5) |
+| Y 轴 | EL%Rank (lower = stronger HLA binder) |
+| 气泡大小 | Risk score |
+| 气泡颜色 | 关键器官表达: 红 (TPM>10), 黄 (1-10), 蓝 (低/未知) |
+| 气泡边框 | 黄 = TCR contact mismatch, 紫 = anchor mismatch |
+
+- Hover 显示 tooltip (序列对齐 + 基因名)
+- Click 打开右侧 detail panel
+- 重叠点自动 jitter 避免遮挡
+
+#### 10.3.2 Detail Panel (右侧)
+
+- **Stats grid**: HD, EL%Rank, TCR contact mismatches, Anchor mismatches
+- **Position-level alignment**: 每个位置一个方块
+  - 绿底 = 匹配，红底 = 错配
+  - 黄色边框 = TCR 接触位，紫色边框 = anchor 位
+- **Expression bar**: 基因名 + TPM 数值 + 颜色条
+
+### 10.4 构建流程
+
+```
+输入:
+  ├── target PDB (chain M/N/P)
+  ├── decoy PDB 列表 (同 chain 规范)
+  ├── Decoy B ranked results JSON
+  ├── Decoy D results CSV
+  └── Decoy A results JSON
+
+构建脚本: build_viz.py
+  1. 读取 target PDB + 提取 REMARK (lDDT/pTM/ipTM) + per-residue B-factor
+  2. 遍历 Decoy B/D PDB，同样提取 remarks + bfactors
+  3. 组装 entry 列表，内嵌 PDB text
+  4. 生成 decoy_3d_comparison.html (3Dmol.js)
+  5. 读取 Decoy A JSON，生成 decoy_a_overview.html (SVG + CSS)
+
+输出:
+  ├── decoy_3d_comparison.html  (~3MB, Decoy B/D 3D 交互)
+  └── decoy_a_overview.html     (~300KB, Decoy A 气泡图)
+```
+
+### 10.5 使用示例
+
+```bash
+# 构建指定靶标的全部可视化
+PYTHONUTF8=1 python build_viz.py --target GILGFVFTL
+
+# 指定自定义目录
+PYTHONUTF8=1 python build_viz.py --target NLVPMVATV --dir data/NLVPMVATV_summary
+
+# 输出文件（双击即可在浏览器中打开）
+data/GILGFVFTL_summary/decoy_3d_comparison.html
+data/GILGFVFTL_summary/decoy_a_overview.html
+```
+
+### 10.6 性能注意事项
+
+| 限制 | 建议 |
+|------|------|
+| 3D viewer 的 decoy 数 | ≤ 20 个 (每个 PDB ~150KB, 20 个 ≈ 3MB HTML) |
+| Decoy A 气泡图 | ≤ 600 个 hit (SVG 渲染上限，超出后浏览器卡顿) |
+| 侧边栏选择制 | 每次只加载 1 个 decoy vs target，不同时渲染多个 |
+| 大文件加载 | 3Dmol.js 解析 PDB ~200ms, 渲染 ~100ms |
+| 浏览器兼容 | Chrome / Edge / Firefox 均支持 WebGL; Safari 可能较慢 |
+| Surface 模式背景 | 必须用 `#2b2b2b` 深灰，不能用纯黑 (白色残基不可见) |
+
+### 10.7 踩坑记录
+
+| 问题 | 原因 | 解决方案 |
+|------|------|---------|
+| Surface Compare 全部显示紫色 | tFold PDB 的 B-factor 是 pLDDT (0.93-0.98)，RWB 渐变映射到同一色段 | 不用 B-factor，改用 `colorfunc` 按残基类型赋色 |
+| pLDDT/Surface 模式有"幽灵蛋白"环绕 | MHC cartoon `#30363d` 与暗色背景撞色 | 这两个模式完全隐藏 MHC (`setStyle({}, {})`) |
+| Surface 白色残基在纯黑背景上不可见 | 背景 `#0d1117` 与 `#ffffff` surface 对比太强 | Surface 模式动态切换背景为 `#2b2b2b` |
+| `selectedAtoms()` 修改 B-factor 无效 | 3Dmol.js `selectedAtoms` 返回副本，不是引用 | 改用 `colorfunc` 回调直接按 `atom.resn` 返回颜色 |
+
+---
+
 ## 附录 A: 文件清单
 
 ### 根目录
@@ -357,6 +642,14 @@ export TFOLD_DIR="/share/liuyutian/pMHC_decoy_library/decoy_b/external/tfold"
 | `decoy_b/` | `README.md` | `DEPLOYMENT.md` |
 | `decoy_c/` | `README.md` | — |
 | `decoy_d/` | `README.md` | — |
+
+### 可视化输出
+
+| 文件 | 内容 |
+|------|------|
+| `build_viz.py` | 可视化构建脚本 (3D viewer + Decoy A overview) |
+| `data/GILGFVFTL_summary/decoy_3d_comparison.html` | Decoy B/D 交互式 3D 比较 (4 模式: Side-by-Side / Superpose / pLDDT / Surface) |
+| `data/GILGFVFTL_summary/decoy_a_overview.html` | Decoy A 气泡图 + 序列对齐 detail panel |
 
 ### 参考文献
 

@@ -555,11 +555,85 @@ def compute_structure_similarity(
         else:
             tool = f"biopython+dual_superposition({n_tgt}v{n_cand})"
 
+        rmsd_geo_score = max(0.0, combined)
+
+        # ── Interface descriptor integration ────────────────────────────
+        # Blend RMSD-based geometric score with interface descriptors
+        # (PLIP, FreeSASA, PRODIGY, APBS, PeSTo) at 50/50 weighting.
+        iface_fields = {}
+        try:
+            from decoy_b.tools.interface_descriptors import (
+                compute_all_descriptors,
+                compute_plip_tanimoto,
+                compute_bsa_similarity,
+                compute_prodigy_similarity,
+                compute_esp_similarity,
+                compute_pesto_similarity,
+            )
+
+            desc_tgt = compute_all_descriptors(str(target_pdb))
+            desc_cand = compute_all_descriptors(str(candidate_pdb))
+
+            # Per-descriptor similarity
+            scores = {}
+            weights = {
+                "plip": 0.25, "bsa": 0.10, "prodigy": 0.20,
+                "esp": 0.25, "pesto": 0.20,
+            }
+
+            if desc_tgt.fingerprint and desc_cand.fingerprint:
+                s = compute_plip_tanimoto(desc_tgt.fingerprint, desc_cand.fingerprint)
+                scores["plip"] = s
+                iface_fields["plip_tanimoto"] = s
+
+            if desc_tgt.bsa_total is not None and desc_cand.bsa_total is not None:
+                s = compute_bsa_similarity(desc_tgt.bsa_total, desc_cand.bsa_total)
+                scores["bsa"] = s
+                iface_fields["bsa_target"] = desc_tgt.bsa_total
+                iface_fields["bsa_candidate"] = desc_cand.bsa_total
+                iface_fields["bsa_similarity"] = s
+
+            if desc_tgt.prodigy_dg is not None and desc_cand.prodigy_dg is not None:
+                s = compute_prodigy_similarity(desc_tgt.prodigy_dg, desc_cand.prodigy_dg)
+                scores["prodigy"] = s
+                iface_fields["prodigy_dg_target"] = desc_tgt.prodigy_dg
+                iface_fields["prodigy_dg_candidate"] = desc_cand.prodigy_dg
+                iface_fields["prodigy_similarity"] = s
+
+            if desc_tgt.esp_vector is not None and desc_cand.esp_vector is not None:
+                s = compute_esp_similarity(desc_tgt.esp_vector, desc_cand.esp_vector)
+                scores["esp"] = s
+                iface_fields["esp_similarity"] = s
+
+            if desc_tgt.pesto_embedding is not None and desc_cand.pesto_embedding is not None:
+                s = compute_pesto_similarity(desc_tgt.pesto_embedding, desc_cand.pesto_embedding)
+                scores["pesto"] = s
+                iface_fields["pesto_similarity"] = s
+
+            # Adaptive weighted combination
+            if scores:
+                active_w = {k: weights[k] for k in scores}
+                w_sum = sum(active_w.values())
+                interface_combined = sum(
+                    (active_w[k] / w_sum) * scores[k] for k in scores
+                )
+                iface_fields["interface_combined"] = interface_combined
+                # Blend: 50% RMSD geometry + 50% interface descriptors
+                final_score = 0.50 * rmsd_geo_score + 0.50 * interface_combined
+                tool += "+interface"
+            else:
+                final_score = rmsd_geo_score
+
+        except (ImportError, Exception) as exc:
+            log.debug("Interface descriptors unavailable: %s", exc)
+            final_score = rmsd_geo_score
+
         return StructuralScore(
             modeling_tool=tool,
             pdb_path=str(candidate_pdb),
-            surface_correlation=max(0.0, combined),
+            surface_correlation=max(0.0, final_score),
             rmsd=rmsd_for_report,
+            **iface_fields,
         )
 
     except ImportError:

@@ -231,6 +231,12 @@ def score_and_rank(
             prodigy_similarity=(
                 hit.structural.prodigy_similarity if hit.structural else None
             ),
+            esp_similarity=(
+                hit.structural.esp_similarity if hit.structural else None
+            ),
+            pesto_similarity=(
+                hit.structural.pesto_similarity if hit.structural else None
+            ),
             interface_combined=(
                 hit.structural.interface_combined if hit.structural else None
             ),

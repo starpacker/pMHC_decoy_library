@@ -172,6 +172,13 @@ class StructuralScore(BaseModel):
     interface_combined: Optional[float] = Field(
         None, description="Weighted combination of all interface descriptors [0-1]"
     )
+    # Phase 2: APBS + PeSTo descriptors
+    esp_similarity: Optional[float] = Field(
+        None, description="APBS electrostatic potential similarity [0-1]"
+    )
+    pesto_similarity: Optional[float] = Field(
+        None, description="PeSTo interface embedding similarity [0-1]"
+    )
     # Cross-validation (Boltz)
     boltz_pdb_path: Optional[str] = Field(
         None, description="Path to Boltz-predicted pMHC structure"
@@ -251,10 +258,12 @@ class DecoyABEntry(BaseModel):
     physicochemical_similarity: float = Field(0.0)
     structural_similarity: float = Field(0.0)
 
-    # Interface descriptor details (from Phase 1 upgrade)
+    # Interface descriptor details
     plip_tanimoto: Optional[float] = Field(None, description="PLIP interaction Tanimoto [0-1]")
     bsa_similarity: Optional[float] = Field(None, description="BSA similarity [0-1]")
     prodigy_similarity: Optional[float] = Field(None, description="PRODIGY dG similarity [0-1]")
+    esp_similarity: Optional[float] = Field(None, description="APBS electrostatic potential similarity [0-1]")
+    pesto_similarity: Optional[float] = Field(None, description="PeSTo interface embedding similarity [0-1]")
     interface_combined: Optional[float] = Field(None, description="Interface descriptor combined [0-1]")
 
     # Expression risk

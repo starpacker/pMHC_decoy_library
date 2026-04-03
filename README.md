@@ -91,61 +91,76 @@ $$StructSim = \frac{1}{2}\left[\max\left(0,\ 1 - \frac{PeptideRMSD_A}{3.0}\right
 
 ## 环境配置
 
-所有依赖部署在 `/share/liuyutian`，路径统一在 `decoy_a/config.py` 管理：
+### Conda 环境
 
-| 工具 | 用途 | 路径 |
-|------|------|------|
-| tFold | pMHC 结构预测（Decoy B 必选） | `/share/liuyutian/tfold` |
-| AlphaFold 3 | 精细结构验证（可选） | 见下方 AF3 部署指南 |
-| ProteinMPNN | 逆向序列设计（Decoy D） | `/share/liuyutian/S3AI/rebuttal/ProteinMPNN` |
-| mhcflurry | HLA 呈递预测 | 已 pip 安装 |
+本项目**仅使用一个 conda 环境**运行所有管线：
+
+| 环境名 | 路径 | 用途 |
+|--------|------|------|
+| **`base`** | `/home/liuyutian/server/miniconda3` | **唯一运行环境**，包含所有 Python 依赖 |
+
+> ⚠️ 服务器上还存在 `tfold`、`mlfold`、`S3AI` 等其他 conda 环境，但它们**不被本项目使用**。
+> 本项目通过 `sys.path` 注入 vendored 代码（如 tFold、ProteinMPNN）来避免环境冲突。
+
+**激活方式：**
+```bash
+conda activate base   # 或直接使用默认 shell（base 通常已自动激活）
+```
+
+### 关键 Python 包（均安装在 `base` 环境中）
+
+| 包名 | 用途 | 使用位置 |
+|------|------|---------|
+| `mhcflurry` | HLA 呈递预测 | Decoy A/D 的 mhcflurry 过滤 |
+| `torch` (PyTorch) | 深度学习推理 | tFold 结构预测、ProteinMPNN 序列设计 |
+| `biopython` | PDB 解析、结构叠合 | Decoy B 双叠合 RMSD 计算 |
+| `numpy`, `scipy` | 数值计算 | 全局 |
+| `pandas`, `pyarrow` | 数据处理 | HLA 过滤缓存、结果汇总 |
+| `pydantic` | 数据模型验证 | 全局 |
+
+### 外部工具与路径
+
+所有外部依赖部署在 `/share/liuyutian`，路径统一在 `decoy_a/config.py` 管理：
+
+| 工具 | 用途 | 路径 | 加载方式 |
+|------|------|------|---------|
+| **tFold** | pMHC 结构预测（Decoy B/D） | vendored: `decoy_b/external/tfold/` | `sys.path` 注入 |
+| **ProteinMPNN** | 逆向序列设计（Decoy D） | vendored: `decoy_d/external/proteinmpnn/` | `sys.path` 注入 |
+| **mhcflurry 数据** | 预训练模型权重 | `/share/liuyutian/mhcflurry_data/4/` | 环境变量 `MHCFLURRY_DATA_DIR` |
+| **AlphaFold 3** | 精细结构验证（可选） | `/share/liuyutian/alphafold3_repo/` | subprocess 调用 |
+| **AlphaFold 3 权重** | AF3 模型参数 | `/share/liuyutian/alphafold3/af3.bin.zst` | 配置文件指定 |
+
+### 环境变量
+
+可通过 `.env` 文件或 `export` 设置（参考 `.env.example`）：
+
+```bash
+# 必需
+export MHCFLURRY_DATA_DIR="/share/liuyutian/mhcflurry_data/4"
+export PYTHONUTF8=1
+
+# 可选（有默认值）
+export TFOLD_DIR="<project>/decoy_b/external/tfold"
+export PROTEINMPNN_DIR="/share/liuyutian/S3AI/rebuttal/ProteinMPNN"
+export AF3_DIR="/share/liuyutian/alphafold3_repo"
+export AF3_WEIGHTS_PATH="/share/liuyutian/alphafold3/af3.bin.zst"
+```
 
 ```bash
 # 验证工具可用性
 python scripts/verify_decoy_b.py
 ```
 
-### AlphaFold 3 部署指南（Server 端）
+### AlphaFold 3 部署指南（Server 端，可选）
 
-AF3 用于对 tFold 筛出的 Top-N 候选做高精度结构复核，是 **可选** 的精筛步骤。
+AF3 用于对 tFold 筛出的 Top-N 候选做高精度结构复核，是 **可选** 的精筛步骤。AF3 尚未完成部署配置。
 
-**Step 1: 安装**
-```bash
-pip install alphafold3 biopython
-```
-
-**Step 2: 模型权重**
-将 `af3.bin.zst` 放到指定目录，并设置环境变量：
-```bash
-export AF3_WEIGHTS_PATH=/share/liuyutian/alphafold3/models/af3.bin.zst
-# 或直接将权重放在默认路径: $AF3_MODEL_DIR/af3.bin.zst
-```
-
-**Step 3: 序列数据库**（可选，用于 MSA 特征提取）
-```bash
-python -m alphafold3.download_databases --db_dir /share/liuyutian/alphafold3/databases
-```
-
-**Step 4: 运行精筛**
 ```bash
 # 对 Decoy B Top-10 进行 AF3 精筛
 python scripts/run_af3_refinement.py \
     --target GILGFVFTL \
     --hla "HLA-A*02:01" \
     --top-n 10
-
-# 指定特定序列
-python scripts/run_af3_refinement.py \
-    --target GILGFVFTL \
-    --hla "HLA-A*02:01" \
-    --sequences LLVGFVFVV LYLGILFAV RALGFLIGL
-
-# 从已有排名文件中取 Top-20
-python scripts/run_af3_refinement.py \
-    --target GILGFVFTL \
-    --hla "HLA-A*02:01" \
-    --ranked-json data/GILGFVFTL_summary/Decoy_B/final_ranked_decoys.json \
-    --top-n 20
 ```
 
 AF3 输出的 PDB 会自动将链 ID 从 AF3 格式 (A/B/C) 重映射为 tFold 格式 (M/N/P)，与下游结构比较管线无缝兼容。结果保存在 `data/decoy_b/pmhc_models/af3/`。

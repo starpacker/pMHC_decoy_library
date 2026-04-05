@@ -69,6 +69,15 @@ risk = similarity_score * (1/EL_Rank) * TPM_Weight
 - tcr_sasa ↔ sim_A: 0.72 (中等相关)
 - tcr_hydro ↔ sim_A: 0.15 (高度独立)
 
+**单独排序 (Solo Ranking) 差异分析**:
+对 GILGFVFTL 的 50 个候选多肽进行单独排序比较，结果显示不同描述符的排序存在显著差异（不一致性）：
+- **Atchley Cosine (序列级)** 与所有结构级描述符（RMSD, ESP, PeSTo 等）的 Spearman 相关系数均接近 0 甚至为负（例如与 RMSD_geo 的 ρ = -0.123，与 ESP 的 ρ = -0.047）。这表明仅靠序列理化性质无法准确预测 3D 结构表面的相似性。
+- **ESP (静电势)** 与纯几何结构叠合（RMSD_geo）的相关性仅为 ρ = 0.427，说明即使骨架形状相似，表面电荷分布也可能大相径庭。
+- **PeSTo (界面嵌入)** 与 RMSD_geo 的相关性为 ρ = 0.660，存在中等相关，但仍能提供额外的界面相互作用信息。
+这种排序上的巨大差异（例如某些多肽在 Atchley 排名第 1，但在 RMSD 排名第 50）正是我们需要综合多个正交描述符（5-descriptor 评分）来全面评估脱靶风险的根本原因。
+
+![Solo Ranking Visualization](solo_ranking_visualization.png)
+
 所有描述符支持 **adaptive weighting**：如果某个描述符计算失败，权重自动重分配给成功的。
 
 ## 部署依赖
@@ -151,3 +160,19 @@ python -m decoy_b run --target GILGFVFTL --hla "HLA-A*02:01" --mpnn
 | **Titin 致死案例 (Decoy B 核心动机)** | Cameron BJ et al. "Identification of a Titin-derived HLA-A1–presented peptide as a cross-reactive target for engineered MAGE A3–directed T cells." *Sci. Transl. Med.* 5(197):197ra103, 2013. [DOI](https://doi.org/10.1126/scitranslmed.3006034) |
 | **TCR 交叉反应性综述** | Sewell AK. "Why must T cells be cross-reactive?" *Nature Rev. Immunol.* 12:669–677, 2012. [DOI](https://doi.org/10.1038/nri3279) |
 | **MatchTope (备选，未采用)** | Mendes MFA et al. "MatchTope: A tool to predict the cross reactivity of peptides complexed with MHC I." *Front. Immunol.* 13:930590, 2022. [DOI](https://doi.org/10.3389/fimmu.2022.930590) · [GitHub](https://github.com/Marcus-Mendes/MatchTope) — 与 APBS/ESP 描述符功能重叠，未集成 |
+
+## 常见问题 (Q&A)
+
+**Q: 为什么放弃了传统的 peptide-MHC groove 界面描述符，转而使用 TCR-facing 表面描述符？**
+A: 传统的描述符（如 PLIP, PRODIGY）主要衡量多肽与 MHC 之间的结合力，但这并不能反映 TCR 看到的景象。TCR 识别的是 pMHC 复合体暴露在外的上表面。因此，我们重新设计了 4 个 TCR-facing 描述符，通过过滤掉埋藏在 groove 内的原子，专门量化暴露给 TCR 的静电势、形状、溶剂可及面积和疏水性，这与 TCR 交叉反应的真实物理过程高度一致。
+
+**Q: 具体选择了哪些 TCR-facing 表面描述符？它们是如何量化 TCR 接触面的？**
+A: 我们精心设计了 4 个正交的描述符来全面刻画 TCR 看到的"分子景观"：
+1. **TCR-facing ESP (静电势)**: 计算暴露在外的肽段原子所感受到的 Coulomb 电位（包含周围 MHC 原子的影响），使用 Hodgkin 相似度指数（Hodgkin SI）来衡量两个 pMHC 表面电荷分布的相似性。
+2. **Exposed Shape (暴露形状)**: 提取 MHC 叠合后暴露侧链质心的 3D 坐标，通过 Kabsch 算法计算 RMSD，量化 TCR 接触到的物理形状差异。
+3. **rSASA Profile (相对溶剂可及面积谱)**: 计算每个肽段位点的相对溶剂可及面积（complex/free），使用余弦相似度比较暴露模式，识别哪些位点面向 TCR。
+4. **Exposed Hydrophobicity (暴露疏水性)**: 使用 rSASA 加权的 Kyte-Doolittle 疏水性指数，同样通过余弦相似度比较，反映 TCR 接触面的疏水/亲水特征分布。
+这四个维度（电荷、形状、暴露度、疏水性）相互独立（Spearman ρ 验证显示低相关性），共同构成了对 TCR 交叉反应风险的全面评估。
+
+**Q: 为什么在 Stage 1 使用 Atchley factor 进行初步筛选？**
+A: 在全人类蛋白质组中直接进行 3D 结构预测计算成本极高。Atchley factor 将氨基酸转化为包含极性、二级结构倾向、体积等 5 个维度的数值向量，能够快速在序列层面捕捉理化性质的相似性。这使得我们能在几秒钟内将数百万候选者缩小到几千个高潜力目标，再交由 tFold/AF3 进行高精度的 3D 结构验证。

@@ -205,3 +205,47 @@ pMHC_decoy_library/
 | **Decoy D** | ✅ 完成 | MPNN 逆向设计 + mhcflurry 过滤 |
 
 详细技术报告见 → [`progress_and_report.md`](progress_and_report.md)
+
+---
+
+## 参考文献与工具来源 (References & Tools)
+
+本项目集成了多种前沿的计算生物学工具和数据库，以下是核心依赖的文献与代码仓库链接：
+
+### 1. 结构预测与逆向设计 (Structure Prediction & Design)
+| 工具 | 论文 | 链接 |
+|------|------|------|
+| **tFold** | Wu L et al. "tFold-Ab/Ag: Fast and Accurate Antibody and Antigen Structure Prediction." 2024 | [GitHub](https://github.com/TencentAI4S/tfold) |
+| **AlphaFold 3** | Abramson J et al. "Accurate structure prediction of biomolecular interactions with AlphaFold 3." *Nature* 630:493–500, 2024 | [GitHub](https://github.com/google-deepmind/alphafold3) |
+| **Boltz-2** | Wohlwend J et al. "Boltz-1: Democratizing Biomolecular Interaction Modeling." 2024 | [GitHub](https://github.com/jwohlwend/boltz) |
+| **ProteinMPNN** | Dauparas J et al. "Robust deep learning–based protein sequence design using ProteinMPNN." *Science* 378(6615):49–56, 2022 | [GitHub](https://github.com/dauparas/ProteinMPNN) |
+
+### 2. 免疫信息学与序列分析 (Immunoinformatics & Sequence Analysis)
+| 工具/方法 | 论文 | 链接 |
+|-----------|------|------|
+| **mhcflurry** | O'Donnell TJ et al. "MHCflurry 2.0: Improved Pan-Allele Prediction of MHC Class I-Presented Peptides..." *Cell Systems* 11(1):42-48.e7, 2020 | [GitHub](https://github.com/openvax/mhcflurry) |
+| **NetMHCpan** | Reynisson B et al. "NetMHCpan-4.1 and NetMHCIIpan-4.0: improved predictions of MHC antigen presentation..." *Nucleic Acids Res.* 48(W1):W449-W454, 2020 | [Web](https://services.healthtech.dtu.dk/services/NetMHCpan-4.1/) |
+| **Atchley Factors** | Atchley WR et al. "Solving the protein sequence metric problem." *PNAS* 102(18):6395–6400, 2005 | [DOI](https://doi.org/10.1073/pnas.0408677102) |
+| **BioPython** | Cock PJA et al. "Biopython: freely available Python tools for computational molecular biology..." *Bioinformatics* 25(11):1422–1423, 2009 | [GitHub](https://github.com/biopython/biopython) |
+
+### 3. 数据库 (Databases)
+| 数据库 | 论文 | 链接 |
+|--------|------|------|
+| **IEDB** | Vita R et al. "The Immune Epitope Database (IEDB): 2018 update." *Nucleic Acids Res.* 47(D1):D339-D343, 2019 | [Web](https://www.iedb.org/) |
+| **UniProt** | The UniProt Consortium. "UniProt: the Universal Protein Knowledgebase in 2023." *Nucleic Acids Res.* 51(D1):D523-D531, 2023 | [Web](https://www.uniprot.org/) |
+
+### 4. 关键背景文献 (Key Literature)
+| 主题 | 论文 | 链接 |
+|------|------|------|
+| **Titin 致死案例** | Cameron BJ et al. "Identification of a Titin-derived HLA-A1–presented peptide as a cross-reactive target..." *Sci. Transl. Med.* 5(197):197ra103, 2013 | [DOI](https://doi.org/10.1126/scitranslmed.3006034) |
+| **TCR 交叉反应性综述** | Sewell AK. "Why must T cells be cross-reactive?" *Nature Rev. Immunol.* 12:669–677, 2012 | [DOI](https://doi.org/10.1038/nri3279) |
+
+---
+
+## 常见问题 (Q&A)
+
+**Q: 为什么需要四个不同的 Decoy 管线？**
+A: TCR 交叉反应性是一个复杂的多维度问题。Decoy A 解决序列高度相似的"近亲"脱靶；Decoy B 解决序列不同但三维结构和理化性质相似的"远亲"脱靶（如著名的 MAGE-A3/Titin 致死案例）；Decoy C 提供真实世界已发生的临床和实验证据作为基准；Decoy D 则通过 AI 逆向设计探索未知的理论风险空间。四者互补，构成严密的防御网。
+
+**Q: 风险评分模型中的 TPM_Weight 是如何工作的？**
+A: 即使某个多肽与靶标极其相似，如果它在人体内根本不表达，或者只在非重要组织低水平表达，其引发致命副作用的风险也较低。TPM_Weight 引入了人类蛋白质图谱（HPA）的表达数据，对在心脏、大脑等致命器官中高表达（TPM > 10）的基因给予 10 倍的风险加权惩罚，从而将计算资源和注意力集中在真正具有临床危险的脱靶候选上。

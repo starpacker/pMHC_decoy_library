@@ -39,3 +39,11 @@ python -m decoy_b run --target GILGFVFTL --hla "HLA-A*02:01" --mpnn
 | `scanner.py` | MPNN 逆向设计管线主逻辑 |
 | `orchestrator.py` | 与 Decoy B 主流程集成 |
 | `tools/` | ProteinMPNN 封装 |
+
+## 常见问题 (Q&A)
+
+**Q: Decoy D 的 MPNN 逆向设计与 Decoy A/B 有什么本质区别？**
+A: Decoy A 和 B 都是在**已知**的人类蛋白质组中进行搜索（自上而下）。而 Decoy D 是自下而上的生成式方法：它固定了 HLA 结合所需的锚定位，让 AI 自由生成能形成相似 TCR 接触面的新序列。这不仅能发现人类基因组中罕见的变异或未被充分注释的蛋白，还能预测未来可能出现的病毒突变带来的交叉反应风险。
+
+**Q: 为什么在 MPNN 设计后还需要 mhcflurry 过滤？**
+A: ProteinMPNN 主要关注三维结构的合理性和序列的折叠能力，但它并不直接优化多肽在细胞内的抗原加工和 HLA 呈递效率。生成的序列即使在结构上能完美契合 TCR，如果不能被细胞有效呈递到表面，也不会引发实际的毒性。因此，必须使用 mhcflurry 进行二次过滤，确保候选多肽具有真实的生物学呈递潜力。

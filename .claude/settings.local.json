@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/30670/AppData/Local/Temp/pMHC_decoy_library/data/GILGFVFTL_summary/**)",
+      "Read(//c/Users/30670/AppData/Local/Temp/pMHC_decoy_library/data/GILGFVFTL_summary/Decoy_B/**)",
+      "Bash(python -c ':*)"
+    ]
+  }
+}

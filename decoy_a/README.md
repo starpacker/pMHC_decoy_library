@@ -56,3 +56,11 @@ python -m decoy_a scan --target GILGFVFTL --hla "HLA-A*02:01"
 
 - **GILGFVFTL** (流感 M1): 发现 TAP2 (GLLGFVGTL, HD=2), PKD1L1 (GILLFLFTL, HD=2)
 - **RMFPNAPYL** (WT1): 0 hits — 正确，无 Hamming ≤ 2 近亲
+
+## 常见问题 (Q&A)
+
+**Q: 为什么目前只挑选了一种 HLA (HLA-A\*02:01) 进行处理？**
+A: HLA-A\*02:01 是欧美和亚洲人群中最常见的一类 MHC I 型等位基因，覆盖率高，且相关的实验数据和预测模型（如 mhcflurry/NetMHCpan）最为成熟和准确。作为管线验证的首选，它能快速跑通全流程并验证有效性。架构上完全支持扩展到其他 HLA 分型，只需替换相应的 HLA 呈递预测阈值和背景多肽库即可。
+
+**Q: 为什么 Hamming 距离的阈值设定为 ≤ 2？**
+A: TCR 识别 pMHC 具有一定的容错性，但通常当序列差异超过 2 个氨基酸时，其引发强交叉反应的概率会显著降低。对于 Hamming 距离 > 2 的情况，单纯的序列比较已不足以评估风险，这部分"远亲"脱靶风险交由基于三维结构和理化性质的 Decoy B 管线来处理。

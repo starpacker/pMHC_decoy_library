@@ -1,6 +1,6 @@
 # Decoy Library — 技术进展与详细报告
 
-**最后更新**: 2026-04-03
+**最后更新**: 2026-04-06
 **项目**: TCR 脱靶毒性 pMHC 负样本库 (Decoy Library)
 
 ---
@@ -18,6 +18,8 @@
 9. [全管线 Bug 修复记录](#9-全管线-bug-修复记录)
 10. [部署教程 (Linux Server)](#10-部署教程-linux-server)
 11. [3D 结构可视化最佳实践](#11-3d-结构可视化最佳实践)
+12. [PLIP 部署与集成](#12-plip-部署与集成)
+13. [统一 CLI 入口与批量运行](#13-统一-cli-入口与批量运行)
 
 ---
 
@@ -625,6 +627,95 @@ data/GILGFVFTL_summary/decoy_a_overview.html
 
 ---
 
+## 12. PLIP 部署与集成
+
+### 12.1 背景
+
+PLIP (Protein-Ligand Interaction Profiler) 是一个自动化的非共价相互作用分析工具，可检测蛋白质-配体之间的氢键、疏水接触、盐桥、π-stacking 等相互作用。
+
+在 Decoy B 中，PLIP 用于分析 peptide-MHC **binding groove 界面**的非共价相互作用模式。这与 TCR-facing 描述符互补：
+- **TCR-facing 描述符 (v2)**: 度量 pMHC 暴露给 TCR 的**上表面**特征
+- **PLIP**: 度量 peptide 锚定在 MHC groove 中的**结合模式**特征
+
+两者都是判断交叉反应性的重要维度——相似的 groove 结合模式意味着相似的肽段呈递方式，结合 TCR-facing 表面相似性，可以更全面地评估交叉反应风险。
+
+### 12.2 技术挑战：ATOM → HETATM 转换
+
+**问题**: PLIP 设计用于 protein-ligand（蛋白质-小分子）分析，只检测 HETATM 记录（非蛋白分子）与蛋白质的相互作用。在 pMHC 结构中，peptide 是标准蛋白链（ATOM 记录），PLIP 的 `analyze()` 返回 0 个 binding site。
+
+**解决方案**: 新增 `_prepare_pdb_for_plip()` 函数，在分析前将 peptide chain P 的 ATOM 记录转换为 HETATM 记录：
+
+```python
+# interface_descriptors.py
+def _prepare_pdb_for_plip(pdb_path, peptide_chain="P"):
+    """将 peptide chain 的 ATOM → HETATM，使 PLIP 识别为 'ligand'"""
+    # 逐行读取 PDB，将 chain P 的 ATOM 替换为 HETATM
+    # 写入临时文件，分析后自动清理
+```
+
+转换后 PLIP 成功检测到**每个肽段残基**的 binding site，包括：
+- H-bond（氢键）: 主要出现在 N 端 (G1) 和 C 端 (T8, L9) 的锚定位
+- Hydrophobic contacts（疏水接触）: 集中在中间残基 (I2, L3, F5, F7)
+- Salt bridges（盐桥）和 pi-stacking: 较少出现
+
+### 12.3 部署环境
+
+PLIP 依赖 OpenBabel C++ 库（SWIG 绑定），在 Windows 上无法通过 pip 直接安装。采用独立 conda 环境：
+
+```bash
+conda create -n plip_env python=3.12 -y
+conda install -n plip_env -c conda-forge openbabel=3.1.1 -y
+conda run -n plip_env pip install plip --no-deps
+conda run -n plip_env pip install numpy lxml
+```
+
+**验证结果** (GILGFVFTL / HLA-A*02:01):
+
+```
+Binding sites found: 9
+  GLY:P:1: H-bonds=3, Hydrophobic=0
+  ILE:P:2: H-bonds=1, Hydrophobic=6
+  LEU:P:3: H-bonds=1, Hydrophobic=6
+  GLY:P:4: H-bonds=0, Hydrophobic=0
+  PHE:P:5: H-bonds=0, Hydrophobic=7
+  VAL:P:6: H-bonds=0, Hydrophobic=2
+  PHE:P:7: H-bonds=0, Hydrophobic=4
+  THR:P:8: H-bonds=3, Hydrophobic=1
+  LEU:P:9: H-bonds=3, Hydrophobic=5
+```
+
+### 12.4 Pipeline 集成
+
+PLIP 集成到 `scanner.py` 的 Stage 5 结构比较中，位于 TCR-facing 描述符计算之后：
+
+```
+Stage 5 计算流程:
+  1. 双叠合 RMSD (RMSD_Geo)
+  2. TCR-facing 描述符 (ESP, Shape, SASA, Hydro) → TCR_Combined
+  3. StructSim = 0.50 × RMSD_Geo + 0.50 × TCR_Combined
+  4. PLIP Tanimoto similarity (补充信息，记录在 StructuralScore.plip_tanimoto)
+```
+
+PLIP Tanimoto 使用广义 Tanimoto 系数比较两个 pMHC 的相互作用指纹：
+
+$$T(A, B) = \frac{A \cdot B}{|A|^2 + |B|^2 - A \cdot B}$$
+
+其中 $A$, $B$ 是 5 维计数向量 `[hbond, hydrophobic, salt_bridge, pi_stack, pi_cation]`。
+
+当前 PLIP Tanimoto 作为**补充描述符**记录在输出中，不参与 StructSim 权重计算。当 PLIP 不可用时，Pipeline 自动跳过该步骤。
+
+### 12.5 测试验证
+
+```bash
+# 部署测试
+conda run -n plip_env python scripts/test_plip_deploy.py
+
+# 单元测试 (36 passed)
+python -m pytest tests/test_interface_descriptors.py -x -q
+```
+
+---
+
 ## 附录 A: 文件清单
 
 ### 根目录
@@ -657,3 +748,63 @@ data/GILGFVFTL_summary/decoy_a_overview.html
 |------|------|
 | `docs/deep-research_decoy_b.md` | 界面描述符文献综述（选型依据） |
 | `docs/TUTORIAL_AF3_LINUX_INSTALL.md` | AlphaFold 3 安装教程 |
+
+---
+
+## 13. 统一 CLI 入口与批量运行
+
+### 13.1 背景
+
+此前各 Decoy 策略的入口分散：Decoy A 用 `python -m decoy_a`，Decoy B 用 `python -m decoy_b`，Decoy D 需要通过 `python -m decoy_b run --mpnn` 间接触发。缺乏统一的命令行入口和批量运行机制。
+
+### 13.2 新增文件
+
+| 文件 | 用途 |
+|------|------|
+| `run_decoy.py` | 项目根目录统一 CLI 入口，支持 `python run_decoy.py <SEQUENCE> <strategies...>` |
+| `decoy_d/__main__.py` | 使 `python -m decoy_d` 可用 |
+| `scripts/batch_decoy_d.sh` | 批量对 `candidate_targets.json` 中所有靶标运行 Decoy D |
+| `scripts/visualize_decoy_d_detail.py` | 通用 Decoy D 3-panel 可视化脚本（非 GILGFVFTL 硬编码） |
+
+### 13.3 统一 CLI 设计
+
+`run_decoy.py` 接受位置参数 `<target> <strategies...>`：
+
+```bash
+python run_decoy.py GILGFVFTL d              # 单策略
+python run_decoy.py GILGFVFTL a b d          # 多策略组合
+python run_decoy.py EVDPIGHLY d --hla HLA-A*01:01  # 指定 HLA allele
+python run_decoy.py GILGFVFTL d --designs 2000 --top-k 20
+```
+
+策略路由：
+- `a` → `decoy_b.scanner.scan_decoy_a()`
+- `b` → `decoy_b.scanner.scan_decoy_b()`
+- `d` → `decoy_d.scanner.run_decoy_d()`
+- `c` → 待集成（当前跳过并提示）
+
+输出目录：`data/decoy_{a,b,d}/{TARGET}/`
+
+### 13.4 批量运行脚本
+
+`scripts/batch_decoy_d.sh` 流程：
+1. 从 `data/candidate_targets.json` 读取所有靶标（含 existing + proposed，共 12 个）
+2. 逐个运行 `python run_decoy.py <SEQ> d --hla <HLA>`
+3. 运行完成后调用 `scripts/visualize_decoy_d_detail.py --all` 生成所有 Pareto 图
+4. 输出：12 张 `figures/{TARGET}_decoy_d_detail.png`
+
+额外参数可透传：`bash scripts/batch_decoy_d.sh --designs 2000`
+
+### 13.5 可视化脚本
+
+`scripts/visualize_decoy_d_detail.py` 是通用版的 Decoy D 3-panel 图表生成器（从原 `visualize_GILGFVFTL_summary.py` 的 Figure 3 提取并参数化）：
+
+- Panel a: Top 15 by MPNN Score（附 EL%Rank 标注）
+- Panel b: Top 15 by EL%Rank（附 MPNN Score 标注）
+- Panel c: Pareto front — MPNN Score vs EL%Rank 散点图，红色菱形标出 Pareto 最优解
+
+支持单靶标和批量模式：
+```bash
+python scripts/visualize_decoy_d_detail.py GILGFVFTL
+python scripts/visualize_decoy_d_detail.py --all
+```

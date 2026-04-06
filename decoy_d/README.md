@@ -29,7 +29,18 @@ Input: 靶标 pMHC 结构 (tFold/AF3 预测)
 ## 使用方法
 
 ```bash
+# 统一入口（推荐）
+python run_decoy.py GILGFVFTL d
+python run_decoy.py GILGFVFTL d --hla HLA-A*02:01 --designs 2000
+
+# 模块入口
+python -m decoy_d --target GILGFVFTL --hla "HLA-A*02:01"
+
+# 集成到 Decoy B 管线
 python -m decoy_b run --target GILGFVFTL --hla "HLA-A*02:01" --mpnn
+
+# 批量运行全部候选靶标 + 生成 Pareto 图表
+bash scripts/batch_decoy_d.sh
 ```
 
 ## 文件清单
@@ -37,8 +48,13 @@ python -m decoy_b run --target GILGFVFTL --hla "HLA-A*02:01" --mpnn
 | 文件 | 作用 |
 |------|------|
 | `scanner.py` | MPNN 逆向设计管线主逻辑 |
+| `__main__.py` | `python -m decoy_d` 入口 |
+| `main.py` | CLI argparse 定义 |
 | `orchestrator.py` | 与 Decoy B 主流程集成 |
-| `tools/` | ProteinMPNN 封装 |
+| `tools/` | ProteinMPNN / tFold 封装 |
+| `../run_decoy.py` | 项目根目录统一 CLI |
+| `../scripts/batch_decoy_d.sh` | 批量运行脚本 |
+| `../scripts/visualize_decoy_d_detail.py` | Decoy D 3-panel 可视化 |
 
 ## 常见问题 (Q&A)
 

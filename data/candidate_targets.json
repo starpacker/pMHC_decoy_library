@@ -1,0 +1,111 @@
+{
+  "description": "Candidate therapeutic target peptides for decoy library pipeline screening. These are benign, therapeutically promising targets — the pipeline (Decoy A-D) will automatically discover cross-reactive off-target risks around each one.",
+  "existing_targets": [
+    "GILGFVFTL",
+    "KVAELVHFL"
+  ],
+  "proposed_targets": [
+    {
+      "sequence": "NLVPMVATV",
+      "length": 9,
+      "source_protein": "CMV pp65 (UL83)",
+      "source_organism": "Human cytomegalovirus",
+      "hla_allele": "HLA-A*02:01",
+      "category": "viral",
+      "therapeutic_context": "移植后CMV再激活的adoptive T细胞治疗，已有成熟临床应用",
+      "selection_rationale": "CMV免疫学研究中最经典的HLA-A*02:01限制性表位，PDB结构数据极丰富，适合作为Decoy B结构比对的基准"
+    },
+    {
+      "sequence": "GLCTLVAML",
+      "length": 9,
+      "source_protein": "EBV BMLF1",
+      "source_organism": "Epstein-Barr virus",
+      "hla_allele": "HLA-A*02:01",
+      "category": "viral",
+      "therapeutic_context": "EBV相关移植后淋巴增殖性疾病(PTLD)治疗",
+      "selection_rationale": "EBV裂解期免疫优势表位，大量已解析的TCR-pMHC晶体结构可用于交叉反应性分析"
+    },
+    {
+      "sequence": "CLGGLLTMV",
+      "length": 9,
+      "source_protein": "EBV LMP2",
+      "source_organism": "Epstein-Barr virus",
+      "hla_allele": "HLA-A*02:01",
+      "category": "viral",
+      "therapeutic_context": "EBV相关鼻咽癌(NPC)和霍奇金淋巴瘤，中国高发肿瘤类型",
+      "selection_rationale": "EBV潜伏期靶点，与BMLF1互补覆盖EBV不同生命周期阶段；鼻咽癌在中国有特殊临床意义"
+    },
+    {
+      "sequence": "YLQPRTFLL",
+      "length": 9,
+      "source_protein": "SARS-CoV-2 Spike protein",
+      "source_organism": "SARS-CoV-2",
+      "hla_allele": "HLA-A*02:01",
+      "category": "viral",
+      "therapeutic_context": "COVID-19 T细胞免疫治疗研究",
+      "selection_rationale": "新冠疫情后积累了大量TCR-pMHC结构和交叉反应性数据，是近年数据最密集的表位之一"
+    },
+    {
+      "sequence": "FLPSDFFPSV",
+      "length": 10,
+      "source_protein": "HBV Core antigen (HBcAg)",
+      "source_organism": "Hepatitis B virus",
+      "hla_allele": "HLA-A*02:01",
+      "category": "viral",
+      "therapeutic_context": "慢性乙型肝炎免疫治疗，中国约3亿HBV感染者",
+      "selection_rationale": "HBV免疫学经典表位，对中国市场有极高的临床转化价值；10-mer可测试pipeline对非9-mer的处理能力"
+    },
+    {
+      "sequence": "YMLDLQPET",
+      "length": 9,
+      "source_protein": "HPV16 E7 oncoprotein",
+      "source_organism": "Human papillomavirus 16",
+      "hla_allele": "HLA-A*02:01",
+      "category": "viral",
+      "therapeutic_context": "HPV阳性宫颈癌及头颈癌的TCR-T治疗",
+      "selection_rationale": "病毒源外源抗原，治疗窗口好；HPV相关癌症在全球范围内有重大未满足需求"
+    },
+    {
+      "sequence": "SLYNTVATL",
+      "length": 9,
+      "source_protein": "HIV-1 Gag p17",
+      "source_organism": "HIV-1",
+      "hla_allele": "HLA-A*02:01",
+      "category": "viral",
+      "therapeutic_context": "HIV功能性治愈策略中的TCR-T方向研究",
+      "selection_rationale": "HIV免疫学最经典表位之一，TCR多样性研究的模式系统"
+    },
+    {
+      "sequence": "SLLMWITQC",
+      "length": 9,
+      "source_protein": "NY-ESO-1 (CTAG1B)",
+      "source_organism": "Homo sapiens",
+      "hla_allele": "HLA-A*02:01",
+      "category": "cancer-testis antigen",
+      "therapeutic_context": "多种实体瘤(黑色素瘤、滑膜肉瘤等)的TCR-T治疗，Adaptimmune临床数据安全性良好",
+      "selection_rationale": "正常组织仅在睾丸表达(免疫豁免器官)，治疗窗口优秀；临床试验中未观察到严重交叉反应毒性",
+      "note": "C端半胱氨酸在实验中有时替换为V (SLLMWITQV)以提高稳定性"
+    },
+    {
+      "sequence": "RMFPNAPYL",
+      "length": 9,
+      "source_protein": "WT1 (Wilms tumor protein 1)",
+      "source_organism": "Homo sapiens",
+      "hla_allele": "HLA-A*02:01",
+      "category": "tumor-associated antigen",
+      "therapeutic_context": "急性髓系白血病(AML)/骨髓增生异常综合征(MDS)及部分实体瘤的TCR-T治疗",
+      "selection_rationale": "WT1在肿瘤细胞中过表达，正常组织表达水平低；多项TCR-T临床试验显示可接受的安全性"
+    },
+    {
+      "sequence": "EVDPIGHLY",
+      "length": 9,
+      "source_protein": "MAGE-A3",
+      "source_organism": "Homo sapiens",
+      "hla_allele": "HLA-A*01:01",
+      "category": "cancer-testis antigen",
+      "therapeutic_context": "黑色素瘤及多种实体瘤的TCR-T治疗靶点",
+      "selection_rationale": "癌睾丸抗原，正常组织表达受限；引入HLA-A*01:01以扩展pipeline的allele覆盖范围",
+      "note": "运行Decoy A前需为HLA-A*01:01构建独立的k-mer数据库(EL%Rank ≤ 2.0)"
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 # Decoy B 部署指南
 
 **状态**: 代码已就绪，等待模型权重部署
-**最后更新**: 2026-04-03
+**最后更新**: 2026-04-06
 
 ---
 
 ## 概览
 
-Decoy B 依赖四个外部工具进行结构预测、交叉验证和序列设计：
+Decoy B 依赖以下外部工具进行结构预测、交叉验证、序列设计和相互作用分析：
 
 | 工具 | 用途 | 阶段 | 必需? |
 |------|------|------|-------|
@@ -15,6 +15,7 @@ Decoy B 依赖四个外部工具进行结构预测、交叉验证和序列设计
 | **AlphaFold3** | pMHC 高精度结构预测（精修） | Stage 3 | 可选（提升精度） |
 | **Boltz-2** | pMHC 结构交叉验证 | Stage 4 | 推荐（提升可靠性） |
 | **ProteinMPNN** | 逆向序列设计 | MPNN 分支 | 可选（发现新候选） |
+| **PLIP** | 非共价相互作用指纹（H-bond、疏水、盐桥、pi-stacking） | Stage 5 | 可选（groove 描述符） |
 
 Pipeline 会自动检测可用工具并跳过不可用的阶段。即使只有 tFold，也能运行完整的 Decoy B 筛选。
 
@@ -251,7 +252,51 @@ export BOLTZ_DEVICE=gpu                 # 设备 (gpu 或 cpu)
 
 ---
 
-## 5. 完整验证
+## 5. PLIP 部署
+
+PLIP (Protein-Ligand Interaction Profiler) 用于分析 peptide-MHC 界面的非共价相互作用，作为 Stage 5 的补充描述符。
+
+### 5.1 安装
+
+PLIP 依赖 OpenBabel C++ 库，需要通过 conda 安装：
+
+```bash
+# 创建专用环境（OpenBabel 在 Windows 上不支持 pip 安装）
+conda create -n plip_env python=3.12 -y
+conda install -n plip_env -c conda-forge openbabel=3.1.1 -y
+conda run -n plip_env pip install plip --no-deps
+conda run -n plip_env pip install numpy lxml
+```
+
+### 5.2 验证
+
+```bash
+conda run -n plip_env python scripts/test_plip_deploy.py
+```
+
+预期输出：
+```
+Binding sites found: 9
+  GLY:P:1: H-bonds=3, Hydrophobic=0, ...
+  ...
+PLIP deployment test PASSED!
+```
+
+### 5.3 工作原理
+
+PLIP 原生只支持 protein-ligand（小分子）分析。在 pMHC 结构中，peptide 是 ATOM 记录（蛋白链），PLIP 无法识别为 "ligand"。
+
+**解决方案**: `interface_descriptors.py` 中的 `_prepare_pdb_for_plip()` 函数会自动将 peptide chain P 的 ATOM 记录转换为 HETATM 记录，使 PLIP 将其识别为 ligand 并检测与 MHC 的相互作用。
+
+### 5.4 注意事项
+
+- PLIP 运行在独立的 conda 环境 `plip_env` 中（OpenBabel Windows 兼容性）
+- 当 PLIP 不可用时，Pipeline 会跳过该描述符，不影响其他阶段
+- PLIP Tanimoto 相似度作为补充信息记录在 `StructuralScore.plip_tanimoto` 中
+
+---
+
+## 6. 完整验证
 
 运行验证脚本检查所有工具：
 
@@ -299,7 +344,7 @@ Summary:
 
 ---
 
-## 6. 运行 Decoy B
+## 7. 运行 Decoy B
 
 ### 6.1 物理化学筛选（不需要外部工具）
 
@@ -347,7 +392,7 @@ for h in hits[:5]:
 
 ---
 
-## 7. 环境变量汇总
+## 8. 环境变量汇总
 
 | 变量 | 默认值 | 说明 |
 |------|--------|------|
@@ -371,7 +416,7 @@ for h in hits[:5]:
 
 ---
 
-## 8. 故障排除
+## 9. 故障排除
 
 ### tFold 找不到权重
 

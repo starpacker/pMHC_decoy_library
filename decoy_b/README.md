@@ -24,7 +24,7 @@ Stage 4: Boltz 交叉验证 (GPU, 可选)
   独立结构预测 → tFold/AF3 一致性评估
 
 Stage 5: 结构比较 & 综合评分
-  双叠合 RMSD + 5-descriptor 界面评分
+  双叠合 RMSD + 4 TCR-facing 描述符 + PLIP groove 描述符
 ```
 
 ## 评分公式
@@ -60,8 +60,17 @@ risk = similarity_score * (1/EL_Rank) * TPM_Weight
 | **rSASA Profile** | 每个肽位点的相对溶剂可及面积 (complex/free) | Cosine 相似度 | 0.20 |
 | **Exposed Hydrophobicity** | rSASA 加权的 Kyte-Doolittle 疏水性 | Cosine 相似度 | 0.20 |
 
-**已替换的旧描述符** (度量方向错误 — peptide-MHC groove 界面):
-- ~~PLIP~~, ~~FreeSASA/BSA~~, ~~PRODIGY~~, ~~PeSTo~~, ~~APBS/ESP~~
+**补充描述符: PLIP** — peptide-MHC **结合槽界面**的非共价相互作用分析：
+
+| 描述符 | 方法 | 度量 | 用途 |
+|--------|------|------|------|
+| **PLIP Tanimoto** | H-bond/疏水/盐桥/π-stacking 计数向量 | 广义 Tanimoto 系数 [0-1] | 结合模式相似性（补充信息） |
+
+> PLIP 与 TCR-facing 描述符**互补**：TCR-facing 度量 TCR 看到的上表面，PLIP 度量 peptide 在 MHC groove 中的结合模式。
+> 需要 conda 环境 `plip_env`（OpenBabel + PLIP），详见 `DEPLOYMENT.md` 第 5 节。
+
+**已替换的旧 groove 描述符** (不再用于 StructSim 权重计算):
+- ~~FreeSASA/BSA~~, ~~PRODIGY~~, ~~PeSTo~~, ~~APBS/ESP~~
 
 **Spearman ρ 验证** (GILGFVFTL 50 candidates):
 - tcr_esp ↔ sim_A: 0.43 (独立信息)
@@ -88,9 +97,10 @@ risk = similarity_score * (1/EL_Rank) * TPM_Weight
 | **AlphaFold3** | 高精度精修 | 可选 |
 | **Boltz-2** | 结构交叉验证 | 可选 |
 | **ProteinMPNN** | 逆向序列设计 | 可选 |
+| **PLIP** | 非共价相互作用指纹 (groove 描述符) | 可选 (需 `plip_env` conda 环境) |
 | **BioPython ShrakeRupley** | SASA 计算 (TCR-facing 描述符核心) | 必需 |
 
-Pipeline 仅依赖 BioPython 即可运行全部 4 个 TCR-facing 描述符，无外部工具依赖。
+Pipeline 仅依赖 BioPython 即可运行全部 4 个 TCR-facing 描述符，无外部工具依赖。PLIP 为可选补充描述符。
 
 ## 使用方法
 

@@ -20,6 +20,7 @@ Usage:
 from __future__ import annotations
 
 import logging
+import os
 import re
 import subprocess
 import tempfile
@@ -156,6 +157,38 @@ class InterfaceSimilarity:
 #  1. PLIP: Non-Covalent Interaction Fingerprint
 # ======================================================================
 
+def _prepare_pdb_for_plip(
+    pdb_path: str,
+    peptide_chain: str = DEFAULT_PEPTIDE_CHAIN,
+) -> str:
+    """
+    Create a PLIP-compatible PDB by converting the peptide chain from
+    ATOM to HETATM records.
+
+    PLIP is designed for protein-ligand interactions and only detects
+    interactions with non-protein (HETATM) entities. In pMHC structures
+    the peptide is encoded as a normal protein chain (ATOM records),
+    so PLIP's ``analyze()`` finds zero binding sites.
+
+    Fix: rewrite chain P ATOM lines as HETATM, which makes PLIP treat
+    the peptide as a "ligand" and detect its interactions with the MHC.
+    """
+    tmp = tempfile.NamedTemporaryFile(
+        suffix=".pdb", delete=False, mode="w", encoding="utf-8",
+    )
+    with open(pdb_path, "r", encoding="utf-8") as fh:
+        for line in fh:
+            if line.startswith("ATOM") and len(line) >= 22:
+                chain_id = line[21]
+                if chain_id == peptide_chain:
+                    # HETATM is 6 chars vs ATOM is 4 chars — pad ATOM→HETATM
+                    tmp.write("HETATM" + line[6:])
+                    continue
+            tmp.write(line)
+    tmp.close()
+    return tmp.name
+
+
 def compute_plip_fingerprint(
     pdb_path: str,
     peptide_chain: str = DEFAULT_PEPTIDE_CHAIN,
@@ -165,6 +198,9 @@ def compute_plip_fingerprint(
     Run PLIP on a pMHC PDB to extract non-covalent interactions
     at the peptide-MHC interface.
 
+    The peptide chain is converted to HETATM records so that PLIP
+    treats it as a "ligand" and detects its interactions with MHC.
+
     Returns InteractionFingerprint or None if PLIP is unavailable.
     """
     try:
@@ -173,9 +209,12 @@ def compute_plip_fingerprint(
         log.warning("PLIP not installed. Run: conda install -c conda-forge openbabel && pip install plip")
         return None
 
+    plip_pdb = None
     try:
+        plip_pdb = _prepare_pdb_for_plip(pdb_path, peptide_chain)
+
         mol = PDBComplex()
-        mol.load_pdb(pdb_path)
+        mol.load_pdb(plip_pdb)
         mol.analyze()
 
         hbond_count = 0
@@ -238,6 +277,14 @@ def compute_plip_fingerprint(
     except Exception as exc:
         log.warning("PLIP analysis failed for %s: %s", pdb_path, exc)
         return None
+
+    finally:
+        if plip_pdb:
+            import os
+            try:
+                os.unlink(plip_pdb)
+            except OSError:
+                pass
 
 
 def compute_plip_tanimoto(

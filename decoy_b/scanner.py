@@ -616,6 +616,36 @@ def compute_structure_similarity(
             log.debug("TCR-facing descriptors unavailable: %s", exc)
             final_score = rmsd_geo_score
 
+        # ── PLIP: peptide-MHC non-covalent interaction fingerprint ────
+        # PLIP measures the binding groove interface (H-bonds, hydrophobic
+        # contacts, salt bridges, pi-stacking). This complements TCR-facing
+        # descriptors: similar groove interactions → similar binding mode →
+        # higher cross-reactivity risk.
+        try:
+            from decoy_b.tools.interface_descriptors import (
+                compute_plip_fingerprint,
+                compute_plip_tanimoto,
+            )
+
+            fp_tgt = compute_plip_fingerprint(str(target_pdb))
+            fp_cand = compute_plip_fingerprint(str(candidate_pdb))
+
+            if fp_tgt is not None and fp_cand is not None:
+                plip_sim = compute_plip_tanimoto(fp_tgt, fp_cand)
+                iface_fields["plip_tanimoto"] = plip_sim
+                tool += "+plip"
+                log.debug(
+                    "PLIP Tanimoto(%s vs %s) = %.3f",
+                    target_pdb.name if hasattr(target_pdb, 'name') else target_pdb,
+                    candidate_pdb.name if hasattr(candidate_pdb, 'name') else candidate_pdb,
+                    plip_sim,
+                )
+
+        except ImportError:
+            log.debug("PLIP not available (install: conda install -c conda-forge openbabel && pip install plip)")
+        except Exception as exc:
+            log.debug("PLIP analysis failed: %s", exc)
+
         return StructuralScore(
             modeling_tool=tool,
             pdb_path=str(candidate_pdb),

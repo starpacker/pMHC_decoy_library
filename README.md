@@ -45,6 +45,26 @@
 
 ## 使用方法
 
+### 统一入口（推荐）
+
+```bash
+# 单策略运行
+python run_decoy.py GILGFVFTL d                          # Decoy D only
+python run_decoy.py GILGFVFTL a                          # Decoy A only
+
+# 多策略组合
+python run_decoy.py GILGFVFTL a b d                      # A + B + D
+
+# 指定 HLA / MPNN 参数
+python run_decoy.py EVDPIGHLY d --hla HLA-A*01:01
+python run_decoy.py GILGFVFTL d --designs 2000 --top-k 20
+
+# 批量运行全部候选靶标 Decoy D + 生成图表
+bash scripts/batch_decoy_d.sh
+```
+
+### 模块入口
+
 ```bash
 # Decoy A — 序列同源扫描
 python -m decoy_a scan --target GILGFVFTL --hla "HLA-A*02:01"
@@ -52,8 +72,8 @@ python -m decoy_a scan --target GILGFVFTL --hla "HLA-A*02:01"
 # Decoy B — 结构相似筛选（完整管线）
 python -m decoy_b run --target GILGFVFTL --hla "HLA-A*02:01"
 
-# Decoy B + MPNN 逆向设计
-python -m decoy_b run --target GILGFVFTL --hla "HLA-A*02:01" --mpnn
+# Decoy D — MPNN 逆向设计
+python -m decoy_d --target GILGFVFTL --hla "HLA-A*02:01"
 
 # Decoy C — 文献挖掘
 python -m decoy_c stats
@@ -92,6 +112,14 @@ $$StructSim = 0.50 \times RMSD\_Geo + 0.50 \times TCR\_Combined$$
 | rSASA Profile | per-position 相对 SASA → Cosine | 0.20 | 哪些位点面向 TCR |
 | Exposed Hydrophobicity | rSASA 加权 Kyte-Doolittle → Cosine | 0.20 | TCR 面的疏水性 |
 
+补充描述符 **PLIP**（Protein-Ligand Interaction Profiler）——度量 peptide-MHC **结合槽界面**的非共价相互作用：
+
+| 描述符 | 度量方式 | 用途 |
+|--------|---------|------|
+| PLIP Tanimoto | H-bond/疏水/盐桥/π-stacking 计数向量 → 广义 Tanimoto 系数 | 相似结合模式 → 相似呈递 → 更高交叉反应风险 |
+
+> PLIP 与 TCR-facing 描述符互补：TCR-facing 度量 TCR 看到的上表面，PLIP 度量 peptide 锚定在 MHC groove 中的结合模式。
+
 ### 通用权重因子
 - **EL_Rank**: mhcflurry presentation_percentile，越小亲和力越强
 - **TPM_Weight**: 心脏/大脑等致命器官 ($TPM > 10$) 有 $10\times$ 加权惩罚
@@ -118,7 +146,7 @@ $$StructSim = 0.50 \times RMSD\_Geo + 0.50 \times TCR\_Combined$$
 | `numpy`, `scipy` | 数值计算 |
 | `pandas`, `pyarrow` | 数据处理 |
 | `pydantic` | 数据模型验证 |
-| `plip` | PLIP 非共价相互作用分析 |
+| `plip` | PLIP 非共价相互作用分析（需 conda 环境 `plip_env` + OpenBabel） |
 | `freesasa` | 溶剂可及表面积 |
 | `prodigy-prot` | 接触基结合亲和力预测 |
 
@@ -162,11 +190,13 @@ pMHC_decoy_library/
 │   ├── risk_scorer.py               #   统一风险评分（合并 A+B）
 │   ├── orchestrator.py              #   全管线编排 + 断点续传
 │   ├── tools/
-│   │   ├── interface_descriptors.py #   5-descriptor 界面描述符
+│   │   ├── tcr_surface_descriptors.py #  4 TCR-facing 表面描述符 (v2)
+│   │   ├── interface_descriptors.py #   PLIP + groove 界面描述符
 │   │   ├── tfold.py                 #   tFold 封装
 │   │   ├── alphafold3.py            #   AF3 封装
+│   │   ├── boltz.py                 #   Boltz-2 封装
 │   │   └── proteinmpnn.py           #   ProteinMPNN 封装
-│   └── DEPLOYMENT.md                #   外部工具部署指南
+│   └── DEPLOYMENT.md                #   外部工具部署指南（含 PLIP）
 │
 ├── decoy_c/                         # Decoy C: 文献挖掘
 │   ├── extractor.py                 #   LLM 结构化提取

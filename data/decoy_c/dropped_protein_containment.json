@@ -1,0 +1,1965 @@
+{
+  "description": "IEDB entries dropped because peptide not found in claimed protein",
+  "count": 33,
+  "entries": [
+    {
+      "decoy_id": "DC-0596",
+      "peptide_info": {
+        "decoy_sequence": "AIISGDSPV",
+        "hla_allele": "HLA-A*02:01",
+        "source_protein": "Myeloid cell surface antigen CD33",
+        "gene_symbol": "Myeloid cell surface",
+        "uniprot_id": "P20138"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "cytotoxicity|51 chromium",
+          "qualitative binding|cellular MHC/direct/fluorescence"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "15501984"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Myeloid cell surface antigen CD33."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "1956",
+        "iedb_hla_alleles": "HLA-A*02:01",
+        "iedb_ms_confirmed": "1 elution assays",
+        "iedb_source_antigen": "Myeloid cell surface antigen CD33 (UniProt:P20138)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0603",
+      "peptide_info": {
+        "decoy_sequence": "YMDGTMSQV",
+        "hla_allele": "HLA-A*02:01",
+        "source_protein": "Tyrosinase",
+        "gene_symbol": "Tyrosinase",
+        "uniprot_id": "P14679"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "50% dissociation temperature|purified MHC/direct/fluorescence|°C",
+          "activation|biological activity",
+          "cytotoxicity|51 chromium",
+          "cytotoxicity|in vitro assay",
+          "half life|cellular MHC/direct/fluorescence|min",
+          "half life|purified MHC/direct/fluorescence|min",
+          "IFNg release|cytometric bead array",
+          "IFNg release|ELISA",
+          "IFNg release|ELISPOT",
+          "IFNg release|ICS",
+          "IL-10 release|ICS",
+          "IL-17A release|ICS",
+          "IL-4 release|ICS",
+          "ligand presentation|cellular MHC/mass spectrometry",
+          "perforin release|intracellular staining",
+          "proliferation|CFSE",
+          "qualitative binding|cellular MHC/direct/fluorescence",
+          "qualitative binding|multimer/tetramer",
+          "TGFb release|ELISA",
+          "TNFa release|cytometric bead array"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "9647214",
+          "10540322",
+          "11684128",
+          "11970981",
+          "15449035",
+          "15542798",
+          "15688371",
+          "16336973",
+          "16441627",
+          "22021080",
+          "22159452",
+          "22269772",
+          "22895835",
+          "23087058",
+          "23233149",
+          "23653149",
+          "24371571",
+          "24498563",
+          "25199103",
+          "25415440",
+          "25645385",
+          "26500235",
+          "28536308",
+          "29933102",
+          "30219821",
+          "30418433",
+          "30425106",
+          "32314731",
+          "34035112",
+          "34391887",
+          "34413169"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Tyrosinase."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "75043",
+        "iedb_hla_alleles": "HLA-A*02:01, HLA-A2, human",
+        "iedb_ms_confirmed": "6 elution assays",
+        "iedb_source_antigen": "Tyrosinase (UniProt:P14679)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0623",
+      "peptide_info": {
+        "decoy_sequence": "FLWSVFMLI",
+        "hla_allele": "HLA-A*02:01",
+        "source_protein": "Glucose-6-phosphatase 2",
+        "gene_symbol": "Glucose-6-phosphatas",
+        "uniprot_id": "Q9NQR9"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "half maximal inhibitory concentration (IC50)|purified MHC/competitive/radioactivity|nM",
+          "IFNg release|ELISPOT",
+          "qualitative binding|cellular MHC/direct/fluorescence",
+          "qualitative binding|multimer/tetramer"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "17065344",
+          "29562882",
+          "30418433"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Glucose-6-phosphatase 2."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "100845",
+        "iedb_hla_alleles": "HLA-A*02:01",
+        "iedb_ms_confirmed": "2 elution assays",
+        "iedb_source_antigen": "Glucose-6-phosphatase 2 (UniProt:Q9NQR9)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0682",
+      "peptide_info": {
+        "decoy_sequence": "VLHDDLLEA",
+        "hla_allele": "HLA-A*02:01",
+        "source_protein": "Rho GTPase-activating protein 45",
+        "gene_symbol": "Rho GTPase-activatin",
+        "uniprot_id": "K7EM85"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": "CB004-16"
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "3D structure|x-ray crystallography|angstroms",
+          "50% dissociation temperature|purified MHC/direct/fluorescence|°C",
+          "antibody-dependent cellular cytotoxicity|biological activity",
+          "cytotoxicity|51 chromium",
+          "cytotoxicity|in vitro assay",
+          "dissociation constant KD|surface plasmon resonance (SPR)|nM",
+          "granzyme B release|intracellular staining",
+          "half maximal inhibitory concentration (IC50)|purified MHC/competitive/fluorescence|nM",
+          "half maximal inhibitory concentration (IC50)|purified MHC/competitive/radioactivity|nM",
+          "IFNg release|ELISA",
+          "IFNg release|ELISPOT",
+          "IFNg release|ICS",
+          "IL-2 release|ELISA",
+          "IL-2 release|ICS",
+          "ligand presentation|T cell recognition",
+          "proliferation|3H-thymidine",
+          "proliferation|CFSE",
+          "qualitative binding|cellular MHC/direct/fluorescence",
+          "qualitative binding|ELISA",
+          "qualitative binding|flow cytometry",
+          "qualitative binding|multimer/tetramer",
+          "qualitative binding|purified MHC/competitive/fluorescence",
+          "qualitative binding|purified MHC/direct/fluorescence",
+          "TGFb release|ELISA",
+          "TGFb release|ICS",
+          "TNFa release|ELISA",
+          "TNFa release|ICS",
+          "type IV hypersensitivity (DTH) after adoptive transfer|in vivo skin test"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "19234124",
+          "10395333",
+          "11807003",
+          "12091347",
+          "12234166",
+          "12601144",
+          "12804533",
+          "14973499",
+          "15031203",
+          "15067036",
+          "15498856",
+          "16219579",
+          "16237088",
+          "16357839",
+          "16707472",
+          "17241921",
+          "17530010",
+          "17785778",
+          "18698046",
+          "19342659",
+          "20855877",
+          "21109688",
+          "21850230",
+          "23022467",
+          "23740900",
+          "24694533",
+          "25392532",
+          "29051183",
+          "30418433",
+          "30425106",
+          "32362897",
+          "34046897",
+          "9461441"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Rho GTPase-activating protein 45."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "136896",
+        "iedb_hla_alleles": "HLA-A*02:01, HLA-A*02:06, HLA-A2, human",
+        "iedb_ms_confirmed": "13 elution assays",
+        "iedb_tcr_enriched": "CB004-16, CB004-19, JA003-A1, JA003-B1, JA003-Z6, MG005-9, TD2",
+        "iedb_source_antigen": "Rho GTPase-activating protein 45 (UniProt:K7EM85)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0684",
+      "peptide_info": {
+        "decoy_sequence": "YLDPAQQNL",
+        "hla_allele": "HLA-A*02:01",
+        "source_protein": "PR domain zinc finger protein 1",
+        "gene_symbol": "PR domain zinc finge",
+        "uniprot_id": "O75626"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "cytotoxicity|51 chromium",
+          "half maximal inhibitory concentration (IC50)|purified MHC/competitive/radioactivity|nM",
+          "ligand presentation|cellular MHC/mass spectrometry",
+          "ligand presentation|secreted MHC/mass spectrometry"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "9190931",
+          "22898188",
+          "23481700",
+          "32157095",
+          "32561536",
+          "33691108",
+          "34391887",
+          "34509645",
+          "9075928"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: PR domain zinc finger protein 1."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "137772",
+        "iedb_hla_alleles": "HLA-A*02:01, HLA-C*05:01, HLA-E*01:03, human",
+        "iedb_ms_confirmed": "12 elution assays",
+        "iedb_source_antigen": "PR domain zinc finger protein 1 (UniProt:O75626), Zinc finger protein 682 (UniProt:A0A2I3RCD6)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0725",
+      "peptide_info": {
+        "decoy_sequence": "PTLDKVLEV",
+        "hla_allele": "HLA-A*02:01",
+        "source_protein": "Pumilio homolog 3",
+        "gene_symbol": "Pumilio homolog 3",
+        "uniprot_id": "Q15397"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "cytotoxicity|51 chromium",
+          "half maximal inhibitory concentration (IC50)|purified MHC/competitive/radioactivity|nM"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "11148223"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Pumilio homolog 3."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "141374",
+        "iedb_hla_alleles": "HLA-A*02:01",
+        "iedb_ms_confirmed": "1 elution assays",
+        "iedb_source_antigen": "Pumilio homolog 3 (UniProt:Q15397)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0779",
+      "peptide_info": {
+        "decoy_sequence": "VTEPGTAQY",
+        "hla_allele": "HLA-A*01:01",
+        "source_protein": "A-kinase anchor protein 13",
+        "gene_symbol": "A-kinase anchor prot",
+        "uniprot_id": "Q12802"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "IFNg release|ELISA",
+          "ligand presentation|cellular MHC/mass spectrometry"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "32362897",
+          "32157095",
+          "33691108"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: A-kinase anchor protein 13."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "1075817",
+        "iedb_hla_alleles": "HLA-A*01:01, human",
+        "iedb_ms_confirmed": "2 elution assays",
+        "iedb_source_antigen": "A-kinase anchor protein 13 (UniProt:Q12802)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0810",
+      "peptide_info": {
+        "decoy_sequence": "RVWDLPGVLK",
+        "hla_allele": "HLA-A*03:01",
+        "source_protein": "Centromere protein M",
+        "gene_symbol": "Centromere protein M",
+        "uniprot_id": "Q9NSP4"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "cytotoxicity|51 chromium",
+          "ligand presentation|cellular MHC/mass spectrometry",
+          "ligand presentation|coelution",
+          "ligand presentation|mass spectrometry",
+          "qualitative binding|multimer/tetramer"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "16391015",
+          "23022467",
+          "27841757",
+          "28228285",
+          "30315122",
+          "31844290",
+          "32983136"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Centromere protein M."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "139237",
+        "iedb_hla_alleles": "HLA-A*03:01, HLA-A*11:01, HLA-A*11:02, HLA-A3, human",
+        "iedb_ms_confirmed": "8 elution assays",
+        "iedb_source_antigen": "Centromere protein M (UniProt:Q9NSP4), Isoform 3 of Centromere protein M (UniProt:Q9NSP4-3)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0811",
+      "peptide_info": {
+        "decoy_sequence": "RVSLPTSPR",
+        "hla_allele": "HLA-A*03:01",
+        "source_protein": "Protein associated with UVRAG as autophagy enhancer",
+        "gene_symbol": "Protein associated w",
+        "uniprot_id": "Q9H714"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "cytotoxicity|in vitro assay",
+          "ligand presentation|cellular MHC/mass spectrometry"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "24714562",
+          "26728094"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Protein associated with UVRAG as autophagy enhancer."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "218729",
+        "iedb_hla_alleles": "HLA-A*03:01",
+        "iedb_ms_confirmed": "4 elution assays",
+        "iedb_source_antigen": "Protein associated with UVRAG as autophagy enhancer (UniProt:Q9H714)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0826",
+      "peptide_info": {
+        "decoy_sequence": "AVHNGLGEKGSQA",
+        "hla_allele": "HLA-A*03:01",
+        "source_protein": "NAD kinase",
+        "gene_symbol": "NAD kinase",
+        "uniprot_id": "O95544"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": null,
+        "assays_performed": [
+          "IEDB record",
+          "IFNg release|ELISA"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "32362897"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: NAD kinase."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "1075201",
+        "iedb_hla_alleles": "HLA-A*03:01",
+        "iedb_source_antigen": "NAD kinase (UniProt:O95544)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0827",
+      "peptide_info": {
+        "decoy_sequence": "KQSASQLQK",
+        "hla_allele": "HLA-A*03:01",
+        "source_protein": "MICOS complex subunit MIC60",
+        "gene_symbol": "MICOS complex subuni",
+        "uniprot_id": "Q16891"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "IFNg release|ELISA",
+          "ligand presentation|cellular MHC/mass spectrometry"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "32362897",
+          "24714562",
+          "26728094",
+          "32157095"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: MICOS complex subunit MIC60."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "213438",
+        "iedb_hla_alleles": "HLA-A*03:01, human",
+        "iedb_ms_confirmed": "6 elution assays",
+        "iedb_source_antigen": "Isoform 4 of MICOS complex subunit MIC60 (UniProt:Q16891-4), MICOS complex subunit MIC60 (UniProt:Q16891)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0847",
+      "peptide_info": {
+        "decoy_sequence": "SVANALWIVK",
+        "hla_allele": "HLA-A*03:01",
+        "source_protein": "Oligoribonuclease, mitochondrial",
+        "gene_symbol": "Oligoribonuclease, m",
+        "uniprot_id": "Q9Y3B8"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "ligand presentation|cellular MHC/mass spectrometry",
+          "qualitative binding|multimer/tetramer",
+          "qualitative binding|purified MHC/direct/fluorescence"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "32928873"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Oligoribonuclease, mitochondrial."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "1312045",
+        "iedb_hla_alleles": "HLA-A*03:01, human",
+        "iedb_ms_confirmed": "2 elution assays",
+        "iedb_source_antigen": "Oligoribonuclease, mitochondrial (UniProt:Q9Y3B8)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0856",
+      "peptide_info": {
+        "decoy_sequence": "SVLLTRLAK",
+        "hla_allele": "HLA-A*03:01",
+        "source_protein": "Receptor-type tyrosine-protein phosphatase-like N",
+        "gene_symbol": "Receptor-type tyrosi",
+        "uniprot_id": "Q16849"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "ligand presentation|cellular MHC/mass spectrometry",
+          "qualitative binding|multimer/tetramer",
+          "qualitative binding|purified MHC/direct/fluorescence"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "32928873",
+          "30078552"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Receptor-type tyrosine-protein phosphatase-like N."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "952407",
+        "iedb_hla_alleles": "HLA-A*03:01, human",
+        "iedb_ms_confirmed": "3 elution assays",
+        "iedb_source_antigen": "Receptor-type tyrosine-protein phosphatase-like N (UniProt:Q16849), Two components:Bridge-like lipid transfer protein family member 3B (UniProt:A0JNW5) & Islet cell autoantigen 1 (UniProt:Q05084)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0864",
+      "peptide_info": {
+        "decoy_sequence": "KSFIKHAKGK",
+        "hla_allele": "HLA-A*03:01",
+        "source_protein": "One cut homeobox 1 (Fragment)",
+        "gene_symbol": "One cut homeobox 1 (",
+        "uniprot_id": "U3KQR8"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "ligand presentation|cellular MHC/mass spectrometry",
+          "qualitative binding|multimer/tetramer",
+          "qualitative binding|purified MHC/direct/fluorescence"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "32928873"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: One cut homeobox 1 (Fragment)."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "1312011",
+        "iedb_hla_alleles": "HLA-A*03:01, human",
+        "iedb_ms_confirmed": "2 elution assays",
+        "iedb_source_antigen": "One cut homeobox 1 (Fragment) (UniProt:U3KQR8)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0865",
+      "peptide_info": {
+        "decoy_sequence": "KISVHPKNCK",
+        "hla_allele": "HLA-A*03:01",
+        "source_protein": "One cut homeobox 1 (Fragment)",
+        "gene_symbol": "One cut homeobox 1 (",
+        "uniprot_id": "U3KQR8"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "ligand presentation|cellular MHC/mass spectrometry",
+          "qualitative binding|multimer/tetramer",
+          "qualitative binding|purified MHC/direct/fluorescence"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "32928873"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: One cut homeobox 1 (Fragment)."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "1312006",
+        "iedb_hla_alleles": "HLA-A*03:01, human",
+        "iedb_ms_confirmed": "2 elution assays",
+        "iedb_source_antigen": "One cut homeobox 1 (Fragment) (UniProt:U3KQR8)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0885",
+      "peptide_info": {
+        "decoy_sequence": "QLYPEWRTK",
+        "hla_allele": "HLA-A*03:01",
+        "source_protein": "Two components:Melanocyte protein PMEL (UniProt:P40967) & Melanocyte protein PMEL",
+        "gene_symbol": "Two components:Melan",
+        "uniprot_id": "P40967"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "IFNg release|ELISA",
+          "IFNg release|ICS",
+          "qualitative binding|cellular MHC/direct/fluorescence",
+          "TNFa release|bioassay"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "27049119"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Two components:Melanocyte protein PMEL (UniProt:P40967) & Melanocyte protein PMEL."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "2259222",
+        "iedb_hla_alleles": "HLA-A*03:01",
+        "iedb_ms_confirmed": "1 elution assays",
+        "iedb_source_antigen": "Two components:Melanocyte protein PMEL (UniProt:P40967) & Melanocyte protein PMEL (UniProt:P40967)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0886",
+      "peptide_info": {
+        "decoy_sequence": "RSYVPLAHR",
+        "hla_allele": "HLA-A*03:01",
+        "source_protein": "Two components:Melanocyte protein PMEL (UniProt:P40967) & Melanocyte protein PMEL",
+        "gene_symbol": "Two components:Melan",
+        "uniprot_id": "P40967"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "cytotoxicity|51 chromium",
+          "IFNg release|ELISA",
+          "IFNg release|ICS",
+          "ligand presentation|T cell recognition",
+          "TNFa release|ELISA"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "27049119",
+          "24453253"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Two components:Melanocyte protein PMEL (UniProt:P40967) & Melanocyte protein PMEL."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "2259232",
+        "iedb_hla_alleles": "HLA-A*03:01",
+        "iedb_ms_confirmed": "1 elution assays",
+        "iedb_source_antigen": "Two components:Melanocyte protein PMEL (UniProt:P40967) & Melanocyte protein PMEL (UniProt:P40967)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0896",
+      "peptide_info": {
+        "decoy_sequence": "KIRCANETR",
+        "hla_allele": "HLA-A*03:01",
+        "source_protein": "Aspartyl/asparaginyl beta-hydroxylase",
+        "gene_symbol": "Aspartyl/asparaginyl",
+        "uniprot_id": "Q12797"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": null,
+        "assays_performed": [
+          "IEDB record",
+          "IFNg release|ELISPOT"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "25629522"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Aspartyl/asparaginyl beta-hydroxylase."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "2266001",
+        "iedb_hla_alleles": "HLA-A*03:01",
+        "iedb_source_antigen": "Aspartyl/asparaginyl beta-hydroxylase (UniProt:Q12797)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0907",
+      "peptide_info": {
+        "decoy_sequence": "RSWDDKTCQK",
+        "hla_allele": "HLA-A*03:01",
+        "source_protein": "Exonuclease 1",
+        "gene_symbol": "Exonuclease 1",
+        "uniprot_id": "Q9UQ84"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": null,
+        "assays_performed": [
+          "IEDB record",
+          "IFNg release|ELISA"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "38427583"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Exonuclease 1."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "2398055",
+        "iedb_hla_alleles": "HLA-A*03:01",
+        "iedb_source_antigen": "Exonuclease 1 (UniProt:Q9UQ84)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0908",
+      "peptide_info": {
+        "decoy_sequence": "ITFYTGVLK",
+        "hla_allele": "HLA-A*03:01",
+        "source_protein": "Coagulation factor XIII A chain",
+        "gene_symbol": "Coagulation factor X",
+        "uniprot_id": "P00488"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": null,
+        "assays_performed": [
+          "IEDB record",
+          "IFNg release|ELISA"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "38427583"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Coagulation factor XIII A chain."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "2397954",
+        "iedb_hla_alleles": "HLA-A*03:01",
+        "iedb_source_antigen": "Coagulation factor XIII A chain (UniProt:P00488)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0981",
+      "peptide_info": {
+        "decoy_sequence": "GYDQIMPKK",
+        "hla_allele": "HLA-A*24:02",
+        "source_protein": "Protein SSX2",
+        "gene_symbol": "SSX2",
+        "uniprot_id": "Q16385"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": "Tcr-T1"
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "activation|biological activity",
+          "cytotoxicity|51 chromium",
+          "cytotoxicity|in vitro assay",
+          "decreased disease|in vivo assay",
+          "IFNg release|cytometric bead array",
+          "IFNg release|ELISPOT",
+          "qualitative binding|cellular MHC/direct/fluorescence",
+          "qualitative binding|multimer/tetramer",
+          "survival after tumor challenge after adoptive transfer|in vivo assay",
+          "tumor burden after challenge after adoptive transfer|in vivo assay",
+          "type IV hypersensitivity (DTH)|in vivo skin test"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "15647119",
+          "22726592",
+          "39748060"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Protein SSX2."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "23322",
+        "iedb_hla_alleles": "HLA-A*02:01, HLA-A*24:02",
+        "iedb_ms_confirmed": "1 elution assays",
+        "iedb_tcr_enriched": "Tcr-T1",
+        "iedb_source_antigen": "Isoform 2 of Protein SSXT (UniProt:Q15532-2), Protein SSX2 (UniProt:Q16385)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-0986",
+      "peptide_info": {
+        "decoy_sequence": "DYLQYVLQI",
+        "hla_allele": "HLA-A*24:02",
+        "source_protein": "Bcl-2-related protein A1",
+        "gene_symbol": "Bcl-2-related protei",
+        "uniprot_id": "Q16548"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": null,
+        "assays_performed": [
+          "IEDB record",
+          "cytotoxicity|51 chromium",
+          "proliferation|3H-thymidine",
+          "qualitative binding|multimer/tetramer"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "14871250",
+          "23022467"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Bcl-2-related protein A1."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "140993",
+        "iedb_hla_alleles": "HLA-A24, HLA-A*24:02",
+        "iedb_source_antigen": "Bcl-2-related protein A1 (UniProt:Q16548)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-1081",
+      "peptide_info": {
+        "decoy_sequence": "AYACNTSTL",
+        "hla_allele": "HLA-A*24:02",
+        "source_protein": "Baculoviral IAP repeat-containing protein 5",
+        "gene_symbol": "Baculoviral IAP repe",
+        "uniprot_id": "O15392"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "activation|biological activity",
+          "cytotoxicity|51 chromium",
+          "cytotoxicity|in vitro assay",
+          "decreased disease|in vivo assay",
+          "IFNg release|ELISA",
+          "IFNg release|ELISPOT",
+          "IFNg release|ICS",
+          "qualitative binding|multimer/tetramer",
+          "qualitative binding|purified MHC/competitive/fluorescence",
+          "T cell- APC binding|binding assay"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "31853575",
+          "23078230",
+          "24363758",
+          "24633336",
+          "25414129",
+          "28344889",
+          "28699227",
+          "29790264",
+          "30069687",
+          "30375705",
+          "31206934",
+          "31218770",
+          "32314731",
+          "36165170",
+          "39746333"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Baculoviral IAP repeat-containing protein 5."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "1075205",
+        "iedb_hla_alleles": "HLA-A24, HLA-A*24:02",
+        "iedb_ms_confirmed": "1 elution assays",
+        "iedb_source_antigen": "Baculoviral IAP repeat-containing protein 5 (UniProt:O15392), Isoform 2 of Baculoviral IAP repeat-containing protein 5 (UniProt:O15392-2)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-1119",
+      "peptide_info": {
+        "decoy_sequence": "LPQKKSNAL",
+        "hla_allele": "HLA-B*07:02",
+        "source_protein": "Ribonucleases P/MRP protein subunit POP1",
+        "gene_symbol": "Ribonucleases P/MRP ",
+        "uniprot_id": "Q99575"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "ligand presentation|cellular MHC/mass spectrometry",
+          "qualitative binding|multimer/tetramer",
+          "qualitative binding|purified MHC/competitive/fluorescence"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "25589627",
+          "32502341",
+          "33936100"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Ribonucleases P/MRP protein subunit POP1."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "420499",
+        "iedb_hla_alleles": "HLA-B*07:02, human",
+        "iedb_ms_confirmed": "3 elution assays",
+        "iedb_source_antigen": "Ribonucleases P/MRP protein subunit POP1 (UniProt:Q99575)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-1121",
+      "peptide_info": {
+        "decoy_sequence": "FPALRFVEV",
+        "hla_allele": "HLA-B*07:02",
+        "source_protein": "Gem-associated protein 4",
+        "gene_symbol": "Gem-associated prote",
+        "uniprot_id": "P57678"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "half life|purified MHC/direct/radioactivity|min",
+          "IFNg release|ELISA",
+          "IFNg release|ELISPOT",
+          "ligand presentation|cellular MHC/mass spectrometry",
+          "ligand presentation|secreted MHC/mass spectrometry",
+          "qualitative binding|multimer/tetramer",
+          "qualitative binding|purified MHC/competitive/fluorescence"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "25589627",
+          "23481700",
+          "26783342",
+          "32362897",
+          "39840067"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Gem-associated protein 4."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "231891",
+        "iedb_hla_alleles": "HLA-B*07:02, HLA-B*08:01, HLA-B*35:01, HLA-B*51:01",
+        "iedb_ms_confirmed": "6 elution assays",
+        "iedb_source_antigen": "Gem-associated protein 4 (UniProt:P57678)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-1124",
+      "peptide_info": {
+        "decoy_sequence": "LPMEVEKNSTL",
+        "hla_allele": "HLA-B*07:02",
+        "source_protein": "Isoform 2 of Hepatoma-derived growth factor (UniProt:P51858-2)",
+        "gene_symbol": "Isoform 2 of Hepatom",
+        "uniprot_id": "P51858"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "qualitative binding|multimer/tetramer",
+          "qualitative binding|purified MHC/competitive/fluorescence"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "25589627"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Isoform 2 of Hepatoma-derived growth factor (UniProt:P51858-2)."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "420498",
+        "iedb_hla_alleles": "HLA-B*07:02",
+        "iedb_ms_confirmed": "1 elution assays",
+        "iedb_source_antigen": "Isoform 2 of Hepatoma-derived growth factor (UniProt:P51858-2)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-1127",
+      "peptide_info": {
+        "decoy_sequence": "NPATPASKL",
+        "hla_allele": "HLA-B*07:02",
+        "source_protein": "UPF0711 protein C18orf21",
+        "gene_symbol": "UPF0711 protein C18o",
+        "uniprot_id": "Q32NC0"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": true,
+        "assays_performed": [
+          "IEDB record",
+          "IFNg release|ELISA",
+          "ligand presentation|cellular MHC/mass spectrometry",
+          "qualitative binding|multimer/tetramer",
+          "qualitative binding|purified MHC/competitive/fluorescence"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "25589627",
+          "23481700"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: UPF0711 protein C18orf21."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "420507",
+        "iedb_hla_alleles": "HLA-B*07:02",
+        "iedb_ms_confirmed": "2 elution assays",
+        "iedb_source_antigen": "UPF0711 protein C18orf21 (UniProt:Q32NC0)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-1136",
+      "peptide_info": {
+        "decoy_sequence": "WAAFGGSEF",
+        "hla_allele": "HLA-B*07:02",
+        "source_protein": "Isoform 3 of Transcription factor RFX4 (UniProt:Q33E94-3)",
+        "gene_symbol": "Isoform 3 of Transcr",
+        "uniprot_id": "Q33E94"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": null,
+        "assays_performed": [
+          "IEDB record",
+          "qualitative binding|multimer/tetramer"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "30783092"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Isoform 3 of Transcription factor RFX4 (UniProt:Q33E94-3)."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "921999",
+        "iedb_hla_alleles": "HLA-B*07:02, HLA-B*35:01",
+        "iedb_source_antigen": "Isoform 3 of Transcription factor RFX4 (UniProt:Q33E94-3)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-1152",
+      "peptide_info": {
+        "decoy_sequence": "RPRGARTQQ",
+        "hla_allele": "HLA-B*07:02",
+        "source_protein": "Persephin",
+        "gene_symbol": "Persephin",
+        "uniprot_id": "O60542"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": null,
+        "assays_performed": [
+          "IEDB record",
+          "IFNg release|ELISA"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "32362897"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Persephin."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "1075638",
+        "iedb_hla_alleles": "HLA-B*07:02",
+        "iedb_source_antigen": "Persephin (UniProt:O60542)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-1153",
+      "peptide_info": {
+        "decoy_sequence": "LPRACWREA",
+        "hla_allele": "HLA-B*07:02",
+        "source_protein": "Rho GDP-dissociation inhibitor 2",
+        "gene_symbol": "Rho GDP-dissociation",
+        "uniprot_id": "P52566"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": null,
+        "assays_performed": [
+          "IEDB record",
+          "IFNg release|ELISA"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "32362897"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Rho GDP-dissociation inhibitor 2."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "1075465",
+        "iedb_hla_alleles": "HLA-B*07:02",
+        "iedb_source_antigen": "Rho GDP-dissociation inhibitor 2 (UniProt:P52566)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-1202",
+      "peptide_info": {
+        "decoy_sequence": "KPFKIHVL",
+        "hla_allele": "HLA-B*07:02",
+        "source_protein": "Galectin-3",
+        "gene_symbol": "Galectin-3",
+        "uniprot_id": "P17931"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": null,
+        "assays_performed": [
+          "IEDB record",
+          "IFNg release|ELISA"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "38427583"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Galectin-3."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "2397960",
+        "iedb_hla_alleles": "HLA-B*07:02",
+        "iedb_source_antigen": "Galectin-3 (UniProt:P17931)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-1232",
+      "peptide_info": {
+        "decoy_sequence": "KPFKIHVLV",
+        "hla_allele": "HLA-B*07:02",
+        "source_protein": "Galectin-3",
+        "gene_symbol": "Galectin-3",
+        "uniprot_id": "P17931"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": null,
+        "assays_performed": [
+          "IEDB record",
+          "IFNg release|ELISA"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "38427583"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Galectin-3."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "2397961",
+        "iedb_hla_alleles": "HLA-B*07:02",
+        "iedb_source_antigen": "Galectin-3 (UniProt:P17931)",
+        "overall_status": "PARTIAL"
+      }
+    },
+    {
+      "decoy_id": "DC-1255",
+      "peptide_info": {
+        "decoy_sequence": "HLWSRPRCL",
+        "hla_allele": "HLA-B*08:01",
+        "source_protein": "Serine/threonine kinase 32C",
+        "gene_symbol": "Serine/threonine kin",
+        "uniprot_id": "H0Y349"
+      },
+      "discovery_context": {
+        "original_target_sequence": null,
+        "original_target_protein": null,
+        "tcr_name_or_id": null
+      },
+      "risk_profile": {
+        "evidence_level": "Level_3_High_Throughput_Screened",
+        "critical_organs_affected": [],
+        "expression_pattern": null,
+        "computational_safety_score": {
+          "ARDitox_score": null,
+          "other_scores": {}
+        }
+      },
+      "experimental_evidence": {
+        "mass_spec_confirmed": null,
+        "assays_performed": [
+          "IEDB record",
+          "IFNg release|ELISA"
+        ],
+        "cross_reactivity_affinity": "Positive"
+      },
+      "provenance": {
+        "pmid": [
+          "32362897"
+        ],
+        "clinical_trial_id": [],
+        "evidence_summary": "IEDB record: IEDB record. Organism: Homo sapiens (human). Antigen: Serine/threonine kinase 32C."
+      },
+      "source": null,
+      "thought_process": null,
+      "validation_flags": {
+        "extraction_method": "iedb_miner",
+        "iedb_match": "FOUND",
+        "source_text_match": "N/A",
+        "uniprot_match": "NOT_FOUND",
+        "protein_containment": "NOT_FOUND",
+        "iedb_structure_id": "1075365",
+        "iedb_hla_alleles": "HLA-B*08:01",
+        "iedb_source_antigen": "Serine/threonine kinase 32C (UniProt:H0Y349)",
+        "overall_status": "PARTIAL"
+      }
+    }
+  ]
+}

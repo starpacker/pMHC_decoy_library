@@ -339,43 +339,185 @@ def extract_rule_based(paper: PaperRecord) -> List[DecoyEntry]:
     return entries
 
 
+# ── Post-extraction source verification ────────────────────────────────
+
+def verify_peptide_in_source(entries: List[DecoyEntry], paper_text: str) -> List[DecoyEntry]:
+    """
+    Check whether each extracted peptide sequence actually appears in the
+    source paper text.  Sets ``validation_flags["source_text_match"]`` to
+    ``FOUND`` or ``NOT_FOUND``.
+
+    This is the primary defence against LLM hallucination of sequences.
+    """
+    text_upper = paper_text.upper()
+    for entry in entries:
+        seq = entry.peptide_info.decoy_sequence.upper()
+        if seq in text_upper:
+            entry.validation_flags["source_text_match"] = "FOUND"
+        else:
+            # Also try with common delimiters stripped (spaces, dashes)
+            text_clean = re.sub(r"[\s\-–—·.]", "", text_upper)
+            if seq in text_clean:
+                entry.validation_flags["source_text_match"] = "FOUND"
+            else:
+                entry.validation_flags["source_text_match"] = "NOT_FOUND"
+                log.warning(
+                    "Peptide %s NOT found in source text of PMID %s — possible hallucination",
+                    seq, entry.provenance.pmid,
+                )
+    return entries
+
+
+# ── Dual-extraction consensus ──────────────────────────────────────────
+
+def _extract_consensus(paper: PaperRecord) -> List[DecoyEntry]:
+    """
+    Run LLM extraction twice at different temperatures and keep only
+    peptide sequences that appear in BOTH passes (consensus filtering).
+
+    This drastically reduces hallucinated sequences at the cost of 2× API
+    calls.  Sequences unique to one pass are logged for review.
+    """
+    text_parts = [f"Title: {paper.title}", f"PMID: {paper.pmid}"]
+    if paper.full_text:
+        text_parts.append(f"Full Text:\n{paper.full_text}")
+    elif paper.abstract:
+        text_parts.append(f"Abstract:\n{paper.abstract}")
+    else:
+        return []
+
+    paper_text = "\n\n".join(text_parts)
+
+    # --- Pass 1: temperature=0.1 (deterministic) ---
+    raw1 = _call_llm(paper_text)
+    dicts1 = _parse_llm_response(raw1, paper.pmid)
+
+    # --- Pass 2: temperature=0.4 (slightly creative) ---
+    raw2 = _call_llm_t2(paper_text)
+    dicts2 = _parse_llm_response(raw2, paper.pmid)
+
+    # Build sequence sets
+    seqs1 = {d.get("peptide_info", {}).get("decoy_sequence", "").upper()
+             for d in dicts1}
+    seqs2 = {d.get("peptide_info", {}).get("decoy_sequence", "").upper()
+             for d in dicts2}
+
+    consensus_seqs = seqs1 & seqs2
+    only_pass1 = seqs1 - seqs2
+    only_pass2 = seqs2 - seqs1
+
+    if only_pass1:
+        log.info("Consensus: pass-1-only sequences (dropped): %s", only_pass1)
+    if only_pass2:
+        log.info("Consensus: pass-2-only sequences (dropped): %s", only_pass2)
+
+    # Keep dicts from pass 1 that are in consensus (pass 1 is lower temp → higher fidelity)
+    kept = [d for d in dicts1
+            if d.get("peptide_info", {}).get("decoy_sequence", "").upper() in consensus_seqs]
+    # Also add any pass-2-only that appear in consensus (shouldn't happen, but safe)
+    kept_seqs = {d.get("peptide_info", {}).get("decoy_sequence", "").upper() for d in kept}
+    for d in dicts2:
+        seq = d.get("peptide_info", {}).get("decoy_sequence", "").upper()
+        if seq in consensus_seqs and seq not in kept_seqs:
+            kept.append(d)
+            kept_seqs.add(seq)
+
+    entries = []
+    for d in kept:
+        entry = _dict_to_entry(d, paper.pmid)
+        if entry:
+            entry.validation_flags["extraction_method"] = "dual_consensus"
+            entries.append(entry)
+
+    log.info("Consensus: %d pass1, %d pass2, %d consensus → %d valid entries",
+             len(dicts1), len(dicts2), len(consensus_seqs), len(entries))
+    return entries
+
+
+def _call_llm_t2(paper_text: str) -> str:
+    """Second LLM call at temperature=0.4 for consensus extraction."""
+    try:
+        from openai import OpenAI
+    except ImportError:
+        raise RuntimeError("openai package is required for LLM extraction")
+
+    from .config import OPENAI_API_KEY, OPENAI_BASE_URL, OPENAI_MODEL
+
+    kwargs: Dict[str, Any] = {"api_key": OPENAI_API_KEY}
+    if OPENAI_BASE_URL:
+        kwargs["base_url"] = OPENAI_BASE_URL
+
+    client = OpenAI(**kwargs)
+
+    max_chars = 48_000
+    if len(paper_text) > max_chars:
+        paper_text = paper_text[:max_chars] + "\n\n[TEXT TRUNCATED]"
+
+    response = client.chat.completions.create(
+        model=OPENAI_MODEL,
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": f"Extract all decoy peptide entries from this paper:\n\n{paper_text}"},
+        ],
+        temperature=0.4,
+        max_tokens=4096,
+    )
+    return response.choices[0].message.content or "[]"
+
+
 # ── Unified extraction entry point ──────────────────────────────────────
 
-def extract_from_paper(paper: PaperRecord) -> List[DecoyEntry]:
+def extract_from_paper(
+    paper: PaperRecord,
+    consensus: bool = False,
+) -> List[DecoyEntry]:
     """
     Extract decoy entries from a paper, using LLM if available,
     otherwise falling back to rule-based extraction.
+
+    After extraction, every entry is checked against the source text
+    to flag possible LLM hallucinations.
 
     Parameters
     ----------
     paper : PaperRecord
         Paper data from the Fetcher agent.
+    consensus : bool
+        If True, run dual-extraction consensus mode (2× API cost but
+        much lower hallucination rate).
 
     Returns
     -------
     list[DecoyEntry]
         Extracted and validated entries.
-    
-    Raises
-    ------
-    RuntimeError
-        If LLM API key is not configured or LLM call fails.
     """
     # ── Try LLM first, fall back to rule-based extraction ──────────────
+    entries: List[DecoyEntry] = []
+
     if not OPENAI_API_KEY:
         log.warning(
             "OPENAI_API_KEY not set — falling back to rule-based extraction "
             "for PMID %s (results will be lower quality)",
             paper.pmid,
         )
-        return extract_rule_based(paper)
+        entries = extract_rule_based(paper)
+    else:
+        try:
+            if consensus:
+                entries = _extract_consensus(paper)
+            else:
+                entries = extract_with_llm(paper)
+        except Exception as exc:
+            log.warning(
+                "LLM extraction failed for PMID %s (%s) — "
+                "falling back to rule-based extraction",
+                paper.pmid, exc,
+            )
+            entries = extract_rule_based(paper)
 
-    try:
-        return extract_with_llm(paper)
-    except Exception as exc:
-        log.warning(
-            "LLM extraction failed for PMID %s (%s) — "
-            "falling back to rule-based extraction",
-            paper.pmid, exc,
-        )
-        return extract_rule_based(paper)
+    # ── Source-text verification ────────────────────────────────────────
+    if entries:
+        source_text = f"{paper.title}\n{paper.abstract}\n{paper.full_text}"
+        entries = verify_peptide_in_source(entries, source_text)
+
+    return entries

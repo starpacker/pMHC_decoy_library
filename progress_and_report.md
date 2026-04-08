@@ -1,6 +1,6 @@
 # Decoy Library — 技术进展与详细报告
 
-**最后更新**: 2026-04-06
+**最后更新**: 2026-04-07
 **项目**: TCR 脱靶毒性 pMHC 负样本库 (Decoy Library)
 
 ---
@@ -20,6 +20,7 @@
 11. [3D 结构可视化最佳实践](#11-3d-结构可视化最佳实践)
 12. [PLIP 部署与集成](#12-plip-部署与集成)
 13. [统一 CLI 入口与批量运行](#13-统一-cli-入口与批量运行)
+14. [Decoy C 三重验证 + IEDB 采掘升级](#14-decoy-c-三重验证--iedb-采掘升级)
 
 ---
 
@@ -808,3 +809,145 @@ python run_decoy.py GILGFVFTL d --designs 2000 --top-k 20
 python scripts/visualize_decoy_d_detail.py GILGFVFTL
 python scripts/visualize_decoy_d_detail.py --all
 ```
+
+---
+
+## 14. Decoy C 三重验证 + IEDB 采掘升级
+
+### 14.1 背景与问题
+
+对 Decoy C 管线的系统审计发现了两类关键问题：
+
+**召回问题（Sequence 遗漏）**：
+- IEDB 有约 100 万条 T 细胞 epitope 记录，但仅被用作验证工具，从未作为主数据源
+- 论文 48k 字符截断导致大型 immunopeptidome 论文的 peptide table 被砍掉
+- 每篇论文只做一次 LLM 提取，无重试机制
+
+**精度问题（虚假 Sequence 入库）**：
+- LLM 提取的序列从不检查是否真正出现在原论文中（幻觉风险）
+- UniProt 验证仅检查 gene→accession 映射，不验证 peptide ⊂ protein
+- 验证状态过于宽松：UniProt NOT_FOUND + IEDB NOT_FOUND = PARTIAL 仍入库
+- Quality filter 条件太松：`gene_ok OR hla_ok OR summary_ok`
+
+### 14.2 精度修复：三重验证 + 硬拒绝
+
+#### 14.2.1 源文本验证 (`extractor.py: verify_peptide_in_source`)
+
+提取后自动检查每个 peptide 序列是否出现在原论文全文中：
+- 直接字符串匹配 + 去除空格/连字符后匹配
+- 设置 `validation_flags["source_text_match"] = FOUND | NOT_FOUND`
+- NOT_FOUND 意味着 LLM 可能幻觉出了不存在的序列
+
+#### 14.2.2 蛋白子序列验证 (`validator.py: verify_peptide_in_protein`)
+
+从 UniProt REST API 拉取全长蛋白 FASTA 序列，验证 `peptide in protein_seq`：
+- 使用 `https://rest.uniprot.org/uniprotkb/{ID}.fasta` 获取全长蛋白
+- 设置 `validation_flags["protein_containment"] = CONFIRMED | NOT_FOUND | SKIPPED | ERROR`
+- NOT_FOUND 是强幻觉信号：声称来自某蛋白但序列不在蛋白中
+
+#### 14.2.3 硬拒绝门控 (`validator.py: hard_reject`)
+
+Entry 满足以下任一条件即被拒绝入库：
+
+1. **protein_containment = NOT_FOUND** → 直接拒绝（序列不在蛋白中 = 幻觉）
+2. **三重失败**：source_text_match NOT_FOUND + iedb_match NOT_FOUND + protein_containment NOT_FOUND/SKIPPED → 拒绝（零外部证据）
+3. **overall_status = REJECTED**（3+ 项验证失败）
+
+例外：seed/manual/iedb_miner 来源的条目不受硬拒绝影响。
+
+#### 14.2.4 双次共识提取 (`extractor.py: _extract_consensus`)
+
+同一论文运行两次 LLM 提取（temperature=0.1 和 0.4），仅保留两次都提取到的序列：
+- 大幅降低幻觉率（两次独立调用同时幻觉出相同序列的概率极低）
+- 代价：2× API 调用成本
+- 通过 `--consensus` CLI flag 启用
+
+### 14.3 召回修复：IEDB 系统性采掘
+
+新增 `iedb_miner.py` 模块，将 IEDB 从验证工具升级为主数据源：
+
+| 策略 | 方法 | 预期产出 |
+|------|------|---------|
+| Protein | 对 60+ 危险蛋白（TTN, MAGEA3, cardiac, neural）查询所有 T-cell assay | 高置信度脱靶肽 |
+| Self-antigen | 人类自身抗原 × 11 个常见 HLA allele 交叉查询 | 潜在脱靶池 |
+| Mass-spec | 仅保留有 MHC-elution 质谱确认的天然呈递肽 | 最高置信度 |
+| Cross-reactive | 查询自身免疫/交叉反应/分子拟态标注的记录 | 已知交叉反应 |
+
+### 14.4 质量过滤升级 (`scale_up.py: _quality_filter`)
+
+旧标准（任一即可）：`gene_ok OR hla_ok OR summary_ok`
+
+新标准（全部满足 + 证据要求）：
+- **必须全部满足**：非 UNKNOWN gene + 有效 HLA allele + evidence_summary > 20 chars
+- **至少一项证据**：trusted_method / VALIDATED status / source_text_match / protein_containment / iedb_match
+
+### 14.5 文件变更清单
+
+| 文件 | 变更 |
+|------|------|
+| `extractor.py` | +`verify_peptide_in_source()`, +`_extract_consensus()`, +`_call_llm_t2()`, `extract_from_paper()` 增加 consensus 参数 |
+| `validator.py` | +`_fetch_protein_sequence()`, +`verify_peptide_in_protein()`, +`hard_reject()`, `validate_entry()` 增加蛋白验证步骤 |
+| `orchestrator.py` | `process_papers()` 集成硬拒绝门控和 consensus 参数 |
+| `iedb_miner.py` | **新文件** — IEDB 系统性采掘模块（4 策略） |
+| `scale_up.py` | 集成 IEDB miner, 传递 consensus flag, 增强质量过滤 |
+
+### 14.6 CLI 用法
+
+```bash
+# 标准扩库（含 IEDB 采掘 + 三重验证）
+python scale_up.py -n 10000
+
+# 高精度模式（双次共识 + 三重验证）
+python scale_up.py -n 10000 --consensus
+
+# 仅 IEDB 采掘（跳过 PubMed）
+python scale_up.py -n 10000 --no-pubmed
+```
+
+### 14.7 IEDB 大规模采掘结果 (2026-04-07)
+
+#### 挖掘过程
+1. **策略 A (人类自身抗原 T 细胞检测)**：11 个常见 HLA allele × Homo sapiens 阳性记录 → **757 个候选条目**
+2. **策略 B (自身免疫疾病)**：0 个新增（被策略 A 覆盖）
+3. **三重验证**：757 候选 → 745 存活初轮验证
+4. **UniProt ID 修复**：IEDB 记录 `parent_source_antigen_iri` 字段含 UniProt accession（格式 `UNIPROT:P60709`），原代码未提取。修复后 675 条获得正确 uniprot_id
+5. **蛋白子序列重验证**：675 条用正确 UniProt ID 重跑 `verify_peptide_in_protein()`
+6. **清退**：33 条蛋白子序列验证失败（peptide 不在声称的蛋白中）被移除
+
+#### 关键发现：gene_symbol 错误
+IEDB 记录中 `gene_symbol` 字段通常为空，代码回退使用 `source_antigen_name`（完整蛋白名如 "Glypican-3"），导致 UniProt 基因查询全部失败。
+
+**修复**：
+- `iedb_miner.py`：从 `parent_source_antigen_iri` 提取 UniProt accession
+- `iedb_miner.py`：新增 `_protein_to_gene()` 映射（~60 个常见蛋白名→基因符号）
+- `fix_and_revalidate.py`：从 `iedb_source_antigen` validation flag 中提取 UniProt ID 并重跑蛋白验证
+
+#### 最终库统计
+
+| 指标 | 数值 |
+|------|------|
+| 总条目数 | 817 |
+| 唯一序列 | 817 |
+| VALIDATED | 662 (81.0%) |
+| PARTIAL | 111 (13.6%) |
+| NEEDS_REVIEW | 44 (5.4%) |
+| 蛋白子序列确认 | 667/817 (81.6%) |
+| IEDB 匹配 | 768/817 (94.0%) |
+| 双重验证（金标准） | 662/817 (81.0%) |
+| 质谱确认 | 476/817 (58.3%) |
+| 唯一 HLA allele | 46 |
+| 唯一基因 | 310 |
+
+| HLA Allele | 数量 |
+|------------|------|
+| HLA-A*02:01 | 223 |
+| HLA-B*07:02 | 133 |
+| HLA-A*24:02 | 131 |
+| HLA-A*03:01 | 101 |
+| HLA-A*11:01 | 61 |
+| HLA-A*01:01 | 41 |
+
+#### 数据来源
+- `iedb_miner` (IEDB 直接采掘): 712 条
+- `llm` (PubMed 文献 + GPT-4o 提取): 60 条
+- `llm_batch_migrated` (旧批次迁移): 45 条

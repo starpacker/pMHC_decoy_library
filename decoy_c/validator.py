@@ -4,12 +4,15 @@ Validator Agent
 Cross-checks extracted DecoyEntry records against external databases:
 
     1. UniProt - verifies gene_symbol <-> uniprot_id mapping
-    2. IEDB   - checks if the peptide exists in the Immune Epitope Database
+    2. UniProt - verifies peptide is a sub-sequence of the source protein
+    3. IEDB   - checks if the peptide exists in the Immune Epitope Database
+    4. Hard-rejection gate - rejects entries with zero external evidence
 
 Public API
 ----------
-    validate_entry(entry)   -> DecoyEntry  (with validation_flags set)
+    validate_entry(entry)    -> DecoyEntry  (with validation_flags set)
     validate_batch(entries)  -> list[DecoyEntry]
+    hard_reject(entry)       -> bool  (True = reject this entry)
 """
 
 from __future__ import annotations
@@ -29,6 +32,9 @@ from .config import (
 from .models import DecoyEntry
 
 log = logging.getLogger(__name__)
+
+# UniProt FASTA endpoint for full protein sequence retrieval
+UNIPROT_FASTA = "https://rest.uniprot.org/uniprotkb"
 
 
 def _query_uniprot(gene_symbol: str, organism_id: int = 9606) -> Optional[Dict[str, Any]]:
@@ -67,6 +73,64 @@ def _query_iedb(sequence: str) -> Optional[Dict[str, Any]]:
     except Exception as exc:
         log.warning("IEDB query failed for %s: %s", sequence, exc)
         return None
+
+
+def _fetch_protein_sequence(uniprot_id: str) -> Optional[str]:
+    """Fetch the full amino-acid sequence from UniProt for containment check."""
+    if not uniprot_id:
+        return None
+    time.sleep(UNIPROT_DELAY_SEC)
+    url = f"{UNIPROT_FASTA}/{uniprot_id}.fasta"
+    try:
+        resp = requests.get(url, timeout=30)
+        if resp.status_code == 200:
+            lines = resp.text.strip().split("\n")
+            # Skip the header line (starts with >)
+            seq_lines = [l.strip() for l in lines if not l.startswith(">")]
+            return "".join(seq_lines).upper()
+        else:
+            log.warning("UniProt FASTA fetch returned %d for %s", resp.status_code, uniprot_id)
+            return None
+    except Exception as exc:
+        log.warning("UniProt FASTA fetch failed for %s: %s", uniprot_id, exc)
+        return None
+
+
+def verify_peptide_in_protein(entry: DecoyEntry) -> DecoyEntry:
+    """
+    Verify that the decoy peptide sequence is an actual sub-sequence of the
+    source protein.  This catches LLM hallucinations where a plausible-looking
+    but non-existent peptide is attributed to a real protein.
+
+    Sets ``validation_flags["protein_containment"]`` to one of:
+        CONFIRMED  — peptide found in protein sequence
+        NOT_FOUND  — peptide NOT in protein sequence (likely hallucination)
+        SKIPPED    — no uniprot_id available to check
+        ERROR      — API call failed
+    """
+    uid = entry.peptide_info.uniprot_id
+    if not uid:
+        entry.validation_flags["protein_containment"] = "SKIPPED"
+        return entry
+
+    protein_seq = _fetch_protein_sequence(uid)
+    if protein_seq is None:
+        entry.validation_flags["protein_containment"] = "ERROR"
+        return entry
+
+    peptide = entry.peptide_info.decoy_sequence.upper()
+    if peptide in protein_seq:
+        entry.validation_flags["protein_containment"] = "CONFIRMED"
+        log.info("Protein containment: %s FOUND in %s (%s)",
+                 peptide, uid, entry.peptide_info.gene_symbol)
+    else:
+        entry.validation_flags["protein_containment"] = "NOT_FOUND"
+        log.warning(
+            "Protein containment FAILED: %s NOT in %s (%s) — possible hallucination",
+            peptide, uid, entry.peptide_info.gene_symbol,
+        )
+
+    return entry
 
 
 def validate_uniprot(entry: DecoyEntry) -> DecoyEntry:
@@ -182,6 +246,11 @@ def validate_entry(entry: DecoyEntry) -> DecoyEntry:
     """
     Run all validation checks on a single DecoyEntry.
 
+    Validation chain:
+        1. UniProt gene → accession mapping
+        2. Peptide-in-protein containment (sub-sequence check)
+        3. IEDB epitope lookup + enrichment
+
     Parameters
     ----------
     entry : DecoyEntry
@@ -193,26 +262,88 @@ def validate_entry(entry: DecoyEntry) -> DecoyEntry:
         Same entry with validation_flags populated.
     """
     entry = validate_uniprot(entry)
+    entry = verify_peptide_in_protein(entry)
     entry = validate_iedb(entry)
 
-    # Compute overall validation status
+    # ── Compute overall validation status (stricter than before) ────────
     flags = entry.validation_flags
     issues = []
+
     if flags.get("uniprot_match", "").startswith("MISMATCH"):
         issues.append("uniprot_mismatch")
     if flags.get("uniprot_match") == "NOT_FOUND":
         issues.append("uniprot_not_found")
     if flags.get("iedb_match") == "NOT_FOUND":
         issues.append("iedb_not_found")
+    if flags.get("protein_containment") == "NOT_FOUND":
+        issues.append("protein_not_contained")
+    if flags.get("source_text_match") == "NOT_FOUND":
+        issues.append("source_text_not_found")
 
     if not issues:
         flags["overall_status"] = "VALIDATED"
-    elif "uniprot_mismatch" in issues:
+    elif "uniprot_mismatch" in issues or "protein_not_contained" in issues:
+        flags["overall_status"] = "NEEDS_REVIEW"
+    elif len(issues) >= 3:
+        flags["overall_status"] = "REJECTED"
+    elif len(issues) >= 2:
         flags["overall_status"] = "NEEDS_REVIEW"
     else:
         flags["overall_status"] = "PARTIAL"
 
     return entry
+
+
+def hard_reject(entry: DecoyEntry) -> bool:
+    """
+    Decide whether an entry should be hard-rejected from the library.
+
+    An entry is REJECTED if it has **zero credible external evidence**:
+      - source_text_match   = NOT_FOUND  (sequence not in paper)
+      - protein_containment = NOT_FOUND  (sequence not in protein)
+      - iedb_match          = NOT_FOUND  (sequence not in IEDB)
+
+    Also rejected if:
+      - protein_containment = NOT_FOUND (sequence does not exist in the
+        claimed protein — strong signal of hallucination)
+      - overall_status = REJECTED
+
+    Entries from seed data or manual curation are never hard-rejected.
+
+    Returns True if the entry should be REJECTED.
+    """
+    flags = entry.validation_flags
+
+    # Never reject seed / manually curated entries
+    if flags.get("extraction_method") in ("seed", "manual", "iedb_miner"):
+        return False
+
+    # Hard reject: protein containment failed (strong hallucination signal)
+    if flags.get("protein_containment") == "NOT_FOUND":
+        log.warning("HARD REJECT %s: peptide not contained in protein %s (%s)",
+                     entry.peptide_info.decoy_sequence,
+                     entry.peptide_info.uniprot_id,
+                     entry.peptide_info.gene_symbol)
+        return True
+
+    # Hard reject: triple miss — not in source, not in IEDB, not in protein
+    source_miss = flags.get("source_text_match") == "NOT_FOUND"
+    iedb_miss = flags.get("iedb_match") == "NOT_FOUND"
+    protein_miss = flags.get("protein_containment") in ("NOT_FOUND", "SKIPPED", "ERROR")
+
+    if source_miss and iedb_miss and protein_miss:
+        log.warning("HARD REJECT %s: zero external evidence (source=%s, iedb=%s, protein=%s)",
+                     entry.peptide_info.decoy_sequence,
+                     flags.get("source_text_match"),
+                     flags.get("iedb_match"),
+                     flags.get("protein_containment"))
+        return True
+
+    # Explicit REJECTED status from validation
+    if flags.get("overall_status") == "REJECTED":
+        return True
+
+    return False
 
 
 def validate_batch(entries: List[DecoyEntry]) -> List[DecoyEntry]:

@@ -63,6 +63,13 @@ from decoy_c.orchestrator import (
 from decoy_c.seed_data import build_seed_library
 from decoy_c.validator import validate_batch
 
+# IEDB direct miner
+try:
+    from decoy_c.iedb_miner import mine_iedb
+    IEDB_MINER_AVAILABLE = True
+except ImportError:
+    IEDB_MINER_AVAILABLE = False
+
 # Multi-source fetchers
 try:
     from decoy_c.multi_source_fetcher import (
@@ -773,21 +780,46 @@ def _unique_sequences(lib: DecoyLibrary) -> Set[str]:
 def _quality_filter(lib: DecoyLibrary) -> DecoyLibrary:
     """
     Remove low-quality entries that shouldn't count toward target N.
-    Keeps entries that have at least ONE of:
-        - non-UNKNOWN gene symbol
-        - valid HLA allele (not HLA-A*00:xx)
-        - evidence summary length > 20
+
+    Strict criteria — keeps entries that satisfy ALL of:
+        1. Non-UNKNOWN gene symbol
+        2. Valid HLA allele (not HLA-A*00:xx or HLA-X*00:01)
+        3. Evidence summary length > 20 chars
+
+    AND at least ONE of:
+        4a. overall_status in (VALIDATED, PARTIAL)
+        4b. extraction_method in (seed, manual, iedb_miner)
+        4c. source_text_match = FOUND
+        4d. protein_containment = CONFIRMED
+        4e. iedb_match = FOUND
     """
     good = []
     dropped = 0
     for e in lib.entries:
+        flags = e.validation_flags
+
+        # --- Hard requirements (ALL must pass) ---
         gene_ok = e.peptide_info.gene_symbol not in ("UNKNOWN", "", None)
-        hla_ok = "00:xx" not in e.peptide_info.hla_allele
+        hla_ok = ("00:xx" not in e.peptide_info.hla_allele
+                  and "00:01" not in e.peptide_info.hla_allele)
         summary_ok = len(e.provenance.evidence_summary) > 20
-        if gene_ok or hla_ok or summary_ok:
+
+        if not (gene_ok and hla_ok and summary_ok):
+            dropped += 1
+            continue
+
+        # --- Evidence requirements (at least ONE must pass) ---
+        trusted_method = flags.get("extraction_method") in ("seed", "manual", "iedb_miner")
+        status_ok = flags.get("overall_status") in ("VALIDATED", "PARTIAL")
+        source_ok = flags.get("source_text_match") == "FOUND"
+        protein_ok = flags.get("protein_containment") == "CONFIRMED"
+        iedb_ok = flags.get("iedb_match") == "FOUND"
+
+        if trusted_method or status_ok or source_ok or protein_ok or iedb_ok:
             good.append(e)
         else:
             dropped += 1
+
     if dropped:
         log.info("Quality filter dropped %d low-quality entries", dropped)
     lib.entries = good
@@ -807,6 +839,7 @@ def scale_up(
     multi_source: bool = False,
     skip_pubmed: bool = False,
     infinite: bool = False,
+    consensus: bool = False,
 ) -> DecoyLibrary:
     """
     Main scale-up loop.
@@ -973,7 +1006,7 @@ def scale_up(
         # Process: extract + validate + deduplicate
         before = len(lib.entries)
         try:
-            new_entries = process_papers(papers, lib, validate=validate)
+            new_entries = process_papers(papers, lib, validate=validate, consensus=consensus)
         except Exception as exc:
             log.error("❌ Processing failed: %s", exc)
             new_entries = []
@@ -1089,6 +1122,53 @@ def scale_up(
                 })
                 _save_checkpoint(ckpt)
                 log.info("   💾 Checkpoint saved (round %d)", round_num)
+
+    # ── Step 2.7: IEDB direct mining ──────────────────────────────────
+    if IEDB_MINER_AVAILABLE and len(lib.entries) < required_num:
+        log.info("")
+        log.info("=" * 60)
+        log.info("🗃️  IEDB DIRECT MINING")
+        log.info("=" * 60)
+
+        try:
+            iedb_entries = mine_iedb(lib, strategy="all", validate=validate)
+            iedb_added = 0
+            for entry in iedb_entries:
+                if entry.decoy_id == "DC-0000":
+                    current_max = 0
+                    for e in lib.entries:
+                        try:
+                            num = int(e.decoy_id.split("-")[1])
+                            if num > current_max:
+                                current_max = num
+                        except (IndexError, ValueError):
+                            pass
+                    current_max += 1
+                    entry.decoy_id = f"DC-{current_max:04d}"
+
+                if lib.add_entry(entry, deduplicate=True):
+                    iedb_added += 1
+                    total_new += 1
+
+            log.info("IEDB miner: added %d new entries (from %d candidates)",
+                     iedb_added, len(iedb_entries))
+            log.info("Library: %d / %d (%.1f%%)",
+                     len(lib.entries), required_num,
+                     100.0 * len(lib.entries) / required_num)
+
+            save_library(lib)
+            ckpt.update({
+                "processed_pmids": list(processed_pmids),
+                "processed_queries": list(processed_queries),
+                "processed_multi_source": list(processed_multi_source),
+                "rounds": round_num,
+                "library_size": len(lib.entries),
+                "iedb_mined": True,
+                "last_saved": datetime.now().isoformat(),
+            })
+            _save_checkpoint(ckpt)
+        except Exception as exc:
+            log.error("IEDB mining failed: %s", exc)
 
     # ── Step 3: Quality filter ──────────────────────────────────────
     if quality_filter:
@@ -1230,6 +1310,11 @@ Examples:
         help="Skip PubMed queries (only use multi-source if --multi-source is set)",
     )
     parser.add_argument(
+        "--consensus",
+        action="store_true",
+        help="Enable dual-extraction consensus mode (2x API cost, much less hallucination)",
+    )
+    parser.add_argument(
         "--infinite",
         action="store_true",
         help="Run indefinitely, generating new queries when exhausted",
@@ -1287,6 +1372,7 @@ Examples:
             multi_source=args.multi_source,
             skip_pubmed=args.no_pubmed,
             infinite=args.infinite,
+            consensus=args.consensus,
         )
 
         print(f"\n{'='*60}")

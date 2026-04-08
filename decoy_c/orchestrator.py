@@ -30,7 +30,7 @@ from .fetcher import (
 )
 from .models import DecoyEntry, DecoyLibrary
 from .seed_data import build_seed_library
-from .validator import validate_batch, validate_entry
+from .validator import hard_reject, validate_batch, validate_entry
 
 log = logging.getLogger(__name__)
 
@@ -78,19 +78,33 @@ def process_papers(
     papers: List[PaperRecord],
     lib: DecoyLibrary,
     validate: bool = True,
+    consensus: bool = False,
 ) -> List[DecoyEntry]:
     """
-    Run Extractor + Validator on a batch of papers and merge into library.
+    Run Extractor + Validator + Hard-Rejection on a batch of papers and
+    merge surviving entries into the library.
+
+    Parameters
+    ----------
+    papers : list[PaperRecord]
+        Papers to process.
+    lib : DecoyLibrary
+        Existing library (entries are appended in-place).
+    validate : bool
+        Whether to run UniProt/IEDB/protein-containment validation.
+    consensus : bool
+        Whether to use dual-extraction consensus mode.
 
     Returns list of newly added entries.
     """
     all_new = []
+    total_rejected = 0
 
     for paper in papers:
         log.info("Processing PMID %s: %s", paper.pmid, paper.title[:60])
 
-        # Extract
-        extracted = extract_from_paper(paper)
+        # Extract (with optional consensus mode and source-text verification)
+        extracted = extract_from_paper(paper, consensus=consensus)
         if not extracted:
             log.info("  No decoy entries extracted from PMID %s", paper.pmid)
             continue
@@ -104,16 +118,29 @@ def process_papers(
         if validate:
             extracted = validate_batch(extracted)
 
-        # Deduplicate and add
+        # Hard-rejection gate + deduplicate and add
         added = 0
+        rejected = 0
         for entry in extracted:
+            if validate and hard_reject(entry):
+                rejected += 1
+                log.info("  REJECTED: %s (%s) — %s",
+                         entry.peptide_info.decoy_sequence,
+                         entry.peptide_info.gene_symbol,
+                         entry.validation_flags.get("overall_status", "?"))
+                continue
+
             if lib.add_entry(entry, deduplicate=True):
                 all_new.append(entry)
                 added += 1
             else:
                 log.info("  Skipped duplicate: %s", entry.peptide_info.decoy_sequence)
 
-        log.info("  Added %d new entries from PMID %s", added, paper.pmid)
+        total_rejected += rejected
+        log.info("  Added %d, rejected %d from PMID %s", added, rejected, paper.pmid)
+
+    if total_rejected:
+        log.info("Total hard-rejected across batch: %d entries", total_rejected)
 
     return all_new
 

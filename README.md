@@ -18,14 +18,14 @@
                ▼                      ▼      │                      ▼
      ┌─────────────────┐   ┌─────────────────┤   ┌─────────────────┐
      │    Decoy A       │   │    Decoy B       │   │    Decoy C       │
-     │   序列同源扫描    │   │  结构相似筛选     │   │   文献挖掘        │
+     │   序列同源扫描    │   │  结构相似筛选     │   │   文献+IEDB采掘    │
      │                  │   │                  │   │                  │
      │  "长得像的"       │   │  "形状像的"       │   │ "文献报道过的"     │
-     │  Hamming ≤ 4     │   │  双叠合 RMSD      │   │  临床/实验证据     │
-     │  50-200 条/靶标  │   │  + 5维界面描述符   │   │  105 条（已整理）  │
+     │  Hamming ≤ 4     │   │  双叠合 RMSD      │   │  三重验证+硬拒绝     │
+     │  50-200 条/靶标  │   │  + 5维界面描述符   │   │  817 条入库   │
      │                  │   │  100-500 条/靶标  │   │                  │
      │  确定性: 高       │   │  确定性: 中       │   │  确定性: 最高      │
-     │  覆盖面: 窄       │   │  覆盖面: 广       │   │  覆盖面: 受限      │
+     │  覆盖面: 窄       │   │  覆盖面: 广       │   │  覆盖面: IEDB扩展      │
      └─────────────────┘   └─────────────────┘   └─────────────────┘
                                      │
                              ┌───────▼─────────┐
@@ -75,9 +75,10 @@ python -m decoy_b run --target GILGFVFTL --hla "HLA-A*02:01"
 # Decoy D — MPNN 逆向设计
 python -m decoy_d --target GILGFVFTL --hla "HLA-A*02:01"
 
-# Decoy C — 文献挖掘
+# Decoy C — 文献+IEDB采掘（三重验证）
 python -m decoy_c stats
 python -m decoy_c show
+python scale_up.py -n 10000 --consensus    # 扩库（含IEDB采掘+双次共识提取）
 ```
 
 ---
@@ -231,7 +232,7 @@ pMHC_decoy_library/
 |------|------|------|
 | **Decoy A** | ✅ 完成 | 全管线 + Presentation Score 升级 |
 | **Decoy B** | ✅ 完成 | 5-descriptor 界面评分 + Boltz 交叉验证 |
-| **Decoy C** | ✅ 完成 | 250 条入库 (105 有证据等级) |
+| **Decoy C** | ✅ 完成 | 817 条入库 (662 VALIDATED, 81% 蛋白确认, 94% IEDB 匹配) |
 | **Decoy D** | ✅ 完成 | MPNN 逆向设计 + mhcflurry 过滤 |
 
 详细技术报告见 → [`progress_and_report.md`](progress_and_report.md)
